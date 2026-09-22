@@ -20,6 +20,11 @@ HEADERS = {"Authorization": API_KEY}
 CACHE_PRODUCTOS = "productos_raw.json"
 CACHE_STOCK = "stock_por_producto.json"
 SALIDA = "docs/products.json"
+ROTACION = "rotacion.json"  # generado por ventas_rotacion.py
+
+# Máximo de productos a publicar, priorizando los que más rotan.
+# None = publicar todos los que tengan stock (sin importar si se venden).
+MAX_PRODUCTOS = 200
 
 LOCALES = {"SCALA": "scala", "CONDADO": "condado", "PLAZA DEL VALLE": "valle"}
 
@@ -91,6 +96,11 @@ def main():
         json.dump(stock_cache, f, ensure_ascii=False)
     print(f"Stock por bodega listo en {time.time()-t0:.0f}s")
 
+    rotacion = {}
+    if os.path.exists(ROTACION):
+        with open(ROTACION, encoding="utf-8") as f:
+            rotacion = json.load(f)
+
     salida = []
     for p in candidatos:
         filas = stock_cache.get(p["id"], [])
@@ -114,7 +124,9 @@ def main():
         except (TypeError, ValueError):
             precio = 0.0
 
+        rot = rotacion.get(p["id"], {"unidades": 0, "dias": 0})
         salida.append({
+            "_rot": (rot["dias"], rot["unidades"]),
             "code": codigo,
             "name": p.get("nombre", "").strip(),
             "cat": slugify(cat_real),
@@ -126,10 +138,20 @@ def main():
             "desc": (p.get("descripcion") or "").strip(),
         })
 
+    con_stock = len(salida)
+    # Los que más rotan primero: días distintos con venta, luego unidades vendidas.
+    salida.sort(key=lambda x: x["_rot"], reverse=True)
+    if MAX_PRODUCTOS is not None:
+        salida = [x for x in salida if x["_rot"][1] > 0][:MAX_PRODUCTOS]
+    # Las cifras de venta son internas: no se publican en el JSON del sitio.
+    for x in salida:
+        del x["_rot"]
+
     with open(SALIDA, "w", encoding="utf-8") as f:
         json.dump(salida, f, ensure_ascii=False, indent=2)
 
-    print(f"\n{SALIDA} generado con {len(salida)} productos (de {len(candidatos)} candidatos).")
+    print(f"\n{SALIDA} generado con {len(salida)} productos "
+          f"({con_stock} con stock en los locales, de {len(candidatos)} candidatos).")
 
 
 if __name__ == "__main__":
