@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo Electronic Games</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0B12;
+  --bg-glow: radial-gradient(60% 55% at 18% -10%, rgba(155,92,255,.24), transparent 60%),
+             radial-gradient(45% 40% at 100% 0%, rgba(51,230,255,.14), transparent 60%);
+  --surface:#141726; --surface-hi:#1C2136; --ink:#F1F3FB; --muted:#8C93AD; --line:#262B42;
+  --brand:#9B5CFF; --brand-ink:#0B0714; --brand2:#33E6FF;
+  --coin:#C9FF3D; --coin-ink:#141A06;
+  --ok:#38E8A6; --low:#FFC24B; --out:#FF5D7A; --chip:#1B1F33;
+  --whatsapp:#25D366; --whatsapp-ink:#06210F;
+  color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.45}
+img,svg{max-width:100%;display:block}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brand2);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brand2)}
+
+header.top{position:sticky;top:0;z-index:5;background:rgba(10,11,18,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:60px}
+.brand{display:inline-flex;align-items:center;gap:9px;font-family:"Rajdhani",sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:.01em;text-decoration:none;color:var(--ink)}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--brand2);box-shadow:0 0 10px 2px var(--brand2)}
+.wa-top{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--whatsapp-ink);font-weight:700;font-size:.9rem;padding:8px 14px;border-radius:999px;background:var(--whatsapp)}
+.wa-top svg{width:17px;height:17px}
+
+.hero{padding:52px 0 26px;position:relative;background-image:var(--bg-glow);background-repeat:no-repeat}
+.hero h1{margin:10px 0 0;font-family:"Rajdhani",sans-serif;font-weight:700;font-size:clamp(2.1rem,6vw,3.7rem);line-height:.98;letter-spacing:-.01em;max-width:16ch;text-wrap:balance;text-transform:uppercase}
+.hero p{margin:14px 0 22px;color:var(--muted);max-width:52ch;font-size:1.05rem}
+.stat{font-family:"JetBrains Mono",monospace;color:var(--brand2)}
+.search{position:relative;max-width:640px}
+.search input{width:100%;height:56px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:0 18px 0 50px;font-size:1.05rem}
+.search input::placeholder{color:var(--muted)}
+.search input:focus-visible{border-color:var(--brand2)}
+.search svg{position:absolute;left:17px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--muted)}
+
+.tools{position:sticky;top:60px;z-index:4;background:rgba(10,11,18,.92);backdrop-filter:blur(10px);padding:12px 0;border-bottom:1px solid var(--line)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:9px 16px;border-radius:999px;font-weight:600;cursor:pointer;font-size:.92rem}
+.chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink);box-shadow:0 0 0 1px var(--brand),0 0 18px rgba(155,92,255,.45)}
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.filters select{height:40px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:0 10px;font-size:.92rem}
+.check{display:inline-flex;align-items:center;gap:8px;font-size:.92rem;font-weight:500;cursor:pointer;color:var(--ink)}
+.check input{width:18px;height:18px;accent-color:var(--brand)}
+.count{margin-left:auto;color:var(--muted);font-size:.88rem;font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;padding:24px 0 24px}
+.card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:border-color .15s,box-shadow .15s,transform .15s}
+.card:hover{border-color:var(--brand);box-shadow:0 0 0 1px var(--brand),0 8px 28px rgba(155,92,255,.18);transform:translateY(-2px)}
+.card:focus-visible{outline:2px solid var(--brand2);outline-offset:2px}
+.card .img{aspect-ratio:1/1;overflow:hidden;background:var(--chip)}
+.card .img img{width:100%;height:100%;object-fit:cover}
+.card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.plat{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--brand2);font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+.name{font-weight:600;font-size:.98rem;line-height:1.3}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:10px}
+
+.tag{display:inline-flex;align-items:flex-start;background:var(--coin);color:var(--coin-ink);font-family:"Rajdhani",sans-serif;font-weight:700;font-size:1.35rem;line-height:1;padding:7px 10px 6px 18px;position:relative;clip-path:polygon(10px 0,100% 0,100% 100%,10px 100%,0 50%);border-radius:0 4px 4px 0;box-shadow:0 0 16px rgba(201,255,61,.25)}
+.tag::before{content:"";position:absolute;left:8px;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;background:var(--coin-ink);opacity:.4}
+.tag small{font-size:.62em;margin-left:1px;margin-top:2px}
+.tag.big{font-size:2.1rem;padding:10px 14px 9px 24px}
+
+.stock{display:flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600}
+.dot{width:7px;height:7px;border-radius:50%;flex:none;background:currentColor;box-shadow:0 0 6px currentColor}
+.ok{color:var(--ok)} .low{color:var(--low)} .out{color:var(--out)}
+
+.empty{grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--muted)}
+.empty button{margin-top:12px;border:0;background:var(--brand);color:var(--brand-ink);padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer}
+
+.more{display:flex;justify-content:center;padding:4px 0 44px}
+.more button{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:12px 24px;border-radius:999px;font-weight:700;cursor:pointer;font-family:"Rajdhani",sans-serif;letter-spacing:.03em;text-transform:uppercase}
+.more button:hover{border-color:var(--brand);box-shadow:0 0 18px rgba(155,92,255,.25)}
+
+dialog{border:0;padding:0;border-radius:16px;width:min(820px,calc(100% - 24px));max-height:92dvh;background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line),0 20px 60px rgba(0,0,0,.6)}
+dialog::backdrop{background:rgba(4,5,10,.72)}
+.dlg{display:grid;grid-template-columns:1fr 1fr}
+.gallery{padding:18px;background:var(--bg)}
+.gallery .main{border-radius:10px;overflow:hidden;aspect-ratio:1/1;background:var(--chip)}
+.gallery .main img{width:100%;height:100%;object-fit:cover}
+.thumbs{display:flex;gap:8px;margin-top:10px}
+.thumbs button{all:unset;cursor:pointer;width:64px;height:64px;border-radius:8px;overflow:hidden;border:2px solid transparent;background:var(--chip)}
+.thumbs button img{width:100%;height:100%;object-fit:cover}
+.thumbs button[aria-current="true"]{border-color:var(--brand2)}
+.thumbs button:focus-visible{outline:2px solid var(--brand2);outline-offset:2px}
+.info{padding:24px 24px 22px;display:flex;flex-direction:column;gap:12px;position:relative}
+.info h2{margin:0;font-family:"Rajdhani",sans-serif;font-size:1.6rem;font-weight:700;line-height:1.15;padding-right:36px;text-wrap:balance}
+.code{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--muted)}
+.info p{margin:0;color:var(--muted)}
+.locales{list-style:none;margin:4px 0 0;padding:0;border-top:1px solid var(--line)}
+.locales li{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.note{margin:4px 0 0;padding:12px 14px;border-radius:8px;background:var(--chip);font-size:.9rem;border:1px solid var(--line)}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--whatsapp);color:var(--whatsapp-ink);text-decoration:none;font-weight:700;padding:14px 18px;border-radius:10px;margin-top:6px}
+.wa-btn:hover{box-shadow:0 0 20px rgba(37,211,102,.35)}
+.wa-btn svg{width:20px;height:20px}
+.close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface-hi);color:var(--ink);cursor:pointer;font-size:1.2rem;line-height:1}
+
+footer{border-top:1px solid var(--line);padding:22px 0 30px;color:var(--muted);font-size:.85rem}
+footer code{background:var(--chip);padding:2px 6px;border-radius:4px;font-size:.85em;color:var(--brand2)}
+
+@media (max-width:700px){
+  .dlg{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .card .body{padding:10px 11px 12px}
+  .tag{font-size:1.1rem}
+  .row{flex-direction:column;align-items:flex-start}
+  .wa-top span{display:none}
+  .count{width:100%;margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><span class="dot"></span>Electronic Games</a>
+    <a class="wa-top" id="waTop" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow" id="heroEyebrow">Catálogo en vivo</div>
+    <h1>Consolas, juegos<br>y accesorios</h1>
+    <p>Revisa precios y stock en SCALA, Condado y Plaza del Valle. Pide lo que buscas y te respondemos por WhatsApp.</p>
+    <div class="search">
+      <label class="sr" for="q">Buscar productos</label>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Busca por nombre o código, ej. DualSense" autocomplete="off">
+    </div>
+  </div>
+</section>
+
+<section class="tools">
+  <div class="wrap">
+    <div class="chips" id="chips" role="group" aria-label="Categorías"></div>
+    <div class="filters">
+      <label class="sr" for="local">Local</label>
+      <select id="local">
+        <option value="all">Stock en todos los locales</option>
+        <option value="scala">SCALA</option>
+        <option value="condado">Condado</option>
+        <option value="valle">Plaza del Valle</option>
+      </select>
+      <label class="sr" for="sort">Ordenar</label>
+      <select id="sort">
+        <option value="rel">Destacados</option>
+        <option value="asc">Menor precio</option>
+        <option value="desc">Mayor precio</option>
+      </select>
+      <label class="check"><input type="checkbox" id="onlyStock"> Solo disponibles</label>
+      <span class="count" id="count" aria-live="polite"></span>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="grid" id="grid"></div>
+  <div class="more" id="more" hidden><button id="moreBtn" type="button">Ver más productos</button></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Catálogo generado desde Contífico: los productos se cargan desde <code>products.json</code> y las fotos desde <code>fotos/&lt;código&gt;/1.jpg, 2.jpg, 3.jpg</code>. Mientras esos archivos no existan, se muestra una imagen de relleno con el nombre del producto.
+  </div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dName">
+  <div class="dlg">
+    <div class="gallery">
+      <div class="main" id="dMain"></div>
+      <div class="thumbs" id="dThumbs"></div>
+    </div>
+    <div class="info">
+      <button class="close" id="dClose" aria-label="Cerrar">×</button>
+      <div class="plat" id="dPlat"></div>
+      <h2 id="dName"></h2>
+      <div class="code" id="dCode"></div>
+      <div id="dPrice"></div>
+      <p id="dDesc"></p>
+      <ul class="locales" id="dLocales"></ul>
+      <p class="note" id="dNote" hidden></p>
+      <a class="wa-btn" id="dWa" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"/></svg>
+        Pedir por WhatsApp
+      </a>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN
+   ============================================================ */
+const CONFIG = {
+  whatsapp: "593980807721",   // tu número real, con código de país, SIN "+"
+  storeName: "Electronic Games",
+  locales: { scala: "SCALA", condado: "Condado", valle: "Plaza del Valle" },
+  lowStockAt: 2,               // a partir de cuántas unidades se avisa "últimas unidades"
+  porPagina: 60                // productos que se muestran de entrada (catálogo real es grande)
+};
+// Paleta oscura para el fondo de la foto de relleno — se asigna por categoría automáticamente.
+const PALETA = ["#241A3D","#1B2E3D","#3D1A2E","#1A3D2E","#3D3319","#1A2A3D","#2E1A3D","#243D1A"];
+
+/* ============================================================
+   Los productos NO están escritos en este archivo: se cargan
+   desde products.json, generado por generar_catalogo.py a partir
+   de tu Contífico real.
+   ============================================================ */
+let PRODUCTS = [];
+let CATS = [["all","Todo"]];
+
+// ===== Utilidades =====
+const $ = id => document.getElementById(id);
+const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const money = n => { const [e,d] = n.toFixed(2).split("."); return `<span class="tag">$${e}<small>.${d}</small></span>`; };
+const waLink = msg => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+$("waTop").href = waLink(`Hola ${CONFIG.storeName}, quiero hacer una consulta.`);
+
+function escXML(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function hashColor(str){
+  let h = 0;
+  for (let i=0;i<str.length;i++) h = (h*31 + str.charCodeAt(i)) >>> 0;
+  return PALETA[h % PALETA.length];
+}
+
+// Imagen de relleno mientras no exista fotos/<código>/N.jpg
+function placeholder(p, i){
+  const bg = hashColor(p.cat || "x");
+  const label = p.name.length > 34 ? p.name.slice(0,32)+"…" : p.name;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+    <rect width="500" height="500" fill="${bg}"/>
+    <text x="250" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="24" fill="#F1F3FB">${escXML(label)}</text>
+    <text x="250" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#8C93AD">Foto ${i+1} de ejemplo</text>
+  </svg>`;
+  return "data:image/svg+xml," + encodeURIComponent(svg);
+}
+function onPhotoError(img, code, i){
+  img.onerror = null;
+  const p = PRODUCTS.find(x=>x.code===code);
+  img.src = placeholder(p, i);
+}
+
+function status(p){
+  if (p.digital) return ["ok","Código digital"];
+  if (S.local === "all"){
+    const n = Object.values(p.stock).filter(x=>x>0).length;
+    const t = Object.values(p.stock).reduce((a,b)=>a+b,0);
+    if (!n) return ["out","Agotado"];
+    if (t <= CONFIG.lowStockAt) return ["low","Últimas unidades"];
+    return ["ok", n === 3 ? "En los 3 locales" : `En ${n} local${n>1?"es":""}`];
+  }
+  const q = p.stock[S.local], L = CONFIG.locales[S.local];
+  if (!q) return ["out",`Agotado en ${L}`];
+  if (q <= CONFIG.lowStockAt) return ["low",`Quedan ${q} en ${L}`];
+  return ["ok",`Disponible en ${L}`];
+}
+const hasStock = p => p.digital ? true : (S.local === "all" ? Object.values(p.stock).some(x=>x>0) : p.stock[S.local] > 0);
+
+// ===== Estado =====
+const S = {cat:"all", q:"", local:"all", sort:"rel", only:false, visibles: 0};
+
+// ===== Carga de datos =====
+async function loadProducts(){
+  $("grid").innerHTML = `<div class="empty">Cargando catálogo…</div>`;
+  try{
+    const res = await fetch("products.json");
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    PRODUCTS = await res.json();
+  }catch(err){
+    $("grid").innerHTML = `<div class="empty">No se pudo cargar products.json.<br>${escXML(String(err.message||err))}</div>`;
+    return;
+  }
+  $("heroEyebrow").textContent = `Catálogo en vivo — ${PRODUCTS.length.toLocaleString("es-EC")} productos en stock ahora`;
+  const conteo = new Map();
+  for (const p of PRODUCTS) conteo.set(p.cat, (conteo.get(p.cat)||0) + 1);
+  const etiquetas = new Map(PRODUCTS.map(p=>[p.cat, p.cat_label || p.cat]));
+  const ordenadas = [...conteo.entries()].sort((a,b)=>b[1]-a[1]).map(([k])=>[k, etiquetas.get(k)]);
+  CATS = [["all","Todo"], ...ordenadas];
+  $("chips").innerHTML = CATS.map(([k,l])=>`<button class="chip" data-cat="${k}" aria-pressed="${k===S.cat}">${l}</button>`).join("");
+  S.visibles = CONFIG.porPagina;
+  render();
+}
+
+// ===== Render =====
+function listaFiltrada(){
+  const q = norm(S.q.trim());
+  let list = PRODUCTS.filter(p =>
+    (S.cat==="all" || p.cat===S.cat) &&
+    (!S.only || hasStock(p)) &&
+    (!q || norm(p.name+" "+p.code).includes(q))
+  );
+  if (S.sort==="asc") list = [...list].sort((a,b)=>a.price-b.price);
+  if (S.sort==="desc") list = [...list].sort((a,b)=>b.price-a.price);
+  return list;
+}
+
+function render(){
+  const list = listaFiltrada();
+  $("count").textContent = `${list.length} producto${list.length===1?"":"s"}`;
+  const visibles = list.slice(0, S.visibles);
+  $("grid").innerHTML = visibles.length ? visibles.map(p=>{
+    const [cls,txt] = status(p);
+    return `<button class="card" data-code="${p.code}" aria-label="${p.name}, $${p.price.toFixed(2)}, ${txt}">
+      <div class="img"><img src="${p.photos[0]}" alt="" loading="lazy" onerror="onPhotoError(this,'${p.code}',0)"></div>
+      <div class="body">
+        <div class="plat">${p.cat_label || ""}</div>
+        <div class="name">${p.name}</div>
+        <div class="row">${money(p.price)}<span class="stock ${cls}"><span class="dot"></span>${txt}</span></div>
+      </div>
+    </button>`;
+  }).join("") : `<div class="empty">No hay productos con estos filtros. Prueba otra categoría o borra la búsqueda.<br><button id="reset">Borrar filtros</button></div>`;
+  const r = $("reset"); if (r) r.onclick = resetAll;
+  $("more").hidden = visibles.length >= list.length;
+}
+function resetAll(){
+  Object.assign(S,{cat:"all",q:"",local:"all",sort:"rel",only:false,visibles:CONFIG.porPagina});
+  $("q").value=""; $("local").value="all"; $("sort").value="rel"; $("onlyStock").checked=false;
+  document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", c.dataset.cat==="all"));
+  render();
+}
+
+// ===== Detalle =====
+function openProduct(code){
+  const p = PRODUCTS.find(x=>x.code===code);
+  $("dPlat").textContent = p.cat_label || "";
+  $("dName").textContent = p.name;
+  $("dCode").textContent = `Código ${p.code}`;
+  $("dPrice").innerHTML = money(p.price).replace('class="tag"','class="tag big"');
+  $("dDesc").textContent = p.desc || "";
+
+  const show = v => {
+    $("dMain").innerHTML = `<img src="${p.photos[v]}" alt="" onerror="onPhotoError(this,'${p.code}',${v})">`;
+    $("dThumbs").querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-current", i===v));
+  };
+  $("dThumbs").innerHTML = p.photos.map((src,v)=>`<button aria-label="Foto ${v+1}"><img src="${src}" alt="" onerror="onPhotoError(this,'${p.code}',${v})"></button>`).join("");
+  $("dThumbs").querySelectorAll("button").forEach((b,i)=>b.onclick=()=>show(i));
+  show(0);
+
+  if (p.digital){
+    $("dLocales").hidden = true;
+    $("dNote").hidden = false;
+    $("dNote").textContent = "Código digital: no requiere stock físico, se entrega por WhatsApp tras confirmar el pago.";
+  } else {
+    $("dLocales").hidden = false;
+    $("dNote").hidden = true;
+    $("dLocales").innerHTML = Object.entries(CONFIG.locales).map(([k,L])=>{
+      const n = p.stock[k], cls = !n ? "out" : n<=CONFIG.lowStockAt ? "low" : "ok";
+      const txt = !n ? "Agotado" : n<=CONFIG.lowStockAt ? `Quedan ${n}` : "Disponible";
+      return `<li><span>${L}</span><span class="stock ${cls}"><span class="dot"></span>${txt}</span></li>`;
+    }).join("");
+  }
+
+  const msg = `Hola ${CONFIG.storeName}, me interesa: ${p.name} (${p.code}) a $${p.price.toFixed(2)}. ¿Está disponible?`;
+  $("dWa").href = waLink(msg);
+  $("dlg").showModal();
+}
+
+// ===== Eventos =====
+$("chips").addEventListener("click", e=>{
+  const b = e.target.closest(".chip"); if (!b) return;
+  S.cat = b.dataset.cat; S.visibles = CONFIG.porPagina;
+  document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", c===b));
+  render();
+});
+$("q").addEventListener("input", e=>{ S.q = e.target.value; S.visibles = CONFIG.porPagina; render(); });
+$("local").addEventListener("change", e=>{ S.local = e.target.value; render(); });
+$("sort").addEventListener("change", e=>{ S.sort = e.target.value; render(); });
+$("onlyStock").addEventListener("change", e=>{ S.only = e.target.checked; S.visibles = CONFIG.porPagina; render(); });
+$("moreBtn").addEventListener("click", ()=>{ S.visibles += CONFIG.porPagina; render(); });
+$("grid").addEventListener("click", e=>{ const c = e.target.closest(".card"); if (c) openProduct(c.dataset.code); });
+$("dClose").onclick = ()=>$("dlg").close();
+$("dlg").addEventListener("click", e=>{ if (e.target === $("dlg")) $("dlg").close(); });
+
+loadProducts();
+</script>
+</body>
+</html>
