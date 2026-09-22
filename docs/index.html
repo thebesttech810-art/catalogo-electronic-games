@@ -90,10 +90,15 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.88);backdro
 
 .sticker{position:absolute;top:12px;left:-4px;z-index:1;background:var(--brand);color:var(--brand-ink);font-weight:900;font-style:italic;font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px 5px 12px;transform:rotate(-5deg);box-shadow:0 4px 12px rgba(0,0,0,.45);border-radius:3px}
 
+.prices{display:flex;flex-direction:column;gap:2px}
 .price{display:inline-flex;align-items:flex-start;font-weight:800;font-style:italic;font-size:1.45rem;line-height:1;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .price .cur{font-size:.6em;margin:2px 2px 0 0;color:var(--brand)}
 .price small{font-size:.55em;margin:2px 0 0 1px}
 .price.big{font-size:2.4rem}
+.price-tag{font-size:.7rem;color:var(--muted);font-weight:600}
+.price-tag b{color:var(--ink);font-weight:700}
+.price-row{display:flex;flex-direction:column;gap:3px;margin-top:2px}
+.price-row .price-tag{font-size:.85rem}
 
 .stock{display:flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;text-align:right}
 .dot{width:8px;height:8px;border-radius:50%;flex:none;background:currentColor}
@@ -377,13 +382,17 @@ function render(){
   const vis = list.slice(0, S.visibles);
   $("grid").innerHTML = vis.length ? vis.map(p=>{
     const [cls,txt] = status(p);
-    return `<button class="card" data-code="${esc(p.code)}" aria-label="${esc(p.name)}, $${p.price.toFixed(2)}, ${txt}">
+    const efectivo = p.price_efectivo ?? p.price, tarjeta = p.price_tarjeta ?? p.price;
+    return `<button class="card" data-code="${esc(p.code)}" aria-label="${esc(p.name)}, $${efectivo.toFixed(2)} efectivo, ${txt}">
       ${p.top ? `<span class="sticker">Top ventas</span>` : ""}
       <div class="img"><img src="${esc(p.photos[0])}" alt="" loading="lazy" onerror="onPhotoError(this,'${esc(p.code)}',0)"></div>
       <div class="body">
         <div class="cat">${esc(p.cat_label||"")}</div>
         <div class="name">${esc(p.name)}</div>
-        <div class="row">${money(p.price)}<span class="stock ${cls}"><span class="dot"></span>${txt}</span></div>
+        <div class="row">
+          <div class="prices">${money(efectivo)}${tarjeta > efectivo ? `<span class="price-tag">Tarjeta <b>$${tarjeta.toFixed(2)}</b></span>` : ""}</div>
+          <span class="stock ${cls}"><span class="dot"></span>${txt}</span>
+        </div>
       </div>
     </button>`;
   }).join("") : `<div class="empty">No encontramos productos con esos filtros.<br><button id="reset">Ver todo el catálogo</button></div>`;
@@ -403,7 +412,10 @@ function openProduct(code){
   $("dCat").textContent = p.cat_label || "";
   $("dName").textContent = p.name;
   $("dCode").textContent = `Código ${p.code}`;
-  $("dPrice").innerHTML = money(p.price, true);
+  {
+    const efectivo = p.price_efectivo ?? p.price, tarjeta = p.price_tarjeta ?? p.price;
+    $("dPrice").innerHTML = `<div class="price-row">${money(efectivo, true)}<span class="price-tag">Efectivo / transferencia</span>${tarjeta > efectivo ? `<span class="price-tag">Con tarjeta: <b>$${tarjeta.toFixed(2)}</b></span>` : ""}</div>`;
+  }
   $("dDesc").textContent = p.desc || "";
   $("dDesc").hidden = !p.desc;
 
@@ -426,7 +438,10 @@ function openProduct(code){
       return `<li><span>${L.nombre}<small>${L.zona} · ${L.detalle}</small></span><span class="stock ${cls}"><span class="dot"></span>${txt}</span></li>`;
     }).join("");
   }
-  $("dWa").href = waLink(`Hola ${CONFIG.storeName}, me interesa: ${p.name} (${p.code}) a $${p.price.toFixed(2)}. ¿Está disponible?`);
+  {
+    const efectivo = p.price_efectivo ?? p.price;
+    $("dWa").href = waLink(`Hola ${CONFIG.storeName}, me interesa: ${p.name} (${p.code}) a $${efectivo.toFixed(2)}. ¿Está disponible?`);
+  }
   $("dlg").showModal();
 }
 

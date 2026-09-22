@@ -127,9 +127,12 @@ def main():
 
         codigo = p.get("codigo") or p["id"]
         try:
-            precio = float(p.get("pvp2") or p.get("pvp1") or 0)
+            iva = 1 + float(p.get("porcentaje_iva") or 0) / 100
+            pvp1 = float(p.get("pvp1") or 0) * iva  # precio tarjeta, con IVA
+            pvp2 = float(p.get("pvp2") or 0) * iva  # precio efectivo/factura, con IVA
         except (TypeError, ValueError):
-            precio = 0.0
+            pvp1 = pvp2 = 0.0
+        precio = pvp2 or pvp1
         if precio <= 0:
             continue  # sin precio en Contífico: no se puede ofrecer
 
@@ -141,6 +144,8 @@ def main():
             "cat": slugify(cat_real),
             "cat_label": cat_real,
             "price": round(precio, 2),
+            "price_efectivo": round(pvp2, 2),
+            "price_tarjeta": round(pvp1, 2),
             "digital": es_tarjeta,
             "stock": None if es_tarjeta else stock_local,
             "photos": [f"fotos/{codigo}/1.jpg", f"fotos/{codigo}/2.jpg", f"fotos/{codigo}/3.jpg"],
