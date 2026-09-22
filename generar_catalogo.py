@@ -31,6 +31,7 @@ CUPOS = {
     "Juegos": 25,
     "Accesorios": 25,
 }
+TOP_VENTAS = 8  # cuántos productos llevan el sticker "Top ventas"
 
 LOCALES = {"SCALA": "scala", "CONDADO": "condado", "PLAZA DEL VALLE": "valle"}
 
@@ -155,6 +156,9 @@ def main():
             elegidos += [x for x in salida if x["cat_label"] == cat][:cupo]
         elegidos.sort(key=lambda x: x["_rot"], reverse=True)
         salida = elegidos
+    # Sticker "Top ventas" para los más vendidos (sin publicar cifras).
+    for i, x in enumerate(salida):
+        x["top"] = i < TOP_VENTAS and x["_rot"][1] > 0
     # Las cifras de venta son internas: no se publican en el JSON del sitio.
     for x in salida:
         del x["_rot"]
