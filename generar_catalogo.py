@@ -22,9 +22,15 @@ CACHE_STOCK = "stock_por_producto.json"
 SALIDA = "docs/products.json"
 ROTACION = "rotacion.json"  # generado por ventas_rotacion.py
 
-# Máximo de productos a publicar, priorizando los que más rotan.
-# None = publicar todos los que tengan stock (sin importar si se venden).
-MAX_PRODUCTOS = 200
+# Cuántos productos publicar por categoría (nombre exacto como en Contífico).
+# Dentro de cada una van primero los que más rotan; si faltan, los de más stock.
+# None = publicar todo lo que tenga stock, de todas las categorías.
+CUPOS = {
+    "Consolas": 10,
+    "Palancas": 20,
+    "Juegos": 25,
+    "Accesorios": 25,
+}
 
 LOCALES = {"SCALA": "scala", "CONDADO": "condado", "PLAZA DEL VALLE": "valle"}
 
@@ -123,10 +129,12 @@ def main():
             precio = float(p.get("pvp2") or p.get("pvp1") or 0)
         except (TypeError, ValueError):
             precio = 0.0
+        if precio <= 0:
+            continue  # sin precio en Contífico: no se puede ofrecer
 
-        rot = rotacion.get(p["id"], {"unidades": 0, "dias": 0})
+        rot =rotacion.get(p["id"], {"unidades": 0, "dias": 0})
         salida.append({
-            "_rot": (rot["dias"], rot["unidades"]),
+            "_rot": (rot["dias"], rot["unidades"], sum(stock_local.values())),
             "code": codigo,
             "name": p.get("nombre", "").strip(),
             "cat": slugify(cat_real),
@@ -139,10 +147,14 @@ def main():
         })
 
     con_stock = len(salida)
-    # Los que más rotan primero: días distintos con venta, luego unidades vendidas.
+    # Los que más rotan primero: días con venta, unidades vendidas, stock en locales.
     salida.sort(key=lambda x: x["_rot"], reverse=True)
-    if MAX_PRODUCTOS is not None:
-        salida = [x for x in salida if x["_rot"][1] > 0][:MAX_PRODUCTOS]
+    if CUPOS is not None:
+        elegidos = []
+        for cat, cupo in CUPOS.items():
+            elegidos += [x for x in salida if x["cat_label"] == cat][:cupo]
+        elegidos.sort(key=lambda x: x["_rot"], reverse=True)
+        salida = elegidos
     # Las cifras de venta son internas: no se publican en el JSON del sitio.
     for x in salida:
         del x["_rot"]
