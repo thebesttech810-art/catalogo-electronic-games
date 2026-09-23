@@ -25,12 +25,12 @@ SELECCION = "seleccion.json"  # código -> id de Contífico, para actualizar_sto
 ROTACION = "rotacion.json"  # generado por ventas_rotacion.py
 
 # Cuántos productos publicar por categoría (nombre exacto como en Contífico).
-# Dentro de cada una van primero los que más rotan; si faltan, los de más stock.
-# None = publicar todo lo que tenga stock, de todas las categorías.
+# Un número = los N que más rotan de esa categoría. None = todos los que tengan
+# stock en algún local. CUPOS = None publica todas las categorías completas.
 CUPOS = {
-    "Consolas": 10,
-    "Palancas": 20,
-    "Juegos": 25,
+    "Consolas": None,
+    "Palancas": None,
+    "Juegos": None,
     "Accesorios": 25,
 }
 TOP_VENTAS = 8  # cuántos productos llevan el sticker "Top ventas"
