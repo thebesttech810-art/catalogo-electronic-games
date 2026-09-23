@@ -8,6 +8,7 @@ import os
 import re
 import time
 import unicodedata
+from datetime import datetime, timezone
 
 import requests
 from dotenv import load_dotenv
@@ -20,6 +21,7 @@ HEADERS = {"Authorization": API_KEY}
 CACHE_PRODUCTOS = "productos_raw.json"
 CACHE_STOCK = "stock_por_producto.json"
 SALIDA = "docs/products.json"
+SELECCION = "seleccion.json"  # código -> id de Contífico, para actualizar_stock.py
 ROTACION = "rotacion.json"  # generado por ventas_rotacion.py
 
 # Cuántos productos publicar por categoría (nombre exacto como en Contífico).
@@ -143,6 +145,7 @@ def main():
         rot =rotacion.get(p["id"], {"unidades": 0, "dias": 0})
         salida.append({
             "_rot": (rot["dias"], rot["unidades"], sum(stock_local.values())),
+            "_id": p["id"],
             "code": codigo,
             "name": p.get("nombre", "").strip(),
             "cat": slugify(cat_real),
@@ -168,14 +171,17 @@ def main():
     # Sticker "Top ventas" para los más vendidos (sin publicar cifras).
     for i, x in enumerate(salida):
         x["top"] = i < TOP_VENTAS and x["_rot"][1] > 0
+    seleccion = {x["code"]: x["_id"] for x in salida}
     # Las cifras de venta son internas: no se publican en el JSON del sitio.
     for x in salida:
-        del x["_rot"]
+        del x["_rot"], x["_id"]
+    with open(SELECCION, "w", encoding="utf-8") as f:
+        json.dump(seleccion, f, ensure_ascii=False, indent=1)
 
     with open(SALIDA, "w", encoding="utf-8") as f:
         json.dump(salida, f, ensure_ascii=False, indent=2)
     with open(os.path.join(os.path.dirname(SALIDA), "meta.json"), "w", encoding="utf-8") as f:
-        json.dump({"actualizado": time.strftime("%Y-%m-%dT%H:%M:%S")}, f)
+        json.dump({"actualizado": datetime.now(timezone.utc).isoformat(timespec="seconds")}, f)
 
     print(f"\n{SALIDA} generado con {len(salida)} productos "
           f"({con_stock} con stock en los locales, de {len(candidatos)} candidatos).")

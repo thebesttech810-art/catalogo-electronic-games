@@ -358,8 +358,9 @@ async function loadProducts(){
   fetch("meta.json", {cache:"no-cache"}).then(r=>r.ok ? r.json() : null).then(m=>{
     if (!m || !m.actualizado) return;
     const f = new Date(m.actualizado);
-    const fecha = f.toLocaleDateString("es-EC", {day:"numeric", month:"short"});
-    const hora = f.toLocaleTimeString("es-EC", {hour:"2-digit", minute:"2-digit"});
+    const tz = "America/Guayaquil";
+    const fecha = f.toLocaleDateString("es-EC", {day:"numeric", month:"short", timeZone:tz});
+    const hora = f.toLocaleTimeString("es-EC", {hour:"2-digit", minute:"2-digit", timeZone:tz});
     $("heroEyebrow").textContent = `${PRODUCTS.length} productos · stock actualizado ${fecha}, ${hora}`;
   }).catch(()=>{});
   const conteo = new Map(), etiqueta = new Map();
