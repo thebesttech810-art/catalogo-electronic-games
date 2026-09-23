@@ -329,7 +329,8 @@ dialog::backdrop{background:rgba(0,0,0,.72)}
 .share-btn:hover{border-color:var(--brand)}
 .close{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface-hi);cursor:pointer;font-size:1.3rem;line-height:1;z-index:2}
 .rel{grid-column:1/-1;border-top:1px solid var(--line);padding:20px 0 6px;background:var(--surface)}
-.rel h3{margin:0 24px 14px;font-size:1.05rem;font-weight:800}
+.rel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 24px 14px}
+.rel h3{margin:0;font-size:1.05rem;font-weight:800}
 .rel .rail{--pad:24px;grid-auto-columns:190px}
 
 /* ---------- Pedido ---------- */
@@ -385,6 +386,11 @@ dialog.sheet.izq{margin:0 auto 0 0;border-radius:0 18px 18px 0}
 
 /* ---------- Hover solo con mouse ---------- */
 @media (hover:hover) and (pointer:fine){
+  /* Con mouse no se puede deslizar con el dedo: además de las flechas, barra de desplazamiento visible. */
+  .rail,dialog{scrollbar-width:thin;scrollbar-color:#3a373d transparent}
+  .rail::-webkit-scrollbar{display:block;height:8px}
+  .rail::-webkit-scrollbar-thumb{background:#3a373d;border-radius:999px}
+  .rail::-webkit-scrollbar-thumb:hover{background:var(--brand)}
   .card:hover{border-color:var(--brand);box-shadow:0 10px 30px rgba(255,122,0,.16)}
 }
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
@@ -735,7 +741,10 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
       </div>
     </div>
     <section class="rel" id="dRelWrap" aria-labelledby="dRelTit">
-      <h3 id="dRelTit">También te puede interesar</h3>
+      <div class="rel-head">
+        <h3 id="dRelTit">También te puede interesar</h3>
+        <div class="rail-nav" data-rail="dRel"><button type="button" data-dir="-1" aria-label="Productos anteriores"><svg class="ico" aria-hidden="true"><use href="#i-left"/></svg></button><button type="button" data-dir="1" aria-label="Más productos"><svg class="ico" aria-hidden="true"><use href="#i-right"/></svg></button></div>
+      </div>
       <div class="rail" id="dRel" role="list"></div>
     </section>
   </div>
@@ -1096,10 +1105,16 @@ document.querySelectorAll(".rail-nav").forEach(nav=>{
   const rail = $(nav.dataset.rail);
   nav.addEventListener("click", e=>{
     const b = e.target.closest("[data-dir]"); if (!b) return;
-    rail.scrollBy({left: Number(b.dataset.dir) * rail.clientWidth * 0.85, behavior: reduceMotion() ? "auto" : "smooth"});
+    const max = rail.scrollWidth - rail.clientWidth, antes = rail.scrollLeft;
+    const destino = Math.max(0, Math.min(max, antes + Number(b.dataset.dir) * rail.clientWidth * 0.85));
+    if (reduceMotion()) { rail.scrollLeft = destino; actualizarFlechas(nav); return; }
+    rail.scrollTo({left: destino, behavior: "smooth"});
+    // Si el navegador no anima (pestaña en segundo plano, ahorro de energía), salta directo.
+    setTimeout(()=>{ if (Math.abs(rail.scrollLeft - antes) < 1) rail.scrollLeft = destino; actualizarFlechas(nav); }, 450);
   });
   rail.addEventListener("scroll", ()=>actualizarFlechas(nav), {passive: true});
 });
+addEventListener("resize", ()=>document.querySelectorAll(".rail-nav").forEach(actualizarFlechas), {passive: true});
 
 // ===== Ficha =====
 function openProduct(code){
@@ -1147,6 +1162,7 @@ function openProduct(code){
   if (!$("dlg").open) $("dlg").showModal();
   $("dlg").scrollTop = 0;
   $("dRel").scrollLeft = 0;
+  actualizarFlechas(document.querySelector('.rail-nav[data-rail="dRel"]'));
   $("dClose").focus({preventScroll: true});
   escribirURL();
 }
