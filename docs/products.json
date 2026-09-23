@@ -682,28 +682,6 @@
     "top": false
   },
   {
-    "code": "JUE-PROMO",
-    "name": "JUEGOS COPIA DE PC/PS2/XBOX 360/PSP/WII PROMOCION",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 0.99,
-    "price_efectivo": 0.99,
-    "price_tarjeta": 0.99,
-    "digital": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 406
-    },
-    "photos": [
-      "fotos/JUE-PROMO/1.jpg",
-      "fotos/JUE-PROMO/2.jpg",
-      "fotos/JUE-PROMO/3.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "215545.CDCF",
     "name": "AGENDA HARRY POTTER CON CONTRASEÑA",
     "cat": "accesorios",
@@ -3075,28 +3053,6 @@
       "fotos/CONS-OLED.CGSF/1.jpg",
       "fotos/CONS-OLED.CGSF/2.jpg",
       "fotos/CONS-OLED.CGSF/3.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "4887.CGSF",
-    "name": "CONSOLA PS1 MEDIO USO + 1 PALANCA PS1 ORIGINAL + CABLE + FUENTE DE PODER + CABLE DE AUDIO Y VIDEO + JUEGOS COPIA DE PC/PS2/XBOX 360/PSP/WII PROMOCION",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 119.0,
-    "price_efectivo": 119.0,
-    "price_tarjeta": 129.0,
-    "digital": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/4887.CGSF/1.jpg",
-      "fotos/4887.CGSF/2.jpg",
-      "fotos/4887.CGSF/3.jpg"
     ],
     "desc": "",
     "top": false

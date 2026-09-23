@@ -35,6 +35,10 @@ CUPOS = {
 }
 TOP_VENTAS = 8  # cuántos productos llevan el sticker "Top ventas"
 
+# Nunca se publican productos cuyo nombre contenga alguna de estas palabras
+# (sin importar tildes ni mayúsculas). Ej.: copias de juegos sin licencia.
+EXCLUIR_SI_CONTIENE = ["COPIA"]
+
 # Palabra clave contenida en el nombre de la bodega en Contífico -> local público.
 # Se busca "contenida" porque las bodegas se llaman p. ej. "BODEGA EL CONDADO".
 LOCALES = {"SCALA": "scala", "CONDADO": "condado", "PLAZA DEL VALLE": "valle"}
@@ -107,6 +111,7 @@ def main():
         p for p in productos
         if p.get("estado") == "A" and stock_total(p) > 0
         and (CUPOS is None or cat_nombre.get(p.get("categoria_id")) in CUPOS)
+        and not any(palabra in normalizar(p.get("nombre", "")) for palabra in EXCLUIR_SI_CONTIENE)
     ]
     print(f"Consultando stock por bodega de {len(candidatos)} productos...", flush=True)
 
