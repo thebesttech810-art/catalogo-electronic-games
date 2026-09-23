@@ -52,7 +52,7 @@
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-padding-top:calc(var(--header) + 12px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Rubik",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Rubik",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip}
 img,svg{max-width:100%;display:block}
 button,input,select{font:inherit;color:inherit}
 a{color:inherit}
@@ -82,7 +82,8 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdro
 .nav{display:flex;gap:4px;margin-left:12px}
 .nav a{text-decoration:none;font-weight:600;font-size:.94rem;color:var(--muted);padding:8px 12px;border-radius:10px}
 .nav a:hover{color:var(--ink);background:var(--surface)}
-.top-actions{display:flex;align-items:center;gap:8px;margin-left:auto}
+.top-actions{display:flex;align-items:center;gap:8px;margin-left:auto;flex:none}
+.brand{min-width:0}
 .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
 .icon-btn:hover{border-color:var(--brand)}
 .menu-btn{display:none}
@@ -286,7 +287,9 @@ footer{margin-top:72px;border-top:1px solid var(--line);background:#0d0d0f}
 /* ---------- Ficha de producto ---------- */
 dialog{border:0;padding:0;border-radius:18px;width:min(900px,calc(100% - 24px));max-height:92dvh;background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line),0 24px 70px rgba(0,0,0,.7)}
 dialog::backdrop{background:rgba(0,0,0,.72)}
-.dlg{display:grid;grid-template-columns:1fr 1fr}
+/* minmax(0,…): la columna nunca crece por el carrusel de relacionados; el carrusel se desplaza por dentro. */
+.dlg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.dlg > *{min-width:0}
 .gallery{padding:18px;background:var(--bg)}
 .gallery .main{border-radius:12px;overflow:hidden;aspect-ratio:1/1;background:var(--surface-hi)}
 .gallery .main img{width:100%;height:100%;object-fit:cover}
@@ -428,16 +431,21 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .hero{padding:40px 0 34px}
   .lead{font-size:1rem}
   .btn{flex:1}
-  .wa-top span,.cart-btn .txt{display:none}
-  .wa-top{padding:9px 12px}
-  .wordmark{font-size:1rem}
+  /* En celular la barra superior lleva solo lo esencial: marca, buscar, pedido y menú. */
+  .top-in{gap:12px}
+  .top-actions{gap:6px}
+  .wa-top{display:none}
+  .cart-btn .txt{display:none}
+  .cart-btn{padding:6px 8px 6px 11px}
+  .wordmark{font-size:.95rem;line-height:1.05}
+  .wordmark b{display:block}
   .confianza li{font-size:.84rem;gap:10px}
   .sec{padding-top:44px}
   .tile{min-height:140px;padding:16px;gap:18px}
   .tile strong{font-size:1.2rem}
   .rail{grid-auto-columns:minmax(160px,46vw);gap:10px}
   .rail-nav{display:none}
-  .dlg{grid-template-columns:1fr}
+  .dlg{grid-template-columns:minmax(0,1fr)}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding-top:14px}
   .card .body{padding:10px 11px 12px}
   .name{font-size:.88rem}
@@ -456,6 +464,13 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   dialog.sheet:not(.izq){margin:auto 0 0;width:100%;height:auto;max-height:92dvh;border-radius:18px 18px 0 0}
   dialog.sheet:not(.izq):not([open]){transform:translateY(100%)}
   @starting-style{dialog.sheet:not(.izq)[open]{transform:translateY(100%)}}
+}
+
+/* Celulares pequeños (360 px o menos) */
+@media (max-width:360px){
+  .wrap{padding:0 16px}
+  #searchBtn{display:none}
+  .wordmark{font-size:.88rem}
 }
 
 /* ---------- Accesibilidad ---------- */
@@ -770,6 +785,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
     <button class="close" id="menuClose" type="button" aria-label="Cerrar menú">×</button>
   </div>
   <nav class="menu-nav" aria-label="Menú">
+    <a href="#catalogo" data-buscar>Buscar productos</a>
     <a href="#catalogo">Catálogo</a>
     <a href="#comprar">Cómo comprar</a>
     <a href="#servicio">Servicio técnico</a>
@@ -1418,7 +1434,10 @@ $("cartVaciar").onclick = ()=>{
 // Menú en celular
 $("menuBtn").onclick = ()=>$("menu").showModal();
 $("menuClose").onclick = ()=>$("menu").close();
-$("menu").addEventListener("click", e=>{ if (e.target === $("menu") || e.target.closest(".menu-nav a")) $("menu").close(); });
+$("menu").addEventListener("click", e=>{
+  if (e.target.closest("[data-buscar]")){ e.preventDefault(); $("menu").close(); irAlBuscador(); return; }
+  if (e.target === $("menu") || e.target.closest(".menu-nav a")) $("menu").close();
+});
 
 loadProducts();
 </script>
