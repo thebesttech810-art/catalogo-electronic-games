@@ -10,5 +10,6 @@ FOTOS CATALOGO/
 
 # Skills de Claude Code instalados con "npx skills" (no son parte de la tienda)
 .agents/
+agent/
 .claude/
 skills-lock.json
