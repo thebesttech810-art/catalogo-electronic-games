@@ -16,6 +16,8 @@
   --brand:#FF7A00; --brand-hi:#FF9A2E; --brand-ink:#140900;
   --ok:#3DDC84; --low:#FFC61A; --out:#FF5A5A;
   --wa:#25D366; --wa-ink:#052912;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --ease-drawer:cubic-bezier(0.32,0.72,0,1);
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -25,6 +27,14 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"Rubik",system-u
 img,svg{max-width:100%;display:block}
 button,input,select{font:inherit;color:inherit}
 a{color:inherit}
+button,a,select,label{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.skip{position:absolute;left:12px;top:-60px;z-index:20;background:var(--brand);color:var(--brand-ink);font-weight:800;padding:10px 16px;border-radius:10px;text-decoration:none}
+.skip:focus{top:12px}
+
+/* Respuesta al presionar: se usa la propiedad "scale" para no pisar otros transform */
+.add,.add-btn,.wa-btn,.wa-top,.cart-btn,.cart-bar,.chip,.seg button,.qty button,.more button,.empty button,.vacio button,.close,.thumbs button,.undo button{
+  transition:scale 160ms var(--ease-out),background-color 160ms ease,border-color 160ms ease,color 160ms ease}
+:is(.add,.add-btn,.wa-btn,.wa-top,.cart-btn,.cart-bar,.chip,.seg button,.qty button,.more button,.empty button,.vacio button,.close,.thumbs button,.undo button):active:not(:disabled){scale:.97}
 :focus-visible{outline:2px solid var(--brand-hi);outline-offset:2px}
 .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -66,27 +76,34 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.88);backdro
 .tools{position:sticky;top:64px;z-index:5;background:rgba(10,10,11,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:12px 0;border-bottom:1px solid var(--line)}
 .chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0}
 .chips::-webkit-scrollbar{display:none}
-.chip{flex:none;border:1px solid var(--line);background:var(--surface);padding:9px 18px;border-radius:999px;font-weight:700;cursor:pointer;font-size:.95rem;text-transform:uppercase;font-style:italic;letter-spacing:.02em}
+.chip{flex:none;min-height:44px;border:1px solid var(--line);background:var(--surface);padding:9px 18px;border-radius:999px;font-weight:700;cursor:pointer;font-size:.95rem;text-transform:uppercase;font-style:italic;letter-spacing:.02em}
 .chip:hover{border-color:var(--brand)}
 .chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
 .chip small{font-style:normal;font-weight:500;opacity:.7;margin-left:4px;font-size:.78em}
 .filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
-.filters select{height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);padding:0 10px;font-size:.9rem}
+.filters select{height:44px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:0 10px;font-size:.9rem}
 .check{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;cursor:pointer;white-space:nowrap}
 .check input{width:18px;height:18px;accent-color:var(--brand)}
 .count{margin-left:auto;color:var(--muted);font-size:.82rem;font-variant-numeric:tabular-nums}
 
 /* ---------- Grid ---------- */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:26px 0 26px}
-.card{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .15s,box-shadow .15s}
-.card:hover{border-color:var(--brand);box-shadow:0 10px 30px rgba(255,122,0,.16)}
+.card{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color 150ms ease,box-shadow 150ms ease;content-visibility:auto;contain-intrinsic-size:auto 380px}
+.card:focus-within{border-color:var(--brand)}
 .card-open{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;flex:1}
 .card-open:focus-visible{outline:2px solid var(--brand-hi);outline-offset:-2px;border-radius:14px}
-@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s,box-shadow .15s,transform .15s}.card:hover{transform:translateY(-3px)}}
+@media (hover:hover) and (pointer:fine){
+  .card:hover{border-color:var(--brand);box-shadow:0 10px 30px rgba(255,122,0,.16)}
+  .chip:hover,.cart-btn:hover,.seg button:hover,.tienda:hover,.redes a:hover{border-color:var(--brand)}
+}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .card{transition:border-color 150ms ease,box-shadow 150ms ease,translate 200ms var(--ease-out)}
+  .card:hover{translate:0 -3px}
+}
 .card .img{aspect-ratio:1/1;overflow:hidden;background:var(--surface-hi)}
 .card .img img{width:100%;height:100%;object-fit:cover}
 .card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
-.cat{font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--brand-hi);text-transform:uppercase;letter-spacing:.06em}
+.cat{font-family:"JetBrains Mono",monospace;font-size:.75rem;color:var(--brand-hi);text-transform:uppercase;letter-spacing:.06em}
 .name{font-weight:600;font-size:.96rem;line-height:1.3}
 .row{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin-top:auto;padding-top:10px;padding-right:54px;min-height:54px}
 .card .stock{text-align:left}
@@ -98,7 +115,7 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.88);backdro
 .price .cur{font-size:.6em;margin:2px 2px 0 0;color:var(--brand)}
 .price small{font-size:.55em;margin:2px 0 0 1px}
 .price.big{font-size:2.4rem}
-.price-tag{font-size:.7rem;color:var(--muted);font-weight:600}
+.price-tag{font-size:.75rem;color:var(--muted);font-weight:600}
 .price-tag b{color:var(--ink);font-weight:700}
 .price-row{display:flex;flex-direction:column;gap:3px;margin-top:2px}
 .price-row .price-tag{font-size:.85rem}
@@ -155,7 +172,7 @@ dialog::backdrop{background:rgba(0,0,0,.72)}
 .note{margin:4px 0 0;padding:12px 14px;border-radius:10px;background:var(--surface-hi);font-size:.9rem;border:1px solid var(--line)}
 .wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--wa);color:var(--wa-ink);text-decoration:none;font-weight:800;padding:15px 18px;border-radius:12px;margin-top:6px;font-size:1.02rem}
 .wa-btn svg{width:20px;height:20px}
-.close{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface-hi);cursor:pointer;font-size:1.3rem;line-height:1}
+.close{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface-hi);cursor:pointer;font-size:1.3rem;line-height:1}
 
 /* ---------- Pedido ---------- */
 .top-actions{display:flex;align-items:center;gap:8px}
@@ -176,7 +193,7 @@ dialog::backdrop{background:rgba(0,0,0,.72)}
 .qty button:hover:not(:disabled){color:var(--brand)}
 .qty button:disabled{color:var(--line);cursor:not-allowed}
 .qty output{min-width:32px;text-align:center;font-weight:800;font-variant-numeric:tabular-nums}
-.qty.sm button{width:32px;height:32px;font-size:1.05rem}
+.qty.sm button{width:40px;height:40px;font-size:1.1rem}
 .qty.sm output{min-width:24px;font-size:.92rem}
 .buy{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .buy .lbl{font-size:.85rem;color:var(--muted)}
@@ -186,10 +203,38 @@ dialog::backdrop{background:rgba(0,0,0,.72)}
 .add-btn:hover:not(:disabled){background:var(--brand);color:var(--brand-ink)}
 .add-btn:disabled{border-color:var(--line);color:var(--muted);cursor:not-allowed}
 
-.cart-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:7;width:min(560px,calc(100% - 24px));display:flex;align-items:center;gap:12px;border:0;border-radius:16px;padding:12px 18px 12px 12px;background:var(--brand);color:var(--brand-ink);font-weight:800;font-size:1.02rem;cursor:pointer;box-shadow:0 12px 34px rgba(0,0,0,.6)}
+.cart-bar{position:fixed;left:0;right:0;margin-inline:auto;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:7;width:min(560px,calc(100% - 24px));display:flex;
+  transition:scale 160ms var(--ease-out),translate 320ms var(--ease-drawer),opacity 220ms ease;align-items:center;gap:12px;border:0;border-radius:16px;padding:12px 18px 12px 12px;background:var(--brand);color:var(--brand-ink);font-weight:800;font-size:1.02rem;cursor:pointer;box-shadow:0 12px 34px rgba(0,0,0,.6)}
 .cart-bar .badge{background:var(--brand-ink);color:var(--brand)}
 .cart-bar .tot{margin-left:auto;font-size:1.1rem;font-variant-numeric:tabular-nums}
 body.con-pedido footer{padding-bottom:104px}
+@starting-style{.cart-bar{translate:0 calc(100% + 24px);opacity:0}}
+
+/* Ficha: entra desde el centro. Panel: se desliza desde su borde. Salida más rápida que la entrada. */
+dialog{overscroll-behavior:contain;opacity:1;transform:none;
+  transition:opacity 220ms var(--ease-out),transform 220ms var(--ease-out),overlay 220ms allow-discrete,display 220ms allow-discrete}
+dialog:not([open]){opacity:0;transform:scale(.96);
+  transition:opacity 150ms ease,transform 150ms ease,overlay 150ms allow-discrete,display 150ms allow-discrete}
+@starting-style{dialog[open]{opacity:0;transform:scale(.96)}}
+dialog::backdrop{transition:background-color 220ms ease,overlay 220ms allow-discrete,display 220ms allow-discrete}
+dialog:not([open])::backdrop{background-color:rgba(0,0,0,0)}
+@starting-style{dialog[open]::backdrop{background-color:rgba(0,0,0,0)}}
+dialog.sheet{transition:transform 320ms var(--ease-drawer),overlay 320ms allow-discrete,display 320ms allow-discrete}
+dialog.sheet:not([open]){opacity:1;transform:translateX(100%);
+  transition:transform 200ms var(--ease-out),overlay 200ms allow-discrete,display 200ms allow-discrete}
+@starting-style{dialog.sheet[open]{opacity:1;transform:translateX(100%)}}
+.sheet-body{overscroll-behavior:contain}
+
+@media (prefers-reduced-motion:reduce){
+  dialog,dialog:not([open]),dialog.sheet,dialog.sheet:not([open]){transform:none!important}
+  dialog.sheet:not([open]){opacity:0}
+  @starting-style{dialog.sheet[open]{opacity:0}}
+  @starting-style{.cart-bar{translate:0}}
+  :is(.add,.add-btn,.wa-btn,.wa-top,.cart-btn,.cart-bar,.chip,.seg button,.qty button,.more button,.close):active:not(:disabled){scale:1}
+}
+@media (prefers-reduced-transparency:reduce){
+  header.top,.tools{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
+}
 
 dialog.sheet{margin:0 0 0 auto;width:min(460px,100%);max-width:100%;height:100dvh;max-height:100dvh;border-radius:18px 0 0 18px;overflow:hidden}
 dialog.sheet[open]{display:flex;flex-direction:column}
@@ -203,7 +248,11 @@ dialog.sheet[open]{display:flex;flex-direction:column}
 .item .nm{font-weight:600;font-size:.88rem;line-height:1.3}
 .item .pu{font-size:.78rem;color:var(--muted);margin-top:2px}
 .item .ctl{display:flex;align-items:center;gap:12px;margin-top:8px}
-.item .quitar{border:0;background:none;color:var(--muted);font-size:.8rem;cursor:pointer;text-decoration:underline;padding:4px}
+.item .quitar{border:0;background:none;color:var(--muted);font-size:.82rem;cursor:pointer;text-decoration:underline;padding:10px 8px;min-height:40px}
+.item .quitar:hover{color:var(--ink)}
+.undo{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 0;padding:10px 12px;border-radius:12px;background:var(--surface-hi);border:1px solid var(--line);font-size:.85rem}
+.undo span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}
+.undo button{flex:none;border:0;background:var(--ink);color:var(--bg);font-weight:800;padding:9px 14px;border-radius:10px;cursor:pointer;min-height:40px}
 .item .lt{font-weight:800;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
 .item .aviso{grid-column:2/-1;font-size:.78rem;font-weight:600;margin-top:6px}
 .vacio{padding:48px 10px;text-align:center;color:var(--muted)}
@@ -211,7 +260,7 @@ dialog.sheet[open]{display:flex;flex-direction:column}
 .sheet-foot{border-top:1px solid var(--line);padding:12px 20px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:10px}
 .lbl-sec{font-family:"JetBrains Mono",monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px}
-.seg button{border:1px solid var(--line);background:var(--bg);padding:10px 6px;border-radius:12px;font-weight:700;font-size:.88rem;cursor:pointer}
+.seg button{min-height:44px;border:1px solid var(--line);background:var(--bg);padding:10px 6px;border-radius:12px;font-weight:700;font-size:.88rem;cursor:pointer}
 .seg button:hover{border-color:var(--brand)}
 .seg button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
 .retiro-msg{font-size:.78rem;font-weight:600;margin-top:6px}
@@ -220,7 +269,7 @@ dialog.sheet[open]{display:flex;flex-direction:column}
 .total strong{font-size:1.9rem;font-weight:900;font-style:italic;font-variant-numeric:tabular-nums}
 .ahorro{font-size:.78rem;color:var(--muted);text-align:right;margin-top:-8px}
 .pie{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:.78rem;margin:0}
-.pie button{border:0;background:none;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:.78rem;padding:0}
+.pie button{border:0;background:none;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:.8rem;padding:10px 8px;min-height:40px;flex:none}
 
 @media (max-width:700px){
   html{scroll-padding-top:120px}
@@ -244,17 +293,21 @@ dialog.sheet[open]{display:flex;flex-direction:column}
   .row{padding-right:48px}
   .acciones{grid-template-columns:1fr}
   dialog.sheet{margin:auto 0 0;width:100%;height:auto;max-height:92dvh;border-radius:18px 18px 0 0}
+  dialog.sheet:not([open]){transform:translateY(100%)}
+  @starting-style{dialog.sheet[open]{transform:translateY(100%)}}
 }
 </style>
 </head>
 <body>
+<a class="skip" href="#grid">Saltar al catálogo</a>
+<div class="sr" id="aviso" aria-live="polite"></div>
 
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#" aria-label="Electronic Games">
       <img id="logoImg" src="logo.png" alt="" hidden>
       <span class="mark" id="logoMark" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span class="wordmark">Electronic <b>Games</b></span>
+      <span class="wordmark" translate="no">Electronic <b>Games</b></span>
     </a>
     <div class="top-actions">
       <button class="cart-btn" id="cartBtn" type="button" aria-label="Ver mi pedido">
@@ -301,7 +354,7 @@ dialog.sheet[open]{display:flex;flex-direction:column}
 </section>
 
 <main class="wrap">
-  <div class="grid" id="grid"></div>
+  <div class="grid" id="grid" tabindex="-1" aria-label="Productos"></div>
   <div class="more" id="more" hidden><button id="moreBtn" type="button">Ver más productos</button></div>
 </main>
 
@@ -333,7 +386,7 @@ dialog.sheet[open]{display:flex;flex-direction:column}
       <button class="close" id="dClose" aria-label="Cerrar">×</button>
       <div class="cat" id="dCat"></div>
       <h2 id="dName"></h2>
-      <div class="code" id="dCode"></div>
+      <div class="code" id="dCode" translate="no"></div>
       <div id="dPrice"></div>
       <p id="dDesc"></p>
       <ul class="dl-locales" id="dLocales"></ul>
@@ -363,6 +416,7 @@ dialog.sheet[open]{display:flex;flex-direction:column}
     <button class="close" id="cartClose" type="button" aria-label="Cerrar">×</button>
   </div>
   <div class="sheet-body">
+    <div class="undo" id="undo" hidden><span id="undoTxt"></span><button type="button" id="undoBtn">Deshacer</button></div>
     <div class="items" id="cartItems"></div>
     <div class="vacio" id="cartVacio" hidden>Tu pedido está vacío.<br><button type="button" id="cartSeguir">Ver catálogo</button></div>
     <div class="opciones" id="cartOpciones">
@@ -499,8 +553,11 @@ async function loadProducts(){
   $("chips").innerHTML = `<button class="chip" data-cat="all" aria-pressed="true">Todo<small>${PRODUCTS.length}</small></button>` +
     cats.map(([k,n])=>`<button class="chip" data-cat="${esc(k)}" aria-pressed="false">${esc(etiqueta.get(k))}<small>${n}</small></button>`).join("");
   S.visibles = CONFIG.porPagina;
+  const abrir = leerURL();
   cargarPedido();
+  render();
   actualizarPedido();
+  if (abrir && buscar(abrir)) openProduct(abrir);
 }
 
 // ===== Render =====
@@ -522,10 +579,10 @@ function render(){
   $("grid").innerHTML = vis.length ? vis.map(p=>{
     const [cls,txt] = status(p);
     const efectivo = p.price_efectivo ?? p.price, tarjeta = p.price_tarjeta ?? p.price;
-    return `<article class="card">
+    return `<article class="card" data-code="${esc(p.code)}">
       ${p.top ? `<span class="sticker">Top ventas</span>` : ""}
       <button class="card-open" type="button" data-code="${esc(p.code)}" aria-label="${esc(p.name)}, $${efectivo.toFixed(2)} efectivo, ${txt}">
-        <div class="img"><img src="${esc(p.photos.length ? p.photos[0] : placeholder(p,0))}" alt="" loading="lazy" onerror="onPhotoError(this,'${esc(p.code)}',0)"></div>
+        <div class="img"><img src="${esc(p.photos.length ? p.photos[0] : placeholder(p,0))}" alt="" width="500" height="500" loading="lazy" decoding="async" onerror="onPhotoError(this,'${esc(p.code)}',0)"></div>
         <div class="body">
           <div class="cat">${esc(p.cat_label||"")}</div>
           <div class="name">${esc(p.name)}</div>
@@ -535,11 +592,45 @@ function render(){
           </div>
         </div>
       </button>
-      <div class="card-add">${controlTarjeta(p)}</div>
+      <div class="card-add" data-q="${PEDIDO.items.get(p.code) || 0}">${controlTarjeta(p)}</div>
     </article>`;
   }).join("") : `<div class="empty">No encontramos productos con esos filtros.<br><button id="reset">Ver todo el catálogo</button></div>`;
   const r = $("reset"); if (r) r.onclick = resetAll;
   $("more").hidden = vis.length >= list.length;
+  escribirURL();
+}
+// Solo cambia el botón de los productos cuyo número en el pedido cambió (no se redibuja la cuadrícula).
+function refrescarControles(){
+  document.querySelectorAll("#grid .card").forEach(card=>{
+    const p = buscar(card.dataset.code); if (!p) return;
+    const box = card.querySelector(".card-add"), q = String(PEDIDO.items.get(p.code) || 0);
+    if (box.dataset.q === q) return;
+    const teniaFoco = box.contains(document.activeElement);
+    box.dataset.q = q;
+    box.innerHTML = controlTarjeta(p);
+    if (teniaFoco) box.querySelector("button").focus();
+  });
+}
+
+// El filtro, la búsqueda y el producto abierto viven en la dirección: se pueden compartir.
+function leerURL(){
+  const u = new URLSearchParams(location.search);
+  if (PRODUCTS.some(p=>p.cat === u.get("cat"))) S.cat = u.get("cat");
+  if (u.get("q")) S.q = u.get("q");
+  if (CONFIG.locales[u.get("local")]) S.local = u.get("local");
+  $("q").value = S.q;
+  $("local").value = S.local;
+  document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", c.dataset.cat === S.cat));
+  return u.get("p");
+}
+function escribirURL(){
+  const u = new URLSearchParams();
+  if (S.cat !== "all") u.set("cat", S.cat);
+  if (S.q.trim()) u.set("q", S.q.trim());
+  if (S.local !== "all") u.set("local", S.local);
+  if ($("dlg").open && D) u.set("p", D.p.code);
+  const s = u.toString();
+  history.replaceState(null, "", s ? "?" + s : location.pathname);
 }
 function resetAll(){
   Object.assign(S,{cat:"all",q:"",local:"all",sort:"rel",only:false,visibles:CONFIG.porPagina});
@@ -584,6 +675,9 @@ function openProduct(code){
   D = {p, q: 1, agregado: false};
   pintarCompra();
   $("dlg").showModal();
+  $("dlg").scrollTop = 0;
+  $("dClose").focus({preventScroll: true});
+  escribirURL();
 }
 
 // ===== Pedido (se guarda en el navegador del cliente) =====
@@ -622,6 +716,27 @@ function setCantidad(code, q){
   guardarPedido();
   actualizarPedido();
 }
+// Confirmación al agregar: el contador rebota, el celular vibra un instante y se anuncia a lectores de pantalla.
+function confirmarAgregado(p, n){
+  $("aviso").textContent = `Agregado al pedido: ${n > 1 ? n + " x " : ""}${p.name}`;
+  try { navigator.vibrate?.(10); } catch(e) {}
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  for (const el of [$("cartCount"), $("cartBarN")])
+    el.animate?.([{scale: 1}, {scale: 1.25}, {scale: 1}], {duration: 260, easing: "cubic-bezier(0.23,1,0.32,1)"});
+}
+
+// Quitar y vaciar se pueden deshacer, en vez de pedir confirmación.
+let DESHACER = null, deshacerTimer = 0;
+function guardarDeshacer(texto){
+  DESHACER = {items: new Map(PEDIDO.items), texto};
+  clearTimeout(deshacerTimer);
+  deshacerTimer = setTimeout(()=>{ DESHACER = null; pintarUndo(); }, 8000);
+}
+function pintarUndo(){
+  $("undo").hidden = !DESHACER;
+  if (DESHACER) $("undoTxt").textContent = DESHACER.texto;
+}
+
 function controlTarjeta(p){
   const q = PEDIDO.items.get(p.code) || 0;
   if (q) return `<button class="add in" type="button" data-ver-pedido aria-label="${q} en tu pedido. Ver pedido">${q}</button>`;
@@ -645,7 +760,7 @@ function actualizarPedido(){
   $("cartBarT").textContent = fmt(totalPedido());
   $("cartBar").hidden = n === 0 || $("cart").open;
   document.body.classList.toggle("con-pedido", n > 0);
-  render();
+  refrescarControles();
   if ($("cart").open) pintarCarrito();
   if ($("dlg").open && D) pintarCompra();
 }
@@ -682,6 +797,7 @@ function mensajePedido(){
     `Total: ${fmt(totalPedido())}\n\n¿Me confirman disponibilidad?`;
 }
 function pintarCarrito(){
+  pintarUndo();
   const ls = lineas();
   $("cartVacio").hidden = ls.length > 0;
   $("cartFoot").hidden = ls.length === 0;
@@ -697,7 +813,7 @@ function pintarCarrito(){
       : !hay ? `<div class="aviso out">Agotado en ${esc(L.nombre)}</div>`
       : hay < q ? `<div class="aviso low">En ${esc(L.nombre)} solo hay ${hay}</div>` : "";
     return `<div class="item" data-code="${esc(p.code)}">
-      <img src="${esc(p.photos.length ? p.photos[0] : placeholder(p,0))}" alt="" onerror="onPhotoError(this,'${esc(p.code)}',0)">
+      <img src="${esc(p.photos.length ? p.photos[0] : placeholder(p,0))}" alt="" width="58" height="58" onerror="onPhotoError(this,'${esc(p.code)}',0)">
       <div>
         <div class="nm">${esc(p.name)}</div>
         <div class="pu">${fmt(u)} c/u</div>
@@ -742,20 +858,23 @@ $("onlyStock").addEventListener("change", e=>{ S.only = e.target.checked; S.visi
 $("moreBtn").addEventListener("click", ()=>{ S.visibles += CONFIG.porPagina; render(); });
 $("grid").addEventListener("click", e=>{
   const add = e.target.closest("[data-add]");
-  if (add){ setCantidad(add.dataset.add, 1); return; }
+  if (add){ setCantidad(add.dataset.add, 1); confirmarAgregado(buscar(add.dataset.add), 1); return; }
   if (e.target.closest("[data-ver-pedido]")){ abrirCarrito(); return; }
   const c = e.target.closest(".card-open");
   if (c) openProduct(c.dataset.code);
 });
 $("dClose").onclick = ()=>$("dlg").close();
 $("dlg").addEventListener("click", e=>{ if (e.target === $("dlg")) $("dlg").close(); });
+$("dlg").addEventListener("close", escribirURL);
 
 // Ficha: cantidad y agregar
 $("dMenos").onclick = ()=>{ D.q--; D.agregado = false; pintarCompra(); };
 $("dMas").onclick = ()=>{ D.q++; D.agregado = false; pintarCompra(); };
 $("dAdd").onclick = ()=>{
   if (D.agregado){ abrirCarrito(); return; }
-  setCantidad(D.p.code, (PEDIDO.items.get(D.p.code) || 0) + D.q);
+  const n = D.q;
+  setCantidad(D.p.code, (PEDIDO.items.get(D.p.code) || 0) + n);
+  confirmarAgregado(D.p, n);
   D.agregado = true; D.q = 1;
   pintarCompra();
 };
@@ -766,14 +885,23 @@ $("cartBar").onclick = abrirCarrito;
 $("cartClose").onclick = ()=>$("cart").close();
 $("cartSeguir").onclick = ()=>$("cart").close();
 $("cart").addEventListener("click", e=>{ if (e.target === $("cart")) $("cart").close(); });
-$("cart").addEventListener("close", actualizarPedido);
+$("cart").addEventListener("close", ()=>{ DESHACER = null; actualizarPedido(); });
 $("cartItems").addEventListener("click", e=>{
   const item = e.target.closest(".item"); if (!item) return;
   const code = item.dataset.code, q = PEDIDO.items.get(code) || 0;
   const d = e.target.closest("[data-d]");
-  if (d) setCantidad(code, q + Number(d.dataset.d));
-  else if (e.target.closest("[data-quitar]")) setCantidad(code, 0);
+  const nuevo = d ? q + Number(d.dataset.d) : e.target.closest("[data-quitar]") ? 0 : q;
+  if (nuevo === q) return;
+  if (nuevo <= 0) guardarDeshacer(`Quitaste ${buscar(code).name}`);
+  setCantidad(code, nuevo);
 });
+$("undoBtn").onclick = ()=>{
+  if (!DESHACER) return;
+  PEDIDO.items = new Map(DESHACER.items);
+  DESHACER = null;
+  guardarPedido();
+  actualizarPedido();
+};
 $("retiro").addEventListener("click", e=>{
   const b = e.target.closest("[data-retiro]"); if (!b) return;
   PEDIDO.retiro = b.dataset.retiro; guardarPedido(); pintarCarrito();
@@ -783,7 +911,8 @@ $("pago").addEventListener("click", e=>{
   PEDIDO.pago = b.dataset.pago; guardarPedido(); actualizarPedido();
 });
 $("cartVaciar").onclick = ()=>{
-  if (!confirm("¿Vaciar tu pedido?")) return;
+  const n = unidades();
+  guardarDeshacer(`Vaciaste tu pedido (${n} producto${n === 1 ? "" : "s"})`);
   PEDIDO.items.clear(); guardarPedido(); actualizarPedido();
 };
 
