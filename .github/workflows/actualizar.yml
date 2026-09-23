@@ -1,0 +1,65 @@
+name: Actualizar catálogo
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # stock, cada 15 minutos
+    - cron: "0 11 * * *"      # selección de productos y precios, 06:00 hora de Ecuador
+  workflow_dispatch:
+    inputs:
+      completo:
+        description: "Recalcular también la selección de productos y los precios"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: catalogo
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      CONTIFICO_API_KEY: ${{ secrets.CONTIFICO_API_KEY }}
+      CONTIFICO_BASE_URL: https://api.contifico.com/sistema/api/v1
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests python-dotenv
+
+      - name: Selección de productos y precios (una vez al día)
+        if: github.event.schedule == '0 11 * * *' || inputs.completo
+        run: |
+          # Sin salida en el log: el repositorio es público y los datos de ventas son internos.
+          python ventas_rotacion.py 30 > /dev/null
+          python generar_catalogo.py > /dev/null
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/products.json docs/meta.json seleccion.json
+          git diff --cached --quiet || git commit -m "Actualizar selección y precios del catálogo"
+          git push
+
+      - name: Stock de los productos publicados (cada 15 minutos)
+        run: python actualizar_stock.py
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
