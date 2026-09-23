@@ -58,6 +58,18 @@ def slugify(texto):
     return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
 
 
+def precios_con_iva(p):
+    """Contífico guarda pvp1 (tarjeta) y pvp2 (efectivo) sin IVA.
+    Devuelve (efectivo, tarjeta) con IVA incluido, redondeados a centavos."""
+    try:
+        iva = 1 + float(p.get("porcentaje_iva") or 0) / 100
+        tarjeta = float(p.get("pvp1") or 0) * iva
+        efectivo = float(p.get("pvp2") or 0) * iva
+    except (TypeError, ValueError):
+        return 0.0, 0.0
+    return round(efectivo or tarjeta, 2), round(tarjeta or efectivo, 2)
+
+
 def stock_total(p):
     try:
         return float(p.get("cantidad_stock") or 0)
@@ -132,14 +144,8 @@ def main():
             continue  # sin stock en los 3 locales públicos y no es digital
 
         codigo = p.get("codigo") or p["id"]
-        try:
-            iva = 1 + float(p.get("porcentaje_iva") or 0) / 100
-            pvp1 = float(p.get("pvp1") or 0) * iva  # precio tarjeta, con IVA
-            pvp2 = float(p.get("pvp2") or 0) * iva  # precio efectivo/factura, con IVA
-        except (TypeError, ValueError):
-            pvp1 = pvp2 = 0.0
-        precio = pvp2 or pvp1
-        if precio <= 0:
+        efectivo, tarjeta = precios_con_iva(p)
+        if efectivo <= 0:
             continue  # sin precio en Contífico: no se puede ofrecer
 
         rot =rotacion.get(p["id"], {"unidades": 0, "dias": 0})
@@ -150,9 +156,9 @@ def main():
             "name": p.get("nombre", "").strip(),
             "cat": slugify(cat_real),
             "cat_label": cat_real,
-            "price": round(precio, 2),
-            "price_efectivo": round(pvp2, 2),
-            "price_tarjeta": round(pvp1, 2),
+            "price": efectivo,
+            "price_efectivo": efectivo,
+            "price_tarjeta": tarjeta,
             "digital": es_tarjeta,
             "stock": None if es_tarjeta else stock_local,
             "photos": [f"fotos/{codigo}/1.jpg", f"fotos/{codigo}/2.jpg", f"fotos/{codigo}/3.jpg"],
