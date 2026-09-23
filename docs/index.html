@@ -393,7 +393,7 @@ function render(){
     const efectivo = p.price_efectivo ?? p.price, tarjeta = p.price_tarjeta ?? p.price;
     return `<button class="card" data-code="${esc(p.code)}" aria-label="${esc(p.name)}, $${efectivo.toFixed(2)} efectivo, ${txt}">
       ${p.top ? `<span class="sticker">Top ventas</span>` : ""}
-      <div class="img"><img src="${esc(p.photos[0])}" alt="" loading="lazy" onerror="onPhotoError(this,'${esc(p.code)}',0)"></div>
+      <div class="img"><img src="${esc(p.photos.length ? p.photos[0] : placeholder(p,0))}" alt="" loading="lazy" onerror="onPhotoError(this,'${esc(p.code)}',0)"></div>
       <div class="body">
         <div class="cat">${esc(p.cat_label||"")}</div>
         <div class="name">${esc(p.name)}</div>
@@ -427,11 +427,13 @@ function openProduct(code){
   $("dDesc").textContent = p.desc || "";
   $("dDesc").hidden = !p.desc;
 
+  const fotos = p.photos.length ? p.photos : [placeholder(p, 0)];
   const show = v => {
-    $("dMain").innerHTML = `<img src="${esc(p.photos[v])}" alt="${esc(p.name)}, foto ${v+1}" onerror="onPhotoError(this,'${esc(p.code)}',${v})">`;
+    $("dMain").innerHTML = `<img src="${esc(fotos[v])}" alt="${esc(p.name)}, foto ${v+1}" onerror="onPhotoError(this,'${esc(p.code)}',${v})">`;
     $("dThumbs").querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-current", i===v));
   };
-  $("dThumbs").innerHTML = p.photos.map((src,v)=>`<button aria-label="Foto ${v+1}"><img src="${esc(src)}" alt="" onerror="onPhotoError(this,'${esc(p.code)}',${v})"></button>`).join("");
+  $("dThumbs").hidden = fotos.length < 2;
+  $("dThumbs").innerHTML = fotos.map((src,v)=>`<button aria-label="Foto ${v+1}"><img src="${esc(src)}" alt="" onerror="onPhotoError(this,'${esc(p.code)}',${v})"></button>`).join("");
   $("dThumbs").querySelectorAll("button").forEach((b,i)=>b.onclick=()=>show(i));
   show(0);
 

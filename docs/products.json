@@ -13,11 +13,7 @@
       "condado": 222,
       "valle": 196
     },
-    "photos": [
-      "fotos/CONTROL-FREE.CNCF/1.jpg",
-      "fotos/CONTROL-FREE.CNCF/2.jpg",
-      "fotos/CONTROL-FREE.CNCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": true
   },
@@ -35,11 +31,7 @@
       "condado": 5,
       "valle": 4
     },
-    "photos": [
-      "fotos/5654653.CDCF/1.jpg",
-      "fotos/5654653.CDCF/2.jpg",
-      "fotos/5654653.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": true
   },
@@ -57,11 +49,7 @@
       "condado": 21,
       "valle": 16
     },
-    "photos": [
-      "fotos/12542325.CDCF/1.jpg",
-      "fotos/12542325.CDCF/2.jpg",
-      "fotos/12542325.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": true
   },
@@ -79,11 +67,7 @@
       "condado": 6,
       "valle": 5
     },
-    "photos": [
-      "fotos/ESTU-PS5.EG/1.jpg",
-      "fotos/ESTU-PS5.EG/2.jpg",
-      "fotos/ESTU-PS5.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": true
   },
@@ -101,11 +85,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/10-10410-108.CNCF/1.jpg",
-      "fotos/10-10410-108.CNCF/2.jpg",
-      "fotos/10-10410-108.CNCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": true
   },
@@ -123,11 +103,7 @@
       "condado": 3,
       "valle": 2
     },
-    "photos": [
-      "fotos/10-10362-101.CNCF/1.jpg",
-      "fotos/10-10362-101.CNCF/2.jpg",
-      "fotos/10-10362-101.CNCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": true
   },
@@ -145,11 +121,7 @@
       "condado": 8,
       "valle": 4
     },
-    "photos": [
-      "fotos/2548596.CDCF/1.jpg",
-      "fotos/2548596.CDCF/2.jpg",
-      "fotos/2548596.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": true
   },
@@ -167,11 +139,7 @@
       "condado": 4,
       "valle": 4
     },
-    "photos": [
-      "fotos/345672755.CDCF/1.jpg",
-      "fotos/345672755.CDCF/2.jpg",
-      "fotos/345672755.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": true
   },
@@ -189,11 +157,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719039594.EG/1.jpg",
-      "fotos/711719039594.EG/2.jpg",
-      "fotos/711719039594.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -211,11 +175,7 @@
       "condado": 5,
       "valle": 8
     },
-    "photos": [
-      "fotos/3394808.CDCF/1.jpg",
-      "fotos/3394808.CDCF/2.jpg",
-      "fotos/3394808.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -233,11 +193,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/5485265655.EG/1.jpg",
-      "fotos/5485265655.EG/2.jpg",
-      "fotos/5485265655.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -255,11 +211,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496590475.CGSF/1.jpg",
-      "fotos/45496590475.CGSF/2.jpg",
-      "fotos/45496590475.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -277,11 +229,7 @@
       "condado": 8,
       "valle": 0
     },
-    "photos": [
-      "fotos/DEDAL.EG/1.jpg",
-      "fotos/DEDAL.EG/2.jpg",
-      "fotos/DEDAL.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -299,11 +247,7 @@
       "condado": 10,
       "valle": 4
     },
-    "photos": [
-      "fotos/21072026.CDCG/1.jpg",
-      "fotos/21072026.CDCG/2.jpg",
-      "fotos/21072026.CDCG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -321,11 +265,7 @@
       "condado": 4,
       "valle": 5
     },
-    "photos": [
-      "fotos/HP14.CNCF/1.jpg",
-      "fotos/HP14.CNCF/2.jpg",
-      "fotos/HP14.CNCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -343,11 +283,7 @@
       "condado": 0,
       "valle": 3
     },
-    "photos": [
-      "fotos/77643.EG/1.jpg",
-      "fotos/77643.EG/2.jpg",
-      "fotos/77643.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -365,11 +301,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/P5016.CDCF/1.jpg",
-      "fotos/P5016.CDCF/2.jpg",
-      "fotos/P5016.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -387,11 +319,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/165390.CGSF/1.jpg",
-      "fotos/165390.CGSF/2.jpg",
-      "fotos/165390.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -409,11 +337,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/34555.CGSF/1.jpg",
-      "fotos/34555.CGSF/2.jpg",
-      "fotos/34555.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -431,11 +355,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/156926.EG/1.jpg",
-      "fotos/156926.EG/2.jpg",
-      "fotos/156926.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -453,11 +373,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/TP5-3592.CDCF/1.jpg",
-      "fotos/TP5-3592.CDCF/2.jpg",
-      "fotos/TP5-3592.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -475,11 +391,7 @@
       "condado": 2,
       "valle": 0
     },
-    "photos": [
-      "fotos/LL-4028-D.CGCF/1.jpg",
-      "fotos/LL-4028-D.CGCF/2.jpg",
-      "fotos/LL-4028-D.CGCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -497,11 +409,7 @@
       "condado": 3,
       "valle": 3
     },
-    "photos": [
-      "fotos/543136.CDCF/1.jpg",
-      "fotos/543136.CDCF/2.jpg",
-      "fotos/543136.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -519,11 +427,7 @@
       "condado": 2,
       "valle": 2
     },
-    "photos": [
-      "fotos/X17-15441.CGCF/1.jpg",
-      "fotos/X17-15441.CGCF/2.jpg",
-      "fotos/X17-15441.CGCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -541,11 +445,7 @@
       "condado": 2,
       "valle": 1
     },
-    "photos": [
-      "fotos/6998524.EG/1.jpg",
-      "fotos/6998524.EG/2.jpg",
-      "fotos/6998524.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -563,11 +463,7 @@
       "condado": 0,
       "valle": 3
     },
-    "photos": [
-      "fotos/194252156940.CGSF/1.jpg",
-      "fotos/194252156940.CGSF/2.jpg",
-      "fotos/194252156940.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -585,11 +481,7 @@
       "condado": 2,
       "valle": 1
     },
-    "photos": [
-      "fotos/3423190.CNCF/1.jpg",
-      "fotos/3423190.CNCF/2.jpg",
-      "fotos/3423190.CNCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -607,11 +499,7 @@
       "condado": 2,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719572701.EG/1.jpg",
-      "fotos/711719572701.EG/2.jpg",
-      "fotos/711719572701.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -629,11 +517,7 @@
       "condado": 2,
       "valle": 0
     },
-    "photos": [
-      "fotos/3394808.CNCF/1.jpg",
-      "fotos/3394808.CNCF/2.jpg",
-      "fotos/3394808.CNCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -651,11 +535,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/340998774.CDCF/1.jpg",
-      "fotos/340998774.CDCF/2.jpg",
-      "fotos/340998774.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -673,11 +553,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/HS-P11191.EG/1.jpg",
-      "fotos/HS-P11191.EG/2.jpg",
-      "fotos/HS-P11191.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -695,11 +571,7 @@
       "condado": 6,
       "valle": 6
     },
-    "photos": [
-      "fotos/215545.CDCF/1.jpg",
-      "fotos/215545.CDCF/2.jpg",
-      "fotos/215545.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -717,11 +589,7 @@
       "condado": 3,
       "valle": 1
     },
-    "photos": [
-      "fotos/191068.CGSF/1.jpg",
-      "fotos/191068.CGSF/2.jpg",
-      "fotos/191068.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -739,11 +607,7 @@
       "condado": 1,
       "valle": 2
     },
-    "photos": [
-      "fotos/8265893.EG/1.jpg",
-      "fotos/8265893.EG/2.jpg",
-      "fotos/8265893.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -761,11 +625,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/075443.CNCF/1.jpg",
-      "fotos/075443.CNCF/2.jpg",
-      "fotos/075443.CNCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -783,11 +643,7 @@
       "condado": 2,
       "valle": 0
     },
-    "photos": [
-      "fotos/P5R002.CDCF/1.jpg",
-      "fotos/P5R002.CDCF/2.jpg",
-      "fotos/P5R002.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -805,11 +661,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/56262695.CGSF/1.jpg",
-      "fotos/56262695.CGSF/2.jpg",
-      "fotos/56262695.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -827,11 +679,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/45496885861.CGSF/1.jpg",
-      "fotos/45496885861.CGSF/2.jpg",
-      "fotos/45496885861.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -849,11 +697,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719541080.CGCF/1.jpg",
-      "fotos/711719541080.CGCF/2.jpg",
-      "fotos/711719541080.CGCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -871,11 +715,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719587569.EG/1.jpg",
-      "fotos/711719587569.EG/2.jpg",
-      "fotos/711719587569.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -893,11 +733,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/711719546580.EG/1.jpg",
-      "fotos/711719546580.EG/2.jpg",
-      "fotos/711719546580.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -915,11 +751,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719546979.EG/1.jpg",
-      "fotos/711719546979.EG/2.jpg",
-      "fotos/711719546979.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -937,11 +769,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/108765908.CGSF/1.jpg",
-      "fotos/108765908.CGSF/2.jpg",
-      "fotos/108765908.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -959,11 +787,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496590741.CGSF/1.jpg",
-      "fotos/45496590741.CGSF/2.jpg",
-      "fotos/45496590741.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -981,11 +805,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496591779.CGSF/1.jpg",
-      "fotos/45496591779.CGSF/2.jpg",
-      "fotos/45496591779.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1003,11 +823,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719553793.CGSF/1.jpg",
-      "fotos/711719553793.CGSF/2.jpg",
-      "fotos/711719553793.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1025,11 +841,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/47875882010.CGSF/1.jpg",
-      "fotos/47875882010.CGSF/2.jpg",
-      "fotos/47875882010.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1047,11 +859,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496596408.CGSF/1.jpg",
-      "fotos/45496596408.CGSF/2.jpg",
-      "fotos/45496596408.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1069,11 +877,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496592998.CGSF/1.jpg",
-      "fotos/45496592998.CGSF/2.jpg",
-      "fotos/45496592998.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1091,11 +895,7 @@
       "condado": 2,
       "valle": 2
     },
-    "photos": [
-      "fotos/231109.EG/1.jpg",
-      "fotos/231109.EG/2.jpg",
-      "fotos/231109.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1113,11 +913,7 @@
       "condado": 2,
       "valle": 0
     },
-    "photos": [
-      "fotos/9555246900566.CGCF/1.jpg",
-      "fotos/9555246900566.CGCF/2.jpg",
-      "fotos/9555246900566.CGCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1135,11 +931,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/5841258.EG/1.jpg",
-      "fotos/5841258.EG/2.jpg",
-      "fotos/5841258.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1157,11 +949,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/550504.EG/1.jpg",
-      "fotos/550504.EG/2.jpg",
-      "fotos/550504.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1179,11 +967,7 @@
       "condado": 0,
       "valle": 2
     },
-    "photos": [
-      "fotos/HSPS3115.EG/1.jpg",
-      "fotos/HSPS3115.EG/2.jpg",
-      "fotos/HSPS3115.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1201,11 +985,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/710425578687.CGSF/1.jpg",
-      "fotos/710425578687.CGSF/2.jpg",
-      "fotos/710425578687.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1223,11 +1003,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/6531234.CGSF/1.jpg",
-      "fotos/6531234.CGSF/2.jpg",
-      "fotos/6531234.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1245,11 +1021,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719587576.EG/1.jpg",
-      "fotos/711719587576.EG/2.jpg",
-      "fotos/711719587576.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1267,11 +1039,7 @@
       "condado": 0,
       "valle": 2
     },
-    "photos": [
-      "fotos/20980866.CGSF/1.jpg",
-      "fotos/20980866.CGSF/2.jpg",
-      "fotos/20980866.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1289,11 +1057,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496597955.CGSF/1.jpg",
-      "fotos/45496597955.CGSF/2.jpg",
-      "fotos/45496597955.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1311,11 +1075,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496905156.CGSF/1.jpg",
-      "fotos/45496905156.CGSF/2.jpg",
-      "fotos/45496905156.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1333,11 +1093,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/4902370552171.CGSF/1.jpg",
-      "fotos/4902370552171.CGSF/2.jpg",
-      "fotos/4902370552171.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1355,11 +1111,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/231443.CGSF/1.jpg",
-      "fotos/231443.CGSF/2.jpg",
-      "fotos/231443.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1377,11 +1129,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/5457534.CGSF/1.jpg",
-      "fotos/5457534.CGSF/2.jpg",
-      "fotos/5457534.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1399,11 +1147,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/257245135.CGSF/1.jpg",
-      "fotos/257245135.CGSF/2.jpg",
-      "fotos/257245135.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1421,11 +1165,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/AT40560119/1.jpg",
-      "fotos/AT40560119/2.jpg",
-      "fotos/AT40560119/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1443,11 +1183,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/098352.CGSF/1.jpg",
-      "fotos/098352.CGSF/2.jpg",
-      "fotos/098352.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1465,11 +1201,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/089015.CGSF/1.jpg",
-      "fotos/089015.CGSF/2.jpg",
-      "fotos/089015.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1487,11 +1219,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/522456.EG/1.jpg",
-      "fotos/522456.EG/2.jpg",
-      "fotos/522456.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1509,11 +1237,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/889842611557.CGSF/1.jpg",
-      "fotos/889842611557.CGSF/2.jpg",
-      "fotos/889842611557.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1531,11 +1255,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496885892.CGSF/1.jpg",
-      "fotos/45496885892.CGSF/2.jpg",
-      "fotos/45496885892.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1553,11 +1273,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/6789089.EG/1.jpg",
-      "fotos/6789089.EG/2.jpg",
-      "fotos/6789089.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1575,11 +1291,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/25874269/1.jpg",
-      "fotos/25874269/2.jpg",
-      "fotos/25874269/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1597,11 +1309,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/711719542285.CGSF/1.jpg",
-      "fotos/711719542285.CGSF/2.jpg",
-      "fotos/711719542285.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1619,11 +1327,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496597092.CGSF/1.jpg",
-      "fotos/45496597092.CGSF/2.jpg",
-      "fotos/45496597092.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1641,11 +1345,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/47875883888.CGSF/1.jpg",
-      "fotos/47875883888.CGSF/2.jpg",
-      "fotos/47875883888.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1663,11 +1363,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719538387.CGSF/1.jpg",
-      "fotos/711719538387.CGSF/2.jpg",
-      "fotos/711719538387.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1685,11 +1381,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719589051.CGSF/1.jpg",
-      "fotos/711719589051.CGSF/2.jpg",
-      "fotos/711719589051.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1707,11 +1399,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/5051892230377.CGSF/1.jpg",
-      "fotos/5051892230377.CGSF/2.jpg",
-      "fotos/5051892230377.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1729,11 +1417,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719534112.CGSF/1.jpg",
-      "fotos/711719534112.CGSF/2.jpg",
-      "fotos/711719534112.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1751,11 +1435,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496590420.CGSF/1.jpg",
-      "fotos/45496590420.CGSF/2.jpg",
-      "fotos/45496590420.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1773,11 +1453,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/5060146467285.CGSF/1.jpg",
-      "fotos/5060146467285.CGSF/2.jpg",
-      "fotos/5060146467285.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1795,11 +1471,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496905576.CGSF/1.jpg",
-      "fotos/45496905576.CGSF/2.jpg",
-      "fotos/45496905576.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1817,11 +1489,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/6453432.CGSF/1.jpg",
-      "fotos/6453432.CGSF/2.jpg",
-      "fotos/6453432.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1839,11 +1507,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719526353.CGSF/1.jpg",
-      "fotos/711719526353.CGSF/2.jpg",
-      "fotos/711719526353.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1861,11 +1525,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/2332480.CGSF/1.jpg",
-      "fotos/2332480.CGSF/2.jpg",
-      "fotos/2332480.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1883,11 +1543,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/509807809.CGSF/1.jpg",
-      "fotos/509807809.CGSF/2.jpg",
-      "fotos/509807809.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1905,11 +1561,7 @@
       "condado": 2,
       "valle": 2
     },
-    "photos": [
-      "fotos/R36S.CDCF/1.jpg",
-      "fotos/R36S.CDCF/2.jpg",
-      "fotos/R36S.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1927,11 +1579,7 @@
       "condado": 2,
       "valle": 2
     },
-    "photos": [
-      "fotos/3080970.CDCF/1.jpg",
-      "fotos/3080970.CDCF/2.jpg",
-      "fotos/3080970.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1949,11 +1597,7 @@
       "condado": 2,
       "valle": 1
     },
-    "photos": [
-      "fotos/409890.CDCF/1.jpg",
-      "fotos/409890.CDCF/2.jpg",
-      "fotos/409890.CDCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1971,11 +1615,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/711719588269.CGSF/1.jpg",
-      "fotos/711719588269.CGSF/2.jpg",
-      "fotos/711719588269.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1993,11 +1633,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/711719596554.CGSF/1.jpg",
-      "fotos/711719596554.CGSF/2.jpg",
-      "fotos/711719596554.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2015,11 +1651,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/45496599638/1.jpg",
-      "fotos/45496599638/2.jpg",
-      "fotos/45496599638/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2037,11 +1669,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/710425478949.CGSF/1.jpg",
-      "fotos/710425478949.CGSF/2.jpg",
-      "fotos/710425478949.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2059,11 +1687,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/711719553427.CGSF/1.jpg",
-      "fotos/711719553427.CGSF/2.jpg",
-      "fotos/711719553427.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2081,11 +1705,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/45496592691.CGSF/1.jpg",
-      "fotos/45496592691.CGSF/2.jpg",
-      "fotos/45496592691.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2103,11 +1723,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/810136672695.CGSF/1.jpg",
-      "fotos/810136672695.CGSF/2.jpg",
-      "fotos/810136672695.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2125,11 +1741,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/711719530541.CGSF/1.jpg",
-      "fotos/711719530541.CGSF/2.jpg",
-      "fotos/711719530541.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2147,11 +1759,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/47875101838.CGSF/1.jpg",
-      "fotos/47875101838.CGSF/2.jpg",
-      "fotos/47875101838.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2169,11 +1777,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/905736.CGSF/1.jpg",
-      "fotos/905736.CGSF/2.jpg",
-      "fotos/905736.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2191,11 +1795,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/977765475.CGSF/1.jpg",
-      "fotos/977765475.CGSF/2.jpg",
-      "fotos/977765475.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2213,11 +1813,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/93412E.CGSF/1.jpg",
-      "fotos/93412E.CGSF/2.jpg",
-      "fotos/93412E.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2235,11 +1831,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/810060.CGSF/1.jpg",
-      "fotos/810060.CGSF/2.jpg",
-      "fotos/810060.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2257,11 +1849,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/870987674.CGSF/1.jpg",
-      "fotos/870987674.CGSF/2.jpg",
-      "fotos/870987674.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2279,11 +1867,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/9087534.CNCF/1.jpg",
-      "fotos/9087534.CNCF/2.jpg",
-      "fotos/9087534.CNCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2301,11 +1885,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/CON-PS4M.CGSF/1.jpg",
-      "fotos/CON-PS4M.CGSF/2.jpg",
-      "fotos/CON-PS4M.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2323,11 +1903,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/008009.CGSF/1.jpg",
-      "fotos/008009.CGSF/2.jpg",
-      "fotos/008009.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2345,11 +1921,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/496283.CGSF/1.jpg",
-      "fotos/496283.CGSF/2.jpg",
-      "fotos/496283.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2367,11 +1939,7 @@
       "condado": 0,
       "valle": 2
     },
-    "photos": [
-      "fotos/6974073211004/1.jpg",
-      "fotos/6974073211004/2.jpg",
-      "fotos/6974073211004/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2389,11 +1957,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719039594.CGCF/1.jpg",
-      "fotos/711719039594.CGCF/2.jpg",
-      "fotos/711719039594.CGCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2411,11 +1975,7 @@
       "condado": 0,
       "valle": 2
     },
-    "photos": [
-      "fotos/885370114867.CGCF/1.jpg",
-      "fotos/885370114867.CGCF/2.jpg",
-      "fotos/885370114867.CGCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2433,11 +1993,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/HS-P11191.CGCF/1.jpg",
-      "fotos/HS-P11191.CGCF/2.jpg",
-      "fotos/HS-P11191.CGCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2455,11 +2011,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/814290016746.CGSF/1.jpg",
-      "fotos/814290016746.CGSF/2.jpg",
-      "fotos/814290016746.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2477,11 +2029,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/710425570360.CGSF/1.jpg",
-      "fotos/710425570360.CGSF/2.jpg",
-      "fotos/710425570360.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2499,11 +2047,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/14633747829.CGSF/1.jpg",
-      "fotos/14633747829.CGSF/2.jpg",
-      "fotos/14633747829.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2521,11 +2065,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/45596598075.CGSF/1.jpg",
-      "fotos/45596598075.CGSF/2.jpg",
-      "fotos/45596598075.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2543,11 +2083,7 @@
       "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/5030917236662.CGSF/1.jpg",
-      "fotos/5030917236662.CGSF/2.jpg",
-      "fotos/5030917236662.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2565,11 +2101,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/47037.CGSF/1.jpg",
-      "fotos/47037.CGSF/2.jpg",
-      "fotos/47037.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2587,11 +2119,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719537106.CGSF/1.jpg",
-      "fotos/711719537106.CGSF/2.jpg",
-      "fotos/711719537106.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2609,11 +2137,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/883929803606.CGSF/1.jpg",
-      "fotos/883929803606.CGSF/2.jpg",
-      "fotos/883929803606.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2631,11 +2155,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/56094.CGSF/1.jpg",
-      "fotos/56094.CGSF/2.jpg",
-      "fotos/56094.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2653,11 +2173,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/765322.CGSF/1.jpg",
-      "fotos/765322.CGSF/2.jpg",
-      "fotos/765322.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2675,11 +2191,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/073109.CGSF/1.jpg",
-      "fotos/073109.CGSF/2.jpg",
-      "fotos/073109.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2697,11 +2209,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/080789.CGSF/1.jpg",
-      "fotos/080789.CGSF/2.jpg",
-      "fotos/080789.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2719,11 +2227,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/86090.CGSF/1.jpg",
-      "fotos/86090.CGSF/2.jpg",
-      "fotos/86090.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2741,11 +2245,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/47875884007.CGSF/1.jpg",
-      "fotos/47875884007.CGSF/2.jpg",
-      "fotos/47875884007.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2763,11 +2263,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/077878.CGSF/1.jpg",
-      "fotos/077878.CGSF/2.jpg",
-      "fotos/077878.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2785,11 +2281,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/20266439.CGSF/1.jpg",
-      "fotos/20266439.CGSF/2.jpg",
-      "fotos/20266439.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2807,11 +2299,7 @@
       "condado": 2,
       "valle": 0
     },
-    "photos": [
-      "fotos/325263.CGSF/1.jpg",
-      "fotos/325263.CGSF/2.jpg",
-      "fotos/325263.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2829,11 +2317,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/700989.CGSF/1.jpg",
-      "fotos/700989.CGSF/2.jpg",
-      "fotos/700989.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2851,11 +2335,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/3309089.CGSF/1.jpg",
-      "fotos/3309089.CGSF/2.jpg",
-      "fotos/3309089.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2873,11 +2353,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/3218765.CGSF/1.jpg",
-      "fotos/3218765.CGSF/2.jpg",
-      "fotos/3218765.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2895,11 +2371,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/316861.CGSF/1.jpg",
-      "fotos/316861.CGSF/2.jpg",
-      "fotos/316861.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2917,11 +2389,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/950001.CGSF/1.jpg",
-      "fotos/950001.CGSF/2.jpg",
-      "fotos/950001.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2939,11 +2407,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/89252/1.jpg",
-      "fotos/89252/2.jpg",
-      "fotos/89252/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2961,11 +2425,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/17259.CGSF/1.jpg",
-      "fotos/17259.CGSF/2.jpg",
-      "fotos/17259.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2983,11 +2443,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/484562.CGSF/1.jpg",
-      "fotos/484562.CGSF/2.jpg",
-      "fotos/484562.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3005,11 +2461,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/600045.CGSF/1.jpg",
-      "fotos/600045.CGSF/2.jpg",
-      "fotos/600045.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3027,11 +2479,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/CON-XBXX.CGSF/1.jpg",
-      "fotos/CON-XBXX.CGSF/2.jpg",
-      "fotos/CON-XBXX.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3049,11 +2497,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/CONS-OLED.CGSF/1.jpg",
-      "fotos/CONS-OLED.CGSF/2.jpg",
-      "fotos/CONS-OLED.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3071,11 +2515,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/087532.CGSF/1.jpg",
-      "fotos/087532.CGSF/2.jpg",
-      "fotos/087532.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3093,11 +2533,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/230909.CGSF/1.jpg",
-      "fotos/230909.CGSF/2.jpg",
-      "fotos/230909.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3115,11 +2551,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/150620.CGSF/1.jpg",
-      "fotos/150620.CGSF/2.jpg",
-      "fotos/150620.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3137,11 +2569,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/55509865.EG/1.jpg",
-      "fotos/55509865.EG/2.jpg",
-      "fotos/55509865.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3159,11 +2587,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/3490862.CGSF/1.jpg",
-      "fotos/3490862.CGSF/2.jpg",
-      "fotos/3490862.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3181,11 +2605,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/3098760.CGSF/1.jpg",
-      "fotos/3098760.CGSF/2.jpg",
-      "fotos/3098760.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3203,11 +2623,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/810035.CGSF/1.jpg",
-      "fotos/810035.CGSF/2.jpg",
-      "fotos/810035.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3225,11 +2641,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/7509871.CGSF/1.jpg",
-      "fotos/7509871.CGSF/2.jpg",
-      "fotos/7509871.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3247,11 +2659,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/611888267012/1.jpg",
-      "fotos/611888267012/2.jpg",
-      "fotos/611888267012/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3269,11 +2677,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/MOCUTE/1.jpg",
-      "fotos/MOCUTE/2.jpg",
-      "fotos/MOCUTE/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3291,11 +2695,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/HS-P11.CGCF/1.jpg",
-      "fotos/HS-P11.CGCF/2.jpg",
-      "fotos/HS-P11.CGCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3313,11 +2713,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719565871/1.jpg",
-      "fotos/711719565871/2.jpg",
-      "fotos/711719565871/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3335,11 +2731,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/HSPS3115.CGCF/1.jpg",
-      "fotos/HSPS3115.CGCF/2.jpg",
-      "fotos/HSPS3115.CGCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3357,11 +2749,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/1519186.CGSF/1.jpg",
-      "fotos/1519186.CGSF/2.jpg",
-      "fotos/1519186.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3379,11 +2767,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/NSX-005U.CGSF/1.jpg",
-      "fotos/NSX-005U.CGSF/2.jpg",
-      "fotos/NSX-005U.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3401,11 +2785,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/9090908.CGSF/1.jpg",
-      "fotos/9090908.CGSF/2.jpg",
-      "fotos/9090908.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3423,11 +2803,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/617885098512.CGSF/1.jpg",
-      "fotos/617885098512.CGSF/2.jpg",
-      "fotos/617885098512.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3445,11 +2821,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/26552525.CGSF/1.jpg",
-      "fotos/26552525.CGSF/2.jpg",
-      "fotos/26552525.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3467,11 +2839,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/119099.CGSF/1.jpg",
-      "fotos/119099.CGSF/2.jpg",
-      "fotos/119099.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3489,11 +2857,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/709009.CGSF/1.jpg",
-      "fotos/709009.CGSF/2.jpg",
-      "fotos/709009.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3511,11 +2875,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/12098709.CGSF/1.jpg",
-      "fotos/12098709.CGSF/2.jpg",
-      "fotos/12098709.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3533,11 +2893,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/1090987.CGSF/1.jpg",
-      "fotos/1090987.CGSF/2.jpg",
-      "fotos/1090987.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3555,11 +2911,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/458753.CGSF/1.jpg",
-      "fotos/458753.CGSF/2.jpg",
-      "fotos/458753.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3577,11 +2929,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/NSGP0041-01.CGSF/1.jpg",
-      "fotos/NSGP0041-01.CGSF/2.jpg",
-      "fotos/NSGP0041-01.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3599,11 +2947,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719546573.EG/1.jpg",
-      "fotos/711719546573.EG/2.jpg",
-      "fotos/711719546573.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3621,11 +2965,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/8000790.EG/1.jpg",
-      "fotos/8000790.EG/2.jpg",
-      "fotos/8000790.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3643,11 +2983,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/2109876.CGSF/1.jpg",
-      "fotos/2109876.CGSF/2.jpg",
-      "fotos/2109876.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3665,11 +3001,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/8760908.CGSF/1.jpg",
-      "fotos/8760908.CGSF/2.jpg",
-      "fotos/8760908.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3687,11 +3019,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/6543239.CGSF/1.jpg",
-      "fotos/6543239.CGSF/2.jpg",
-      "fotos/6543239.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3709,11 +3037,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/2098878.CGSF/1.jpg",
-      "fotos/2098878.CGSF/2.jpg",
-      "fotos/2098878.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3731,11 +3055,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/36790876570.EG/1.jpg",
-      "fotos/36790876570.EG/2.jpg",
-      "fotos/36790876570.EG/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3753,11 +3073,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/2321397.CGSF/1.jpg",
-      "fotos/2321397.CGSF/2.jpg",
-      "fotos/2321397.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3775,11 +3091,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496597863/1.jpg",
-      "fotos/45496597863/2.jpg",
-      "fotos/45496597863/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3797,11 +3109,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496599669/1.jpg",
-      "fotos/45496599669/2.jpg",
-      "fotos/45496599669/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3819,11 +3127,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/887256114183/1.jpg",
-      "fotos/887256114183/2.jpg",
-      "fotos/887256114183/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3841,11 +3145,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/710425578397/1.jpg",
-      "fotos/710425578397/2.jpg",
-      "fotos/710425578397/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3863,11 +3163,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/13388934003/1.jpg",
-      "fotos/13388934003/2.jpg",
-      "fotos/13388934003/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3885,11 +3181,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/13388580033/1.jpg",
-      "fotos/13388580033/2.jpg",
-      "fotos/13388580033/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3907,11 +3199,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/23182/1.jpg",
-      "fotos/23182/2.jpg",
-      "fotos/23182/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3929,11 +3217,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/811949034311/1.jpg",
-      "fotos/811949034311/2.jpg",
-      "fotos/811949034311/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3951,11 +3235,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/J7D00030/1.jpg",
-      "fotos/J7D00030/2.jpg",
-      "fotos/J7D00030/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3973,11 +3253,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/879278220003/1.jpg",
-      "fotos/879278220003/2.jpg",
-      "fotos/879278220003/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3995,11 +3271,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/14633196535/1.jpg",
-      "fotos/14633196535/2.jpg",
-      "fotos/14633196535/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4017,11 +3289,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/295792784/1.jpg",
-      "fotos/295792784/2.jpg",
-      "fotos/295792784/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4039,11 +3307,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/83717302001/1.jpg",
-      "fotos/83717302001/2.jpg",
-      "fotos/83717302001/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4061,11 +3325,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/14633376524/1.jpg",
-      "fotos/14633376524/2.jpg",
-      "fotos/14633376524/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4083,11 +3343,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/45496599720/1.jpg",
-      "fotos/45496599720/2.jpg",
-      "fotos/45496599720/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4105,11 +3361,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/722674130257/1.jpg",
-      "fotos/722674130257/2.jpg",
-      "fotos/722674130257/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4127,11 +3379,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/887256111922/1.jpg",
-      "fotos/887256111922/2.jpg",
-      "fotos/887256111922/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4149,11 +3397,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/13388580101/1.jpg",
-      "fotos/13388580101/2.jpg",
-      "fotos/13388580101/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4171,11 +3415,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/711719567370/1.jpg",
-      "fotos/711719567370/2.jpg",
-      "fotos/711719567370/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4193,11 +3433,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496591922.CGSF/1.jpg",
-      "fotos/45496591922.CGSF/2.jpg",
-      "fotos/45496591922.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4215,11 +3451,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719506027/1.jpg",
-      "fotos/711719506027/2.jpg",
-      "fotos/711719506027/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4237,11 +3469,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/14633742671/1.jpg",
-      "fotos/14633742671/2.jpg",
-      "fotos/14633742671/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4259,11 +3487,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/2525626/1.jpg",
-      "fotos/2525626/2.jpg",
-      "fotos/2525626/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4281,11 +3505,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/3665962020540/1.jpg",
-      "fotos/3665962020540/2.jpg",
-      "fotos/3665962020540/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4303,11 +3523,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/098110.CGSF/1.jpg",
-      "fotos/098110.CGSF/2.jpg",
-      "fotos/098110.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4325,11 +3541,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719548768/1.jpg",
-      "fotos/711719548768/2.jpg",
-      "fotos/711719548768/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4347,11 +3559,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/722674130882/1.jpg",
-      "fotos/722674130882/2.jpg",
-      "fotos/722674130882/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4369,11 +3577,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/810023036630/1.jpg",
-      "fotos/810023036630/2.jpg",
-      "fotos/810023036630/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4391,11 +3595,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/819335021068/1.jpg",
-      "fotos/819335021068/2.jpg",
-      "fotos/819335021068/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4413,11 +3613,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/196388433889/1.jpg",
-      "fotos/196388433889/2.jpg",
-      "fotos/196388433889/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4435,11 +3631,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/196388433735/1.jpg",
-      "fotos/196388433735/2.jpg",
-      "fotos/196388433735/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4457,11 +3649,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496904982/1.jpg",
-      "fotos/45496904982/2.jpg",
-      "fotos/45496904982/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4479,11 +3667,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/14633742466.CGSF/1.jpg",
-      "fotos/14633742466.CGSF/2.jpg",
-      "fotos/14633742466.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4501,11 +3685,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/47875103474.CGSF/1.jpg",
-      "fotos/47875103474.CGSF/2.jpg",
-      "fotos/47875103474.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4523,11 +3703,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719547013.CGSF/1.jpg",
-      "fotos/711719547013.CGSF/2.jpg",
-      "fotos/711719547013.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4545,11 +3721,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/722674130646.CGSF/1.jpg",
-      "fotos/722674130646.CGSF/2.jpg",
-      "fotos/722674130646.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4567,11 +3739,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/81194903544.CGSF/1.jpg",
-      "fotos/81194903544.CGSF/2.jpg",
-      "fotos/81194903544.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4589,11 +3757,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/811949035479.CGSF/1.jpg",
-      "fotos/811949035479.CGSF/2.jpg",
-      "fotos/811949035479.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4611,11 +3775,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/8436017221855/1.jpg",
-      "fotos/8436017221855/2.jpg",
-      "fotos/8436017221855/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4633,11 +3793,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/8436607943921/1.jpg",
-      "fotos/8436607943921/2.jpg",
-      "fotos/8436607943921/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4655,11 +3811,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496598044.CGSF/1.jpg",
-      "fotos/45496598044.CGSF/2.jpg",
-      "fotos/45496598044.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4677,11 +3829,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/47875785489.CGSF/1.jpg",
-      "fotos/47875785489.CGSF/2.jpg",
-      "fotos/47875785489.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4699,11 +3847,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/300692.CGSF/1.jpg",
-      "fotos/300692.CGSF/2.jpg",
-      "fotos/300692.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4721,11 +3865,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/263553362.CGSF/1.jpg",
-      "fotos/263553362.CGSF/2.jpg",
-      "fotos/263553362.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4743,11 +3883,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/3760415190112.CGSF/1.jpg",
-      "fotos/3760415190112.CGSF/2.jpg",
-      "fotos/3760415190112.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4765,11 +3901,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/710425672927.CGSF/1.jpg",
-      "fotos/710425672927.CGSF/2.jpg",
-      "fotos/710425672927.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4787,11 +3919,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496598167.CGSF/1.jpg",
-      "fotos/45496598167.CGSF/2.jpg",
-      "fotos/45496598167.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4809,11 +3937,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/883929727698.CGSF/1.jpg",
-      "fotos/883929727698.CGSF/2.jpg",
-      "fotos/883929727698.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4831,11 +3955,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/14633383096.CGSF/1.jpg",
-      "fotos/14633383096.CGSF/2.jpg",
-      "fotos/14633383096.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4853,11 +3973,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496599140.CGSF/1.jpg",
-      "fotos/45496599140.CGSF/2.jpg",
-      "fotos/45496599140.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4875,11 +3991,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496904920.CNCF/1.jpg",
-      "fotos/45496904920.CNCF/2.jpg",
-      "fotos/45496904920.CNCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4897,11 +4009,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/100866333153.CGSF/1.jpg",
-      "fotos/100866333153.CGSF/2.jpg",
-      "fotos/100866333153.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4919,11 +4027,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/711719597865.CGSF/1.jpg",
-      "fotos/711719597865.CGSF/2.jpg",
-      "fotos/711719597865.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4941,11 +4045,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496905774.CGSF/1.jpg",
-      "fotos/45496905774.CGSF/2.jpg",
-      "fotos/45496905774.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4963,11 +4063,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/14633749502.CGSF/1.jpg",
-      "fotos/14633749502.CGSF/2.jpg",
-      "fotos/14633749502.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4985,11 +4081,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496596484.CGSF/1.jpg",
-      "fotos/45496596484.CGSF/2.jpg",
-      "fotos/45496596484.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5007,11 +4099,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/812872010144.CGSF/1.jpg",
-      "fotos/812872010144.CGSF/2.jpg",
-      "fotos/812872010144.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5029,11 +4117,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/722674550659.CGSF/1.jpg",
-      "fotos/722674550659.CGSF/2.jpg",
-      "fotos/722674550659.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5051,11 +4135,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/45496596484.CGCF/1.jpg",
-      "fotos/45496596484.CGCF/2.jpg",
-      "fotos/45496596484.CGCF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5073,11 +4153,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/87642098.CGSF/1.jpg",
-      "fotos/87642098.CGSF/2.jpg",
-      "fotos/87642098.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5095,11 +4171,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/5432123.CGSF/1.jpg",
-      "fotos/5432123.CGSF/2.jpg",
-      "fotos/5432123.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5117,11 +4189,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/131414.CGSF/1.jpg",
-      "fotos/131414.CGSF/2.jpg",
-      "fotos/131414.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5139,11 +4207,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/21531.CGSF/1.jpg",
-      "fotos/21531.CGSF/2.jpg",
-      "fotos/21531.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5161,11 +4225,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/44324354.CGSF/1.jpg",
-      "fotos/44324354.CGSF/2.jpg",
-      "fotos/44324354.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5183,11 +4243,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/045496906153.CGSF/1.jpg",
-      "fotos/045496906153.CGSF/2.jpg",
-      "fotos/045496906153.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5205,11 +4261,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/4902370553406.CGSF/1.jpg",
-      "fotos/4902370553406.CGSF/2.jpg",
-      "fotos/4902370553406.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5227,11 +4279,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/710425653612.CGSF/1.jpg",
-      "fotos/710425653612.CGSF/2.jpg",
-      "fotos/710425653612.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5249,11 +4297,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/080909.CGSF/1.jpg",
-      "fotos/080909.CGSF/2.jpg",
-      "fotos/080909.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5271,11 +4315,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/090908.CGSF/1.jpg",
-      "fotos/090908.CGSF/2.jpg",
-      "fotos/090908.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5293,11 +4333,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/09097.CGSF/1.jpg",
-      "fotos/09097.CGSF/2.jpg",
-      "fotos/09097.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5315,11 +4351,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/986012.CGSF/1.jpg",
-      "fotos/986012.CGSF/2.jpg",
-      "fotos/986012.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5337,11 +4369,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/097532.CGSF/1.jpg",
-      "fotos/097532.CGSF/2.jpg",
-      "fotos/097532.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5359,11 +4387,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/77010.CGSF/1.jpg",
-      "fotos/77010.CGSF/2.jpg",
-      "fotos/77010.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5381,11 +4405,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/54459.CGSF/1.jpg",
-      "fotos/54459.CGSF/2.jpg",
-      "fotos/54459.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5403,11 +4423,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/301341.CGSF/1.jpg",
-      "fotos/301341.CGSF/2.jpg",
-      "fotos/301341.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5425,11 +4441,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/09409095.CGSF/1.jpg",
-      "fotos/09409095.CGSF/2.jpg",
-      "fotos/09409095.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5447,11 +4459,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496596439.CGSF/1.jpg",
-      "fotos/45496596439.CGSF/2.jpg",
-      "fotos/45496596439.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5469,11 +4477,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496599782.CGSF/1.jpg",
-      "fotos/45496599782.CGSF/2.jpg",
-      "fotos/45496599782.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5491,11 +4495,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/45496596620.CGSF/1.jpg",
-      "fotos/45496596620.CGSF/2.jpg",
-      "fotos/45496596620.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5513,11 +4513,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/20266450.CGSF/1.jpg",
-      "fotos/20266450.CGSF/2.jpg",
-      "fotos/20266450.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5535,11 +4531,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/3005925-ACU.CGSF/1.jpg",
-      "fotos/3005925-ACU.CGSF/2.jpg",
-      "fotos/3005925-ACU.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5557,11 +4549,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/100809.CGSF/1.jpg",
-      "fotos/100809.CGSF/2.jpg",
-      "fotos/100809.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5579,11 +4567,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/0615.CGSF/1.jpg",
-      "fotos/0615.CGSF/2.jpg",
-      "fotos/0615.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5601,11 +4585,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/121592.CGSF/1.jpg",
-      "fotos/121592.CGSF/2.jpg",
-      "fotos/121592.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5623,11 +4603,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/1463378975.CGSF/1.jpg",
-      "fotos/1463378975.CGSF/2.jpg",
-      "fotos/1463378975.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5645,11 +4621,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/907021.CGSF/1.jpg",
-      "fotos/907021.CGSF/2.jpg",
-      "fotos/907021.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5667,11 +4639,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/309086.CGSF/1.jpg",
-      "fotos/309086.CGSF/2.jpg",
-      "fotos/309086.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5689,11 +4657,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/9007609.CGSF/1.jpg",
-      "fotos/9007609.CGSF/2.jpg",
-      "fotos/9007609.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5711,11 +4675,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/0909890.CGSF/1.jpg",
-      "fotos/0909890.CGSF/2.jpg",
-      "fotos/0909890.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5733,11 +4693,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/77664423.CGSF/1.jpg",
-      "fotos/77664423.CGSF/2.jpg",
-      "fotos/77664423.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5755,11 +4711,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/09080907.CGSF/1.jpg",
-      "fotos/09080907.CGSF/2.jpg",
-      "fotos/09080907.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5777,11 +4729,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/70090.CGSF/1.jpg",
-      "fotos/70090.CGSF/2.jpg",
-      "fotos/70090.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5799,11 +4747,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/6908790.CGSF/1.jpg",
-      "fotos/6908790.CGSF/2.jpg",
-      "fotos/6908790.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5821,11 +4765,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/690639.CGSF/1.jpg",
-      "fotos/690639.CGSF/2.jpg",
-      "fotos/690639.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5843,11 +4783,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/0078006532.CGSF/1.jpg",
-      "fotos/0078006532.CGSF/2.jpg",
-      "fotos/0078006532.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5865,11 +4801,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/2008907.CGSF/1.jpg",
-      "fotos/2008907.CGSF/2.jpg",
-      "fotos/2008907.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5887,11 +4819,7 @@
       "condado": 0,
       "valle": 1
     },
-    "photos": [
-      "fotos/088909876.CGSF/1.jpg",
-      "fotos/088909876.CGSF/2.jpg",
-      "fotos/088909876.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5909,11 +4837,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/8790986554.CGSF/1.jpg",
-      "fotos/8790986554.CGSF/2.jpg",
-      "fotos/8790986554.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5931,11 +4855,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/54326908909.CGSF/1.jpg",
-      "fotos/54326908909.CGSF/2.jpg",
-      "fotos/54326908909.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5953,11 +4873,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/5467909.CGSF/1.jpg",
-      "fotos/5467909.CGSF/2.jpg",
-      "fotos/5467909.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5975,11 +4891,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/03082026.CGSF/1.jpg",
-      "fotos/03082026.CGSF/2.jpg",
-      "fotos/03082026.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5997,11 +4909,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/2363414.CGSF/1.jpg",
-      "fotos/2363414.CGSF/2.jpg",
-      "fotos/2363414.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -6019,11 +4927,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/309876545.CGSF/1.jpg",
-      "fotos/309876545.CGSF/2.jpg",
-      "fotos/309876545.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -6041,11 +4945,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/765443.CGSF/1.jpg",
-      "fotos/765443.CGSF/2.jpg",
-      "fotos/765443.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -6063,11 +4963,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/876500.CGSF/1.jpg",
-      "fotos/876500.CGSF/2.jpg",
-      "fotos/876500.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -6085,11 +4981,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/633213.CGSF/1.jpg",
-      "fotos/633213.CGSF/2.jpg",
-      "fotos/633213.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -6107,11 +4999,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/777609.CGSF/1.jpg",
-      "fotos/777609.CGSF/2.jpg",
-      "fotos/777609.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -6129,11 +5017,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/57809054.CGSF/1.jpg",
-      "fotos/57809054.CGSF/2.jpg",
-      "fotos/57809054.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -6151,11 +5035,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/6543223.CGSF/1.jpg",
-      "fotos/6543223.CGSF/2.jpg",
-      "fotos/6543223.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -6173,11 +5053,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/8076054.CGSF/1.jpg",
-      "fotos/8076054.CGSF/2.jpg",
-      "fotos/8076054.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -6195,11 +5071,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/4352423.CGSF/1.jpg",
-      "fotos/4352423.CGSF/2.jpg",
-      "fotos/4352423.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -6217,11 +5089,7 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/950003.CGSF/1.jpg",
-      "fotos/950003.CGSF/2.jpg",
-      "fotos/950003.CGSF/3.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   }

@@ -22,6 +22,7 @@ CACHE_PRODUCTOS = "productos_raw.json"
 CACHE_STOCK = "stock_por_producto.json"
 SALIDA = "docs/products.json"
 SELECCION = "seleccion.json"  # código -> id de Contífico, para actualizar_stock.py
+FOTOS_DIR = "docs/fotos"      # docs/fotos/<código>/1.jpg, 2.jpg... (las deja subir_fotos.py)
 ROTACION = "rotacion.json"  # generado por ventas_rotacion.py
 
 # Cuántos productos publicar por categoría (nombre exacto como en Contífico).
@@ -60,6 +61,15 @@ def local_de_bodega(nombre_bodega):
 def slugify(texto):
     s = normalizar(texto).lower()
     return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+
+
+def fotos_de(codigo):
+    """Rutas (relativas a docs/) de las fotos que existen para ese producto."""
+    carpeta = os.path.join(FOTOS_DIR, codigo)
+    if not os.path.isdir(carpeta):
+        return []
+    archivos = sorted(f for f in os.listdir(carpeta) if f.lower().endswith(".jpg"))
+    return [f"fotos/{codigo}/{f}" for f in archivos]
 
 
 def precios_con_iva(p):
@@ -166,7 +176,7 @@ def main():
             "price_tarjeta": tarjeta,
             "digital": es_tarjeta,
             "stock": None if es_tarjeta else stock_local,
-            "photos": [f"fotos/{codigo}/1.jpg", f"fotos/{codigo}/2.jpg", f"fotos/{codigo}/3.jpg"],
+            "photos": fotos_de(codigo),
             "desc": (p.get("descripcion") or "").strip(),
         })
 
