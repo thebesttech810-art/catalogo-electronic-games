@@ -35,6 +35,7 @@ CUPOS = {
     "Accesorios": 25,
 }
 TOP_VENTAS = 8  # cuántos productos llevan el sticker "Top ventas"
+DIAS_NUEVO = 30  # un producto creado en Contífico hace menos de estos días lleva "Nuevo"
 
 # Nunca se publican productos cuyo nombre contenga alguna de estas palabras
 # (sin importar tildes ni mayúsculas). Ej.: copias de juegos sin licencia.
@@ -82,6 +83,14 @@ def precios_con_iva(p):
     except (TypeError, ValueError):
         return 0.0, 0.0
     return round(efectivo or tarjeta, 2), round(tarjeta or efectivo, 2)
+
+
+def es_nuevo(p):
+    try:
+        creado = datetime.strptime(p.get("fecha_creacion") or "", "%d/%m/%Y")
+    except ValueError:
+        return False
+    return (datetime.now() - creado).days <= DIAS_NUEVO
 
 
 def stock_total(p):
@@ -175,6 +184,7 @@ def main():
             "price_efectivo": efectivo,
             "price_tarjeta": tarjeta,
             "digital": es_tarjeta,
+            "nuevo": es_nuevo(p),
             "stock": None if es_tarjeta else stock_local,
             "photos": fotos_de(codigo),
             "desc": (p.get("descripcion") or "").strip(),

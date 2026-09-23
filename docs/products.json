@@ -8,6 +8,7 @@
     "price_efectivo": 2.5,
     "price_tarjeta": 2.5,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 187,
       "condado": 222,
@@ -26,6 +27,7 @@
     "price_efectivo": 27.9,
     "price_tarjeta": 27.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 5,
       "condado": 5,
@@ -44,6 +46,7 @@
     "price_efectivo": 1.0,
     "price_tarjeta": 1.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 17,
       "condado": 21,
@@ -62,6 +65,7 @@
     "price_efectivo": 6.9,
     "price_tarjeta": 6.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 6,
       "condado": 6,
@@ -80,6 +84,7 @@
     "price_efectivo": 34.9,
     "price_tarjeta": 39.91,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -98,6 +103,7 @@
     "price_efectivo": 39.91,
     "price_tarjeta": 42.89,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 3,
       "condado": 3,
@@ -116,6 +122,7 @@
     "price_efectivo": 1.0,
     "price_tarjeta": 1.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 5,
       "condado": 8,
@@ -134,6 +141,7 @@
     "price_efectivo": 34.89,
     "price_tarjeta": 34.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 3,
       "condado": 4,
@@ -152,6 +160,7 @@
     "price_efectivo": 27.9,
     "price_tarjeta": 27.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -170,6 +179,7 @@
     "price_efectivo": 21.9,
     "price_tarjeta": 22.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 6,
       "condado": 5,
@@ -188,6 +198,7 @@
     "price_efectivo": 32.9,
     "price_tarjeta": 32.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -206,6 +217,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 74.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -224,6 +236,7 @@
     "price_efectivo": 2.5,
     "price_tarjeta": 2.5,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 6,
       "condado": 8,
@@ -242,6 +255,7 @@
     "price_efectivo": 1.0,
     "price_tarjeta": 1.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 4,
       "condado": 10,
@@ -260,28 +274,11 @@
     "price_efectivo": 8.9,
     "price_tarjeta": 8.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 3,
       "condado": 4,
       "valle": 5
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "77643.EG",
-    "name": "CABLE ECONOMICO DE USB A TIPO C",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 5.0,
-    "price_efectivo": 5.0,
-    "price_tarjeta": 5.0,
-    "digital": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 3
     },
     "photos": [],
     "desc": "",
@@ -296,10 +293,30 @@
     "price_efectivo": 25.9,
     "price_tarjeta": 27.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
-      "condado": 0,
+      "condado": 1,
       "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "77643.EG",
+    "name": "CABLE ECONOMICO DE USB A TIPO C",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 5.0,
+    "price_efectivo": 5.0,
+    "price_tarjeta": 5.0,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 3
     },
     "photos": [],
     "desc": "",
@@ -314,6 +331,7 @@
     "price_efectivo": 0.49,
     "price_tarjeta": 0.49,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 14,
       "condado": 0,
@@ -332,6 +350,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 63.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -350,6 +369,7 @@
     "price_efectivo": 14.9,
     "price_tarjeta": 14.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -368,6 +388,7 @@
     "price_efectivo": 22.9,
     "price_tarjeta": 24.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -386,6 +407,7 @@
     "price_efectivo": 4.9,
     "price_tarjeta": 5.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 11,
       "condado": 2,
@@ -404,6 +426,7 @@
     "price_efectivo": 97.9,
     "price_tarjeta": 103.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 3,
       "condado": 3,
@@ -422,6 +445,7 @@
     "price_efectivo": 25.9,
     "price_tarjeta": 27.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 2,
@@ -440,6 +464,7 @@
     "price_efectivo": 49.9,
     "price_tarjeta": 49.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 2,
       "condado": 2,
@@ -458,6 +483,7 @@
     "price_efectivo": 35.9,
     "price_tarjeta": 38.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -476,6 +502,7 @@
     "price_efectivo": 15.9,
     "price_tarjeta": 15.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 2,
@@ -494,6 +521,7 @@
     "price_efectivo": 104.9,
     "price_tarjeta": 109.91,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 2,
@@ -512,6 +540,7 @@
     "price_efectivo": 21.9,
     "price_tarjeta": 22.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 2,
@@ -530,6 +559,7 @@
     "price_efectivo": 24.9,
     "price_tarjeta": 24.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -548,6 +578,7 @@
     "price_efectivo": 14.9,
     "price_tarjeta": 14.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -566,6 +597,7 @@
     "price_efectivo": 29.9,
     "price_tarjeta": 29.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 4,
       "condado": 6,
@@ -584,6 +616,7 @@
     "price_efectivo": 89.9,
     "price_tarjeta": 95.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 3,
@@ -602,6 +635,7 @@
     "price_efectivo": 16.9,
     "price_tarjeta": 16.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -620,6 +654,7 @@
     "price_efectivo": 7.9,
     "price_tarjeta": 7.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 2,
       "condado": 1,
@@ -638,6 +673,7 @@
     "price_efectivo": 22.9,
     "price_tarjeta": 24.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 2,
       "condado": 2,
@@ -656,6 +692,7 @@
     "price_efectivo": 879.9,
     "price_tarjeta": 932.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -674,6 +711,7 @@
     "price_efectivo": 129.9,
     "price_tarjeta": 137.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -692,6 +730,7 @@
     "price_efectivo": 99.9,
     "price_tarjeta": 104.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -710,6 +749,7 @@
     "price_efectivo": 104.9,
     "price_tarjeta": 109.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -728,6 +768,7 @@
     "price_efectivo": 104.9,
     "price_tarjeta": 109.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -746,6 +787,7 @@
     "price_efectivo": 104.9,
     "price_tarjeta": 109.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -764,6 +806,7 @@
     "price_efectivo": 149.9,
     "price_tarjeta": 159.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -782,6 +825,7 @@
     "price_efectivo": 72.9,
     "price_tarjeta": 76.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -800,6 +844,7 @@
     "price_efectivo": 62.91,
     "price_tarjeta": 66.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -818,6 +863,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -836,6 +882,7 @@
     "price_efectivo": 54.9,
     "price_tarjeta": 58.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -854,6 +901,7 @@
     "price_efectivo": 72.9,
     "price_tarjeta": 76.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -872,6 +920,7 @@
     "price_efectivo": 72.9,
     "price_tarjeta": 76.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -890,6 +939,7 @@
     "price_efectivo": 119.9,
     "price_tarjeta": 126.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 2,
       "condado": 2,
@@ -908,6 +958,7 @@
     "price_efectivo": 12.9,
     "price_tarjeta": 12.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 2,
       "condado": 2,
@@ -926,6 +977,7 @@
     "price_efectivo": 919.9,
     "price_tarjeta": 974.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -944,6 +996,7 @@
     "price_efectivo": 55.9,
     "price_tarjeta": 55.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -962,6 +1015,7 @@
     "price_efectivo": 14.9,
     "price_tarjeta": 14.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -980,6 +1034,7 @@
     "price_efectivo": 51.9,
     "price_tarjeta": 54.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -998,6 +1053,7 @@
     "price_efectivo": 72.9,
     "price_tarjeta": 77.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1016,6 +1072,7 @@
     "price_efectivo": 104.9,
     "price_tarjeta": 109.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1034,6 +1091,7 @@
     "price_efectivo": 39.91,
     "price_tarjeta": 39.91,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -1052,6 +1110,7 @@
     "price_efectivo": 74.9,
     "price_tarjeta": 75.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1070,6 +1129,7 @@
     "price_efectivo": 72.9,
     "price_tarjeta": 77.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1088,6 +1148,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1106,6 +1167,7 @@
     "price_efectivo": 82.9,
     "price_tarjeta": 87.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1124,6 +1186,7 @@
     "price_efectivo": 84.9,
     "price_tarjeta": 89.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1142,6 +1205,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1160,6 +1224,7 @@
     "price_efectivo": 99.0,
     "price_tarjeta": 99.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -1178,6 +1243,7 @@
     "price_efectivo": 744.9,
     "price_tarjeta": 789.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -1196,6 +1262,7 @@
     "price_efectivo": 109.91,
     "price_tarjeta": 129.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -1214,6 +1281,7 @@
     "price_efectivo": 129.9,
     "price_tarjeta": 137.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -1232,6 +1300,7 @@
     "price_efectivo": 94.9,
     "price_tarjeta": 99.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -1250,6 +1319,7 @@
     "price_efectivo": 129.9,
     "price_tarjeta": 137.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -1268,6 +1338,7 @@
     "price_efectivo": 39.91,
     "price_tarjeta": 39.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -1286,6 +1357,7 @@
     "price_efectivo": 84.9,
     "price_tarjeta": 84.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -1304,6 +1376,7 @@
     "price_efectivo": 62.91,
     "price_tarjeta": 66.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -1322,6 +1395,7 @@
     "price_efectivo": 79.9,
     "price_tarjeta": 84.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -1340,6 +1414,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 59.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -1358,6 +1433,7 @@
     "price_efectivo": 60.9,
     "price_tarjeta": 64.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -1376,6 +1452,7 @@
     "price_efectivo": 79.9,
     "price_tarjeta": 84.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -1394,6 +1471,7 @@
     "price_efectivo": 49.9,
     "price_tarjeta": 52.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -1412,6 +1490,7 @@
     "price_efectivo": 40.91,
     "price_tarjeta": 42.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -1430,6 +1509,7 @@
     "price_efectivo": 75.9,
     "price_tarjeta": 79.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -1448,6 +1528,7 @@
     "price_efectivo": 66.9,
     "price_tarjeta": 69.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -1466,6 +1547,7 @@
     "price_efectivo": 99.9,
     "price_tarjeta": 105.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -1484,6 +1566,7 @@
     "price_efectivo": 82.9,
     "price_tarjeta": 87.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -1502,6 +1585,7 @@
     "price_efectivo": 43.9,
     "price_tarjeta": 45.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -1520,6 +1604,7 @@
     "price_efectivo": 91.9,
     "price_tarjeta": 97.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -1538,6 +1623,7 @@
     "price_efectivo": 92.9,
     "price_tarjeta": 98.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -1556,6 +1642,7 @@
     "price_efectivo": 94.9,
     "price_tarjeta": 99.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 2,
       "condado": 2,
@@ -1574,6 +1661,7 @@
     "price_efectivo": 26.9,
     "price_tarjeta": 28.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 2,
       "condado": 2,
@@ -1592,6 +1680,7 @@
     "price_efectivo": 29.9,
     "price_tarjeta": 31.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 2,
       "condado": 2,
@@ -1610,6 +1699,7 @@
     "price_efectivo": 379.01,
     "price_tarjeta": 399.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1628,6 +1718,7 @@
     "price_efectivo": 274.9,
     "price_tarjeta": 289.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1646,6 +1737,7 @@
     "price_efectivo": 49.0,
     "price_tarjeta": 49.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1664,6 +1756,7 @@
     "price_efectivo": 49.9,
     "price_tarjeta": 53.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1682,6 +1775,7 @@
     "price_efectivo": 70.9,
     "price_tarjeta": 74.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1700,6 +1794,7 @@
     "price_efectivo": 64.89,
     "price_tarjeta": 69.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1718,6 +1813,7 @@
     "price_efectivo": 62.91,
     "price_tarjeta": 64.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1736,6 +1832,7 @@
     "price_efectivo": 40.91,
     "price_tarjeta": 42.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1754,6 +1851,7 @@
     "price_efectivo": 59.89,
     "price_tarjeta": 59.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1772,6 +1870,7 @@
     "price_efectivo": 94.9,
     "price_tarjeta": 94.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1790,6 +1889,7 @@
     "price_efectivo": 79.9,
     "price_tarjeta": 84.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1808,6 +1908,7 @@
     "price_efectivo": 96.9,
     "price_tarjeta": 99.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1826,6 +1927,7 @@
     "price_efectivo": 104.9,
     "price_tarjeta": 111.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1844,6 +1946,26 @@
     "price_efectivo": 84.9,
     "price_tarjeta": 89.9,
     "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "950001.CGSF",
+    "name": "JUEGO PS5 SILENT HILL TOWNFALL",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 74.9,
+    "price_efectivo": 74.9,
+    "price_tarjeta": 79.9,
+    "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1862,6 +1984,7 @@
     "price_efectivo": 39.91,
     "price_tarjeta": 42.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1880,6 +2003,7 @@
     "price_efectivo": 279.9,
     "price_tarjeta": 299.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -1898,6 +2022,7 @@
     "price_efectivo": 299.9,
     "price_tarjeta": 314.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -1916,6 +2041,7 @@
     "price_efectivo": 136.9,
     "price_tarjeta": 145.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1934,6 +2060,7 @@
     "price_efectivo": 28.9,
     "price_tarjeta": 28.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -1952,6 +2079,7 @@
     "price_efectivo": 26.9,
     "price_tarjeta": 26.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1970,6 +2098,7 @@
     "price_efectivo": 41.89,
     "price_tarjeta": 44.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -1988,6 +2117,7 @@
     "price_efectivo": 12.9,
     "price_tarjeta": 12.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2006,6 +2136,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2024,6 +2155,7 @@
     "price_efectivo": 47.9,
     "price_tarjeta": 53.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2042,6 +2174,7 @@
     "price_efectivo": 63.91,
     "price_tarjeta": 67.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2060,6 +2193,7 @@
     "price_efectivo": 82.9,
     "price_tarjeta": 86.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2078,6 +2212,7 @@
     "price_efectivo": 49.9,
     "price_tarjeta": 49.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2096,6 +2231,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 63.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2114,6 +2250,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 59.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2132,6 +2269,7 @@
     "price_efectivo": 64.89,
     "price_tarjeta": 69.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2150,6 +2288,7 @@
     "price_efectivo": 52.9,
     "price_tarjeta": 52.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2168,6 +2307,7 @@
     "price_efectivo": 79.9,
     "price_tarjeta": 84.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2186,6 +2326,7 @@
     "price_efectivo": 94.9,
     "price_tarjeta": 99.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2204,6 +2345,7 @@
     "price_efectivo": 99.9,
     "price_tarjeta": 106.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2222,6 +2364,7 @@
     "price_efectivo": 99.9,
     "price_tarjeta": 106.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2240,6 +2383,7 @@
     "price_efectivo": 51.9,
     "price_tarjeta": 55.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2258,6 +2402,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 64.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2276,6 +2421,7 @@
     "price_efectivo": 86.91,
     "price_tarjeta": 92.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2294,6 +2440,7 @@
     "price_efectivo": 19.89,
     "price_tarjeta": 19.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 2,
@@ -2312,6 +2459,7 @@
     "price_efectivo": 89.9,
     "price_tarjeta": 95.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2330,6 +2478,7 @@
     "price_efectivo": 107.9,
     "price_tarjeta": 114.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2348,6 +2497,7 @@
     "price_efectivo": 95.9,
     "price_tarjeta": 99.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2366,6 +2516,7 @@
     "price_efectivo": 89.9,
     "price_tarjeta": 94.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2376,17 +2527,18 @@
     "top": false
   },
   {
-    "code": "950001.CGSF",
-    "name": "JUEGO PS5 SILENT HILL TOWNFALL",
+    "code": "950003.CGSF",
+    "name": "JUEGO NINTENDO SWITCH 2 FIRE EMBLEM FORTUNES WEAVE",
     "cat": "juegos",
     "cat_label": "Juegos",
-    "price": 74.9,
-    "price_efectivo": 74.9,
-    "price_tarjeta": 79.9,
+    "price": 114.9,
+    "price_efectivo": 114.9,
+    "price_tarjeta": 119.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
-      "scala": 1,
-      "condado": 1,
+      "scala": 2,
+      "condado": 0,
       "valle": 0
     },
     "photos": [],
@@ -2402,6 +2554,7 @@
     "price_efectivo": 41.89,
     "price_tarjeta": 44.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -2420,6 +2573,7 @@
     "price_efectivo": 189.0,
     "price_tarjeta": 199.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -2438,6 +2592,7 @@
     "price_efectivo": 529.0,
     "price_tarjeta": 560.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2456,6 +2611,7 @@
     "price_efectivo": 289.9,
     "price_tarjeta": 309.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2474,6 +2630,7 @@
     "price_efectivo": 1149.88,
     "price_tarjeta": 1219.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2492,6 +2649,7 @@
     "price_efectivo": 489.9,
     "price_tarjeta": 519.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2510,6 +2668,7 @@
     "price_efectivo": 119.9,
     "price_tarjeta": 129.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2528,6 +2687,7 @@
     "price_efectivo": 139.9,
     "price_tarjeta": 148.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2546,6 +2706,7 @@
     "price_efectivo": 369.9,
     "price_tarjeta": 399.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2564,6 +2725,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 69.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2582,6 +2744,7 @@
     "price_efectivo": 449.9,
     "price_tarjeta": 479.89,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2600,6 +2763,7 @@
     "price_efectivo": 299.9,
     "price_tarjeta": 319.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -2618,6 +2782,7 @@
     "price_efectivo": 319.9,
     "price_tarjeta": 339.91,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2636,6 +2801,7 @@
     "price_efectivo": 399.9,
     "price_tarjeta": 419.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2654,6 +2820,7 @@
     "price_efectivo": 18.5,
     "price_tarjeta": 19.5,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -2672,6 +2839,7 @@
     "price_efectivo": 24.9,
     "price_tarjeta": 24.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -2690,6 +2858,7 @@
     "price_efectivo": 13.9,
     "price_tarjeta": 13.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2708,6 +2877,7 @@
     "price_efectivo": 94.0,
     "price_tarjeta": 99.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2726,6 +2896,7 @@
     "price_efectivo": 14.9,
     "price_tarjeta": 14.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2744,6 +2915,7 @@
     "price_efectivo": 49.9,
     "price_tarjeta": 52.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2762,6 +2934,7 @@
     "price_efectivo": 77.9,
     "price_tarjeta": 82.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -2780,6 +2953,7 @@
     "price_efectivo": 89.9,
     "price_tarjeta": 95.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2798,6 +2972,7 @@
     "price_efectivo": 99.9,
     "price_tarjeta": 99.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -2816,6 +2991,7 @@
     "price_efectivo": 29.9,
     "price_tarjeta": 29.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -2834,6 +3010,7 @@
     "price_efectivo": 64.89,
     "price_tarjeta": 69.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2852,6 +3029,7 @@
     "price_efectivo": 64.89,
     "price_tarjeta": 68.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2870,6 +3048,7 @@
     "price_efectivo": 129.9,
     "price_tarjeta": 137.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2888,6 +3067,7 @@
     "price_efectivo": 92.9,
     "price_tarjeta": 92.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2906,6 +3086,7 @@
     "price_efectivo": 44.9,
     "price_tarjeta": 49.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2924,6 +3105,7 @@
     "price_efectivo": 68.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -2942,6 +3124,7 @@
     "price_efectivo": 99.9,
     "price_tarjeta": 104.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2960,6 +3143,7 @@
     "price_efectivo": 119.9,
     "price_tarjeta": 126.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2978,6 +3162,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 64.89,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -2996,6 +3181,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 64.89,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -3014,6 +3200,7 @@
     "price_efectivo": 39.91,
     "price_tarjeta": 39.91,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -3032,6 +3219,7 @@
     "price_efectivo": 39.91,
     "price_tarjeta": 39.91,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -3050,6 +3238,7 @@
     "price_efectivo": 224.91,
     "price_tarjeta": 239.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -3068,6 +3257,26 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 72.9,
     "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "950002.CGSF",
+    "name": "PALANCA PS5 DUALSENSE WOLVERINE EDICION",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 159.9,
+    "price_efectivo": 159.9,
+    "price_tarjeta": 164.9,
+    "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3086,6 +3295,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -3104,6 +3314,7 @@
     "price_efectivo": 62.91,
     "price_tarjeta": 62.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3122,6 +3333,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 69.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3140,6 +3352,7 @@
     "price_efectivo": 49.9,
     "price_tarjeta": 49.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3158,6 +3371,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 59.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3176,6 +3390,7 @@
     "price_efectivo": 79.9,
     "price_tarjeta": 79.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3194,6 +3409,7 @@
     "price_efectivo": 50.9,
     "price_tarjeta": 53.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3212,6 +3428,7 @@
     "price_efectivo": 29.9,
     "price_tarjeta": 29.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -3230,6 +3447,7 @@
     "price_efectivo": 10.0,
     "price_tarjeta": 10.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3248,6 +3466,7 @@
     "price_efectivo": 7.0,
     "price_tarjeta": 7.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3266,6 +3485,7 @@
     "price_efectivo": 10.0,
     "price_tarjeta": 10.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3284,6 +3504,7 @@
     "price_efectivo": 22.9,
     "price_tarjeta": 23.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3302,6 +3523,7 @@
     "price_efectivo": 14.9,
     "price_tarjeta": 14.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3320,6 +3542,7 @@
     "price_efectivo": 61.9,
     "price_tarjeta": 61.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3338,6 +3561,7 @@
     "price_efectivo": 55.9,
     "price_tarjeta": 55.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3356,6 +3580,7 @@
     "price_efectivo": 47.9,
     "price_tarjeta": 47.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3374,6 +3599,7 @@
     "price_efectivo": 47.9,
     "price_tarjeta": 47.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3392,6 +3618,7 @@
     "price_efectivo": 82.9,
     "price_tarjeta": 86.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3410,6 +3637,7 @@
     "price_efectivo": 88.89,
     "price_tarjeta": 91.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3428,6 +3656,7 @@
     "price_efectivo": 29.9,
     "price_tarjeta": 32.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3446,6 +3675,7 @@
     "price_efectivo": 45.9,
     "price_tarjeta": 45.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -3464,6 +3694,7 @@
     "price_efectivo": 15.0,
     "price_tarjeta": 15.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3482,6 +3713,7 @@
     "price_efectivo": 19.89,
     "price_tarjeta": 19.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3500,6 +3732,7 @@
     "price_efectivo": 74.9,
     "price_tarjeta": 74.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3518,6 +3751,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 59.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3536,6 +3770,7 @@
     "price_efectivo": 34.38,
     "price_tarjeta": 34.38,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3554,6 +3789,7 @@
     "price_efectivo": 54.9,
     "price_tarjeta": 54.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3572,6 +3808,7 @@
     "price_efectivo": 29.05,
     "price_tarjeta": 29.05,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3590,6 +3827,7 @@
     "price_efectivo": 51.9,
     "price_tarjeta": 51.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3608,6 +3846,7 @@
     "price_efectivo": 79.9,
     "price_tarjeta": 84.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3626,6 +3865,7 @@
     "price_efectivo": 39.0,
     "price_tarjeta": 39.0,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3644,6 +3884,7 @@
     "price_efectivo": 64.89,
     "price_tarjeta": 69.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3662,6 +3903,7 @@
     "price_efectivo": 52.9,
     "price_tarjeta": 57.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3680,6 +3922,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -3698,6 +3941,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -3716,6 +3960,7 @@
     "price_efectivo": 82.9,
     "price_tarjeta": 87.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3734,6 +3979,7 @@
     "price_efectivo": 57.9,
     "price_tarjeta": 61.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3752,6 +3998,7 @@
     "price_efectivo": 55.9,
     "price_tarjeta": 55.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3770,6 +4017,7 @@
     "price_efectivo": 16.9,
     "price_tarjeta": 16.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3788,6 +4036,7 @@
     "price_efectivo": 32.9,
     "price_tarjeta": 32.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3806,6 +4055,7 @@
     "price_efectivo": 64.89,
     "price_tarjeta": 69.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3824,6 +4074,7 @@
     "price_efectivo": 57.9,
     "price_tarjeta": 57.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -3842,6 +4093,7 @@
     "price_efectivo": 14.9,
     "price_tarjeta": 14.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -3860,6 +4112,7 @@
     "price_efectivo": 84.9,
     "price_tarjeta": 89.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3878,6 +4131,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 74.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -3896,6 +4150,7 @@
     "price_efectivo": 85.91,
     "price_tarjeta": 89.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3914,6 +4169,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3932,6 +4188,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 59.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3950,6 +4207,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 59.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3968,6 +4226,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 72.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -3986,6 +4245,7 @@
     "price_efectivo": 72.9,
     "price_tarjeta": 76.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4004,6 +4264,7 @@
     "price_efectivo": 75.9,
     "price_tarjeta": 79.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4022,6 +4283,7 @@
     "price_efectivo": 89.9,
     "price_tarjeta": 92.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4040,6 +4302,7 @@
     "price_efectivo": 84.9,
     "price_tarjeta": 89.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4058,6 +4321,7 @@
     "price_efectivo": 89.9,
     "price_tarjeta": 92.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4076,6 +4340,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4094,6 +4359,7 @@
     "price_efectivo": 72.9,
     "price_tarjeta": 86.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4112,6 +4378,7 @@
     "price_efectivo": 75.9,
     "price_tarjeta": 79.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4130,6 +4397,7 @@
     "price_efectivo": 68.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -4148,6 +4416,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 74.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4166,6 +4435,7 @@
     "price_efectivo": 77.9,
     "price_tarjeta": 79.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4184,6 +4454,7 @@
     "price_efectivo": 89.9,
     "price_tarjeta": 95.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4202,6 +4473,7 @@
     "price_efectivo": 94.9,
     "price_tarjeta": 99.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4220,6 +4492,7 @@
     "price_efectivo": 49.9,
     "price_tarjeta": 49.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4238,6 +4511,7 @@
     "price_efectivo": 84.9,
     "price_tarjeta": 89.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4256,6 +4530,7 @@
     "price_efectivo": 106.9,
     "price_tarjeta": 113.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4274,6 +4549,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 69.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4292,6 +4568,7 @@
     "price_efectivo": 82.9,
     "price_tarjeta": 87.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4310,6 +4587,7 @@
     "price_efectivo": 87.89,
     "price_tarjeta": 93.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4328,6 +4606,7 @@
     "price_efectivo": 58.9,
     "price_tarjeta": 61.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4346,6 +4625,7 @@
     "price_efectivo": 54.9,
     "price_tarjeta": 59.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4364,6 +4644,7 @@
     "price_efectivo": 94.9,
     "price_tarjeta": 99.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4382,6 +4663,7 @@
     "price_efectivo": 54.0,
     "price_tarjeta": 57.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4400,6 +4682,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 74.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4418,6 +4701,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 63.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4436,6 +4720,7 @@
     "price_efectivo": 89.9,
     "price_tarjeta": 95.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4454,6 +4739,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4472,6 +4758,7 @@
     "price_efectivo": 65.89,
     "price_tarjeta": 69.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4490,6 +4777,7 @@
     "price_efectivo": 72.9,
     "price_tarjeta": 72.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4508,6 +4796,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 63.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4526,6 +4815,7 @@
     "price_efectivo": 19.89,
     "price_tarjeta": 19.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4544,6 +4834,7 @@
     "price_efectivo": 54.9,
     "price_tarjeta": 59.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4562,6 +4853,7 @@
     "price_efectivo": 59.9,
     "price_tarjeta": 62.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4580,6 +4872,7 @@
     "price_efectivo": 99.9,
     "price_tarjeta": 105.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4598,6 +4891,7 @@
     "price_efectivo": 69.9,
     "price_tarjeta": 73.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4616,6 +4910,7 @@
     "price_efectivo": 99.44,
     "price_tarjeta": 105.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4634,6 +4929,7 @@
     "price_efectivo": 87.89,
     "price_tarjeta": 93.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4652,6 +4948,7 @@
     "price_efectivo": 39.91,
     "price_tarjeta": 39.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4670,6 +4967,7 @@
     "price_efectivo": 79.9,
     "price_tarjeta": 84.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4688,6 +4986,7 @@
     "price_efectivo": 82.9,
     "price_tarjeta": 87.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4706,6 +5005,7 @@
     "price_efectivo": 19.89,
     "price_tarjeta": 21.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4724,6 +5024,7 @@
     "price_efectivo": 102.9,
     "price_tarjeta": 108.91,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4742,6 +5043,7 @@
     "price_efectivo": 72.9,
     "price_tarjeta": 77.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4760,6 +5062,7 @@
     "price_efectivo": 109.91,
     "price_tarjeta": 112.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4778,6 +5081,7 @@
     "price_efectivo": 61.9,
     "price_tarjeta": 65.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4796,6 +5100,7 @@
     "price_efectivo": 99.9,
     "price_tarjeta": 104.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -4814,6 +5119,7 @@
     "price_efectivo": 14.9,
     "price_tarjeta": 14.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
@@ -4832,6 +5138,7 @@
     "price_efectivo": 19.89,
     "price_tarjeta": 19.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4850,6 +5157,7 @@
     "price_efectivo": 19.89,
     "price_tarjeta": 19.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4868,6 +5176,7 @@
     "price_efectivo": 19.89,
     "price_tarjeta": 19.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4886,6 +5195,7 @@
     "price_efectivo": 19.89,
     "price_tarjeta": 19.89,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4904,6 +5214,7 @@
     "price_efectivo": 24.9,
     "price_tarjeta": 24.9,
     "digital": false,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4922,6 +5233,7 @@
     "price_efectivo": 46.9,
     "price_tarjeta": 49.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4940,6 +5252,7 @@
     "price_efectivo": 19.89,
     "price_tarjeta": 19.89,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4958,6 +5271,7 @@
     "price_efectivo": 22.9,
     "price_tarjeta": 22.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4976,6 +5290,7 @@
     "price_efectivo": 19.89,
     "price_tarjeta": 19.89,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -4994,6 +5309,7 @@
     "price_efectivo": 49.9,
     "price_tarjeta": 49.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -5012,6 +5328,7 @@
     "price_efectivo": 29.9,
     "price_tarjeta": 29.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -5030,6 +5347,7 @@
     "price_efectivo": 12.9,
     "price_tarjeta": 12.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -5048,6 +5366,7 @@
     "price_efectivo": 29.9,
     "price_tarjeta": 29.9,
     "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -5066,24 +5385,7 @@
     "price_efectivo": 90.9,
     "price_tarjeta": 96.9,
     "digital": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "950003.CGSF",
-    "name": "JUEGO NINTENDO SWITCH 2 FIRE EMBLEM FORTUNES WEAVE",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 114.9,
-    "price_efectivo": 114.9,
-    "price_tarjeta": 119.9,
-    "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 0,
