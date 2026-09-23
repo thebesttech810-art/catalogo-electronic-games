@@ -354,7 +354,14 @@ async function loadProducts(){
     $("grid").innerHTML = `<div class="empty">No se pudo cargar el catálogo. Recarga la página en un momento.</div>`;
     return;
   }
-  $("heroEyebrow").textContent = `Catálogo en vivo · ${PRODUCTS.length} productos en stock`;
+  $("heroEyebrow").textContent = `${PRODUCTS.length} productos en stock`;
+  fetch("meta.json", {cache:"no-cache"}).then(r=>r.ok ? r.json() : null).then(m=>{
+    if (!m || !m.actualizado) return;
+    const f = new Date(m.actualizado);
+    const fecha = f.toLocaleDateString("es-EC", {day:"numeric", month:"short"});
+    const hora = f.toLocaleTimeString("es-EC", {hour:"2-digit", minute:"2-digit"});
+    $("heroEyebrow").textContent = `${PRODUCTS.length} productos · stock actualizado ${fecha}, ${hora}`;
+  }).catch(()=>{});
   const conteo = new Map(), etiqueta = new Map();
   for (const p of PRODUCTS){ conteo.set(p.cat,(conteo.get(p.cat)||0)+1); etiqueta.set(p.cat,p.cat_label||p.cat); }
   const cats = [...conteo.entries()].sort((a,b)=>b[1]-a[1]);

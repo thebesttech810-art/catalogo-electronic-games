@@ -1,6 +1,6 @@
 """Genera products.json para el catálogo web a partir de datos reales de
-Contífico: catálogo completo (cacheado) + stock por bodega de cada producto
-activo con stock, filtrado a los 3 locales públicos."""
+Contífico: catálogo completo + stock por bodega de cada producto activo con
+stock, filtrado a los 3 locales públicos. Siempre consulta datos frescos."""
 
 import concurrent.futures
 import json
@@ -33,12 +33,22 @@ CUPOS = {
 }
 TOP_VENTAS = 8  # cuántos productos llevan el sticker "Top ventas"
 
+# Palabra clave contenida en el nombre de la bodega en Contífico -> local público.
+# Se busca "contenida" porque las bodegas se llaman p. ej. "BODEGA EL CONDADO".
 LOCALES = {"SCALA": "scala", "CONDADO": "condado", "PLAZA DEL VALLE": "valle"}
 
 
 def normalizar(texto):
     sin_tildes = unicodedata.normalize("NFKD", str(texto)).encode("ascii", "ignore").decode("ascii")
     return sin_tildes.strip().upper()
+
+
+def local_de_bodega(nombre_bodega):
+    n = normalizar(nombre_bodega)
+    for clave, local in LOCALES.items():
+        if clave in n:
+            return local
+    return None
 
 
 def slugify(texto):
@@ -66,42 +76,36 @@ def stock_de_producto(pid, intentos=3):
 
 
 def main():
-    with open(CACHE_PRODUCTOS, encoding="utf-8") as f:
-        productos = json.load(f)
+    print("Descargando catálogo de productos de Contífico (tarda ~2 minutos)...", flush=True)
+    t0 = time.time()
+    r = requests.get(f"{BASE_URL}/producto/", headers=HEADERS, timeout=300)
+    r.raise_for_status()
+    productos = r.json()
+    with open(CACHE_PRODUCTOS, "w", encoding="utf-8") as f:
+        json.dump(productos, f, ensure_ascii=False)
+    print(f"  {len(productos)} productos en {time.time()-t0:.0f}s", flush=True)
 
     r = requests.get(f"{BASE_URL}/categoria/", headers=HEADERS, timeout=30)
     r.raise_for_status()
     cat_nombre = {c["id"]: c["nombre"] for c in r.json()}
 
-    candidatos = [p for p in productos if p.get("estado") == "A" and stock_total(p) > 0]
-    print(f"Candidatos (activos con stock total > 0): {len(candidatos)}")
-
-    if os.path.exists(CACHE_STOCK):
-        with open(CACHE_STOCK, encoding="utf-8") as f:
-            stock_cache = json.load(f)
-        print(f"Cache de stock por bodega encontrada: {len(stock_cache)} productos")
-    else:
-        stock_cache = {}
-
-    faltantes = [p for p in candidatos if p["id"] not in stock_cache]
-    print(f"Consultando stock por bodega de {len(faltantes)} productos nuevos...")
-
-    def trabajo(p):
-        return p["id"], stock_de_producto(p["id"])
+    candidatos = [
+        p for p in productos
+        if p.get("estado") == "A" and stock_total(p) > 0
+        and (CUPOS is None or cat_nombre.get(p.get("categoria_id")) in CUPOS)
+    ]
+    print(f"Consultando stock por bodega de {len(candidatos)} productos...", flush=True)
 
     t0 = time.time()
+    stock_cache = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
-        for i, (pid, filas) in enumerate(ex.map(trabajo, faltantes), start=1):
+        for i, (pid, filas) in enumerate(ex.map(lambda p: (p["id"], stock_de_producto(p["id"])), candidatos), start=1):
             stock_cache[pid] = filas
             if i % 100 == 0:
-                elapsed = time.time() - t0
-                print(f"  ...{i}/{len(faltantes)} ({elapsed:.0f}s)")
-                with open(CACHE_STOCK, "w", encoding="utf-8") as f:
-                    json.dump(stock_cache, f, ensure_ascii=False)
-
+                print(f"  ...{i}/{len(candidatos)} ({time.time()-t0:.0f}s)", flush=True)
     with open(CACHE_STOCK, "w", encoding="utf-8") as f:
         json.dump(stock_cache, f, ensure_ascii=False)
-    print(f"Stock por bodega listo en {time.time()-t0:.0f}s")
+    print(f"Stock por bodega listo en {time.time()-t0:.0f}s", flush=True)
 
     rotacion = {}
     if os.path.exists(ROTACION):
@@ -113,7 +117,7 @@ def main():
         filas = stock_cache.get(p["id"], [])
         stock_local = {"scala": 0, "condado": 0, "valle": 0}
         for fila in filas:
-            clave = LOCALES.get(normalizar(fila.get("bodega_nombre", "")).replace("BODEGA ", "").strip())
+            clave = local_de_bodega(fila.get("bodega_nombre", ""))
             if clave:
                 try:
                     stock_local[clave] += int(float(fila.get("cantidad") or 0))
@@ -170,6 +174,8 @@ def main():
 
     with open(SALIDA, "w", encoding="utf-8") as f:
         json.dump(salida, f, ensure_ascii=False, indent=2)
+    with open(os.path.join(os.path.dirname(SALIDA), "meta.json"), "w", encoding="utf-8") as f:
+        json.dump({"actualizado": time.strftime("%Y-%m-%dT%H:%M:%S")}, f)
 
     print(f"\n{SALIDA} generado con {len(salida)} productos "
           f"({con_stock} con stock en los locales, de {len(candidatos)} candidatos).")
