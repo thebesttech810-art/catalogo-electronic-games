@@ -10,7 +10,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 187,
+      "scala": 185,
       "condado": 222,
       "valle": 196
     },
@@ -76,19 +76,19 @@
     "top": true
   },
   {
-    "code": "10-10410-108.CNCF",
-    "name": "Pokemon TCG: First Partner Illustration Collection - Series 3 Master Case 6ct.",
+    "code": "2548596.CDCF",
+    "name": "FUNDAS DE PAPEL POKEMON - PIKACHU MEDIANAS",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 34.9,
-    "price_efectivo": 34.9,
-    "price_tarjeta": 39.91,
+    "price": 1.0,
+    "price_efectivo": 1.0,
+    "price_tarjeta": 1.0,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
+      "scala": 3,
+      "condado": 8,
+      "valle": 4
     },
     "photos": [],
     "desc": "",
@@ -114,25 +114,6 @@
     "top": true
   },
   {
-    "code": "2548596.CDCF",
-    "name": "FUNDAS DE PAPEL POKEMON - PIKACHU MEDIANAS",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 1.0,
-    "price_efectivo": 1.0,
-    "price_tarjeta": 1.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 5,
-      "condado": 8,
-      "valle": 4
-    },
-    "photos": [],
-    "desc": "",
-    "top": true
-  },
-  {
     "code": "345672755.CDCF",
     "name": "CARPETA DE TARJETAS POKEMON DIFERENTES DISEÑOS 18 BOLSILLOS DE 900 TARJETAS PARA COLECCIONISTA - 37396-C",
     "cat": "accesorios",
@@ -152,25 +133,6 @@
     "top": true
   },
   {
-    "code": "711719039594.EG",
-    "name": "PALANCA PS4 GENERICA DE COLORES VARIADOS",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 27.9,
-    "price_efectivo": 27.9,
-    "price_tarjeta": 27.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "3394808.CDCF",
     "name": "BOLA DE CRISTAL CON LUCES POKEMON",
     "cat": "accesorios",
@@ -187,6 +149,25 @@
     },
     "photos": [],
     "desc": "",
+    "top": true
+  },
+  {
+    "code": "HP14.CNCF",
+    "name": "CAJA DE MADERA MUSICAL ZELDA/HARRY POTTER-C",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 8.9,
+    "price_efectivo": 8.9,
+    "price_tarjeta": 8.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 4,
+      "valle": 5
+    },
+    "photos": [],
+    "desc": "",
     "top": false
   },
   {
@@ -197,25 +178,6 @@
     "price": 32.9,
     "price_efectivo": 32.9,
     "price_tarjeta": 32.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "45496590475.CGSF",
-    "name": "JUEGO NINTENDO SWITCH MARIO KART DELUXE 8",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 69.9,
-    "price_efectivo": 69.9,
-    "price_tarjeta": 74.9,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -266,19 +228,19 @@
     "top": false
   },
   {
-    "code": "HP14.CNCF",
-    "name": "CAJA DE MADERA MUSICAL ZELDA/HARRY POTTER-C",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 8.9,
-    "price_efectivo": 8.9,
-    "price_tarjeta": 8.9,
+    "code": "711719039594.EG",
+    "name": "PALANCA PS4 GENERICA DE COLORES VARIADOS",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 27.9,
+    "price_efectivo": 27.9,
+    "price_tarjeta": 27.9,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 3,
-      "condado": 4,
-      "valle": 5
+      "scala": 1,
+      "condado": 1,
+      "valle": 0
     },
     "photos": [],
     "desc": "",
@@ -323,6 +285,25 @@
     "top": false
   },
   {
+    "code": "45496590475.CGSF",
+    "name": "JUEGO NINTENDO SWITCH MARIO KART DELUXE 8",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 69.9,
+    "price_efectivo": 69.9,
+    "price_tarjeta": 74.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "165390.CGSF",
     "name": "PROTECTORES  DE PIKACHU PARA CARTAS",
     "cat": "accesorios",
@@ -334,25 +315,6 @@
     "nuevo": false,
     "stock": {
       "scala": 14,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "34555.CGSF",
-    "name": "JUEGO PS5 GRAN TURISMO 7",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 59.9,
-    "price_efectivo": 59.9,
-    "price_tarjeta": 63.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
       "condado": 0,
       "valle": 0
     },
@@ -513,6 +475,25 @@
     "top": false
   },
   {
+    "code": "711719554141.EG",
+    "name": "PALANCA PS5 CAMUFLADA-C",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 104.9,
+    "price_efectivo": 104.9,
+    "price_tarjeta": 109.91,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "711719572701.EG",
     "name": "PALANCA PS5 PLATEADO SILVER-C",
     "cat": "palancas",
@@ -544,6 +525,25 @@
     "stock": {
       "scala": 0,
       "condado": 2,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "34555.CGSF",
+    "name": "JUEGO PS5 GRAN TURISMO 7",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 59.9,
+    "price_efectivo": 59.9,
+    "price_tarjeta": 63.91,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
       "valle": 0
     },
     "photos": [],
@@ -684,6 +684,25 @@
     "top": false
   },
   {
+    "code": "PMP086.CNCF",
+    "name": "LLAVERO UMBREON",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 12.9,
+    "price_efectivo": 12.9,
+    "price_tarjeta": 12.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 0,
+      "condado": 2,
+      "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "56262695.CGSF",
     "name": "CONSOLA PS5 SLIM DIGITAL",
     "cat": "consolas",
@@ -729,25 +748,6 @@
     "price": 99.9,
     "price_efectivo": 99.9,
     "price_tarjeta": 104.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "711719587569.EG",
-    "name": "PALANCA PS5 CHROMA TEAL",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 104.9,
-    "price_efectivo": 104.9,
-    "price_tarjeta": 109.91,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -922,8 +922,8 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
-      "condado": 1,
+      "scala": 1,
+      "condado": 0,
       "valle": 0
     },
     "photos": [],
@@ -1064,6 +1064,25 @@
     "top": false
   },
   {
+    "code": "711719596554.CGSF",
+    "name": "PALANCA PS5 DualSense Edge Wireless Controller COLOR NEGRO Y BLANCO",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 274.9,
+    "price_efectivo": 274.9,
+    "price_tarjeta": 289.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "711719587576.EG",
     "name": "PALANCA PS5 CHROMA INDIGO",
     "cat": "palancas",
@@ -1096,6 +1115,25 @@
       "scala": 0,
       "condado": 0,
       "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "710425478949.CGSF",
+    "name": "JUEGO PS4 RED DEAD REDEMPTION II-C",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 49.9,
+    "price_efectivo": 49.9,
+    "price_tarjeta": 53.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -1204,6 +1242,25 @@
     "price": 69.9,
     "price_efectivo": 69.9,
     "price_tarjeta": 73.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "93412E.CGSF",
+    "name": "JUEGO PS5 RESIDENT EVIL REQUIEM",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 96.9,
+    "price_efectivo": 96.9,
+    "price_tarjeta": 99.9,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -1337,6 +1394,25 @@
     "price": 39.91,
     "price_efectivo": 39.91,
     "price_tarjeta": 39.91,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "711719587569.EG",
+    "name": "PALANCA PS5 CHROMA TEAL",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 104.9,
+    "price_efectivo": 104.9,
+    "price_tarjeta": 109.91,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -1623,7 +1699,7 @@
     "price_efectivo": 92.9,
     "price_tarjeta": 98.9,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
@@ -1710,15 +1786,34 @@
     "top": false
   },
   {
-    "code": "711719596554.CGSF",
-    "name": "PALANCA PS5 DualSense Edge Wireless Controller COLOR NEGRO Y BLANCO",
+    "code": "354231.EG",
+    "name": "CONTROL Cobalt Blue PS5",
     "cat": "palancas",
     "cat_label": "Palancas",
-    "price": 274.9,
-    "price_efectivo": 274.9,
-    "price_tarjeta": 289.9,
+    "price": 104.9,
+    "price_efectivo": 104.9,
+    "price_tarjeta": 109.91,
     "digital": false,
-    "nuevo": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "7654908.EG",
+    "name": "CONTROL CHROMA PEARL PS5",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 104.9,
+    "price_efectivo": 104.9,
+    "price_tarjeta": 109.91,
+    "digital": false,
+    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1736,25 +1831,6 @@
     "price": 49.0,
     "price_efectivo": 49.0,
     "price_tarjeta": 49.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "710425478949.CGSF",
-    "name": "JUEGO PS4 RED DEAD REDEMPTION II-C",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 49.9,
-    "price_efectivo": 49.9,
-    "price_tarjeta": 53.9,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -1888,25 +1964,6 @@
     "price": 79.9,
     "price_efectivo": 79.9,
     "price_tarjeta": 84.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "93412E.CGSF",
-    "name": "JUEGO PS5 RESIDENT EVIL REQUIEM",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 96.9,
-    "price_efectivo": 96.9,
-    "price_tarjeta": 99.9,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -3819,25 +3876,6 @@
     "top": false
   },
   {
-    "code": "819335021068",
-    "name": "JUEGO NINTENDO SWITCH STREETS OF RAGE",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 51.9,
-    "price_efectivo": 51.9,
-    "price_tarjeta": 51.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "196388433889",
     "name": "JUEGO PS4 CALL OF DUTY BLACK OPS 6",
     "cat": "juegos",
@@ -4743,25 +4781,6 @@
     "stock": {
       "scala": 0,
       "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "45496599782.CGSF",
-    "name": "JUEGO NINTENDO SWITCH ROCKSTAR GAMES PRESENTS RED DEAD REDEMPTION",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 65.89,
-    "price_efectivo": 65.89,
-    "price_tarjeta": 69.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
       "valle": 0
     },
     "photos": [],
