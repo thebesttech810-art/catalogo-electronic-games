@@ -629,9 +629,9 @@ header.top.con-sombra{box-shadow:0 10px 30px rgba(0,0,0,.45)}
 .exito p{margin:0;color:var(--muted);max-width:34ch;text-wrap:pretty}
 .exito .cod{font-family:"JetBrains Mono",monospace;color:var(--ink);font-weight:600}
 .acciones-exito{display:grid;gap:10px;width:100%;max-width:340px;margin-top:10px}
-.check{width:92px;height:92px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 14px 34px rgba(37,211,102,.35)}
-.check svg{width:48px;height:48px;fill:none;stroke:var(--wa-ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.check path{stroke-dasharray:1}
+.exito-check{width:92px;height:92px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 14px 34px rgba(37,211,102,.35)}
+.exito-check svg{width:48px;height:48px;fill:none;stroke:var(--wa-ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.exito-check path{stroke-dasharray:1}
 .confeti{position:absolute;left:50%;top:30%;width:9px;height:14px;border-radius:2px;pointer-events:none}
 
 /* ---------- Cambios que ya no son de golpe ---------- */
@@ -650,6 +650,71 @@ header.top.con-sombra{box-shadow:0 10px 30px rgba(0,0,0,.45)}
 .chip-ind.quieto{transition:none}
 /* Buscador rápido: aparece al instante (se abre con el teclado, muchas veces: la animación lo haría sentir lento). */
 dialog.cmdk,dialog.cmdk:not([open]),dialog.cmdk::backdrop{transition:none!important}
+
+/* ---------- Vitrina en pantalla completa (tablet en la tienda) ---------- */
+@property --kc{syntax:"<color>";inherits:true;initial-value:#FF7A00}
+dialog.kiosco{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;border-radius:0;padding:0;background:#050506;color:#fff;box-shadow:none;overflow:hidden;--kc:#FF7A00;transition:--kc 900ms ease,opacity 220ms var(--ease-out),transform 220ms var(--ease-out),overlay 220ms allow-discrete,display 220ms allow-discrete}
+dialog.kiosco[open]{display:grid}
+dialog.kiosco::backdrop{background:#050506}
+.k-fondo{position:absolute;inset:0;pointer-events:none;background:radial-gradient(60rem 42rem at 22% 45%,color-mix(in srgb,var(--kc) 42%,transparent),transparent 70%),radial-gradient(40rem 30rem at 100% 100%,color-mix(in srgb,var(--kc) 20%,transparent),transparent 70%)}
+.k-slide{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;gap:clamp(24px,4vw,64px);min-height:0;padding:clamp(72px,10vh,96px) clamp(24px,5vw,80px) clamp(96px,13vh,124px);touch-action:pan-y}
+.k-foto{justify-self:center;width:min(100%,74vh);aspect-ratio:1/1;border-radius:32px;overflow:hidden;background:var(--stage-bg);box-shadow:0 40px 90px rgba(0,0,0,.6)}
+.k-foto img{width:100%;height:100%;object-fit:contain;padding:8%;mix-blend-mode:multiply}
+.k-info{display:flex;flex-direction:column;gap:clamp(10px,2vh,18px);min-width:0}
+.k-cat{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-hi);font-size:clamp(.9rem,1.4vw,1.2rem)}
+.k-cat .plat-tag{font-size:clamp(.8rem,1.2vw,1rem);padding:4px 10px}
+.k-nombre{margin:0;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.8rem,4vw,3.8rem);line-height:.95;letter-spacing:-.02em;text-wrap:balance}
+.k-precio{font-weight:900;font-style:italic;font-size:clamp(3rem,8vw,7rem);line-height:.9;font-variant-numeric:tabular-nums}
+.k-precio span{color:var(--kc);font-size:.55em}
+.k-precio small{font-size:.5em}
+.k-tag{color:#cfc9c2;font-size:clamp(.9rem,1.5vw,1.25rem)}
+.k-stock{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:clamp(1rem,1.7vw,1.4rem)}
+.k-stock .dot{width:12px;height:12px}
+.k-qr{display:flex;align-items:center;gap:16px;margin-top:clamp(4px,1.5vh,14px)}
+.k-qr .qr{flex:none;width:clamp(96px,11vw,150px);aspect-ratio:1/1;background:#fff;border-radius:14px;padding:8px}
+.k-qr .qr svg{display:block;width:100%;height:100%}
+.k-qr p{margin:0;font-weight:800;font-size:clamp(1rem,1.6vw,1.3rem);line-height:1.3}
+.k-qr p small{display:block;color:#cfc9c2;font-weight:500}
+.k-pie{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(24px,5vw,80px) 28px}
+.k-marca{display:flex;align-items:center;gap:12px;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1rem,1.7vw,1.5rem)}
+.k-marca .logo{width:70px;height:30px}
+.k-marca b{color:var(--brand)}
+.k-wa{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--wa);font-size:clamp(1rem,1.7vw,1.4rem)}
+.k-wa svg{width:26px;height:26px}
+.k-barra{position:absolute;left:0;bottom:0;width:100%;height:5px;background:var(--kc);transform-origin:left;scale:0 1}
+.k-barra.corre{animation:k-avance var(--dur,7s) linear forwards}
+@keyframes k-avance{to{scale:1 1}}
+.k-controles{position:absolute;top:16px;left:16px;right:16px;z-index:3;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;transition:opacity 300ms ease}
+.k-controles .grupo{display:flex;gap:8px;flex-wrap:wrap}
+.k-controles button{min-height:44px;min-width:44px;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(10,10,11,.6);color:#fff;font-weight:800;font-size:.95rem;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.k-controles button[aria-pressed="true"]{background:#fff;color:#0A0A0B;border-color:#fff}
+.kiosco.quieto .k-controles{opacity:0;pointer-events:none}
+.kiosco.quieto{cursor:none}
+.k-inicio{position:absolute;inset:0;z-index:4;display:grid;place-items:center;align-content:center;gap:16px;background:rgba(5,5,6,.8);text-align:center;padding:24px}
+.k-inicio p{margin:0;color:#cfc9c2;max-width:36ch}
+.k-inicio button{min-height:64px;padding:18px 34px;border-radius:18px;border:0;background:var(--brand);color:var(--brand-ink);font-weight:900;font-size:1.3rem;cursor:pointer}
+@media (prefers-reduced-motion:no-preference){
+  /* Cada producto entra girando un poco en 3D; la foto se acerca lentamente mientras se muestra. */
+  .k-slide.entra .k-foto{animation:k-foto 800ms var(--ease-out) both}
+  .k-slide.entra .k-info > *{animation:subir 700ms var(--ease-out) both}
+  .k-slide.entra .k-info > :nth-child(2){animation-delay:60ms}
+  .k-slide.entra .k-info > :nth-child(3){animation-delay:120ms}
+  .k-slide.entra .k-info > :nth-child(4){animation-delay:170ms}
+  .k-slide.entra .k-info > :nth-child(5){animation-delay:220ms}
+  .k-slide.entra .k-info > :nth-child(6){animation-delay:270ms}
+  .k-foto img{animation:k-zoom var(--dur,7s) linear both}
+}
+@keyframes k-foto{from{opacity:0;transform:perspective(1200px) rotateY(-20deg) translateX(-40px) scale(.94)}}
+@keyframes k-zoom{to{scale:1.07}}
+/* Tablet o celular en vertical: foto arriba, datos abajo */
+@media (max-aspect-ratio:1/1){
+  .k-slide{grid-template-columns:minmax(0,1fr);align-content:center}
+  .k-foto{width:min(100%,44vh)}
+  .k-qr .qr{width:clamp(90px,20vw,140px)}
+}
+/* Botones de la vitrina de la portada */
+.vitrina-acc{position:absolute;right:8px;bottom:-4px;z-index:2;display:flex;gap:8px}
+.vitrina-acc .stream-pausa{position:static}
 
 /* ---------- Entradas ---------- */
 @media (prefers-reduced-motion:no-preference){
@@ -692,7 +757,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .stream-col:nth-child(3){display:none}
   .stream-track{flex-direction:row;width:max-content;gap:10px;padding:0 10px 0 0;animation-name:stream-x}
   .stream-item{width:136px;aspect-ratio:1/1}
-  .stream-pausa{right:0;bottom:-48px}
+  .vitrina-acc{right:0;bottom:-48px}
   .vitrina{margin-bottom:44px}
   .nav{display:none}
   .menu-btn{display:inline-flex}
@@ -791,7 +856,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   *:active{scale:1!important}
   .faq summary::after{transition:none}
   .stream-track,.paths path,.skel .img,.skel i{animation:none!important}
-  .stream-pausa{display:none}
+  #streamPausa{display:none}
   ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
   .gallery .main img{transition:none}
   .faq details::details-content,.undo,.chip-ind,.stream{transition:none}
@@ -828,6 +893,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-logo" viewBox="6 44.5 140 60"><g fill="#FE8903" transform="matrix(1 0 -.7 1 51.8 0)"><path d="M27.5 44.8H125V56H27.5z"/><path d="M27.5 60.7H125V72H56v16H27.5z"/><path d="M65 77.6h60v14.7a12 12 0 0 1-12 12H27.5V93H97v-5H65z"/></g></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
   <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.3s-7.4-4.5-9.1-9.1C1.8 8 3.7 4.6 7.2 4.6c2 0 3.4 1.1 4.8 2.9 1.4-1.8 2.8-2.9 4.8-2.9 3.5 0 5.4 3.4 4.3 6.6-1.7 4.6-9.1 9.1-9.1 9.1Z"/></symbol>
 </svg>
 
@@ -878,7 +944,10 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
     </div>
     <div class="vitrina" id="vitrina">
       <div class="stream" id="stream" role="group" aria-label="Productos con foto"></div>
-      <button class="stream-pausa" id="streamPausa" type="button" aria-pressed="false"><svg class="ico" aria-hidden="true"><use href="#i-pause"/></svg><span>Pausar</span></button>
+      <div class="vitrina-acc">
+        <button class="stream-pausa" type="button" data-abrir-vitrina><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg><span>Ver en grande</span></button>
+        <button class="stream-pausa" id="streamPausa" type="button" aria-pressed="false"><svg class="ico" aria-hidden="true"><use href="#i-pause"/></svg><span>Pausar</span></button>
+      </div>
     </div>
     </div>
   </section>
@@ -1130,7 +1199,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
     <p class="pie"><span>Te confirmamos disponibilidad por chat antes de cobrar.</span><button type="button" id="cartVaciar">Vaciar</button></p>
   </div>
   <div class="exito" id="exito" role="status" hidden>
-    <div class="check" id="exitoCheck"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6 12.5 10.5 17 18.5 8"/></svg></div>
+    <div class="exito-check" id="exitoCheck"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6 12.5 10.5 17 18.5 8"/></svg></div>
     <h3>¡Pedido listo!</h3>
     <p>Tu pedido ya está en WhatsApp. Si aún no lo hiciste, toca <b>Enviar</b> en el chat. Te respondemos para confirmar disponibilidad antes de cobrar.</p>
     <p>Código de tu pedido: <span class="cod" id="exitoCod"></span></p>
@@ -1155,6 +1224,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
     <a href="#catalogo" data-ir-plat="Xbox">Xbox</a>
     <a href="#catalogo" data-ir-plat="Retro">Retro</a>
     <a href="#catalogo">Catálogo completo</a>
+    <a href="#catalogo" data-abrir-vitrina>Vitrina en pantalla completa</a>
     <a href="#comprar">Cómo comprar</a>
     <a href="#servicio">Servicio técnico</a>
     <a href="#locales">Locales</a>
@@ -1180,6 +1250,30 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
     <button type="button" class="add-btn" id="favsTodo">Agregar todo a mi pedido</button>
     <a class="wa-btn" id="favsCompartir" data-tipo="lista" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Enviar mi lista por WhatsApp</a>
     <p class="pie"><span>Tu lista se guarda solo en este dispositivo.</span></p>
+  </div>
+</dialog>
+
+<!-- Vitrina en pantalla completa (para una tablet en la tienda) -->
+<dialog id="kiosco" class="kiosco" aria-label="Vitrina de productos">
+  <div class="k-fondo" aria-hidden="true"></div>
+  <div class="k-controles">
+    <div class="grupo" id="kMundos" role="group" aria-label="Consola"></div>
+    <div class="grupo">
+      <button type="button" id="kAnt" aria-label="Producto anterior">‹</button>
+      <button type="button" id="kPausa" aria-pressed="false">Pausar</button>
+      <button type="button" id="kSig" aria-label="Producto siguiente">›</button>
+      <button type="button" id="kSalir">Salir ×</button>
+    </div>
+  </div>
+  <div class="k-slide" id="kSlide" aria-live="off"></div>
+  <div class="k-pie">
+    <span class="k-marca"><svg class="logo" aria-hidden="true"><use href="#i-logo"/></svg>Electronic <b>Games</b></span>
+    <span class="k-wa"><svg aria-hidden="true"><use href="#i-wa"/></svg>098 080 7721</span>
+  </div>
+  <div class="k-barra" id="kBarra"></div>
+  <div class="k-inicio" id="kInicio" hidden>
+    <button type="button" id="kEmpezar">Iniciar vitrina</button>
+    <p>Pantalla completa, los productos pasan solos y la pantalla no se apaga. Toca "Salir" para volver.</p>
   </div>
 </dialog>
 
@@ -1254,6 +1348,7 @@ const CONFIG = {
 };
 
 let PRODUCTS = [];
+const VITRINA_URL = (u => u.has("vitrina") ? (u.get("vitrina") || "todo").toLowerCase() : null)(new URLSearchParams(location.search));
 const S = {cat:"all", q:"", plat:"all", local:"all", sort:"dest", only:false, visibles:0};
 
 // ===== Utilidades =====
@@ -1542,7 +1637,8 @@ async function loadProducts(){
   actualizarPedido();
   pintarVistos();
   pintarFavoritos();
-  if (abrir && buscar(abrir)) openProduct(abrir);
+  if (VITRINA_URL){ K.mundo = VITRINA_URL; abrirVitrina(true); }
+  else if (abrir && buscar(abrir)) openProduct(abrir);
   else if (new URLSearchParams(location.search).has("cat") || location.hash === "#catalogo") $("catalogo").scrollIntoView();
 }
 
@@ -2042,6 +2138,173 @@ $("exitoVaciar").onclick = ()=>{
 $("exitoMantener").onclick = ()=>{ $("exito").hidden = true; };
 $("cart").addEventListener("close", ()=>{ $("exito").hidden = true; });
 
+// ===== Vitrina en pantalla completa (para una tablet en la tienda) =====
+// Muestra en grande los productos con foto, uno por uno, con precio, stock y un QR para pedirlo.
+// Se abre con "Ver en grande", desde el menú o con la dirección ?vitrina (o ?vitrina=playstation).
+const K = {lista: [], i: 0, pausa: false, mundo: "todo", timer: 0, dur: 7000, wake: null, quieto: 0, refresco: 0, pantallaCompleta: false};
+const QR_CACHE = new Map();
+function listaVitrina(){
+  const m = Object.keys(CONFIG.mundos).find(k=>k.toLowerCase() === K.mundo);
+  return PRODUCTS.filter(p=>p.photos.length && maxQty(p) > 0 && (!m || plataformasDe(p).includes(m)));
+}
+function pintarControlesVitrina(){
+  const mundos = Object.keys(CONFIG.mundos).filter(m=>PRODUCTS.some(p=>p.photos.length && maxQty(p) > 0 && plataformasDe(p).includes(m)));
+  $("kMundos").innerHTML = [["todo", "Todo"], ...mundos.map(m=>[m.toLowerCase(), m])]
+    .map(([k, n])=>`<button type="button" data-k-mundo="${esc(k)}" aria-pressed="${K.mundo === k}">${esc(n)}</button>`).join("");
+  $("kPausa").textContent = K.pausa ? "Reanudar" : "Pausar";
+  $("kPausa").setAttribute("aria-pressed", K.pausa);
+}
+function cargarQR(){
+  if (window.qrcode || K.qrCargando) return;
+  K.qrCargando = true;
+  const s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js";
+  s.onload = ()=>{ const p = K.lista[K.i]; if (p && $("kiosco").open) pintarQR(p); };
+  document.head.appendChild(s);
+}
+function pintarQR(p){
+  const caja = $("kQr"); if (!caja) return;
+  const hayQR = typeof window.qrcode === "function";
+  caja.hidden = !hayQR;
+  $("kQrTxt").innerHTML = hayQR ? "Escanéalo para pedirlo<small>desde tu celular, por WhatsApp</small>" : "Pídelo por WhatsApp<small>098 080 7721</small>";
+  if (!hayQR) return;
+  let svg = QR_CACHE.get(p.code);
+  if (!svg){
+    const q = qrcode(0, "M");
+    q.addData(paginaDe(p));
+    q.make();
+    svg = q.createSvgTag({cellSize: 4, margin: 0, scalable: true});
+    QR_CACHE.set(p.code, svg);
+  }
+  caja.innerHTML = svg;
+}
+function mostrarSlide(){
+  clearTimeout(K.timer);
+  if (!K.lista.length) return;
+  K.i = (K.i + K.lista.length) % K.lista.length;
+  const p = K.lista[K.i];
+  const {m} = consolaDe(p);
+  $("kiosco").style.setProperty("--kc", CONFIG.mundos[m]?.c || "#FF7A00");
+  const ef = precio(p, "efectivo"), tj = precio(p, "tarjeta"), [e, d] = ef.toFixed(2).split(".");
+  const total = maxQty(p), en = Object.values(p.stock || {}).filter(n=>n > 0).length;
+  const [cls, st] = p.digital ? ["ok", "Código digital"] : total <= CONFIG.lowStockAt ? ["low", "Últimas unidades"]
+    : ["ok", en === nLocales ? "Disponible en los 3 locales" : `Disponible en ${en} local${en > 1 ? "es" : ""}`];
+  $("kSlide").innerHTML = `
+    <div class="k-foto"><img src="${esc(p.photos[0])}" alt="${esc(p.name)}" decoding="async"></div>
+    <div class="k-info">
+      <div class="k-cat">${esc(p.cat_label || "")}${etiquetaPlat(p)}</div>
+      <h2 class="k-nombre">${esc(p.name)}</h2>
+      <div class="k-precio"><span>$</span>${e}<small>.${d}</small></div>
+      <div class="k-tag">Efectivo o transferencia, IVA incluido${tj > ef ? ` · Con tarjeta ${fmt(tj)}` : ""}</div>
+      <div class="k-stock ${cls}"><span class="dot"></span>${st}</div>
+      <div class="k-qr"><div class="qr" id="kQr" aria-hidden="true"></div><p id="kQrTxt"></p></div>
+    </div>`;
+  pintarQR(p);
+  const slide = $("kSlide");
+  slide.classList.remove("entra"); void slide.offsetWidth; slide.classList.add("entra");
+  slide.style.setProperty("--dur", `${K.dur}ms`);
+  const barra = $("kBarra");
+  barra.style.setProperty("--dur", `${K.dur}ms`);
+  barra.classList.remove("corre"); void barra.offsetWidth;
+  if (!K.pausa){ barra.classList.add("corre"); K.timer = setTimeout(()=>siguienteVitrina(1), K.dur); }
+  const sig = K.lista[(K.i + 1) % K.lista.length];
+  if (sig) { const im = new Image(); im.src = sig.photos[0]; }   // la siguiente foto ya lista
+}
+function siguienteVitrina(d){ K.i += d; mostrarSlide(); }
+function pausarVitrina(){
+  K.pausa = !K.pausa;
+  pintarControlesVitrina();
+  if (K.pausa){ clearTimeout(K.timer); $("kBarra").classList.remove("corre"); }
+  else mostrarSlide();
+}
+function despertarControles(){
+  $("kiosco").classList.remove("quieto");
+  clearTimeout(K.quieto);
+  K.quieto = setTimeout(()=>$("kiosco").classList.add("quieto"), 3000);
+}
+async function pedirPantallaEncendida(){
+  try { if (!K.wake || K.wake.released) K.wake = await navigator.wakeLock?.request("screen"); } catch(e) {}
+}
+async function refrescarVitrina(){
+  // Todo el día en la tienda: precios y stock al día cada 15 minutos, sin salir de la vitrina.
+  try {
+    const r = await fetch("products.json", {cache: "no-cache"});
+    if (!r.ok) return;
+    PRODUCTS = await r.json();
+    const actual = K.lista[K.i]?.code;
+    K.lista = listaVitrina();
+    K.i = Math.max(0, K.lista.findIndex(p=>p.code === actual));
+  } catch(e) {}
+}
+function abrirVitrina(conInicio = false){
+  K.lista = listaVitrina();
+  if (!K.lista.length){ K.mundo = "todo"; K.lista = listaVitrina(); }
+  if (!K.lista.length) return;
+  for (const d of ["dlg", "menu", "cart", "cmdk", "favs"]) if ($(d).open) $(d).close();
+  K.i = 0;
+  K.pausa = false;
+  pintarControlesVitrina();
+  $("kiosco").showModal();
+  $("kInicio").hidden = !conInicio;
+  cargarQR();
+  if (conInicio) $("kEmpezar").focus(); else empezarVitrina();
+  medir("vitrina", {mundo: K.mundo});
+}
+async function empezarVitrina(){
+  $("kInicio").hidden = true;
+  try { if (!document.fullscreenElement) await document.documentElement.requestFullscreen?.({navigationUI: "hide"}); } catch(e) {}
+  pedirPantallaEncendida();
+  mostrarSlide();
+  clearInterval(K.refresco);
+  K.refresco = setInterval(refrescarVitrina, 15 * 60 * 1000);
+  despertarControles();
+}
+function cerrarVitrina(){ if ($("kiosco").open) $("kiosco").close(); }
+$("kiosco").addEventListener("close", ()=>{
+  clearTimeout(K.timer);
+  clearInterval(K.refresco);
+  try { K.wake?.release(); } catch(e) {}
+  K.wake = null;
+  if (document.fullscreenElement) document.exitFullscreen?.().catch(()=>{});
+});
+$("kSalir").onclick = cerrarVitrina;
+$("kAnt").onclick = ()=>siguienteVitrina(-1);
+$("kSig").onclick = ()=>siguienteVitrina(1);
+$("kPausa").onclick = pausarVitrina;
+$("kEmpezar").onclick = empezarVitrina;
+$("kMundos").addEventListener("click", e=>{
+  const b = e.target.closest("[data-k-mundo]"); if (!b) return;
+  K.mundo = b.dataset.kMundo;
+  K.lista = listaVitrina();
+  K.i = 0;
+  pintarControlesVitrina();
+  mostrarSlide();
+});
+$("kiosco").addEventListener("keydown", e=>{
+  if (e.key === "ArrowRight") siguienteVitrina(1);
+  else if (e.key === "ArrowLeft") siguienteVitrina(-1);
+  else if (e.key === " " && e.target === $("kiosco")) { e.preventDefault(); pausarVitrina(); }
+});
+// Deslizar con el dedo para pasar de producto.
+{
+  let x0 = null;
+  $("kSlide").addEventListener("pointerdown", e=>{ x0 = e.clientX; });
+  $("kSlide").addEventListener("pointerup", e=>{
+    if (x0 == null) return;
+    const dx = e.clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50) siguienteVitrina(dx < 0 ? 1 : -1);
+  });
+}
+// Los botones se esconden solos (y el cursor) cuando nadie toca la tablet.
+for (const t of ["pointermove", "pointerdown", "keydown"]) $("kiosco").addEventListener(t, despertarControles, {passive: true});
+// Si sale de pantalla completa (tecla Esc), también sale de la vitrina.
+document.addEventListener("fullscreenchange", ()=>{
+  if (!document.fullscreenElement && K.pantallaCompleta && $("kiosco").open) cerrarVitrina();
+  K.pantallaCompleta = !!document.fullscreenElement;
+});
+// Si la tablet se bloquea y vuelve, la pantalla sigue sin apagarse.
+document.addEventListener("visibilitychange", ()=>{ if (document.visibilityState === "visible" && $("kiosco").open) pedirPantallaEncendida(); });
+
 async function compartir(){
   // Se comparte la página propia del producto: la vista previa en WhatsApp muestra su foto y precio.
   const p = D.p, url = paginaDe(p);
@@ -2526,6 +2789,7 @@ document.addEventListener("click", e=>{
   if (e.target.closest("[data-ver-pedido]")){ abrirCarrito(); return; }
   if (e.target.closest("[data-abrir-buscador]")){ e.preventDefault(); abrirBuscador(); return; }
   if (e.target.closest("[data-abrir-favoritos]")){ e.preventDefault(); abrirFavoritos(); return; }
+  if (e.target.closest("[data-abrir-vitrina]")){ e.preventDefault(); abrirVitrina(); return; }
   const open = e.target.closest(".card-open, .stream-item");
   if (open){ abrirProducto(open.dataset.code, open.classList.contains("stream-item") ? open : open.querySelector(".img")); return; }
   const cat = e.target.closest("[data-ir-cat]");
