@@ -460,6 +460,19 @@ dialog.sheet.izq{margin:0 auto 0 0;border-radius:0 18px 18px 0}
 .undo{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 0;padding:10px 12px;border-radius:12px;background:var(--surface-hi);border:1px solid var(--line);font-size:.85rem}
 .undo span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}
 .undo button{flex:none;border:0;background:var(--ink);color:var(--bg);font-weight:800;padding:9px 14px;border-radius:10px;cursor:pointer;min-height:40px}
+/* "Te puede faltar": sugerencias dentro del pedido */
+.sugeridos{padding:16px 0 6px;border-bottom:1px solid var(--line)}
+.sug-rail{display:grid;grid-auto-flow:column;grid-auto-columns:136px;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#3a373d transparent;margin-inline:-20px;padding:0 20px 8px;scroll-padding-inline:20px}
+.sug{position:relative;scroll-snap-align:start;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow:hidden}
+.sug-ver{all:unset;box-sizing:border-box;display:flex;flex-direction:column;width:100%;cursor:pointer}
+.sug-ver:focus-visible{outline:2px solid var(--brand-hi);outline-offset:-2px;border-radius:12px}
+.sug .th{position:relative;display:block;aspect-ratio:1/1;overflow:hidden;background:var(--stage-bg)}
+.sug .th img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:10%;mix-blend-mode:multiply}
+.sug .nm{padding:8px 10px 0;font-size:.78rem;font-weight:600;line-height:1.25;min-height:calc(2.5em + 8px);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sug .pr{padding:6px 50px 12px 10px;font-weight:800;font-style:italic;font-size:.95rem;font-variant-numeric:tabular-nums}
+.sug-add{position:absolute;right:8px;bottom:8px;width:36px;height:36px;border-radius:10px;border:0;background:var(--brand);color:var(--brand-ink);font-size:1.4rem;font-weight:600;line-height:1;cursor:pointer;display:grid;place-items:center;transition:scale 160ms var(--ease-out),background-color 160ms ease}
+.sug-add:hover{background:var(--brand-hi)}
+.sug-add:active{scale:.94}
 .vacio{padding:48px 10px;text-align:center;color:var(--muted)}
 .vacio button{margin-top:14px;border:0;background:var(--brand);color:var(--brand-ink);padding:11px 20px;min-height:44px;border-radius:10px;font-weight:800;cursor:pointer}
 .sheet-foot{border-top:1px solid var(--line);padding:12px 20px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:10px}
@@ -1003,6 +1016,10 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   <div class="sheet-body">
     <div class="undo" id="undo" hidden><span id="undoTxt"></span><button type="button" id="undoBtn">Deshacer</button></div>
     <div class="items" id="cartItems"></div>
+    <div class="sugeridos" id="sugeridos" hidden>
+      <div class="lbl-sec" id="sugTit">Te puede faltar</div>
+      <div class="sug-rail" id="sugRail" role="list" aria-labelledby="sugTit"></div>
+    </div>
     <div class="vacio" id="cartVacio" hidden>Tu pedido está vacío.<br><button type="button" id="cartSeguir">Ver catálogo</button></div>
     <div class="opciones" id="cartOpciones">
       <div>
@@ -1855,6 +1872,7 @@ function pintarCarrito(){
   $("cartFoot").hidden = ls.length === 0;
   $("cartItems").hidden = ls.length === 0;
   $("cartOpciones").hidden = ls.length === 0;
+  pintarSugerencias();
   if (!ls.length) return;
   if (!PEDIDO.retiro) PEDIDO.retiro = mejorLocal();
   const R = PEDIDO.retiro, L = CONFIG.locales[R];
@@ -1895,6 +1913,69 @@ function pintarCarrito(){
   $("ahorro").textContent = PEDIDO.pago === "tarjeta" && t - te > 0.009 ? `En efectivo o transferencia: ${fmt(te)}` : "";
   $("cartSend").href = waLink(mensajePedido());
 }
+
+// ===== "Te puede faltar": sugerencias en el pedido =====
+// Se sugiere lo que complementa lo que ya lleva, para su misma consola: con una PS5, palancas y
+// juegos de PS5; con un juego de Mario, cosas de Mario. Nunca otra consola.
+const COMPLEMENTOS = {consolas: ["palancas", "juegos", "accesorios"], juegos: ["palancas", "juegos"], palancas: ["juegos", "accesorios"], accesorios: ["juegos", "palancas"]};
+const FRANQUICIAS = ["POKEMON", "MARIO", "ZELDA", "MINECRAFT", "SONIC", "SPIDER", "KIRBY", "DRAGON BALL", "NARUTO", "HARRY POTTER", "STAR WARS", "CRASH", "HALO", "GOD OF WAR", "RESIDENT EVIL", "CALL OF DUTY", "FIFA", "FC 2"];
+function sugerencias(max = 6){
+  const ls = lineas(); if (!ls.length) return [];
+  const exactas = new Set(), familias = new Set(), franquicias = new Set();
+  for (const {p} of ls){
+    for (const n of plataformasDe(p)) (CONFIG.mundos[n] ? familias : exactas).add(n);
+    const nombre = norm(p.name).toUpperCase();
+    for (const f of FRANQUICIAS) if (nombre.includes(f)) franquicias.add(f);
+  }
+  const quiero = new Set(ls.flatMap(({p})=>COMPLEMENTOS[p.cat] || []));
+  const puntos = (p, i) => {
+    const pl = plataformasDe(p), nombre = norm(p.name).toUpperCase();
+    let s = 0;
+    if (pl.some(n=>exactas.has(n))) s += 4; else if (pl.some(n=>familias.has(n))) s += 2;
+    if (FRANQUICIAS.some(f=>franquicias.has(f) && nombre.includes(f))) s += 3;
+    if (quiero.has(p.cat)) s += 2;
+    if (p.photos.length) s += 1;
+    return s - i / PRODUCTS.length;   // en empate, lo más vendido primero
+  };
+  // Si el pedido es de una consola, nada de otra marca (sí lo universal: cables, fundas…).
+  const deOtraConsola = p => { const f = plataformasDe(p).filter(n=>CONFIG.mundos[n]); return familias.size > 0 && f.length > 0 && !f.some(n=>familias.has(n)); };
+  const orden = PRODUCTS
+    .map((p, i)=>[p, i])
+    .filter(([p])=>p.cat !== "consolas" && !PEDIDO.items.has(p.code) && maxQty(p) > 0 && !deOtraConsola(p))
+    .map(([p, i])=>[p, puntos(p, i)])
+    .filter(([, s])=>s >= 3)
+    .sort((a, b)=>b[1] - a[1]);
+  const porCat = {}, res = [];
+  for (const [p] of orden){
+    if ((porCat[p.cat] = (porCat[p.cat] || 0) + 1) > 3) continue;   // variedad: máximo 3 por categoría
+    res.push(p);
+    if (res.length === max) break;
+  }
+  return res;
+}
+function pintarSugerencias(){
+  const sug = sugerencias();
+  $("sugeridos").hidden = !sug.length;
+  $("sugRail").innerHTML = sug.map(p=>`<div class="sug" role="listitem">
+    <button type="button" class="sug-ver" data-ver-sug="${esc(p.code)}"><span class="th"><img src="${esc(fotoDe(p))}" alt="" width="136" height="136" loading="lazy" decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)"></span><span class="nm">${esc(p.name)}</span><span class="pr">${fmt(precio(p))}</span></button>
+    <button type="button" class="sug-add" data-sug-add="${esc(p.code)}" aria-label="Agregar al pedido: ${esc(p.name)}">+</button>
+  </div>`).join("");
+}
+$("sugRail").addEventListener("click", e=>{
+  const add = e.target.closest("[data-sug-add]");
+  if (add){
+    const p = buscar(add.dataset.sugAdd); if (!p) return;
+    const pos = [...$("sugRail").querySelectorAll(".sug-add")].indexOf(add);
+    setCantidad(p.code, 1);   // el pedido se vuelve a dibujar: el foco pasa a la siguiente sugerencia
+    confirmarAgregado(p, 1);
+    medir("sugerencia-agregada", {codigo: p.code});
+    const botones = $("sugRail").querySelectorAll(".sug-add");
+    (botones[Math.min(pos, botones.length - 1)] || $("cartSend")).focus({preventScroll: true});
+    return;
+  }
+  const ver = e.target.closest("[data-ver-sug]");
+  if (ver){ $("cart").close(); openProduct(ver.dataset.verSug); }
+});
 
 // ===== Favoritos y vistos recientemente (se guardan solo en este dispositivo) =====
 const CLAVE_FAV = "eg_favoritos_v1", CLAVE_VISTOS = "eg_vistos_v1";
