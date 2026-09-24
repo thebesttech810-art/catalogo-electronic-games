@@ -125,6 +125,12 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdro
 .badge.on{background:var(--brand);color:var(--brand-ink)}
 .wa-top{display:inline-flex;align-items:center;gap:8px;min-height:44px;text-decoration:none;color:var(--wa-ink);font-weight:700;font-size:.92rem;padding:9px 15px;border-radius:999px;background:var(--wa)}
 .wa-top svg{width:18px;height:18px}
+/* Tablet horizontal (961-1100px): WhatsApp y "Mi pedido" solo con ícono; antes se salían por la derecha. */
+@media (max-width:1100px){
+  .wa-top span,.cart-btn .txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .wa-top{padding:9px 12px}
+  .cart-btn{padding:6px 8px 6px 11px}
+}
 
 /* ---------- Portada ---------- */
 .hero{position:relative;overflow:hidden;isolation:isolate;padding:48px 0 44px}
@@ -331,7 +337,7 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdro
 .add:disabled{background:var(--surface-hi);color:var(--line);cursor:not-allowed}
 .add.in{background:var(--ink);color:var(--bg);font-size:1.1rem;font-weight:800}
 
-.prices{display:flex;flex-direction:column;gap:2px}
+.prices{display:flex;flex-direction:column;gap:2px;min-height:calc(2.575rem + 2px)}
 .price{display:inline-flex;align-items:flex-start;font-weight:800;font-style:italic;font-size:1.45rem;line-height:1;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .price .cur{font-size:.6em;margin:2px 2px 0 0;color:var(--brand)}
 .price small{font-size:.55em;margin:2px 0 0 1px}
@@ -397,7 +403,7 @@ footer{margin-top:72px;border-top:1px solid var(--line);background:#0d0d0f}
 .foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-block:18px 28px;border-top:1px solid var(--line);color:var(--muted);font-size:.84rem}
 
 /* ---------- Ficha de producto ---------- */
-dialog{border:0;padding:0;border-radius:18px;width:min(900px,calc(100% - 24px));max-height:92dvh;background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line),0 24px 70px rgba(0,0,0,.7)}
+dialog{border:0;padding:0;border-radius:18px;width:min(900px,calc(100% - 24px));max-width:100%;max-height:92dvh;background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line),0 24px 70px rgba(0,0,0,.7)}
 dialog::backdrop{background:rgba(0,0,0,.72)}
 /* minmax(0,…): la columna nunca crece por el carrusel de relacionados; el carrusel se desplaza por dentro. */
 .dlg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
@@ -506,12 +512,13 @@ dialog.sheet.izq{margin:0 auto 0 0;border-radius:0 18px 18px 0}
 
 /* Menú en celular */
 .menu-nav{display:flex;flex-direction:column;padding:12px 20px}
-.menu-nav a{padding:16px 4px;border-bottom:1px solid var(--line);text-decoration:none;font-weight:800;font-style:italic;text-transform:uppercase;font-size:1.3rem}
+.menu-nav a{padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:800;font-style:italic;text-transform:uppercase;font-size:1.3rem}
 .menu-extra{padding:20px;display:grid;gap:10px;color:var(--muted);font-size:.93rem}
 
 /* ---------- Favoritos, vistos y WhatsApp flotante ---------- */
 .fav{position:absolute;top:10px;right:10px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;display:grid;place-items:center;background:rgba(255,255,255,.92);color:#2A2522;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);transition:scale 160ms var(--ease-out),color 160ms ease}
 .fav .ico{width:20px;height:20px}
+.fav::before{content:"";position:absolute;inset:-6px;border-radius:50%}
 .fav[aria-pressed="true"],.share-btn[aria-pressed="true"]{color:var(--brand)}
 :is(.fav,.share-btn,.fav-top)[aria-pressed="true"] .ico,.fav-top.on .ico{fill:currentColor}
 .fav:active{scale:.9}
@@ -783,6 +790,8 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .confianza ul{grid-template-columns:repeat(2,1fr)}
   .confianza li:nth-child(3){border-left:0;padding-left:0}
   .confianza li:nth-child(n+3){border-top:1px solid var(--line)}
+  .confianza li{align-items:flex-start}
+  .chips,.filters{margin-inline:-20px;padding-inline:20px;scroll-padding-inline:20px}
   .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mundos{grid-template-columns:minmax(0,1fr)}
   .mundo{min-height:200px;padding:20px;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
@@ -798,8 +807,12 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .lead{font-size:1rem}
   .btn{flex:1}
   /* En celular la barra superior lleva solo lo esencial: marca, buscar, pedido y menú. */
-  .top-in{gap:12px}
+  /* Marca y botones caben siempre dentro del margen (antes los botones se pasaban del borde derecho). */
+  .top-in{gap:8px}
   .top-actions{gap:6px}
+  .brand{gap:8px}
+  .logo{width:48px;height:21px}
+  .cart-btn{gap:6px}
   .wa-top{display:none}
   /* Oculto a la vista pero leído por lectores de pantalla: el botón se sigue llamando "Mi pedido". */
   .cart-btn .txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -816,9 +829,11 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .mundo{min-height:170px;padding:16px;gap:10px}
   .mundo strong{font-size:1.45rem}
   .mundo .ir{top:14px;right:14px;width:36px;height:36px}
-  .mundo .desglose span{font-size:.72rem;padding:3px 8px}
+  .mundo .desglose{gap:4px}
+  .mundo .desglose span{font-size:.7rem;padding:3px 7px}
   .mundo-banner{padding:16px}
-  .cat-row{flex-wrap:wrap;gap:4px 6px}
+  .cat-row{gap:6px}
+  .cat{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   /* WhatsApp siempre a mano en el celular, cuando ya se bajó de la portada; sube si aparece la barra del pedido. */
   .wa-float{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:6;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--wa);color:var(--wa-ink);box-shadow:0 10px 26px rgba(0,0,0,.5);
     opacity:0;scale:.8;visibility:hidden;transition:opacity 200ms ease,scale 200ms var(--ease-out),translate 320ms var(--ease-drawer),visibility 0s linear 200ms}
@@ -842,6 +857,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .card .body{padding:10px 11px 12px}
   .name{font-size:.88rem}
   .price{font-size:1.2rem}
+  .card .price-tag{white-space:nowrap}
   .row{flex-direction:column;align-items:flex-start;gap:6px;padding-right:48px}
   .add{width:40px;height:40px}
   .card-add{right:10px;bottom:10px}
@@ -850,17 +866,38 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .filters select{flex:none}
   .count{display:none}
   .acciones{grid-template-columns:1fr}
-  .foot{grid-template-columns:1fr}
-  dialog.sheet:not(.izq){margin:auto 0 0;width:100%;height:auto;max-height:92dvh;border-radius:18px 18px 0 0}
+  /* Pie: Tienda y Ayuda lado a lado; enlaces de 44px para el dedo; espacio para el WhatsApp flotante. */
+  .foot{grid-template-columns:1fr 1fr;gap:28px 16px}
+  .foot > div:first-child,.foot > div:last-child{grid-column:1/-1}
+  .foot ul a,.foot ul button{padding:11px 0}
+  footer{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  body.con-pedido footer{padding-bottom:calc(160px + env(safe-area-inset-bottom,0px))}
+  /* Hojas de abajo: tan altas como su contenido (sin fit-content se estiraban al 92% aunque tuvieran un producto). */
+  dialog.sheet:not(.izq){margin:auto 0 0;width:100%;height:auto;height:fit-content;max-height:92dvh;border-radius:18px 18px 0 0}
+  /* Ficha: el botón de cerrar arriba a la derecha, sobre la foto (antes quedaba a mitad de pantalla). */
+  .info{position:static}
   dialog.sheet:not(.izq):not([open]){transform:translateY(100%)}
   @starting-style{dialog.sheet:not(.izq)[open]{transform:translateY(100%)}}
 }
 
 /* Celulares pequeños (360 px o menos) */
+@media (max-width:400px){
+  .wordmark{font-size:.88rem}
+  /* Mundos: más espacio para el desglose (dos filas parejas en todas las marcas) y menos para las fotos. */
+  .mundo{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr)}
+}
 @media (max-width:360px){
   .wrap{padding:0 16px}
+  .rail{--pad:16px}
+  .confianza ul{padding:0 16px}
+  .chips,.filters{margin-inline:-16px;padding-inline:16px;scroll-padding-inline:16px}
+  .cat{letter-spacing:.03em}
   #searchBtn{display:none}
-  .wordmark{font-size:.88rem}
+}
+@media (max-width:340px){
+  /* "Tarjeta $…" ya no cabe junto al botón +: se parte en dos líneas y la fila crece igual en todas. */
+  .card .price-tag{white-space:normal}
+  .row{min-height:66px}
 }
 
 /* ============================================================
@@ -1719,14 +1756,16 @@ function onPhotoError(img){
 const plataformasDe = p => p._plat || (p._plat = CONFIG.plataformas.filter(([, re])=>re.test(p.name.toUpperCase())).map(([n])=>n));
 // Etiqueta de color con la consola exacta ("PS5", "Switch 2", "Xbox"…); si sirve para varias marcas, "Multi".
 const colorMundo = m => CONFIG.mundos[m]?.c || "#3a373d";
+const CONSOLAS_NINTENDO = [[/\bWII ?U\b/, "Wii U"], [/\bWII\b/, "Wii"], [/\b3DS\b/, "3DS"], [/\bSNES\b/, "SNES"], [/\bNES\b/, "NES"], [/GAME ?BOY/, "Game Boy"]];
 function consolaDe(p){
   if (p._consola) return p._consola;
   const n = p.name.toUpperCase(), pl = plataformasDe(p);
   const marcas = ["PlayStation", "Nintendo", "Xbox"].filter(m=>pl.includes(m));
   let txt = "", m = marcas[0] || (pl.includes("Retro") ? "Retro" : pl.includes("PC") ? "PC" : "");
   if (marcas.length > 1) { txt = "Multi"; m = ""; }
-  else if (m === "PlayStation") txt = pl.includes("PS5") ? "PS5" : pl.includes("PS4") ? "PS4" : "PlayStation";
-  else if (m === "Nintendo") txt = /SWITCH ?2/.test(n) ? "Switch 2" : /SWITCH|SWICTH/.test(n) ? "Switch" : "Nintendo";
+  else if (m === "PlayStation") txt = pl.includes("PS5") ? "PS5" : pl.includes("PS4") ? "PS4" : n.match(/\bPS[123]\b|\bPSP\b/)?.[0] || "PlayStation";
+  else if (m === "Nintendo") txt = /SWITCH ?2/.test(n) ? "Switch 2" : /SWITCH|SWICTH/.test(n) ? "Switch"
+    : (CONSOLAS_NINTENDO.find(([re])=>re.test(n)) || [, "Nintendo"])[1];
   else txt = m;
   return (p._consola = {txt, m});
 }
