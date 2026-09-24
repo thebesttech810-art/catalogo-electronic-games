@@ -1054,7 +1054,7 @@ const CONFIG = {
   logo: "",                    // vacío = marca de texto (no pide un archivo que no existe)
   // Id del sitio en Umami (medición de visitas gratis y sin cookies). Vacío = no se mide nada.
   // Va también en ANALITICA_ID de paginas_producto.py.
-  analitica: "",
+  analitica: "1f84c623-7a7b-4d1f-90cd-ef1e1a646852",
   // URL de Google Apps Script que guarda cada pedido en una hoja de cálculo propia
   // (control de comisión). Vacío = no registra nada. No es una clave secreta: solo
   // permite AGREGAR filas, no leerlas.
@@ -1117,6 +1117,7 @@ if (CONFIG.analitica) {
   s.src = "https://cloud.umami.is/script.js";
   s.dataset.websiteId = CONFIG.analitica;
   s.dataset.autoTrack = "false";
+  s.dataset.domains = "thebesttech810-art.github.io";   // las pruebas locales no suman visitas
   s.onload = () => { try { window.umami.track(); } catch(e) {} };
   document.head.appendChild(s);
 }

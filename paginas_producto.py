@@ -23,7 +23,7 @@ CARPETA = "docs/p"
 SITEMAP = "docs/sitemap.xml"
 WHATSAPP = "593980807721"
 TIENDA = "Electronic Games"
-ANALITICA_ID = ""  # id del sitio en Umami (el mismo de CONFIG.analitica en index.html); vacío = sin medir
+ANALITICA_ID = "1f84c623-7a7b-4d1f-90cd-ef1e1a646852"  # id del sitio en Umami (el mismo de CONFIG.analitica en index.html); vacío = sin medir
 LOCALES = [
     ("condado", "Condado Shopping", "Quito, Isla 21"),
     ("scala", "Scala Shopping", "Cumbayá, Isla 5"),
@@ -80,7 +80,7 @@ def pagina(p, cuando):
                    "availability": "https://schema.org/OutOfStock" if agotado else "https://schema.org/InStock",
                    "seller": {"@type": "Organization", "name": TIENDA}},
     }
-    analitica = (f'<script defer src="https://cloud.umami.is/script.js" data-website-id="{e(ANALITICA_ID)}"></script>'
+    analitica = (f'<script defer src="https://cloud.umami.is/script.js" data-website-id="{e(ANALITICA_ID)}" data-domains="thebesttech810-art.github.io"></script>'
                  if ANALITICA_ID else "")
     img = (f'<img src="../{e(foto)}" alt="{e(p["name"])}" width="600" height="600">' if foto else
            '<svg viewBox="0 0 500 500" role="img" aria-label="Foto próximamente"><g transform="translate(170 180) skewX(-20)" fill="#FF7A00">'
