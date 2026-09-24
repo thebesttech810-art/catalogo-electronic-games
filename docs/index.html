@@ -818,6 +818,10 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
    ============================================================ */
 const CONFIG = {
   whatsapp: "593980807721",   // con código de país, SIN "+"
+  // URL de Google Apps Script que guarda cada pedido en una hoja de cálculo propia
+  // (control de comisión). Vacío = no registra nada. No es una clave secreta: solo
+  // permite AGREGAR filas, no leerlas.
+  registroPedidosUrl: "",
   storeName: "Electronic Games",
   lowStockAt: 2,               // desde cuántas unidades se avisa "últimas unidades"
   porPagina: 40,
@@ -853,6 +857,17 @@ const fmt = n => "$" + n.toFixed(2);
 const waLink = msg => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
 // Código corto para identificar que un pedido salió de este catálogo (control de comisión).
 const nuevoCodigo = () => "EG-" + (Date.now().toString(36).slice(-4) + Math.random().toString(36).slice(2,4)).toUpperCase();
+// Guarda cada pedido en una hoja propia (independiente del negocio), para poder
+// comprobar por tu cuenta qué salió del catálogo. No bloquea ni depende de la
+// respuesta: si falla, el pedido por WhatsApp igual funciona.
+function registrarPedido(tipo, detalle){
+  if (!CONFIG.registroPedidosUrl) return;
+  const datos = new URLSearchParams({tipo, ...detalle});
+  try {
+    if (navigator.sendBeacon) navigator.sendBeacon(CONFIG.registroPedidosUrl, datos);
+    else fetch(CONFIG.registroPedidosUrl, {method: "POST", mode: "no-cors", body: datos});
+  } catch(e) {}
+}
 const nLocales = Object.keys(CONFIG.locales).length;
 const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 const buscar = code => PRODUCTS.find(x=>x.code===code);
@@ -1456,6 +1471,27 @@ $("cartVaciar").onclick = ()=>{
   guardarDeshacer(`Vaciaste tu pedido (${n} producto${n === 1 ? "" : "s"})`);
   PEDIDO.items.clear(); PEDIDO.codigo = ""; guardarPedido(); actualizarPedido();
 };
+
+// Registro propio de pedidos (independiente del negocio), para control de comisión.
+$("cartSend").addEventListener("click", ()=>{
+  registrarPedido("pedido", {
+    codigo: PEDIDO.codigo,
+    tienda: PEDIDO.retiro || "",
+    productos: lineas().map(({p,q})=>`${q}x ${p.code}`).join(" | "),
+    total: totalPedido().toFixed(2),
+    pago: PEDIDO.pago
+  });
+});
+$("dWa").addEventListener("click", ()=>{
+  if (!D) return;
+  registrarPedido("consulta", {
+    codigo: D.wcodigo,
+    tienda: PEDIDO.retiro || "",
+    productos: `${D.q}x ${D.p.code}`,
+    total: (precio(D.p, "efectivo") * D.q).toFixed(2),
+    pago: "efectivo"
+  });
+});
 
 // Menú en celular
 $("menuBtn").onclick = ()=>$("menu").showModal();
