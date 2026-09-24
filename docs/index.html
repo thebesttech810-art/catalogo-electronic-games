@@ -27,6 +27,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400..900;1,700..900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script>
+/* Intro de marca: solo la primera vez que se abre la tienda en esta pestaña. Nunca al llegar por un
+   enlace a un producto o a un filtro (esa persona viene a algo puntual) ni con "reducir movimiento".
+   Tocar o presionar una tecla la salta. */
+(function(){ try {
+  var u = new URLSearchParams(location.search);
+  if (!sessionStorage.getItem("eg_intro") && !location.hash && !["p", "vitrina", "q", "cat", "plat", "local"].some(function(k){ return u.has(k); })
+      && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    sessionStorage.setItem("eg_intro", "1");
+    var html = document.documentElement;
+    html.classList.add("con-intro");
+    var saltar = function(){
+      html.style.setProperty("--tras", "0s");
+      document.querySelectorAll(".intro, .intro-cortina").forEach(function(e){ e.classList.add("saltar"); });
+    };
+    addEventListener("pointerdown", saltar, {once: true});
+    addEventListener("keydown", saltar, {once: true});
+    setTimeout(function(){
+      html.classList.remove("con-intro");
+      removeEventListener("pointerdown", saltar);
+      removeEventListener("keydown", saltar);
+    }, 2300);
+  }
+} catch (e) {} })();
+</script>
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -327,13 +352,6 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdro
 .more{display:flex;justify-content:center;padding:0 0 24px}
 .more button{border:2px solid var(--brand);background:transparent;color:var(--ink);padding:12px 26px;min-height:48px;border-radius:999px;font-weight:800;font-style:italic;text-transform:uppercase;cursor:pointer}
 .more button:hover{background:var(--brand);color:var(--brand-ink)}
-
-/* Cómo comprar */
-.pasos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:paso}
-.pasos li{counter-increment:paso;padding:22px 20px 20px;border-radius:16px;border:1px solid var(--line);background:var(--surface)}
-.pasos li::before{content:counter(paso);display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:var(--brand);color:var(--brand-ink);font-weight:900;font-style:italic;font-size:1.1rem;margin-bottom:16px}
-.pasos h3{margin:0 0 6px;font-size:1.05rem;font-weight:800}
-.pasos p{margin:0;color:var(--muted);font-size:.93rem}
 
 /* Servicio técnico: bloque naranja como los posts de la marca */
 .servicio{margin-top:64px;background:var(--brand);color:var(--brand-ink);position:relative;overflow:hidden}
@@ -720,11 +738,11 @@ dialog.kiosco::backdrop{background:#050506}
 /* ---------- Entradas ---------- */
 @media (prefers-reduced-motion:no-preference){
   /* El titular entra palabra por palabra (patrón "Animated Hero"), una sola vez. */
-  .hero h1 .w{animation:subir 800ms var(--ease-out) both}
-  .hero h1 .w:nth-child(2){animation-delay:90ms}
-  .hero h1 .w:nth-child(3){animation-delay:180ms}
-  .hero :is(.lead,.hero-buscar,.hero-cta,.hero-abierto){animation:subir 800ms var(--ease-out) 240ms both}
-  .vitrina{animation:aparecer 900ms var(--ease-out) 150ms both}
+  .hero h1 .w{animation:subir 800ms var(--ease-out) var(--tras,0s) both}
+  .hero h1 .w:nth-child(2){animation-delay:calc(var(--tras,0s) + 90ms)}
+  .hero h1 .w:nth-child(3){animation-delay:calc(var(--tras,0s) + 180ms)}
+  .hero :is(.lead,.hero-buscar,.hero-cta,.hero-abierto){animation:subir 800ms var(--ease-out) calc(var(--tras,0s) + 240ms) both}
+  .vitrina{animation:aparecer 900ms var(--ease-out) calc(var(--tras,0s) + 150ms) both}
   /* Las secciones aparecen al llegar a ellas con el scroll (solo navegadores que lo soportan). */
   @supports (animation-timeline:view()){
     .reveal{animation:revelar linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
@@ -768,7 +786,6 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mundos{grid-template-columns:minmax(0,1fr)}
   .mundo{min-height:200px;padding:20px;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
-  .pasos{grid-template-columns:repeat(2,1fr)}
   .servicio .wrap{grid-template-columns:1fr}
   .tiendas{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr 1fr}
@@ -832,7 +849,6 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .filters::-webkit-scrollbar{display:none}
   .filters select{flex:none}
   .count{display:none}
-  .pasos{grid-template-columns:1fr}
   .acciones{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr}
   dialog.sheet:not(.izq){margin:auto 0 0;width:100%;height:auto;max-height:92dvh;border-radius:18px 18px 0 0}
@@ -845,6 +861,184 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .wrap{padding:0 16px}
   #searchBtn{display:none}
   .wordmark{font-size:.88rem}
+}
+
+/* ============================================================
+   MARCA: intro, cintas, vitrina 360°, cursor y scroll con cine
+   (patrones de webs de marca: Apple, Nike, PlayStation, Lusion)
+   ============================================================ */
+::selection{background:var(--brand);color:var(--brand-ink)}
+
+/* ---------- Intro de marca: una vez por visita, se salta tocando ---------- */
+.intro,.intro-cortina{display:none}
+html.con-intro .intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;align-content:center;gap:22px;background:#050506;color:var(--ink);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%);animation:intro-sube 640ms cubic-bezier(.76,0,.24,1) 1050ms forwards}
+html.con-intro .intro-cortina{position:fixed;inset:0;z-index:99;display:block;background:var(--brand);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%);animation:intro-sube 640ms cubic-bezier(.76,0,.24,1) 1160ms forwards}
+html.con-intro .saltar{animation-delay:0ms!important;animation-duration:380ms!important}
+@keyframes intro-sube{55%{clip-path:polygon(0 0,100% 0,100% 28%,0 60%)}to{clip-path:polygon(0 0,100% 0,100% 0,0 0);visibility:hidden}}
+.intro-logo{width:min(230px,52vw);height:auto;overflow:visible}
+.intro-logo path{animation:intro-barra 700ms var(--ease-out) both}
+.intro-logo path:nth-child(2){animation-delay:90ms}
+.intro-logo path:nth-child(3){animation-delay:180ms}
+@keyframes intro-barra{from{transform:translateX(-70px);opacity:0}}
+.intro-marca{display:flex;gap:.32em;overflow:hidden;padding:0 .2em .08em;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.3rem,4.4vw,2.1rem);line-height:1.05;letter-spacing:.01em}
+.intro-marca i{display:inline-block;font-style:inherit;animation:intro-letra 620ms var(--ease-out) both;animation-delay:calc(240ms + var(--i) * 26ms)}
+.intro-marca b{font-weight:900;color:var(--brand)}
+@keyframes intro-letra{from{translate:0 115%}}
+.intro-linea{width:min(260px,60vw);height:2px;border-radius:2px;background:var(--line);overflow:hidden}
+.intro-linea::after{content:"";display:block;height:100%;background:var(--brand);transform-origin:left;animation:intro-carga 980ms cubic-bezier(.65,0,.35,1) both}
+@keyframes intro-carga{from{scale:0 1}}
+/* Mientras está la intro, la portada espera para hacer su entrada al final. */
+html.con-intro{--tras:1.1s}
+
+/* ---------- Portada: luz que sigue al mouse y titular con relieve ---------- */
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity 500ms ease;
+  background:radial-gradient(30rem 24rem at var(--hx,70%) var(--hy,30%),rgba(255,154,46,.17),transparent 70%)}
+.hero.luz::after{opacity:1}
+.hero h1 .naranja{text-shadow:1px 1px 0 #d96300,2px 2px 0 #c25800,3px 3px 0 #a84c00,4px 4px 0 #8f4000,5px 5px 0 #753400,6px 6px 0 #5c2900,16px 20px 34px rgba(0,0,0,.6)}
+
+/* ---------- Cintas cruzadas que corren con el scroll (patrón de Nike y marcas de moda) ---------- */
+.cintas{position:relative;z-index:2;height:clamp(118px,13vw,176px);margin-top:-22px;overflow-x:clip;pointer-events:none;user-select:none;-webkit-user-select:none}
+.cinta{position:absolute;left:-5%;top:50%;width:110%;display:flex;overflow:hidden;padding:14px 0;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.cinta-a{background:var(--brand);color:var(--brand-ink);rotate:-3deg;translate:0 -64%}
+.cinta-b{background:#141316;color:var(--ink);rotate:2.2deg;translate:0 -30%;border-block:1px solid var(--line)}
+.cinta-pista{display:flex;flex:none;align-items:center;gap:26px;padding-right:26px;white-space:nowrap;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.3rem,2.6vw,2.2rem);line-height:1;letter-spacing:-.01em;will-change:transform}
+.cinta-pista i{flex:none;width:.95em;height:.32em;background:currentColor;transform:skewX(-35deg)}
+.cinta-b .cinta-pista span:nth-child(4n+3){color:transparent;-webkit-text-stroke:1.3px var(--ink)}
+.cinta-b .cinta-pista i{background:var(--brand)}
+
+/* ---------- Vitrina 360° (3D con WebGL) ---------- */
+.anillo-sec{position:relative;height:170vh;margin-top:32px}
+.anillo-escena{position:sticky;top:var(--header);height:calc(100vh - var(--header));height:calc(100svh - var(--header));display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;isolation:isolate;
+  background:radial-gradient(56rem 32rem at 50% 38%,rgba(255,122,0,.14),transparent 70%)}
+.anillo-cab{position:relative;z-index:1;text-align:center;padding-top:clamp(14px,3.5vh,36px);pointer-events:none}
+.anillo-cab .sec-sub{margin-inline:auto}
+.kicker{display:inline-flex;align-items:center;gap:10px;margin:0 0 10px;font:600 .76rem "JetBrains Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-hi)}
+.kicker::before,.kicker::after{content:"";width:18px;height:2px;border-radius:2px;background:currentColor}
+/* El 3D ocupa toda la escena; el título flota arriba (en el "cielo") y la barra abajo (sobre el piso). */
+.anillo-lienzo{position:absolute;inset:0;z-index:0;touch-action:pan-y}
+.anillo-lienzo canvas{position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:pan-y;opacity:0;transition:opacity 900ms ease}
+.anillo-lienzo.listo canvas{opacity:1}
+.anillo-lienzo.arrastrando canvas{cursor:grabbing}
+.anillo-pie{grid-row:3;position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:12px;padding-block:4px clamp(14px,3.5vh,32px)}
+body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+.anillo-flecha{flex:none;width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:rgba(21,20,22,.85);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.anillo-flecha:hover{border-color:var(--brand)}
+.anillo-ver{all:unset;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 16px;width:min(540px,100%);min-width:0;min-height:66px;padding:10px 10px 10px 20px;border-radius:18px;border:1px solid var(--line);background:rgba(21,20,22,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);cursor:pointer;transition:border-color 160ms ease,scale 160ms var(--ease-out)}
+.anillo-ver:hover{border-color:var(--brand)}
+.anillo-ver:active{scale:.98}
+.anillo-ver:focus-visible{outline:2px solid var(--brand-hi);outline-offset:2px}
+.anillo-ver .cat-row,.anillo-ver strong{grid-column:1;min-width:0}
+.anillo-ver strong{font-weight:700;font-size:.97rem;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.anillo-ver .ir{grid-column:2;grid-row:1/3;display:inline-flex;align-items:center;gap:8px;padding:11px 12px 11px 16px;border-radius:12px;background:var(--brand);color:var(--brand-ink);font-weight:900;font-style:italic;font-size:1.1rem;white-space:nowrap;font-variant-numeric:tabular-nums}
+.anillo-ver .ir .ico{width:18px;height:18px}
+
+/* ---------- Manifiesto: las palabras se encienden al pasar (patrón de Apple) ---------- */
+.manifiesto{padding:120px 0 40px}
+.mani{margin:0;max-width:21ch;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(2rem,5.6vw,4.7rem);line-height:.98;letter-spacing:-.025em;text-wrap:balance}
+.mani em{font-style:inherit;color:var(--brand)}
+.mani em.wa{color:var(--wa)}
+.mani.activo .pal{opacity:var(--o,.14);transition:opacity 140ms linear}
+
+/* ---------- Cómo comprar: tarjetas que se apilan al bajar ---------- */
+.pasos{list-style:none;margin:0;padding:0 0 12px;display:grid;gap:22px}
+.pasos li{--k:0;position:sticky;top:calc(var(--header) + 26px + var(--i,0) * 18px);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:clamp(18px,4vw,48px);min-height:250px;padding:clamp(24px,4vw,44px);border-radius:30px;border:1px solid var(--line);
+  background:linear-gradient(150deg,var(--surface-hi),var(--surface) 70%);box-shadow:0 -20px 44px rgba(0,0,0,.4);transform-origin:50% 0;scale:calc(1 - var(--k) * .06);filter:brightness(calc(1 - var(--k) * .45));overflow:hidden}
+.paso-n{font-weight:900;font-style:italic;font-size:clamp(4.2rem,11vw,9rem);line-height:.8;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px var(--brand);padding-right:.06em}
+.pasos h3{margin:0 0 10px;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.5rem,3.4vw,2.5rem);line-height:.95;letter-spacing:-.015em;text-wrap:balance}
+.pasos p{margin:0;color:var(--muted);font-size:1.05rem;max-width:46ch;text-wrap:pretty}
+.paso-ico{width:clamp(64px,9vw,112px);height:clamp(64px,9vw,112px);stroke-width:1.25;color:var(--brand)}
+.pasos li:nth-child(3){background:var(--wa);border-color:transparent;color:var(--wa-ink)}
+.pasos li:nth-child(4){background:var(--brand);border-color:transparent;color:var(--brand-ink)}
+.pasos li:nth-child(3) p{color:rgba(5,41,18,.8)}
+.pasos li:nth-child(4) p{color:rgba(20,9,0,.78)}
+.pasos li:nth-child(3) .paso-n{-webkit-text-stroke-color:var(--wa-ink)}
+.pasos li:nth-child(4) .paso-n{-webkit-text-stroke-color:var(--brand-ink)}
+.pasos li:is(:nth-child(3),:nth-child(4)) .paso-ico{color:currentColor}
+
+/* ---------- Firma gigante al final de la página ---------- */
+.foot-gigante{display:flex;justify-content:center;overflow:hidden;margin:0;padding:8px 8px 0;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(2rem,8.7vw,9.2rem);line-height:.86;letter-spacing:-.04em;white-space:nowrap;user-select:none;-webkit-user-select:none}
+.foot-gigante span{display:inline-block;padding:0 .16em .08em;margin:0 -.13em;background:linear-gradient(180deg,var(--ink) 0%,rgba(247,244,239,.08) 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.foot-gigante .g{background-image:linear-gradient(180deg,var(--brand) 0%,rgba(255,122,0,.1) 95%)}
+.foot-gigante .esp{width:.26em}
+
+/* ---------- Mundos: brillo holográfico y fotos que flotan con profundidad ---------- */
+.mundo::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity 250ms ease;
+  background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.26),transparent 60%)}
+
+/* ---------- Cursor de marca y botones magnéticos (solo con mouse) ---------- */
+.cursor{position:fixed;left:0;top:0;z-index:95;width:0;height:0;pointer-events:none;opacity:0;transition:opacity 200ms ease}
+.cursor.on{opacity:1}
+.cursor-anillo{position:absolute;left:-42px;top:-42px;width:84px;height:84px;border-radius:50%;border:2.5px solid var(--brand-hi);display:grid;place-items:center;scale:.42;transition:scale 320ms var(--ease-out),background-color 250ms ease,border-color 250ms ease}
+.cursor.link .cursor-anillo{scale:.66;background:rgba(255,122,0,.14)}
+.cursor.txt .cursor-anillo{scale:1;background:rgba(255,122,0,.94);border-color:transparent}
+.cursor.abajo .cursor-anillo{scale:.34}
+.cursor.txt.abajo .cursor-anillo{scale:.88}
+.cursor-anillo span{font-weight:900;font-style:italic;text-transform:uppercase;font-size:.9rem;color:var(--brand-ink);opacity:0;transition:opacity 150ms ease}
+.cursor.txt .cursor-anillo span{opacity:1;transition-delay:80ms}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  html .magnet{transition:scale 160ms var(--ease-out),background-color 160ms ease,border-color 160ms ease,color 160ms ease,translate 520ms cubic-bezier(.34,1.56,.64,1)}
+  html .magnet.imanta{transition:scale 160ms var(--ease-out),background-color 160ms ease,border-color 160ms ease,color 160ms ease,translate 140ms linear}
+  /* El texto de los botones "rueda": sale hacia arriba y entra una copia desde abajo. */
+  .rodar{display:inline-block;overflow:hidden;vertical-align:top;line-height:1.3;padding-inline:.08em;margin-inline:-.08em}
+  .rodar > span{display:inline-block;text-shadow:0 1.6em currentColor;transition:translate 480ms var(--ease-out)}
+  :is(.btn,.more button):hover .rodar > span{translate:0 -1.6em}
+  .mundo:hover::after{opacity:1}
+  .mundo .fan{translate:calc(var(--nx,0) * 26px) calc(var(--ny,0) * 18px);transition:translate 300ms var(--ease-out)}
+  .mundo-cab{translate:calc(var(--nx,0) * -10px) calc(var(--ny,0) * -8px);transition:translate 300ms var(--ease-out)}
+}
+
+/* ---------- Movimiento ligado al scroll (navegadores que lo soportan) ---------- */
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:scroll()){
+    /* Barra de avance de la página bajo el encabezado */
+    header.top::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--brand),var(--brand-hi));transform-origin:0 50%;animation:avance linear both;animation-timeline:scroll(root)}
+  }
+  @supports (animation-timeline:view()){
+    /* Al bajar, el titular se aleja y la vitrina se queda atrás (profundidad) */
+    .hero{view-timeline:--hero block}
+    .hero-texto{animation:hero-sale linear both;animation-timeline:--hero;animation-range:exit 0% exit 100%}
+    .vitrina{animation:aparecer 900ms var(--ease-out) calc(var(--tras,0s) + 150ms) both,vitrina-sale linear both;animation-timeline:auto,--hero;animation-range:normal,exit 0% exit 100%}
+    /* En pantallas angostas la vitrina es una tira: si baja, sus botones quedan bajo las cintas. */
+    @media (max-width:960px){ .vitrina{animation:aparecer 900ms var(--ease-out) calc(var(--tras,0s) + 150ms) both} }
+    /* Los títulos suben desde una línea invisible, como en los cortes de un tráiler */
+    .sec-h,.servicio h2{animation:titulo-entra linear both;animation-timeline:view();animation-range:entry 5% entry 75%}
+    /* Las rayas del servicio técnico se desplazan más lento que la página */
+    .servicio::after{animation:rayas linear both;animation-timeline:view()}
+    /* Las letras de la firma final suben una por una */
+    .foot-gigante span{animation:letra-sube linear both;animation-timeline:view();animation-range:entry calc(var(--i,0) * 3%) entry calc(52% + var(--i,0) * 3%)}
+    .pasos li{animation:paso-entra linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+  }
+}
+@keyframes avance{from{scale:0 1}}
+@keyframes hero-sale{to{translate:0 -80px;opacity:.1}}
+@keyframes vitrina-sale{to{translate:0 90px}}
+@keyframes titulo-entra{from{clip-path:polygon(-6% 125%,106% 125%,106% 125%,-6% 125%);translate:0 .55em}to{clip-path:polygon(-6% -25%,106% -25%,106% 125%,-6% 125%)}}
+@keyframes rayas{from{translate:0 30%}to{translate:0 -30%}}
+@keyframes letra-sube{from{translate:0 80%;opacity:0}}
+@keyframes paso-entra{from{opacity:0;translate:0 60px}}
+
+@media (max-width:960px){
+  .anillo-sec{height:155vh}
+  .cintas{margin-top:8px;height:132px}
+  .cinta-a{translate:0 -88%}
+  .cinta-b{translate:0 -6%}
+}
+@media (max-width:700px){
+  .cinta{padding:11px 0}
+  .anillo-flecha{width:46px;height:46px}
+  .anillo-pie{gap:8px;padding-inline:12px}
+  .anillo-ver{padding:8px 8px 8px 14px;min-height:60px;gap:3px 10px}
+  .anillo-ver .cat-row{display:none}
+  .anillo-ver strong{font-size:.86rem;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  body.en-anillo .wa-float{opacity:0;scale:.8;visibility:hidden;transition:opacity 200ms ease,scale 200ms var(--ease-out),translate 320ms var(--ease-drawer),visibility 0s linear 200ms}
+  .anillo-ver .ir{padding:10px 10px 10px 12px;font-size:1rem}
+  .manifiesto{padding:84px 0 24px}
+  .pasos{gap:16px}
+  .pasos li{grid-template-columns:minmax(0,1fr);gap:14px;min-height:0;padding:24px 22px 26px;border-radius:24px;top:calc(var(--header) + 16px + var(--i,0) * 12px)}
+  .paso-n{font-size:4.2rem}
+  .paso-ico{position:absolute;top:22px;right:22px;width:56px;height:56px;opacity:.9}
 }
 
 /* ---------- Accesibilidad ---------- */
@@ -861,6 +1055,10 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
   .gallery .main img{transition:none}
   .faq details::details-content,.undo,.chip-ind,.stream{transition:none}
+  .anillo-sec{height:auto}
+  .anillo-escena{position:relative;top:auto;height:min(760px,88svh)}
+  .pasos li{scale:1;filter:none}
+  .cursor{display:none}
 }
 @media (prefers-reduced-transparency:reduce){
   header.top,.tools{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -870,6 +1068,12 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
 <body>
 <a class="skip" href="#catalogo">Saltar al catálogo</a>
 <div class="sr" id="aviso" aria-live="polite"></div>
+<div class="intro-cortina" aria-hidden="true"></div>
+<div class="intro" aria-hidden="true">
+  <svg class="intro-logo" viewBox="6 44.5 140 60"><g fill="#FE8903" transform="matrix(1 0 -.7 1 51.8 0)"><path d="M27.5 44.8H125V56H27.5z"/><path d="M27.5 60.7H125V72H56v16H27.5z"/><path d="M65 77.6h60v14.7a12 12 0 0 1-12 12H27.5V93H97v-5H65z"/></g></svg>
+  <div class="intro-marca"><span><i style="--i:0">E</i><i style="--i:1">l</i><i style="--i:2">e</i><i style="--i:3">c</i><i style="--i:4">t</i><i style="--i:5">r</i><i style="--i:6">o</i><i style="--i:7">n</i><i style="--i:8">i</i><i style="--i:9">c</i></span><b><i style="--i:10">G</i><i style="--i:11">a</i><i style="--i:12">m</i><i style="--i:13">e</i><i style="--i:14">s</i></b></div>
+  <div class="intro-linea"></div>
+</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
@@ -928,7 +1132,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   <section class="hero" id="hero">
     <svg class="paths" id="paths" viewBox="0 0 696 316" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
     <div class="wrap hero-grid">
-    <div>
+    <div class="hero-texto">
       <p class="estado" id="heroEstado">Cargando catálogo…</p>
       <h1><span class="w">Scrollea,</span> <span class="w">compara,</span> <span class="w naranja">elige.</span></h1>
       <p class="lead">Consolas, palancas, juegos y accesorios con <strong>precio y stock al día</strong> en nuestros 3 locales de Quito, Cumbayá y Sangolquí. Arma tu pedido aquí y envíalo por WhatsApp.</p>
@@ -953,6 +1157,11 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
     </div>
   </section>
 
+  <div class="cintas" aria-hidden="true">
+    <div class="cinta cinta-b"><div class="cinta-pista"><span>Condado Shopping</span><i></i><span>Scala Shopping</span><i></i><span>Plaza del Valle</span><i></i><span>Pide por WhatsApp</span><i></i><span>Retira hoy</span><i></i><span>Paga como prefieras</span><i></i><span>Condado Shopping</span><i></i><span>Scala Shopping</span><i></i><span>Plaza del Valle</span><i></i><span>Pide por WhatsApp</span><i></i><span>Retira hoy</span><i></i><span>Paga como prefieras</span><i></i><span>Condado Shopping</span><i></i><span>Scala Shopping</span><i></i><span>Plaza del Valle</span><i></i><span>Pide por WhatsApp</span><i></i><span>Retira hoy</span><i></i><span>Paga como prefieras</span><i></i></div><div class="cinta-pista"><span>Condado Shopping</span><i></i><span>Scala Shopping</span><i></i><span>Plaza del Valle</span><i></i><span>Pide por WhatsApp</span><i></i><span>Retira hoy</span><i></i><span>Paga como prefieras</span><i></i><span>Condado Shopping</span><i></i><span>Scala Shopping</span><i></i><span>Plaza del Valle</span><i></i><span>Pide por WhatsApp</span><i></i><span>Retira hoy</span><i></i><span>Paga como prefieras</span><i></i><span>Condado Shopping</span><i></i><span>Scala Shopping</span><i></i><span>Plaza del Valle</span><i></i><span>Pide por WhatsApp</span><i></i><span>Retira hoy</span><i></i><span>Paga como prefieras</span><i></i></div></div>
+    <div class="cinta cinta-a"><div class="cinta-pista"><span>PlayStation</span><i></i><span>Nintendo</span><i></i><span>Xbox</span><i></i><span>Retro</span><i></i><span>Palancas</span><i></i><span>Juegos</span><i></i><span>Servicio técnico</span><i></i><span>Stock en vivo</span><i></i><span>PlayStation</span><i></i><span>Nintendo</span><i></i><span>Xbox</span><i></i><span>Retro</span><i></i><span>Palancas</span><i></i><span>Juegos</span><i></i><span>Servicio técnico</span><i></i><span>Stock en vivo</span><i></i></div><div class="cinta-pista"><span>PlayStation</span><i></i><span>Nintendo</span><i></i><span>Xbox</span><i></i><span>Retro</span><i></i><span>Palancas</span><i></i><span>Juegos</span><i></i><span>Servicio técnico</span><i></i><span>Stock en vivo</span><i></i><span>PlayStation</span><i></i><span>Nintendo</span><i></i><span>Xbox</span><i></i><span>Retro</span><i></i><span>Palancas</span><i></i><span>Juegos</span><i></i><span>Servicio técnico</span><i></i><span>Stock en vivo</span><i></i></div></div>
+  </div>
+
   <div class="confianza">
     <ul>
       <li><svg class="ico" aria-hidden="true"><use href="#i-refresh"/></svg><span><b>Stock en vivo</b>Se actualiza cada 15 minutos</span></li>
@@ -966,6 +1175,22 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
     <div class="wrap">
       <div class="sec-head reveal"><div><h2 class="sec-h" id="mundosTit">Elige tu consola</h2><p class="sec-sub">Todo para tu plataforma en un solo lugar: consolas, juegos, palancas y accesorios.</p></div></div>
       <div class="mundos reveal" id="mundos"></div>
+    </div>
+  </section>
+
+  <section class="anillo-sec" id="secAnillo" aria-labelledby="anilloTit" hidden>
+    <div class="anillo-escena">
+      <div class="wrap anillo-cab">
+        <p class="kicker">Vitrina 360°</p>
+        <h2 class="sec-h" id="anilloTit">Gira la vitrina</h2>
+        <p class="sec-sub">Consolas, palancas y juegos en 3D. Desliza para girar y toca un producto para verlo.</p>
+      </div>
+      <div class="anillo-lienzo" id="anilloLienzo" data-cursor="Arrastra"><canvas id="anilloCanvas" aria-hidden="true"></canvas></div>
+      <div class="wrap anillo-pie" id="anilloPie">
+        <button class="anillo-flecha" id="anilloAnt" type="button" aria-label="Producto anterior"><svg class="ico" aria-hidden="true"><use href="#i-left"/></svg></button>
+        <button class="anillo-ver" id="anilloVer" type="button"></button>
+        <button class="anillo-flecha" id="anilloSig" type="button" aria-label="Producto siguiente"><svg class="ico" aria-hidden="true"><use href="#i-right"/></svg></button>
+      </div>
     </div>
   </section>
 
@@ -1041,14 +1266,21 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
     </div>
   </section>
 
+  <section class="manifiesto" aria-label="Por qué comprar aquí">
+    <div class="wrap">
+      <p class="kicker">Electronic Games</p>
+      <p class="mani" id="mani">Tres locales. <em>Stock en vivo</em> cada 15 minutos. Tu pedido sale listo por <em class="wa">WhatsApp</em> y lo retiras donde te quede más cerca. Así de simple es jugar más.</p>
+    </div>
+  </section>
+
   <section class="sec" id="comprar" aria-labelledby="comprarTit">
     <div class="wrap">
       <div class="sec-head reveal"><div><h2 class="sec-h" id="comprarTit">Cómo comprar</h2><p class="sec-sub">Pides desde aquí y pagas cuando confirmamos que tu pedido está listo.</p></div></div>
-      <ol class="pasos reveal">
-        <li><h3>Arma tu pedido</h3><p>Toca el botón + en cada producto o elige la cantidad en su ficha.</p></li>
-        <li><h3>Elige local y pago</h3><p>Abre “Mi pedido”, escoge dónde retiras y si pagas en efectivo, transferencia o tarjeta.</p></li>
-        <li><h3>Envíalo por WhatsApp</h3><p>El mensaje sale listo con productos, cantidades y total. Te confirmamos disponibilidad.</p></li>
-        <li><h3>Retira en el local</h3><p>Pasa por la tienda que elegiste, en el horario de atención.</p></li>
+      <ol class="pasos" id="pasos">
+        <li style="--i:0"><span class="paso-n" aria-hidden="true">01</span><div><h3>Arma tu pedido</h3><p>Toca el botón + en cada producto o elige la cantidad en su ficha.</p></div><svg class="ico paso-ico" aria-hidden="true"><use href="#i-bag"/></svg></li>
+        <li style="--i:1"><span class="paso-n" aria-hidden="true">02</span><div><h3>Elige local y pago</h3><p>Abre “Mi pedido”, escoge dónde retiras y si pagas en efectivo, transferencia o tarjeta.</p></div><svg class="ico paso-ico" aria-hidden="true"><use href="#i-card"/></svg></li>
+        <li style="--i:2"><span class="paso-n" aria-hidden="true">03</span><div><h3>Envíalo por WhatsApp</h3><p>El mensaje sale listo con productos, cantidades y total. Te confirmamos disponibilidad.</p></div><svg class="ico paso-ico" aria-hidden="true"><use href="#i-wa"/></svg></li>
+        <li style="--i:3"><span class="paso-n" aria-hidden="true">04</span><div><h3>Retira en el local</h3><p>Pasa por la tienda que elegiste, en el horario de atención.</p></div><svg class="ico paso-ico" aria-hidden="true"><use href="#i-pin"/></svg></li>
       </ol>
     </div>
   </section>
@@ -1108,6 +1340,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
       <li><a href="https://www.instagram.com/electronicgamesec/" target="_blank" rel="noopener">Instagram @electronicgamesec</a></li>
     </ul></div>
   </div>
+  <p class="foot-gigante" aria-hidden="true" translate="no"><span style="--i:0">E</span><span style="--i:1">l</span><span style="--i:2">e</span><span style="--i:3">c</span><span style="--i:4">t</span><span style="--i:5">r</span><span style="--i:6">o</span><span style="--i:7">n</span><span style="--i:8">i</span><span style="--i:9">c</span><span class="esp" style="--i:10"></span><span class="g" style="--i:11">G</span><span class="g" style="--i:12">a</span><span class="g" style="--i:13">m</span><span class="g" style="--i:14">e</span><span class="g" style="--i:15">s</span></p>
   <div class="wrap foot-bottom">
     <span>© <span id="anio">2026</span> Electronic Games</span>
     <span>Precios en dólares con IVA incluido. Stock sujeto a confirmación por WhatsApp.</span>
@@ -1279,6 +1512,8 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   </div>
   </div>
 </dialog>
+
+<div class="cursor" id="cursor" aria-hidden="true"><div class="cursor-anillo"><span id="cursorTxt"></span></div></div>
 
 <a class="wa-float" id="waFloat" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
 
@@ -1623,6 +1858,7 @@ async function loadProducts(){
   const conPlat = CONFIG.plataformas.filter(([n])=>porPlat.get(n));
   $("plat").insertAdjacentHTML("beforeend", conPlat.map(([n])=>`<option value="${esc(n)}">${esc(n)} (${porPlat.get(n)})</option>`).join(""));
   pintarMundos();
+  prepararAnillo();
   datosEstructurados();
 
   // Portada como vitrina: lo más vendido que ya tiene foto (si todavía hay pocas fotos, todo).
@@ -1755,6 +1991,8 @@ if (matchMedia("(hover: hover) and (pointer: fine)").matches){
       el.style.setProperty("--my", `${y}px`);
       el.style.setProperty("--ty", `${((x / r.width) - 0.5) * 7}deg`);
       el.style.setProperty("--tx", `${(0.5 - y / r.height) * 7}deg`);
+      el.style.setProperty("--nx", (x / r.width - 0.5).toFixed(3));
+      el.style.setProperty("--ny", (y / r.height - 0.5).toFixed(3));
     });
   }, {passive: true});
   // Al salir de la tarjeta vuelve a quedar derecha.
@@ -1763,6 +2001,8 @@ if (matchMedia("(hover: hover) and (pointer: fine)").matches){
     if (!el || el.contains(e.relatedTarget)) return;
     el.style.setProperty("--tx", "0deg");
     el.style.setProperty("--ty", "0deg");
+    el.style.setProperty("--nx", "0");
+    el.style.setProperty("--ny", "0");
   }, {passive: true});
 }
 
@@ -2034,7 +2274,7 @@ if (matchMedia("(hover: none)").matches && !reduceMotion() && "IntersectionObser
 }
 
 // Diagnóstico: abrir la página con ?diag muestra qué soporta este celular o navegador.
-const VERSION = "2026-09-24-movil";
+const VERSION = "2026-09-24-marca-3d";
 if (new URLSearchParams(location.search).has("diag")){
   const d = document.createElement("pre");
   d.style.cssText = "position:fixed;left:8px;right:8px;bottom:8px;z-index:99;margin:0;background:#fff;color:#000;font:12px/1.5 monospace;padding:12px;border-radius:12px;white-space:pre-wrap;box-shadow:0 10px 30px rgba(0,0,0,.5)";
@@ -2043,6 +2283,8 @@ if (new URLSearchParams(location.search).has("diag")){
     `Navegador: ${navigator.userAgent}`,
     `"Reducir animaciones" del celular: ${reduceMotion() ? "ACTIVADO (por eso se apagan los efectos)" : "no"}`,
     `Foto que vuela a la ficha: ${document.startViewTransition ? "sí" : "no (navegador antiguo)"}`,
+    `Vitrina 360° en 3D: ${"WebGL2RenderingContext" in window ? "sí" : "no (sin WebGL 2)"}`,
+    `Animaciones con el scroll: ${CSS.supports("animation-timeline: view()") ? "sí" : "no (navegador antiguo)"}`,
     `Pantalla táctil: ${matchMedia("(hover: none)").matches ? "sí" : "no"}`
   ].join("\n");
   document.body.appendChild(d);
@@ -2091,6 +2333,213 @@ if (!reduceMotion()){
       inclinar(14 + (b - 45) / 7, g / 4);
     }, {passive: true});
   }
+}
+
+// ===== Vitrina 360°: anillo 3D de productos alrededor del logo en relieve =====
+// La sección aparece cuando cargan los productos; el 3D (escena3d.js + three.js, ~150 KB) se
+// descarga recién cuando la persona se acerca a ella. Sin WebGL 2 o con "ahorro de datos", no se muestra.
+const A3D = {lista: [], i: 0, api: null, anunciar: false};
+function prepararAnillo(){
+  const conFoto = PRODUCTS.filter(p=>p.photos.length && maxQty(p) > 0);
+  // Se alternan consolas, palancas y juegos (lo más vendido de cada una), para que se sienta como una vitrina.
+  const grupos = ["consolas", "palancas", "juegos", "accesorios"].map(c=>conFoto.filter(p=>p.cat === c)).filter(g=>g.length);
+  const lista = [];
+  for (let k = 0; lista.length < 14 && grupos.some(g=>g[k]); k++) for (const g of grupos) if (g[k] && lista.length < 14) lista.push(g[k]);
+  const puede = "WebGL2RenderingContext" in window && "ResizeObserver" in window && "IntersectionObserver" in window && !navigator.connection?.saveData;
+  if (lista.length < 6 || !puede) return;
+  A3D.lista = lista;
+  $("secAnillo").hidden = false;
+  pintarInfoAnillo(0);
+  new IntersectionObserver(([e])=>document.body.classList.toggle("en-anillo", e.isIntersecting), {rootMargin: "-40% 0px -40% 0px"}).observe($("secAnillo"));
+  const io = new IntersectionObserver(([e])=>{ if (e.isIntersecting){ io.disconnect(); cargarAnillo(); } }, {rootMargin: "900px 0px"});
+  io.observe($("secAnillo"));
+}
+async function cargarAnillo(){
+  try {
+    const {iniciar} = await import(`./escena3d.js?v=${VERSION}`);   // la versión evita usar una copia vieja tras publicar
+    A3D.api = iniciar({
+      contenedor: $("anilloLienzo"), lienzo: $("anilloCanvas"), seccion: $("secAnillo"), reducir: reduceMotion(),
+      productos: A3D.lista.map(p=>{
+        const {txt, m} = consolaDe(p);
+        return {code: p.code, foto: p.photos[0], precio: precio(p, "efectivo"), tag: txt, tagColor: colorMundo(m), tagInk: m === "Retro" ? "#140900" : "#fff"};
+      }),
+      alCambiar: pintarInfoAnillo,
+      alElegir: code=>{ medir("vitrina-360", {codigo: code}); openProduct(code); }
+    });
+    $("anilloLienzo").classList.add("listo");
+  } catch(e) {
+    $("secAnillo").hidden = true;   // navegador sin WebGL o sin memoria para 3D: la tienda sigue igual
+  }
+}
+function pintarInfoAnillo(i){
+  const p = A3D.lista[i]; if (!p) return;
+  const cambio = A3D.i !== i;
+  A3D.i = i;
+  const b = $("anilloVer"), pr = fmt(precio(p, "efectivo"));
+  b.dataset.code = p.code;
+  b.setAttribute("aria-label", `Ver ${p.name}, ${pr}`);
+  b.innerHTML = `<span class="cat-row"><span class="cat">${esc(p.cat_label || "")}</span>${etiquetaPlat(p)}</span><strong>${esc(p.name)}</strong><span class="ir">${pr}<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span>`;
+  if (cambio && !reduceMotion()) b.animate?.([{opacity: 0.35, translate: "0 6px"}, {opacity: 1, translate: "0 0"}], {duration: 320, easing: "cubic-bezier(0.23,1,0.32,1)"});
+  if (A3D.anunciar){ A3D.anunciar = false; $("aviso").textContent = `${p.name}, ${pr}`; }
+}
+function girarAnillo(d){
+  A3D.anunciar = true;
+  if (A3D.api) A3D.api.girar(d);
+  else pintarInfoAnillo((A3D.i + d + A3D.lista.length) % A3D.lista.length);
+}
+$("anilloAnt").onclick = ()=>girarAnillo(-1);
+$("anilloSig").onclick = ()=>girarAnillo(1);
+$("anilloVer").onclick = ()=>{ const code = $("anilloVer").dataset.code; if (code){ medir("vitrina-360", {codigo: code}); openProduct(code); } };
+$("anilloPie").addEventListener("keydown", e=>{
+  if (e.key === "ArrowLeft" || e.key === "ArrowRight"){ e.preventDefault(); girarAnillo(e.key === "ArrowRight" ? 1 : -1); }
+});
+
+// ===== Cintas cruzadas: corren solas y se aceleran (y cambian de sentido) con el scroll =====
+{
+  const zona = document.querySelector(".cintas"), cintas = [...document.querySelectorAll(".cinta")];
+  if (zona && !reduceMotion() && "IntersectionObserver" in window){
+    let visible = false, cuadro = 0, t0 = 0, x = 0, dir = 1, extra = 0, yAntes = scrollY;
+    let anchos = [];
+    const medirCintas = () => { anchos = cintas.map(c=>c.firstElementChild.offsetWidth); };
+    addEventListener("resize", medirCintas, {passive: true});
+    document.fonts?.ready.then(medirCintas);
+    addEventListener("scroll", ()=>{
+      const dy = scrollY - yAntes; yAntes = scrollY;
+      if (!visible || !dy) return;
+      dir = Math.sign(dy);
+      extra = Math.min(700, extra + Math.abs(dy) * 9);
+    }, {passive: true});
+    const mover = t=>{
+      if (!visible){ cuadro = 0; return; }
+      const dt = Math.min(0.05, (t - (t0 || t)) / 1000); t0 = t;
+      extra *= Math.exp(-dt * 2.6);
+      x += (48 + extra) * dt * dir;
+      cintas.forEach((c, k)=>{
+        const w = anchos[k]; if (!w) return;
+        const d = ((((k ? -x : x) % w) + w) % w).toFixed(1);
+        for (const pista of c.children) pista.style.transform = `translate3d(${-d}px,0,0)`;
+      });
+      cuadro = requestAnimationFrame(mover);
+    };
+    medirCintas();
+    new IntersectionObserver(([e])=>{
+      visible = e.isIntersecting;
+      if (visible && !cuadro){ t0 = 0; cuadro = requestAnimationFrame(mover); }
+    }).observe(zona);
+  }
+}
+
+// Solo mientras la sección está en pantalla se escucha el scroll (y se dibuja una vez por cuadro).
+function alPasar(el, pintar){
+  let cuadro = 0;
+  const pedir = () => { if (!cuadro) cuadro = requestAnimationFrame(()=>{ cuadro = 0; pintar(); }); };
+  new IntersectionObserver(([e])=>{
+    if (e.isIntersecting){ addEventListener("scroll", pedir, {passive: true}); addEventListener("resize", pedir, {passive: true}); pintar(); }
+    else { removeEventListener("scroll", pedir); removeEventListener("resize", pedir); }
+  }).observe(el);
+}
+
+// ===== Manifiesto: cada palabra se enciende a medida que se lee =====
+{
+  const m = $("mani");
+  if (m && !reduceMotion() && "IntersectionObserver" in window){
+    const envolver = nodo=>{
+      for (const n of [...nodo.childNodes]){
+        if (n.nodeType === 1){ envolver(n); continue; }
+        if (n.nodeType !== 3) continue;
+        const f = document.createDocumentFragment();
+        for (const t of n.textContent.split(/(\s+)/)) if (t) f.append(/^\s+$/.test(t) ? t : Object.assign(document.createElement("span"), {className: "pal", textContent: t}));
+        n.replaceWith(f);
+      }
+    };
+    envolver(m);
+    const pals = [...m.querySelectorAll(".pal")];
+    m.classList.add("activo");
+    alPasar(m, ()=>{
+      const r = m.getBoundingClientRect(), vh = innerHeight;
+      const k = Math.min(1, Math.max(0, (vh * 0.88 - r.top) / (r.height * 0.9 + vh * 0.3)));
+      const n = k * (pals.length + 1);
+      pals.forEach((w, i)=>w.style.setProperty("--o", (0.14 + 0.86 * Math.min(1, Math.max(0, n - i))).toFixed(2)));
+    });
+  }
+}
+
+// ===== Cómo comprar: cada paso se achica y oscurece cuando el siguiente lo tapa =====
+{
+  const pasos = [...document.querySelectorAll("#pasos li")];
+  if (pasos.length > 1 && !reduceMotion() && "IntersectionObserver" in window)
+    alPasar($("pasos"), ()=>pasos.forEach((li, i)=>{
+      const sig = pasos[i + 1]; if (!sig) return;
+      const top = li.getBoundingClientRect().top, alto = li.offsetHeight;
+      const k = Math.min(1, Math.max(0, (top + alto - sig.getBoundingClientRect().top) / Math.max(1, alto - 18)));
+      li.style.setProperty("--k", k.toFixed(3));
+    }));
+}
+
+// ===== Con mouse: cursor de marca, botones magnéticos, texto que rueda y luz en la portada =====
+if (matchMedia("(hover: hover) and (pointer: fine)").matches && !reduceMotion()){
+  // Cursor: un aro naranja que sigue al mouse con un poco de retraso. Sobre un producto dice "Ver";
+  // sobre la vitrina 360°, "Arrastra". El cursor normal del sistema se mantiene.
+  const cur = $("cursor"), txt = $("cursorTxt");
+  let x = -100, y = -100, cx = x, cy = y, cuadro = 0, dentro = false;
+  const seguir = ()=>{
+    cx += (x - cx) * 0.24; cy += (y - cy) * 0.24;
+    cur.style.transform = `translate3d(${cx.toFixed(1)}px,${cy.toFixed(1)}px,0)`;
+    cuadro = Math.abs(x - cx) + Math.abs(y - cy) > 0.3 ? requestAnimationFrame(seguir) : 0;
+  };
+  const estado = t=>{
+    // Las ventanas (ficha, pedido, buscador) quedan por encima de todo: ahí el aro sobra.
+    if (document.querySelector("dialog[open]") || t.closest?.("input, textarea, select")){ cur.classList.remove("on"); return; }
+    cur.classList.add("on");
+    const conTexto = t.closest?.("[data-cursor], .card-open, .stream-item");
+    const etiqueta = conTexto ? (conTexto.dataset.cursor || "Ver") : "";
+    cur.classList.toggle("txt", !!etiqueta);
+    cur.classList.toggle("link", !etiqueta && !!t.closest?.("a, button, summary, label, [role=option]"));
+    if (etiqueta && txt.textContent !== etiqueta) txt.textContent = etiqueta;
+  };
+  document.addEventListener("pointermove", e=>{
+    if (e.pointerType !== "mouse") return;
+    x = e.clientX; y = e.clientY;
+    if (!dentro){ cx = x; cy = y; dentro = true; }
+    estado(e.target);
+    if (!cuadro) cuadro = requestAnimationFrame(seguir);
+  }, {passive: true});
+  document.documentElement.addEventListener("pointerleave", ()=>{ cur.classList.remove("on"); dentro = false; });
+  document.addEventListener("pointerdown", ()=>cur.classList.add("abajo"), {passive: true});
+  document.addEventListener("pointerup", ()=>cur.classList.remove("abajo"), {passive: true});
+
+  // Botones magnéticos: se acercan al mouse y vuelven con un pequeño rebote al salir.
+  const MAGNETICOS = ".btn, .icon-btn, .cart-btn, .wa-top, .rail-nav button, .more button, .anillo-flecha";
+  let iman = null;
+  const soltarIman = el=>{ if (!el) return; el.classList.remove("imanta"); el.style.translate = ""; };
+  document.addEventListener("pointermove", e=>{
+    const el = e.target.closest?.(MAGNETICOS);
+    if (el !== iman){ soltarIman(iman); iman = el; if (el) el.classList.add("magnet", "imanta"); }
+    if (!el || el.disabled) return;
+    const r = el.getBoundingClientRect();
+    const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+    el.style.translate = `${(dx * 0.22).toFixed(1)}px ${(dy * 0.3).toFixed(1)}px`;
+  }, {passive: true});
+  document.addEventListener("pointerout", e=>{ if (iman && !iman.contains(e.relatedTarget)){ soltarIman(iman); iman = null; } }, {passive: true});
+
+  // El texto de los botones principales "rueda" al pasar el mouse (se envuelve una sola vez).
+  for (const b of document.querySelectorAll(".btn, .more button"))
+    for (const n of [...b.childNodes]) if (n.nodeType === 3 && n.textContent.trim()){
+      const s = document.createElement("span");
+      s.className = "rodar";
+      s.innerHTML = `<span>${esc(n.textContent.trim())}</span>`;
+      n.replaceWith(s);
+    }
+
+  // Portada: una luz cálida sigue al mouse por detrás del titular.
+  const hero = $("hero");
+  hero.addEventListener("pointermove", e=>{
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty("--hx", `${(e.clientX - r.left).toFixed(0)}px`);
+    hero.style.setProperty("--hy", `${(e.clientY - r.top).toFixed(0)}px`);
+    hero.classList.add("luz");
+  }, {passive: true});
+  hero.addEventListener("pointerleave", ()=>hero.classList.remove("luz"));
 }
 
 // ===== Pedido enviado: celebración (el momento más importante de la tienda) =====
