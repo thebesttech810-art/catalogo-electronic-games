@@ -124,6 +124,8 @@ def pagina(p, cuando):
 <style>
 :root{{--bg:#0A0A0B;--surface:#151416;--line:#2C2A2F;--ink:#F7F4EF;--muted:#A39C94;--brand:#FF7A00;--brand-hi:#FF9A2E;--brand-ink:#140900;--ok:#3DDC84;--low:#FFC61A;--out:#FF5A5A;--wa:#25D366;--wa-ink:#052912;color-scheme:dark}}
 *{{box-sizing:border-box}}
+@view-transition{{navigation:auto}}
+@media (prefers-reduced-motion:reduce){{::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){{animation:none!important}}}}
 body{{margin:0;background:var(--bg);color:var(--ink);font-family:"Rubik",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}}
 a{{color:inherit}}
 :focus-visible{{outline:2px solid var(--brand-hi);outline-offset:2px}}

@@ -564,6 +564,35 @@ dialog.cmdk[open]{display:flex;flex-direction:column}
   .btn-brand:hover::before{translate:110% 0;transition:translate 750ms var(--ease-out)}
 }
 
+/* ---------- Movimiento con propósito ---------- */
+/* Cambio suave entre el catálogo y las páginas de producto (navegadores que lo soportan). */
+@view-transition{navigation:auto}
+/* La foto de la tarjeta "vuela" hasta la ficha del producto. */
+::view-transition-group(foto-producto){animation-duration:420ms;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(root),::view-transition-new(root){animation-duration:240ms}
+.vt-ficha dialog,.vt-ficha dialog::backdrop{transition:none!important}
+/* Miniatura que vuela al pedido al tocar + */
+.vuelo{position:fixed;z-index:80;pointer-events:none;border-radius:14px;overflow:hidden;background:var(--stage-bg);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.vuelo img{width:100%;height:100%;object-fit:contain;padding:9%;mix-blend-mode:multiply}
+/* Zoom de la foto en la ficha, donde apunta el mouse */
+.gallery .main.zoomable{cursor:zoom-in}
+.gallery .main img{transition:scale 260ms var(--ease-out)}
+.gallery .main.zoom img{scale:2.1}
+/* Reflejo de luz que cruza la foto */
+.card .img{position:relative}
+.card .img::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.55) 50%,transparent 62%);translate:-130% 0}
+/* Encabezado con sombra al bajar */
+header.top{transition:box-shadow 200ms ease}
+header.top.con-sombra{box-shadow:0 10px 30px rgba(0,0,0,.45)}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .card:hover .img::after{translate:130% 0;transition:translate 900ms var(--ease-out)}
+}
+@media (prefers-reduced-motion:no-preference){
+  /* Al cambiar de categoría o consola, los productos entran en cascada (solo los primeros 12 esperan). */
+  .card.aparece{animation:subir-card 420ms var(--ease-out) backwards;animation-delay:calc(var(--i,0) * 32ms)}
+}
+@keyframes subir-card{from{opacity:0;translate:0 16px}}
+
 /* ---------- Entradas ---------- */
 @media (prefers-reduced-motion:no-preference){
   /* El titular entra palabra por palabra (patrón "Animated Hero"), una sola vez. */
@@ -705,6 +734,8 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .faq summary::after{transition:none}
   .stream-track,.paths path,.skel .img,.skel i{animation:none!important}
   .stream-pausa{display:none}
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+  .gallery .main img{transition:none}
 }
 @media (prefers-reduced-transparency:reduce){
   header.top,.tools{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -1601,6 +1632,9 @@ function render(){
       <div class="atajos">${CONFIG.atajos.map(t=>`<button type="button" data-atajo="${esc(t)}">${esc(t)}</button>`).join("")}</div>
       ${S.q.trim() ? `<span class="pidelo-txt">¿No lo encuentras? Te decimos si lo tenemos o si nos llega.</span>${pideloHTML(S.q.trim())}<br>` : ""}
       <button type="button" data-reset>Ver todo el catálogo</button></div>`;
+  if (S.animar !== undefined && !reduceMotion())
+    [...$("grid").children].forEach((c, i)=>{ if (i >= S.animar && c.classList.contains("card")) { c.classList.add("aparece"); c.style.setProperty("--i", Math.min(i - S.animar, 12)); } });
+  delete S.animar;
   if (!list.length && S.q.trim()) medirSinResultados(S.q.trim());
   pintarMundoActual();
   $("more").hidden = vis.length >= list.length;
@@ -1618,7 +1652,7 @@ function sincronizarControles(){
   }
 }
 function aplicarFiltro(cambios, ir = true){
-  Object.assign(S, cambios, {visibles: CONFIG.porPagina});
+  Object.assign(S, cambios, {visibles: CONFIG.porPagina, animar: 0});
   sincronizarControles();
   render();
   if ($("dlg").open) $("dlg").close();
@@ -1684,6 +1718,48 @@ document.querySelectorAll(".rail-nav").forEach(nav=>{
 addEventListener("resize", ()=>document.querySelectorAll(".rail-nav").forEach(actualizarFlechas), {passive: true});
 
 // ===== Ficha =====
+// Abre la ficha haciendo que la foto de la tarjeta "vuele" hasta su lugar en la ficha
+// (View Transitions). Sin soporte o con "reducir movimiento", se abre como siempre.
+function abrirProducto(code, origen){
+  if (!document.startViewTransition || reduceMotion() || !origen || document.visibilityState !== "visible") { openProduct(code); return; }
+  origen.style.viewTransitionName = "foto-producto";
+  document.documentElement.classList.add("vt-ficha");
+  const vt = document.startViewTransition(()=>{
+    origen.style.viewTransitionName = "";
+    openProduct(code);
+    $("dMain").style.viewTransitionName = "foto-producto";
+  });
+  vt.ready.catch(()=>{});   // si el navegador salta la animación, la ficha igual queda abierta
+  vt.finished.finally(()=>{
+    $("dMain").style.viewTransitionName = "";
+    origen.style.viewTransitionName = "";
+    document.documentElement.classList.remove("vt-ficha");
+  });
+}
+
+// Al tocar +, una miniatura del producto vuela en arco hasta el botón del pedido.
+// Devuelve cuánto tarda, para que el contador rebote justo al llegar.
+function volarAlPedido(origen){
+  if (!origen || reduceMotion() || !origen.animate) return 0;
+  const img = origen.querySelector("img"); if (!img) return 0;
+  const r0 = origen.getBoundingClientRect(), r1 = $("cartBtn").getBoundingClientRect();
+  if (!r0.width || !r1.width) return 0;
+  const clon = document.createElement("div");
+  clon.className = "vuelo";
+  clon.style.cssText = `left:${r0.left}px;top:${r0.top}px;width:${r0.width}px;height:${r0.height}px`;
+  clon.innerHTML = `<img src="${esc(img.currentSrc || img.src)}" alt="">`;
+  document.body.appendChild(clon);
+  const dx = r1.left + r1.width / 2 - (r0.left + r0.width / 2), dy = r1.top + r1.height / 2 - (r0.top + r0.height / 2);
+  const s = 34 / r0.width, dur = 650;
+  clon.animate([
+    {transform: "translate(0,0) scale(1)", opacity: 1},
+    {transform: `translate(${dx * 0.45}px, ${dy * 0.45 - 90}px) scale(${(1 + s) / 2})`, opacity: 1, offset: 0.5},
+    {transform: `translate(${dx}px, ${dy}px) scale(${s})`, opacity: 0.2}
+  ], {duration: dur, easing: "cubic-bezier(.45,0,.25,1)"}).finished.then(()=>clon.remove(), ()=>clon.remove());
+  setTimeout(()=>clon.remove(), dur + 400);   // por si la pestaña se va a segundo plano a mitad del vuelo
+  return dur - 60;
+}
+
 function openProduct(code){
   const p = buscar(code);
   $("dMigaCat").textContent = p.cat_label || "";
@@ -1699,6 +1775,8 @@ function openProduct(code){
   const show = v => {
     $("dMain").innerHTML = `<img src="${esc(fotos[v])}" alt="${esc(p.name)}, foto ${v+1}" width="500" height="500" data-code="${esc(p.code)}" data-i="${v}" onerror="onPhotoError(this)">`;
     $("dThumbs").querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-current", i === v));
+    $("dMain").classList.toggle("zoomable", p.photos.length > 0 && matchMedia("(hover: hover) and (pointer: fine)").matches);
+    $("dMain").classList.remove("zoom");
   };
   $("dThumbs").hidden = fotos.length < 2;
   $("dThumbs").innerHTML = fotos.map((src,v)=>`<button type="button" aria-label="Foto ${v+1}"><img src="${esc(src)}" alt="" width="64" height="64" data-code="${esc(p.code)}" data-i="${v}" onerror="onPhotoError(this)"></button>`).join("");
@@ -1737,6 +1815,21 @@ function openProduct(code){
   actualizarFlechas(document.querySelector('.rail-nav[data-rail="dRel"]'));
   $("dClose").focus({preventScroll: true});
   escribirURL();
+}
+
+// Zoom de la foto en la ficha: se amplía justo donde apunta el mouse.
+$("dMain").addEventListener("pointermove", e=>{
+  if (!$("dMain").classList.contains("zoomable")) return;
+  const r = $("dMain").getBoundingClientRect(), img = $("dMain").querySelector("img"); if (!img) return;
+  img.style.transformOrigin = `${((e.clientX - r.left) / r.width * 100).toFixed(1)}% ${((e.clientY - r.top) / r.height * 100).toFixed(1)}%`;
+  $("dMain").classList.add("zoom");
+});
+$("dMain").addEventListener("pointerleave", ()=>$("dMain").classList.remove("zoom"));
+
+// Encabezado con sombra apenas se baja de la parte de arriba.
+{
+  const cabecera = document.querySelector("header.top");
+  addEventListener("scroll", ()=>cabecera.classList.toggle("con-sombra", scrollY > 8), {passive: true});
 }
 
 async function compartir(){
@@ -1791,12 +1884,15 @@ function setCantidad(code, q){
 }
 
 // Confirmación al agregar: el contador rebota, el celular vibra un instante y se anuncia a lectores de pantalla.
-function confirmarAgregado(p, n){
+function confirmarAgregado(p, n, retraso = 0){
   $("aviso").textContent = `Agregado al pedido: ${n > 1 ? n + " x " : ""}${p.name}`;
   try { navigator.vibrate?.(10); } catch(e) {}
   if (reduceMotion()) return;
-  for (const el of [$("cartCount"), $("cartBarN")])
-    el.animate?.([{scale: 1}, {scale: 1.25}, {scale: 1}], {duration: 260, easing: "cubic-bezier(0.23,1,0.32,1)"});
+  // El contador rebota cuando llega la miniatura que vuela (o al instante si no hay vuelo).
+  setTimeout(()=>{
+    for (const el of [$("cartCount"), $("cartBarN")])
+      el.animate?.([{scale: 1}, {scale: 1.35}, {scale: 1}], {duration: 300, easing: "cubic-bezier(0.23,1,0.32,1)"});
+  }, retraso);
 }
 
 // Quitar y vaciar se pueden deshacer, en vez de pedir confirmación.
@@ -2185,12 +2281,12 @@ $("chips").addEventListener("click", e=>{
 });
 $("q").addEventListener("input", e=>{ S.q = e.target.value; S.visibles = CONFIG.porPagina; render(); });
 $("q").addEventListener("keydown", e=>{ if (e.key === "Enter") { e.preventDefault(); $("grid").scrollIntoView({behavior: reduceMotion() ? "auto" : "smooth", block: "start"}); } });
-$("plat").addEventListener("change", e=>{ S.plat = e.target.value; S.visibles = CONFIG.porPagina; render(); });
-$("local").addEventListener("change", e=>{ S.local = e.target.value; render(); });
-$("sort").addEventListener("change", e=>{ S.sort = e.target.value; render(); });
-$("onlyStock").addEventListener("change", e=>{ S.only = e.target.checked; S.visibles = CONFIG.porPagina; render(); });
+$("plat").addEventListener("change", e=>{ S.plat = e.target.value; S.visibles = CONFIG.porPagina; S.animar = 0; render(); });
+$("local").addEventListener("change", e=>{ S.local = e.target.value; S.animar = 0; render(); });
+$("sort").addEventListener("change", e=>{ S.sort = e.target.value; S.animar = 0; render(); });
+$("onlyStock").addEventListener("change", e=>{ S.only = e.target.checked; S.visibles = CONFIG.porPagina; S.animar = 0; render(); });
 $("limpiar").addEventListener("click", resetAll);
-$("moreBtn").addEventListener("click", ()=>{ S.visibles += CONFIG.porPagina; render(); });
+$("moreBtn").addEventListener("click", ()=>{ S.animar = S.visibles; S.visibles += CONFIG.porPagina; render(); });
 
 // Clics en tarjetas, carruseles, categorías y atajos (en cualquier parte de la página).
 document.addEventListener("click", e=>{
@@ -2200,12 +2296,18 @@ document.addEventListener("click", e=>{
   const fav = e.target.closest("[data-fav]");
   if (fav){ alternarFavorito(fav.dataset.fav); return; }
   const add = e.target.closest("[data-add]");
-  if (add){ setCantidad(add.dataset.add, 1); confirmarAgregado(buscar(add.dataset.add), 1); medir("agregar-al-pedido", {codigo: add.dataset.add}); return; }
+  if (add){
+    const origen = add.closest(".card")?.querySelector(".img");
+    setCantidad(add.dataset.add, 1);
+    confirmarAgregado(buscar(add.dataset.add), 1, volarAlPedido(origen));
+    medir("agregar-al-pedido", {codigo: add.dataset.add});
+    return;
+  }
   if (e.target.closest("[data-ver-pedido]")){ abrirCarrito(); return; }
   if (e.target.closest("[data-abrir-buscador]")){ e.preventDefault(); abrirBuscador(); return; }
   if (e.target.closest("[data-abrir-favoritos]")){ e.preventDefault(); abrirFavoritos(); return; }
   const open = e.target.closest(".card-open, .stream-item");
-  if (open){ openProduct(open.dataset.code); return; }
+  if (open){ abrirProducto(open.dataset.code, open.classList.contains("stream-item") ? open : open.querySelector(".img")); return; }
   const cat = e.target.closest("[data-ir-cat]");
   if (cat){ e.preventDefault(); aplicarFiltro({cat: cat.dataset.irCat, q: "", plat: "all"}); return; }
   const plat = e.target.closest("[data-ir-plat]");
