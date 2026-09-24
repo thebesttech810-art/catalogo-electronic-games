@@ -6,6 +6,8 @@ stock_por_producto.json
 rotacion.json
 ventas_cache/
 comisiones.xlsx
+# Páginas de cada producto: las crea paginas_producto.py en cada publicación
+docs/p/
 FOTOS CATALOGO/
 *.zip
 

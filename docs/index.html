@@ -447,6 +447,21 @@ dialog.sheet.izq{margin:0 auto 0 0;border-radius:0 18px 18px 0}
 .menu-nav a{padding:16px 4px;border-bottom:1px solid var(--line);text-decoration:none;font-weight:800;font-style:italic;text-transform:uppercase;font-size:1.3rem}
 .menu-extra{padding:20px;display:grid;gap:10px;color:var(--muted);font-size:.93rem}
 
+/* ---------- Favoritos, vistos y WhatsApp flotante ---------- */
+.fav{position:absolute;top:10px;right:10px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;display:grid;place-items:center;background:rgba(255,255,255,.92);color:#2A2522;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);transition:scale 160ms var(--ease-out),color 160ms ease}
+.fav .ico{width:20px;height:20px}
+.fav[aria-pressed="true"],.share-btn[aria-pressed="true"]{color:var(--brand)}
+:is(.fav,.share-btn,.fav-top)[aria-pressed="true"] .ico,.fav-top.on .ico{fill:currentColor}
+.fav:active{scale:.9}
+.fav-top{position:relative}
+.fav-top.on{color:var(--brand)}
+.fav-n{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--brand);color:var(--brand-ink);font-size:.72rem;font-weight:800;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.pie-acc{display:flex;gap:8px;flex-wrap:wrap}
+.sec-acc{display:flex;align-items:center;gap:14px}
+.empty .pidelo,.cmdk-vacio .pidelo{display:inline-flex;width:auto;margin-top:18px;padding:12px 20px}
+.empty .pidelo-txt{display:block;margin-top:22px;color:var(--ink);font-weight:600}
+.wa-float{display:none}
+
 /* ---------- Buscador rápido (patrón "Command Palette", Ctrl+K) ---------- */
 dialog.cmdk{width:min(640px,calc(100% - 24px));margin:10vh auto auto;max-height:78dvh;overflow:hidden}
 dialog.cmdk[open]{display:flex;flex-direction:column}
@@ -580,6 +595,14 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .tile-ico{width:52px;height:52px}
   dialog.cmdk{width:100%;max-height:100dvh;height:100dvh;margin:0;border-radius:0}
   .cmdk-pie .teclas{display:none}
+  .fav-top{display:none}
+  .fav{width:36px;height:36px;top:8px;right:8px}
+  /* WhatsApp siempre a mano en el celular, cuando ya se bajó de la portada; sube si aparece la barra del pedido. */
+  .wa-float{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:6;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--wa);color:var(--wa-ink);box-shadow:0 10px 26px rgba(0,0,0,.5);
+    opacity:0;scale:.8;visibility:hidden;transition:opacity 200ms ease,scale 200ms var(--ease-out),translate 320ms var(--ease-drawer),visibility 0s linear 200ms}
+  .wa-float svg{width:28px;height:28px}
+  body.pasado-hero .wa-float{opacity:1;scale:1;visibility:visible;transition:opacity 200ms ease,scale 200ms var(--ease-out),translate 320ms var(--ease-drawer),visibility 0s}
+  body.con-pedido .wa-float{translate:0 -76px}
   .cart-btn{padding:6px 8px 6px 11px}
   .wordmark{font-size:.95rem;line-height:1.05}
   .wordmark b{display:block}
@@ -663,6 +686,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.3s-7.4-4.5-9.1-9.1C1.8 8 3.7 4.6 7.2 4.6c2 0 3.4 1.1 4.8 2.9 1.4-1.8 2.8-2.9 4.8-2.9 3.5 0 5.4 3.4 4.3 6.6-1.7 4.6-9.1 9.1-9.1 9.1Z"/></symbol>
 </svg>
 
 <header class="top">
@@ -680,6 +704,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
     </nav>
     <div class="top-actions">
       <button class="icon-btn" id="searchBtn" type="button" aria-label="Buscar productos (Ctrl+K)" aria-keyshortcuts="Control+K /" data-abrir-buscador><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg></button>
+      <button class="icon-btn fav-top" id="favBtn" type="button" aria-label="Mis favoritos" data-abrir-favoritos><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg><span class="fav-n" id="favN" aria-hidden="true" hidden>0</span></button>
       <button class="cart-btn" id="cartBtn" type="button">
         <svg class="ico" aria-hidden="true"><use href="#i-bag"/></svg>
         <span class="txt">Mi pedido</span><span class="badge" id="cartCount">0</span>
@@ -734,6 +759,17 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
         <div class="plats" id="plats" role="group" aria-labelledby="platsTit"></div>
       </div>
     </div>
+  </section>
+
+  <section class="sec" aria-labelledby="vistosTit" id="secVistos" hidden>
+    <div class="wrap sec-head">
+      <div><h2 class="sec-h" id="vistosTit">Vistos recientemente</h2><p class="sec-sub">Para que retomes donde te quedaste.</p></div>
+      <div class="sec-acc">
+        <button class="limpiar" id="vistosBorrar" type="button">Borrar</button>
+        <div class="rail-nav" data-rail="railVistos"><button type="button" data-dir="-1" aria-label="Anteriores"><svg class="ico" aria-hidden="true"><use href="#i-left"/></svg></button><button type="button" data-dir="1" aria-label="Siguientes"><svg class="ico" aria-hidden="true"><use href="#i-right"/></svg></button></div>
+      </div>
+    </div>
+    <div class="rail" id="railVistos" role="list" aria-label="Vistos recientemente"></div>
   </section>
 
   <section class="sec" aria-labelledby="topTit">
@@ -805,7 +841,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
       <div>
         <h2 id="servTit">Servicio técnico para consolas y palancas</h2>
         <p>Escríbenos con el modelo y lo que le pasa a tu equipo. Te decimos cómo lo resolvemos y en qué local dejarlo.</p>
-        <a class="btn btn-dark" id="waServicio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Cotizar por WhatsApp</a>
+        <a class="btn btn-dark" id="waServicio" data-tipo="servicio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Cotizar por WhatsApp</a>
       </div>
       <ul>
         <li><svg class="ico" aria-hidden="true"><use href="#i-console"/></svg>PlayStation, Nintendo y Xbox</li>
@@ -887,11 +923,14 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
       </div>
       <div class="acciones">
         <button type="button" class="add-btn" id="dAdd">Agregar al pedido</button>
-        <a class="wa-btn" id="dWa" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pedir por WhatsApp</a>
+        <a class="wa-btn" id="dWa" data-tipo="consulta" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pedir por WhatsApp</a>
       </div>
       <div class="detalle-pie">
         <span>Pagas al retirar o por transferencia.</span>
-        <button type="button" class="share-btn" id="dShare"><svg class="ico" style="width:18px;height:18px" aria-hidden="true"><use href="#i-share"/></svg><span id="dShareTxt">Compartir</span></button>
+        <div class="pie-acc">
+          <button type="button" class="share-btn" id="dFav" aria-pressed="false"><svg class="ico" style="width:18px;height:18px" aria-hidden="true"><use href="#i-heart"/></svg><span id="dFavTxt">Guardar</span></button>
+          <button type="button" class="share-btn" id="dShare"><svg class="ico" style="width:18px;height:18px" aria-hidden="true"><use href="#i-share"/></svg><span id="dShareTxt">Compartir</span></button>
+        </div>
       </div>
     </div>
     <section class="rel" id="dRelWrap" aria-labelledby="dRelTit">
@@ -936,7 +975,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   <div class="sheet-foot" id="cartFoot">
     <div class="total"><span>Total</span><strong id="cartTotal">$0.00</strong></div>
     <div class="ahorro" id="ahorro"></div>
-    <a class="wa-btn" id="cartSend" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Enviar pedido por WhatsApp</a>
+    <a class="wa-btn" id="cartSend" data-tipo="pedido" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Enviar pedido por WhatsApp</a>
     <p class="pie"><span>Te confirmamos disponibilidad por chat antes de cobrar.</span><button type="button" id="cartVaciar">Vaciar</button></p>
   </div>
 </dialog>
@@ -949,6 +988,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   </div>
   <nav class="menu-nav" aria-label="Menú">
     <a href="#catalogo" data-abrir-buscador>Buscar productos</a>
+    <a href="#catalogo" data-abrir-favoritos>Mis favoritos<span id="menuFavN"></span></a>
     <a href="#catalogo">Catálogo</a>
     <a href="#comprar">Cómo comprar</a>
     <a href="#servicio">Servicio técnico</a>
@@ -960,6 +1000,25 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
     <span>Lunes a sábado 10:00 a 21:00. Domingo 10:30 a 18:30.</span>
   </div>
 </dialog>
+
+<!-- Favoritos -->
+<dialog id="favs" class="sheet" aria-labelledby="favsTitle">
+  <div class="sheet-head">
+    <h2 id="favsTitle">Favoritos</h2>
+    <button class="close" id="favsClose" type="button" aria-label="Cerrar">×</button>
+  </div>
+  <div class="sheet-body">
+    <div class="items" id="favsItems"></div>
+    <div class="vacio" id="favsVacio" hidden>Aún no guardas productos.<br>Toca el corazón de un producto para guardarlo aquí.<br><button type="button" id="favsSeguir">Ver catálogo</button></div>
+  </div>
+  <div class="sheet-foot" id="favsFoot">
+    <button type="button" class="add-btn" id="favsTodo">Agregar todo a mi pedido</button>
+    <a class="wa-btn" id="favsCompartir" data-tipo="lista" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Enviar mi lista por WhatsApp</a>
+    <p class="pie"><span>Tu lista se guarda solo en este dispositivo.</span></p>
+  </div>
+</dialog>
+
+<a class="wa-float" id="waFloat" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
 
 <!-- Buscador rápido -->
 <dialog id="cmdk" class="cmdk" aria-label="Buscar productos">
@@ -993,6 +1052,9 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
 const CONFIG = {
   whatsapp: "593980807721",   // con código de país, SIN "+"
   logo: "",                    // vacío = marca de texto (no pide un archivo que no existe)
+  // Id del sitio en Umami (medición de visitas gratis y sin cookies). Vacío = no se mide nada.
+  // Va también en ANALITICA_ID de paginas_producto.py.
+  analitica: "",
   // URL de Google Apps Script que guarda cada pedido en una hoja de cálculo propia
   // (control de comisión). Vacío = no registra nada. No es una clave secreta: solo
   // permite AGREGAR filas, no leerlas.
@@ -1043,6 +1105,29 @@ function registrarPedido(tipo, detalle){
     else fetch(CONFIG.registroPedidosUrl, {method: "POST", mode: "no-cors", body: datos});
   } catch(e) {}
 }
+// Página propia de cada producto (docs/p/…): la usan compartir y Google. Misma regla que archivo_de() en paginas_producto.py.
+const BASE = new URL("./", location.href).href;
+const paginaDe = p => `${BASE}p/${encodeURIComponent(p.code.replace(/[^A-Za-z0-9._-]/g, "-"))}.html`;
+
+// Medición de visitas con Umami: sin cookies, sin datos personales. La visita se cuenta una
+// sola vez al abrir; los filtros y la búsqueda (que cambian la dirección) no suman visitas.
+if (CONFIG.analitica) {
+  const s = document.createElement("script");
+  s.defer = true;
+  s.src = "https://cloud.umami.is/script.js";
+  s.dataset.websiteId = CONFIG.analitica;
+  s.dataset.autoTrack = "false";
+  s.onload = () => { try { window.umami.track(); } catch(e) {} };
+  document.head.appendChild(s);
+}
+function medir(evento, datos){ try { window.umami?.track(evento, datos); } catch(e) {} }
+let esperaSinResultados = 0;
+function medirSinResultados(q){
+  clearTimeout(esperaSinResultados);
+  esperaSinResultados = setTimeout(()=>medir("busqueda-sin-resultados", {q: q.slice(0, 60)}), 1500);
+}
+// "¿No lo encuentras?": convierte una búsqueda vacía en una consulta por WhatsApp.
+const pideloHTML = q => `<a class="wa-btn pidelo" data-tipo="pidelo" target="_blank" rel="noopener" href="${esc(waLink(`Hola ${CONFIG.storeName}, ¿tienen ${q}? Lo busqué en el catálogo web y no lo encontré.`))}"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pregúntanos si lo tenemos</a>`;
 const nLocales = Object.keys(CONFIG.locales).length;
 const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 const buscar = code => PRODUCTS.find(x=>x.code===code);
@@ -1059,7 +1144,7 @@ if (CONFIG.logo) {
 document.documentElement.classList.add("js");
 document.addEventListener("load", e=>{ if (e.target.tagName === "IMG") e.target.classList.add("ok"); }, true);
 
-$("waTop").href = $("waHero").href = $("waMenu").href = $("waFoot").href = waLink(`Hola ${CONFIG.storeName}, quiero hacer una consulta.`);
+$("waTop").href = $("waHero").href = $("waMenu").href = $("waFoot").href = $("waFloat").href = waLink(`Hola ${CONFIG.storeName}, quiero hacer una consulta.`);
 $("waServicio").href = waLink(`Hola ${CONFIG.storeName}, necesito servicio técnico para mi `);
 $("anio").textContent = new Date().getFullYear();
 $("local").insertAdjacentHTML("beforeend", Object.entries(CONFIG.locales).map(([k,L])=>`<option value="${k}">${L.nombre}</option>`).join(""));
@@ -1148,6 +1233,7 @@ function cardHTML(p, lazy = true){
         </div>
       </div>
     </button>
+    <button class="fav" type="button" data-fav="${esc(p.code)}" aria-pressed="${FAVS.has(p.code)}" aria-label="Guardar en favoritos: ${esc(p.name)}"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></button>
     <div class="card-add" data-q="${PEDIDO.items.get(p.code) || 0}">${controlTarjeta(p)}</div>
   </div>`;
 }
@@ -1242,6 +1328,8 @@ async function loadProducts(){
   cargarPedido();
   render();
   actualizarPedido();
+  pintarVistos();
+  pintarFavoritos();
   if (abrir && buscar(abrir)) openProduct(abrir);
   else if (new URLSearchParams(location.search).has("cat") || location.hash === "#catalogo") $("catalogo").scrollIntoView();
 }
@@ -1286,7 +1374,10 @@ function dibujarLineas(){
 dibujarLineas();
 // Todo lo que se mueve en la portada se detiene cuando no se ve o si la persona lo pausa.
 if ("IntersectionObserver" in window)
-  new IntersectionObserver(([e])=>$("hero").classList.toggle("quieto", !e.isIntersecting)).observe($("hero"));
+  new IntersectionObserver(([e])=>{
+    $("hero").classList.toggle("quieto", !e.isIntersecting);
+    document.body.classList.toggle("pasado-hero", !e.isIntersecting);   // muestra el WhatsApp flotante en celular
+  }).observe($("hero"));
 $("streamPausa").onclick = ()=>{
   const pausa = $("hero").classList.toggle("pausa");
   $("streamPausa").setAttribute("aria-pressed", pausa);
@@ -1313,7 +1404,7 @@ function datosEstructurados(){
   const items = PRODUCTS.filter(p=>p.photos.length).slice(0, 60).map((p, i)=>({
     "@type": "ListItem", position: i + 1,
     item: {"@type": "Product", name: p.name, sku: p.code, category: p.cat_label, image: new URL(p.photos[0], base).href,
-      url: `${base}?p=${encodeURIComponent(p.code)}`,
+      url: paginaDe(p),
       offers: {"@type": "Offer", price: precio(p, "efectivo").toFixed(2), priceCurrency: "USD",
         availability: maxQty(p) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"}}
   }));
@@ -1348,7 +1439,9 @@ function render(){
   $("grid").innerHTML = vis.length ? vis.map(p=>cardHTML(p)).join("") :
     `<div class="empty" role="listitem"><strong>No encontramos productos con esos filtros.</strong>Prueba con otra palabra o quita los filtros.
       <div class="atajos">${CONFIG.atajos.map(t=>`<button type="button" data-atajo="${esc(t)}">${esc(t)}</button>`).join("")}</div>
+      ${S.q.trim() ? `<span class="pidelo-txt">¿No lo encuentras? Te decimos si lo tenemos o si nos llega.</span>${pideloHTML(S.q.trim())}<br>` : ""}
       <button type="button" data-reset>Ver todo el catálogo</button></div>`;
+  if (!list.length && S.q.trim()) medirSinResultados(S.q.trim());
   $("more").hidden = vis.length >= list.length;
   escribirURL();
 }
@@ -1471,6 +1564,11 @@ function openProduct(code){
   $("dShareTxt").textContent = "Compartir";
 
   D = {p, q: 1, agregado: false, wcodigo: nuevoCodigo()};
+  $("dFav").dataset.fav = p.code;
+  $("dFav").setAttribute("aria-pressed", FAVS.has(p.code));
+  $("dFavTxt").textContent = FAVS.has(p.code) ? "Guardado" : "Guardar";
+  registrarVisto(p.code);
+  medir("ver-producto", {codigo: p.code, nombre: p.name.slice(0, 60)});
   pintarCompra();
   if (!$("dlg").open) $("dlg").showModal();
   $("dlg").scrollTop = 0;
@@ -1481,7 +1579,8 @@ function openProduct(code){
 }
 
 async function compartir(){
-  const p = D.p, url = `${location.origin}${location.pathname}?p=${encodeURIComponent(p.code)}`;
+  // Se comparte la página propia del producto: la vista previa en WhatsApp muestra su foto y precio.
+  const p = D.p, url = paginaDe(p);
   const datos = {title: p.name, text: `${p.name} a ${fmt(p.price_efectivo ?? p.price)} en ${CONFIG.storeName}`, url};
   try {
     if (navigator.share) { await navigator.share(datos); return; }
@@ -1591,8 +1690,14 @@ function pintarCompra(){
   $("dAdd").disabled = !D.agregado && libre <= 0;
   $("dAdd").textContent = D.agregado ? "✓ Agregado, ver pedido" : !max ? "Agotado" : libre <= 0 ? "Ya está todo en tu pedido" : "Agregar al pedido";
   const ef = precio(p, "efectivo"), tj = precio(p, "tarjeta");
+  // Agotado en los 3 locales: en vez de "pedir", la persona deja el aviso para cuando llegue.
+  const agotado = !p.digital && !max;
+  $("dWa").dataset.tipo = agotado ? "aviso" : "consulta";
+  $("dWa").innerHTML = `<svg aria-hidden="true"><use href="#i-wa"/></svg>${agotado ? "Avísame cuando llegue" : "Pedir por WhatsApp"}`;
   const que = D.q > 1 ? `${D.q} x ${p.name} (${p.code}), a ${fmt(ef)} c/u` : `${p.name} (${p.code}), a ${fmt(ef)}`;
-  $("dWa").href = waLink(`Hola ${CONFIG.storeName}, me interesa: ${que} en efectivo${tj > ef ? ` (${fmt(tj)} con tarjeta)` : ""}. ¿Está disponible? (Código ${D.wcodigo})`);
+  $("dWa").href = waLink(agotado
+    ? `Hola ${CONFIG.storeName}, avísenme cuando llegue: ${p.name} (${p.code}). (Código ${D.wcodigo})`
+    : `Hola ${CONFIG.storeName}, me interesa: ${que} en efectivo${tj > ef ? ` (${fmt(tj)} con tarjeta)` : ""}. ¿Está disponible? (Código ${D.wcodigo})`);
 }
 
 function abrirCarrito(){
@@ -1661,6 +1766,101 @@ function pintarCarrito(){
   $("cartSend").href = waLink(mensajePedido());
 }
 
+// ===== Favoritos y vistos recientemente (se guardan solo en este dispositivo) =====
+const CLAVE_FAV = "eg_favoritos_v1", CLAVE_VISTOS = "eg_vistos_v1";
+function leerLista(k){
+  try { const v = JSON.parse(localStorage.getItem(k) || "[]"); return Array.isArray(v) ? v.filter(x=>typeof x === "string").slice(0, 100) : []; }
+  catch(e) { return []; }
+}
+function guardarLista(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e) {} }
+const FAVS = new Set(leerLista(CLAVE_FAV));
+let VISTOS = leerLista(CLAVE_VISTOS);
+const favoritosVigentes = () => [...FAVS].map(buscar).filter(Boolean);
+
+function alternarFavorito(code){
+  const p = buscar(code); if (!p) return;
+  const on = !FAVS.has(code);
+  if (on) FAVS.add(code); else FAVS.delete(code);
+  guardarLista(CLAVE_FAV, [...FAVS]);
+  document.querySelectorAll(".fav, #dFav").forEach(b=>{
+    if (b.dataset.fav !== code) return;
+    b.setAttribute("aria-pressed", on);
+    if (on && !reduceMotion()) b.animate?.([{scale: 1}, {scale: 1.3}, {scale: 1}], {duration: 300, easing: "cubic-bezier(0.23,1,0.32,1)"});
+  });
+  $("aviso").textContent = on ? `Guardado en favoritos: ${p.name}` : `Quitado de favoritos: ${p.name}`;
+  medir("favorito", {codigo: code, accion: on ? "guardar" : "quitar"});
+  pintarFavoritos();
+}
+function mensajeLista(ls){
+  return `Mi lista de ${CONFIG.storeName}:\n\n` +
+    ls.slice(0, 15).map(p=>`- ${p.name}: ${fmt(precio(p, "efectivo"))}\n  ${paginaDe(p)}`).join("\n") +
+    `\n\nCatálogo completo: ${BASE}`;
+}
+function pintarFavoritos(){
+  const ls = favoritosVigentes(), n = ls.length;
+  $("favN").textContent = n;
+  $("favN").hidden = !n;
+  $("favBtn").classList.toggle("on", n > 0);
+  $("favBtn").setAttribute("aria-label", n ? `Mis favoritos (${n})` : "Mis favoritos");
+  $("menuFavN").textContent = n ? ` (${n})` : "";
+  if (D) $("dFavTxt").textContent = FAVS.has(D.p.code) ? "Guardado" : "Guardar";
+  if (!$("favs").open) return;
+  $("favsVacio").hidden = n > 0;
+  $("favsFoot").hidden = $("favsItems").hidden = n === 0;
+  $("favsItems").innerHTML = ls.map(p=>{
+    const [cls, txt] = status(p);
+    return `<div class="item" data-code="${esc(p.code)}">
+      <img src="${esc(fotoDe(p))}" alt="" width="58" height="58" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)">
+      <div>
+        <div class="nm">${esc(p.name)}</div>
+        <div class="stock ${cls}" style="margin-top:4px"><span class="dot"></span>${txt}</div>
+        <div class="ctl"><button type="button" class="quitar" data-ver-fav>Ver producto</button><button type="button" class="quitar" data-quitar-fav>Quitar</button></div>
+      </div>
+      <div class="lt">${fmt(precio(p, "efectivo"))}</div>
+    </div>`;
+  }).join("");
+  $("favsCompartir").href = `https://wa.me/?text=${encodeURIComponent(mensajeLista(ls))}`;
+  $("favsTodo").disabled = !ls.some(p=>maxQty(p) > 0 && !PEDIDO.items.get(p.code));
+}
+function abrirFavoritos(){
+  for (const d of ["dlg", "menu", "cart", "cmdk"]) if ($(d).open) $(d).close();
+  $("favs").showModal();
+  pintarFavoritos();
+}
+$("favsClose").onclick = ()=>$("favs").close();
+$("favs").addEventListener("click", e=>{ if (e.target === $("favs")) $("favs").close(); });
+$("favsSeguir").onclick = ()=>{ $("favs").close(); $("catalogo").scrollIntoView(); };
+$("favsItems").addEventListener("click", e=>{
+  const code = e.target.closest(".item")?.dataset.code; if (!code) return;
+  if (e.target.closest("[data-ver-fav]")){ $("favs").close(); openProduct(code); }
+  else if (e.target.closest("[data-quitar-fav]")) alternarFavorito(code);
+});
+// Agrega al pedido los favoritos disponibles que todavía no están en él.
+$("favsTodo").onclick = ()=>{
+  const nuevos = favoritosVigentes().filter(p=>maxQty(p) > 0 && !PEDIDO.items.get(p.code));
+  for (const p of nuevos) PEDIDO.items.set(p.code, 1);
+  guardarPedido();
+  $("favs").close();
+  actualizarPedido();
+  if (nuevos.length) $("aviso").textContent = `${nuevos.length} producto${nuevos.length > 1 ? "s" : ""} de tus favoritos agregado${nuevos.length > 1 ? "s" : ""} al pedido`;
+  abrirCarrito();
+};
+
+function registrarVisto(code){
+  VISTOS = [code, ...VISTOS.filter(c=>c !== code)].slice(0, 12);
+  guardarLista(CLAVE_VISTOS, VISTOS);
+}
+function pintarVistos(){
+  const ls = VISTOS.map(buscar).filter(Boolean);
+  $("secVistos").hidden = ls.length < 2;
+  $("railVistos").innerHTML = ls.map(p=>cardHTML(p)).join("");
+  actualizarFlechas(document.querySelector('.rail-nav[data-rail="railVistos"]'));
+}
+$("vistosBorrar").onclick = ()=>{ VISTOS = []; guardarLista(CLAVE_VISTOS, VISTOS); pintarVistos(); };
+// El carrusel se actualiza al cerrar la ficha (no mientras se mira un producto). Se vigila el
+// atributo "open" en vez del evento "close", que algunos navegadores en segundo plano retrasan.
+new MutationObserver(()=>{ if (!$("dlg").open) pintarVistos(); }).observe($("dlg"), {attributes: true, attributeFilter: ["open"]});
+
 // ===== Buscador rápido (Ctrl+K, "/" o la lupa) =====
 function irAlBuscador(){
   $("catalogo").scrollIntoView();
@@ -1688,7 +1888,8 @@ function pintarBuscador(){
     const todos = porRelevancia(PRODUCTS.filter(p=>coincide(p, q)), q);
     CMD.lista = todos.slice(0, 8);
     CMD.total = todos.length;
-    $("cmdkArriba").innerHTML = todos.length ? "" : `<div class="cmdk-vacio"><strong>No hay resultados para “${esc(q)}”.</strong>Prueba con otra palabra, por ejemplo PS5, Mario o palanca.</div>`;
+    $("cmdkArriba").innerHTML = todos.length ? "" : `<div class="cmdk-vacio"><strong>No hay resultados para “${esc(q)}”.</strong>Prueba con otra palabra, o pregúntanos: te decimos si lo tenemos o si nos llega.<br>${pideloHTML(q)}</div>`;
+    if (!todos.length) medirSinResultados(q);
     $("cmdkGrupo").textContent = todos.length ? `${todos.length} resultado${todos.length === 1 ? "" : "s"}` : "";
   }
   CMD.sel = 0;
@@ -1768,10 +1969,16 @@ $("moreBtn").addEventListener("click", ()=>{ S.visibles += CONFIG.porPagina; ren
 
 // Clics en tarjetas, carruseles, categorías y atajos (en cualquier parte de la página).
 document.addEventListener("click", e=>{
+  // Todos los botones de WhatsApp se cuentan (sin detener el enlace).
+  const wa = e.target.closest('a[href*="wa.me/"]');
+  if (wa) medir("whatsapp", {tipo: wa.dataset.tipo || "general"});
+  const fav = e.target.closest("[data-fav]");
+  if (fav){ alternarFavorito(fav.dataset.fav); return; }
   const add = e.target.closest("[data-add]");
-  if (add){ setCantidad(add.dataset.add, 1); confirmarAgregado(buscar(add.dataset.add), 1); return; }
+  if (add){ setCantidad(add.dataset.add, 1); confirmarAgregado(buscar(add.dataset.add), 1); medir("agregar-al-pedido", {codigo: add.dataset.add}); return; }
   if (e.target.closest("[data-ver-pedido]")){ abrirCarrito(); return; }
   if (e.target.closest("[data-abrir-buscador]")){ e.preventDefault(); abrirBuscador(); return; }
+  if (e.target.closest("[data-abrir-favoritos]")){ e.preventDefault(); abrirFavoritos(); return; }
   const open = e.target.closest(".card-open, .stream-item");
   if (open){ openProduct(open.dataset.code); return; }
   const cat = e.target.closest("[data-ir-cat]");
@@ -1810,6 +2017,7 @@ $("dAdd").onclick = ()=>{
   setCantidad(D.p.code, (PEDIDO.items.get(D.p.code) || 0) + n);
   confirmarAgregado(D.p, n);
   D.agregado = true; D.q = 1;
+  medir("agregar-al-pedido", {codigo: D.p.code});
   pintarCompra();
 };
 
@@ -1866,7 +2074,7 @@ $("cartSend").addEventListener("click", ()=>{
 });
 $("dWa").addEventListener("click", ()=>{
   if (!D) return;
-  registrarPedido("consulta", {
+  registrarPedido($("dWa").dataset.tipo || "consulta", {
     codigo: D.wcodigo,
     tienda: PEDIDO.retiro || "",
     productos: `${D.q}x ${D.p.code}`,
@@ -1883,6 +2091,10 @@ $("menu").addEventListener("click", e=>{
 });
 
 loadProducts();
+
+// Actualización instantánea de la app instalada y funcionamiento sin conexión (sw.js).
+if ("serviceWorker" in navigator && location.protocol === "https:")
+  addEventListener("load", ()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 </script>
 </body>
 </html>

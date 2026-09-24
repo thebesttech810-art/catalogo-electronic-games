@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 
 import requests
 
+import paginas_producto
 from generar_catalogo import (
     BASE_URL, HEADERS, SALIDA, SELECCION, fotos_de, local_de_bodega, precios_con_iva,
     stock_de_producto,
@@ -75,6 +76,8 @@ def main():
     with open("docs/meta.json", "w", encoding="utf-8") as f:
         json.dump({"actualizado": datetime.now(timezone.utc).isoformat(timespec="seconds")}, f)
     print(f"Stock y precios actualizados: {len(publicados) - fallidos} productos, {fallidos} con fallas.")
+    # Página propia de cada producto (vista previa al compartir y Google), con el stock recién leído.
+    paginas_producto.main()
 
 
 if __name__ == "__main__":
