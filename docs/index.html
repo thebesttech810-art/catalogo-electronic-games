@@ -68,9 +68,9 @@ button,a,select,label,summary{touch-action:manipulation;-webkit-tap-highlight-co
 .skip:focus{top:12px}
 
 /* Respuesta al presionar (propiedad "scale" para no pisar otros transform) */
-.add,.add-btn,.wa-btn,.wa-top,.cart-btn,.cart-bar,.chip,.seg button,.qty button,.more button,.empty button,.vacio button,.close,.thumbs button,.undo button,.icon-btn,.btn,.tile,.atajos button,.rail-nav button,.share-btn,.plat,.hero-buscar,.stream-pausa{
+.add,.add-btn,.wa-btn,.wa-top,.cart-btn,.cart-bar,.chip,.seg button,.qty button,.more button,.empty button,.vacio button,.close,.thumbs button,.undo button,.icon-btn,.btn,.tile,.atajos button,.rail-nav button,.share-btn,.mundo,.hero-buscar,.stream-pausa{
   transition:scale 160ms var(--ease-out),background-color 160ms ease,border-color 160ms ease,color 160ms ease}
-:is(.add,.add-btn,.wa-btn,.wa-top,.cart-btn,.cart-bar,.chip,.seg button,.qty button,.more button,.empty button,.vacio button,.close,.thumbs button,.undo button,.icon-btn,.btn,.tile,.atajos button,.rail-nav button,.share-btn,.plat,.hero-buscar,.stream-pausa):active:not(:disabled){scale:.97}
+:is(.add,.add-btn,.wa-btn,.wa-top,.cart-btn,.cart-bar,.chip,.seg button,.qty button,.more button,.empty button,.vacio button,.close,.thumbs button,.undo button,.icon-btn,.btn,.tile,.atajos button,.rail-nav button,.share-btn,.mundo,.hero-buscar,.stream-pausa):active:not(:disabled){scale:.97}
 
 /* ---------- Encabezado ---------- */
 header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line)}
@@ -85,6 +85,12 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdro
 .nav{display:flex;gap:4px;margin-left:12px}
 .nav a{text-decoration:none;font-weight:600;font-size:.94rem;color:var(--muted);padding:8px 12px;border-radius:10px}
 .nav a:hover{color:var(--ink);background:var(--surface)}
+/* Cada plataforma se subraya con el color de su marca */
+.nav a[data-ir-plat]{position:relative}
+.nav a[data-ir-plat]::after{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;border-radius:2px;background:var(--c);scale:0 1;transition:scale 200ms var(--ease-out)}
+.nav a[data-ir-plat]:hover::after,.nav a[aria-current="true"]::after{scale:1 1}
+.nav a[aria-current="true"]{color:var(--ink)}
+@media (max-width:1180px){.nav-extra{display:none}}
 .top-actions{display:flex;align-items:center;gap:8px;margin-left:auto;flex:none}
 .brand{min-width:0}
 .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
@@ -198,13 +204,42 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdro
 .fan span:nth-child(2){left:27%;z-index:2}
 .fan span:nth-child(3){left:54%;rotate:9deg;translate:0 -4%}
 
-/* Compra por consola */
-.plats-wrap{margin-top:28px}
-.plats-tit{margin:0 0 12px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.plats{display:flex;flex-wrap:wrap;gap:10px}
-.plat{display:inline-flex;align-items:baseline;gap:8px;min-height:52px;padding:12px 20px;border-radius:14px;border:1px solid var(--line);background:var(--surface);font-weight:900;font-style:italic;text-transform:uppercase;font-size:1.15rem;letter-spacing:-.01em;cursor:pointer}
-.plat small{font-style:normal;font-weight:600;font-size:.75rem;color:var(--muted);font-variant-numeric:tabular-nums}
-.plat:hover{border-color:var(--brand)}
+/* ---------- Mundos por consola (PlayStation, Nintendo, Xbox, Retro) ---------- */
+/* Cada mundo usa el color de su marca solo dentro de su espacio; el resto de la tienda sigue en naranja. */
+.mundos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mundo{--c:#0070D1;--c2:#00296B;position:relative;overflow:hidden;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;gap:16px;min-height:270px;padding:24px;border-radius:22px;border:1px solid rgba(255,255,255,.1);
+  background:radial-gradient(120% 110% at 100% 0%,color-mix(in srgb,var(--c) 82%,#fff 18%) 0%,var(--c) 38%,var(--c2) 100%);color:#fff;text-align:left;cursor:pointer}
+.mundo::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.12;
+  background:repeating-linear-gradient(115deg,#fff 0 2px,transparent 2px 22px);-webkit-mask-image:linear-gradient(90deg,#000,transparent 70%);mask-image:linear-gradient(90deg,#000,transparent 70%)}
+.mundo{grid-template-rows:auto 1fr}
+/* El nombre ocupa todo el ancho (sin partir "PLAYSTATION"); debajo, el desglose a la izquierda y las fotos a la derecha. */
+.mundo-cab{grid-column:1/-1;align-self:start;display:flex;flex-direction:column;gap:6px;padding-right:56px;min-width:0}
+.mundo strong{font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.7rem,3.2vw,2.6rem);line-height:.92;letter-spacing:-.02em}
+.mundo .n{font-weight:700;opacity:.95}
+.mundo .desglose{align-self:end;display:flex;flex-wrap:wrap;gap:6px;min-width:0}
+.mundo .desglose span{padding:4px 10px;border-radius:999px;background:rgba(0,0,0,.28);font-size:.78rem;font-weight:700;white-space:nowrap}
+.mundo .ir{position:absolute;top:20px;right:20px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--c2);transition:rotate 220ms var(--ease-out)}
+.mundo .ir .ico{width:20px;height:20px}
+.mundo .fan{width:100%;margin:0}
+.mundo .fan span{box-shadow:0 16px 34px rgba(0,0,0,.4)}
+.mundo:hover{border-color:rgba(255,255,255,.35)}
+.mundo:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* Encabezado del mundo dentro del catálogo */
+.mundo-banner{--c:#0070D1;--c2:#00296B;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 20px;margin-bottom:18px;padding:18px 20px;border-radius:18px;color:#fff;
+  background:linear-gradient(110deg,var(--c2),var(--c) 70%,color-mix(in srgb,var(--c) 80%,#fff 20%))}
+.mundo-banner h3{margin:0;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.4rem,3vw,2rem);line-height:1}
+.mundo-banner p{margin:4px 0 0;opacity:.9;font-size:.92rem}
+.mundo-subs{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mundo-subs button{min-height:40px;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.45);background:transparent;color:#fff;font-weight:800;font-style:italic;cursor:pointer}
+.mundo-subs button[aria-pressed="true"]{background:#fff;color:var(--c2);border-color:#fff}
+.mundo-subs button:hover{border-color:#fff}
+.mundo-subs .salir{font-style:normal;font-weight:700;border-color:transparent;background:rgba(0,0,0,.25)}
+
+/* Etiqueta de consola en cada tarjeta (PS5 azul, Switch rojo, Xbox verde…) */
+.cat-row{display:flex;align-items:center;gap:8px;min-width:0}
+.plat-tag{flex:none;padding:2px 7px;border-radius:5px;background:var(--c,#3a373d);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.02em;line-height:1.5;white-space:nowrap}
+.plat-tag.retro{color:var(--brand-ink)}
 
 /* Carruseles */
 .rail-wrap{position:relative}
@@ -511,6 +546,12 @@ dialog.cmdk[open]{display:flex;flex-direction:column}
   .tile:hover .fan span:nth-child(1){translate:-10% -8%;rotate:-14deg}
   .tile:hover .fan span:nth-child(2){translate:0 -10%}
   .tile:hover .fan span:nth-child(3){translate:10% -8%;rotate:14deg}
+  .mundo{transition:scale 160ms var(--ease-out),translate 200ms var(--ease-out),border-color 150ms ease}
+  .mundo:hover{translate:0 -3px}
+  .mundo:hover .ir{rotate:-45deg}
+  .mundo:hover .fan span:nth-child(1){translate:-10% -8%;rotate:-14deg}
+  .mundo:hover .fan span:nth-child(2){translate:0 -10%}
+  .mundo:hover .fan span:nth-child(3){translate:10% -8%;rotate:14deg}
   .btn-brand:hover::before{translate:110% 0;transition:translate 750ms var(--ease-out)}
 }
 
@@ -566,6 +607,8 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .tile:first-child{grid-row:auto}
   .tile:nth-child(2){grid-column:auto}
   .tile:nth-child(4):last-child{grid-column:span 2}
+  .mundos{grid-template-columns:minmax(0,1fr)}
+  .mundo{min-height:200px;padding:20px;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
   .pasos{grid-template-columns:repeat(2,1fr)}
   .servicio .wrap{grid-template-columns:1fr}
   .tiendas{grid-template-columns:1fr}
@@ -587,9 +630,6 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .paths{display:none}
   .hero-buscar{height:54px}
   .hero-buscar kbd{display:none}
-  .plats{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-20px;padding-inline:20px}
-  .plats::-webkit-scrollbar{display:none}
-  .plat{flex:none}
   .tile{padding:16px;gap:12px}
   .tile .ir{width:36px;height:36px}
   .tile-ico{width:52px;height:52px}
@@ -597,6 +637,12 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .cmdk-pie .teclas{display:none}
   .fav-top{display:none}
   .fav{width:36px;height:36px;top:8px;right:8px}
+  .mundo{min-height:170px;padding:16px;gap:10px}
+  .mundo strong{font-size:1.45rem}
+  .mundo .ir{top:14px;right:14px;width:36px;height:36px}
+  .mundo .desglose span{font-size:.72rem;padding:3px 8px}
+  .mundo-banner{padding:16px}
+  .cat-row{flex-wrap:wrap;gap:4px 6px}
   /* WhatsApp siempre a mano en el celular, cuando ya se bajó de la portada; sube si aparece la barra del pedido. */
   .wa-float{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:6;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--wa);color:var(--wa-ink);box-shadow:0 10px 26px rgba(0,0,0,.5);
     opacity:0;scale:.8;visibility:hidden;transition:opacity 200ms ease,scale 200ms var(--ease-out),translate 320ms var(--ease-drawer),visibility 0s linear 200ms}
@@ -697,10 +743,11 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
       <span class="wordmark" translate="no">Electronic <b>Games</b></span>
     </a>
     <nav class="nav" aria-label="Principal">
-      <a href="#catalogo">Catálogo</a>
-      <a href="#servicio">Servicio técnico</a>
-      <a href="#locales">Locales</a>
-      <a href="#ayuda">Ayuda</a>
+      <a href="#catalogo" data-ir-plat="PlayStation" style="--c:#3D8BFF">PlayStation</a>
+      <a href="#catalogo" data-ir-plat="Nintendo" style="--c:#FF4655">Nintendo</a>
+      <a href="#catalogo" data-ir-plat="Xbox" style="--c:#3DC23D">Xbox</a>
+      <a href="#catalogo" data-ir-plat="Retro" style="--c:var(--brand)">Retro</a>
+      <a href="#locales" class="nav-extra">Locales</a>
     </nav>
     <div class="top-actions">
       <button class="icon-btn" id="searchBtn" type="button" aria-label="Buscar productos (Ctrl+K)" aria-keyshortcuts="Control+K /" data-abrir-buscador><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg></button>
@@ -750,14 +797,17 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
     </ul>
   </div>
 
+  <section class="sec" aria-labelledby="mundosTit" id="secMundos" hidden>
+    <div class="wrap">
+      <div class="sec-head reveal"><div><h2 class="sec-h" id="mundosTit">Elige tu consola</h2><p class="sec-sub">Todo para tu plataforma en un solo lugar: consolas, juegos, palancas y accesorios.</p></div></div>
+      <div class="mundos reveal" id="mundos"></div>
+    </div>
+  </section>
+
   <section class="sec" aria-labelledby="catTit">
     <div class="wrap">
       <div class="sec-head reveal"><h2 class="sec-h" id="catTit">Compra por categoría</h2></div>
       <div class="tiles reveal" id="tiles"></div>
-      <div class="plats-wrap reveal" id="platsWrap" hidden>
-        <h3 class="plats-tit" id="platsTit">O por consola</h3>
-        <div class="plats" id="plats" role="group" aria-labelledby="platsTit"></div>
-      </div>
     </div>
   </section>
 
@@ -803,6 +853,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
       </div>
     </div>
     <div class="wrap">
+      <div class="mundo-banner" id="mundoBanner" hidden></div>
       <div class="filters">
         <label class="sr" for="plat">Consola</label>
         <select id="plat"><option value="all">Todas las consolas</option></select>
@@ -989,7 +1040,11 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   <nav class="menu-nav" aria-label="Menú">
     <a href="#catalogo" data-abrir-buscador>Buscar productos</a>
     <a href="#catalogo" data-abrir-favoritos>Mis favoritos<span id="menuFavN"></span></a>
-    <a href="#catalogo">Catálogo</a>
+    <a href="#catalogo" data-ir-plat="PlayStation">PlayStation</a>
+    <a href="#catalogo" data-ir-plat="Nintendo">Nintendo</a>
+    <a href="#catalogo" data-ir-plat="Xbox">Xbox</a>
+    <a href="#catalogo" data-ir-plat="Retro">Retro</a>
+    <a href="#catalogo">Catálogo completo</a>
     <a href="#comprar">Cómo comprar</a>
     <a href="#servicio">Servicio técnico</a>
     <a href="#locales">Locales</a>
@@ -1069,15 +1124,24 @@ const CONFIG = {
     scala:   { nombre: "Scala Shopping",   zona: "Cumbayá",   detalle: "Isla 5",    maps: "https://www.google.com/maps/search/?api=1&query=Scala%20Shopping%20Cumbaya" },
     valle:   { nombre: "Plaza del Valle",  zona: "Sangolquí", detalle: "Local B17", maps: "https://www.google.com/maps/search/?api=1&query=Centro%20Comercial%20Plaza%20del%20Valle%20Sangolqui" }
   },
-  // Consola a la que pertenece cada producto, deducida del nombre.
+  // Consola a la que pertenece cada producto, deducida del nombre. Un producto puede estar en
+  // varias (una palanca PS5 está en "PS5" y en "PlayStation").
   plataformas: [
+    ["PlayStation", /\bPS[1-5]\b|PLAY ?STATION|\bPSP\b|\bVITA\b|DUALSENSE|DUALSHOCK|PS ?PORTAL/],
     ["PS5", /\bPS5\b|PLAYSTATION 5/],
     ["PS4", /\bPS4\b|PLAYSTATION 4/],
-    ["Nintendo", /SWITCH|SWICTH|NINTENDO/],
+    ["Nintendo", /SWITCH|SWICTH|NINTENDO|\bWII\b|GAME ?BOY|\bNES\b|\bSNES\b|\b3DS\b|JOY-?CON|AMIIBO/],
     ["Xbox", /XBOX/],
-    ["PC", /\bPC\b/],
-    ["Retro", /\bPS[123]\b|\bWII\b|ATARI|RETRO|\bSNES\b|\bNES\b|GAME ?BOY|\bPSP\b|ARCADE|\bR36|MINI GAME/]
+    ["PC", /\bPC\b|STEAM/],
+    ["Retro", /\bPS[123]\b|\bWII\b|ATARI|RETRO|\bSNES\b|\bNES\b|GAME ?BOY|\bPSP\b|ARCADE|\bR36|MINI GAME|GAME ?STICK|CONSOLA SUP\b|CONSOLA X9\b/]
   ],
+  // Mundos: cada plataforma grande con el color de su marca (solo dentro de su espacio).
+  mundos: {
+    PlayStation: {c: "#0070D1", c2: "#00225A", frase: "Consolas, juegos y DualSense para PS5 y PS4.", subs: ["PS5", "PS4"]},
+    Nintendo:    {c: "#E60012", c2: "#5C0007", frase: "Switch 2, Switch, juegos y controles.", subs: []},
+    Xbox:        {c: "#107C10", c2: "#052E05", frase: "Consolas Xbox, juegos y controles.", subs: []},
+    Retro:       {c: "#FF7A00", c2: "#5A2300", frase: "Consolas portátiles, clásicos y palancas retro.", subs: []}
+  },
   atajos: ["PS5", "Nintendo Switch", "Pokémon", "Palanca", "Mario"],
   iconos: { consolas: "i-console", palancas: "i-pad", juegos: "i-disc", accesorios: "i-head" }
 };
@@ -1199,6 +1263,24 @@ function onPhotoError(img){
   if (p) img.src = placeholder(p, Number(img.dataset.i) || 0);
 }
 const plataformasDe = p => p._plat || (p._plat = CONFIG.plataformas.filter(([, re])=>re.test(p.name.toUpperCase())).map(([n])=>n));
+// Etiqueta de color con la consola exacta ("PS5", "Switch 2", "Xbox"…); si sirve para varias marcas, "Multi".
+const colorMundo = m => CONFIG.mundos[m]?.c || "#3a373d";
+function etiquetaPlat(p){
+  if (p._tag !== undefined) return p._tag;
+  const n = p.name.toUpperCase(), pl = plataformasDe(p);
+  const marcas = ["PlayStation", "Nintendo", "Xbox"].filter(m=>pl.includes(m));
+  let txt = "", m = marcas[0] || (pl.includes("Retro") ? "Retro" : pl.includes("PC") ? "PC" : "");
+  if (marcas.length > 1) { txt = "Multi"; m = ""; }
+  else if (m === "PlayStation") txt = pl.includes("PS5") ? "PS5" : pl.includes("PS4") ? "PS4" : "PlayStation";
+  else if (m === "Nintendo") txt = /SWITCH ?2/.test(n) ? "Switch 2" : /SWITCH|SWICTH/.test(n) ? "Switch" : "Nintendo";
+  else txt = m;
+  return (p._tag = txt ? `<span class="plat-tag${m === "Retro" ? " retro" : ""}" style="--c:${colorMundo(m)}">${esc(txt)}</span>` : "");
+}
+// Mundo al que pertenece el filtro de consola actual (PS5 y PS4 viven dentro de PlayStation).
+function mundoActual(){
+  if (CONFIG.mundos[S.plat]) return S.plat;
+  return Object.keys(CONFIG.mundos).find(m=>CONFIG.mundos[m].subs.includes(S.plat)) || null;
+}
 
 function status(p){
   if (p.digital) return ["ok","Código digital"];
@@ -1226,7 +1308,7 @@ function cardHTML(p, lazy = true){
     <button class="card-open" type="button" data-code="${esc(p.code)}">
       <div class="img"><img src="${esc(p.photos.length ? p.photos[0] : placeholder(p,0))}" alt="" width="500" height="500" ${lazy ? 'loading="lazy"' : ""} decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)"></div>
       <div class="body">
-        <div class="cat">${esc(p.cat_label || "")}</div>
+        <div class="cat-row"><span class="cat">${esc(p.cat_label || "")}</span>${etiquetaPlat(p)}</div>
         <div class="name">${esc(p.name)}</div>
         <span class="stock ${cls}"><span class="dot"></span>${txt}</span>
         <div class="row">
@@ -1314,8 +1396,7 @@ async function loadProducts(){
   for (const p of PRODUCTS) for (const n of plataformasDe(p)) porPlat.set(n, (porPlat.get(n) || 0) + 1);
   const conPlat = CONFIG.plataformas.filter(([n])=>porPlat.get(n));
   $("plat").insertAdjacentHTML("beforeend", conPlat.map(([n])=>`<option value="${esc(n)}">${esc(n)} (${porPlat.get(n)})</option>`).join(""));
-  $("plats").innerHTML = conPlat.map(([n])=>`<button class="plat" type="button" data-ir-plat="${esc(n)}">${esc(n)}<small>${porPlat.get(n)}</small></button>`).join("");
-  $("platsWrap").hidden = !conPlat.length;
+  pintarMundos();
   datosEstructurados();
 
   $("railTop").innerHTML = PRODUCTS.slice(0, 12).map(p=>cardHTML(p, false)).join("");
@@ -1347,6 +1428,53 @@ function pintarEstado(){
       : new Intl.DateTimeFormat("es-EC", {timeZone: CONFIG.tz, day: "numeric", month: "short"}).format(f) + ` a las ${hora}`;
     $("actualizado").textContent = `, actualizado ${cuando}`;
   }).catch(()=>{});
+}
+
+// ===== Mundos por consola =====
+function pintarMundos(){
+  const orden = {consolas: 0, palancas: 1, juegos: 2, accesorios: 3};
+  const html = Object.entries(CONFIG.mundos).map(([m, cfg])=>{
+    const de = PRODUCTS.filter(p=>plataformasDe(p).includes(m));
+    if (!de.length) return "";
+    const porCat = new Map();
+    for (const p of de) porCat.set(p.cat_label || p.cat, (porCat.get(p.cat_label || p.cat) || 0) + 1);
+    // Fotos: primero consolas y palancas (lo que más identifica a cada marca).
+    const fotos = de.filter(p=>p.photos.length).sort((a, b)=>(orden[a.cat] ?? 9) - (orden[b.cat] ?? 9)).slice(0, 3);
+    const cuenta = (n, c) => `${n} ${esc((n === 1 ? c.replace(/s$/i, "") : c).toLowerCase())}`;
+    return `<button class="mundo" type="button" data-ir-plat="${esc(m)}" style="--c:${cfg.c};--c2:${cfg.c2}">
+      <span class="mundo-cab"><strong>${esc(m)}</strong><span class="n">${de.length} productos</span></span>
+      <span class="desglose">${[...porCat].sort((a, b)=>b[1] - a[1]).map(([c, n])=>`<span>${cuenta(n, c)}</span>`).join("")}</span>
+      ${fotos.length === 3 ? `<span class="fan" aria-hidden="true">${fotos.map(p=>`<span><img src="${esc(p.photos[0])}" alt="" width="200" height="200" loading="lazy" decoding="async"></span>`).join("")}</span>` : "<span></span>"}
+      <span class="ir" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+    </button>`;
+  }).join("");
+  $("mundos").innerHTML = html;
+  $("secMundos").hidden = !html;
+}
+// Encabezado del mundo en el catálogo, conteos de categorías según la consola elegida y menú marcado.
+function pintarMundoActual(){
+  const m = mundoActual(), cfg = m && CONFIG.mundos[m];
+  document.querySelectorAll(".nav a[data-ir-plat]").forEach(a=>a.setAttribute("aria-current", a.dataset.irPlat === m));
+  if (!cfg){ $("mundoBanner").hidden = true; }
+  else {
+    const n = PRODUCTS.filter(p=>plataformasDe(p).includes(m)).length;
+    const subs = cfg.subs.filter(s=>PRODUCTS.some(p=>plataformasDe(p).includes(s)));
+    $("mundoBanner").style.setProperty("--c", cfg.c);
+    $("mundoBanner").style.setProperty("--c2", cfg.c2);
+    $("mundoBanner").innerHTML = `<div><h3>Mundo ${esc(m)}</h3><p>${n} productos. ${esc(cfg.frase)}</p></div>
+      <div class="mundo-subs" role="group" aria-label="Consola">
+        ${subs.length ? `<button type="button" data-ir-plat="${esc(m)}" aria-pressed="${S.plat === m}">Todo ${esc(m)}</button>` +
+          subs.map(s=>`<button type="button" data-ir-plat="${esc(s)}" aria-pressed="${S.plat === s}">${esc(s)}</button>`).join("") : ""}
+        <button type="button" class="salir" data-ir-plat="all">Ver todas las consolas ×</button>
+      </div>`;
+    $("mundoBanner").hidden = false;
+  }
+  // Los números de cada categoría se ajustan a la consola elegida.
+  const base = PRODUCTS.filter(p=>S.plat === "all" || plataformasDe(p).includes(S.plat));
+  document.querySelectorAll(".chip").forEach(c=>{
+    const n = c.dataset.cat === "all" ? base.length : base.filter(p=>p.cat === c.dataset.cat).length;
+    const s = c.querySelector("small"); if (s) s.textContent = n;
+  });
 }
 
 // ===== Portada: vitrina de fotos que corren y líneas de fondo =====
@@ -1443,6 +1571,7 @@ function render(){
       ${S.q.trim() ? `<span class="pidelo-txt">¿No lo encuentras? Te decimos si lo tenemos o si nos llega.</span>${pideloHTML(S.q.trim())}<br>` : ""}
       <button type="button" data-reset>Ver todo el catálogo</button></div>`;
   if (!list.length && S.q.trim()) medirSinResultados(S.q.trim());
+  pintarMundoActual();
   $("more").hidden = vis.length >= list.length;
   escribirURL();
 }
@@ -1985,7 +2114,14 @@ document.addEventListener("click", e=>{
   const cat = e.target.closest("[data-ir-cat]");
   if (cat){ e.preventDefault(); aplicarFiltro({cat: cat.dataset.irCat, q: "", plat: "all"}); return; }
   const plat = e.target.closest("[data-ir-plat]");
-  if (plat){ aplicarFiltro({plat: plat.dataset.irPlat, cat: "all", q: ""}); return; }
+  if (plat){
+    e.preventDefault();
+    // Dentro del encabezado del mundo (PS5 / PS4 / salir) se conserva la categoría y no se mueve la página.
+    const enBanner = !!plat.closest("#mundoBanner");
+    aplicarFiltro({plat: plat.dataset.irPlat, cat: enBanner ? S.cat : "all", q: enBanner ? S.q : ""}, !enBanner);
+    medir("mundo", {plataforma: plat.dataset.irPlat});
+    return;
+  }
   const atajo = e.target.closest("[data-atajo]");
   if (atajo){ aplicarFiltro({q: atajo.dataset.atajo, cat: "all", plat: "all"}); return; }
   if (e.target.closest("[data-reset]")) resetAll();
