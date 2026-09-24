@@ -587,6 +587,21 @@ header.top.con-sombra{box-shadow:0 10px 30px rgba(0,0,0,.45)}
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
   .card:hover .img::after{translate:130% 0;transition:translate 900ms var(--ease-out)}
 }
+/* Celular (sin mouse): los mismos efectos, pensados para el dedo */
+@media (hover:none){
+  .gallery .main.zoomable{position:relative}
+  .gallery .main.zoomable::after{content:"Toca para acercar";position:absolute;right:10px;bottom:10px;padding:6px 10px;border-radius:999px;background:rgba(10,10,11,.8);color:#fff;font-size:.75rem;font-weight:700;pointer-events:none;transition:opacity 200ms ease}
+  .gallery .main.zoom::after{content:"Toca para alejar"}
+  .gallery .main.zoom{touch-action:none}
+}
+@media (hover:none) and (prefers-reduced-motion:no-preference){
+  /* El reflejo de luz cruza la foto cuando el producto aparece en pantalla */
+  .card .img.brilla::after{animation:reflejo 1100ms var(--ease-out) 150ms both}
+  /* Al presionar un producto, la tarjeta se hunde un poco (como en una app) */
+  .card{transition:scale 140ms var(--ease-out)}
+  .card:has(.card-open:active){scale:.97}
+}
+@keyframes reflejo{from{translate:-130% 0}to{translate:130% 0}}
 @media (prefers-reduced-motion:no-preference){
   /* Al cambiar de categoría o consola, los productos entran en cascada (solo los primeros 12 esperan). */
   .card.aparece{animation:subir-card 420ms var(--ease-out) backwards;animation-delay:calc(var(--i,0) * 32ms)}
@@ -1775,7 +1790,7 @@ function openProduct(code){
   const show = v => {
     $("dMain").innerHTML = `<img src="${esc(fotos[v])}" alt="${esc(p.name)}, foto ${v+1}" width="500" height="500" data-code="${esc(p.code)}" data-i="${v}" onerror="onPhotoError(this)">`;
     $("dThumbs").querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-current", i === v));
-    $("dMain").classList.toggle("zoomable", p.photos.length > 0 && matchMedia("(hover: hover) and (pointer: fine)").matches);
+    $("dMain").classList.toggle("zoomable", p.photos.length > 0);
     $("dMain").classList.remove("zoom");
   };
   $("dThumbs").hidden = fotos.length < 2;
@@ -1817,14 +1832,57 @@ function openProduct(code){
   escribirURL();
 }
 
-// Zoom de la foto en la ficha: se amplía justo donde apunta el mouse.
-$("dMain").addEventListener("pointermove", e=>{
-  if (!$("dMain").classList.contains("zoomable")) return;
+// Zoom de la foto en la ficha. Con mouse: se amplía donde apunta. En celular: tocar acerca justo
+// donde se tocó, arrastrar el dedo recorre la foto y otro toque la aleja.
+function origenZoom(x, y){
   const r = $("dMain").getBoundingClientRect(), img = $("dMain").querySelector("img"); if (!img) return;
-  img.style.transformOrigin = `${((e.clientX - r.left) / r.width * 100).toFixed(1)}% ${((e.clientY - r.top) / r.height * 100).toFixed(1)}%`;
+  const px = Math.min(100, Math.max(0, (x - r.left) / r.width * 100)), py = Math.min(100, Math.max(0, (y - r.top) / r.height * 100));
+  img.style.transformOrigin = `${px.toFixed(1)}% ${py.toFixed(1)}%`;
+}
+$("dMain").addEventListener("pointermove", e=>{
+  if (e.pointerType !== "mouse" || !$("dMain").classList.contains("zoomable")) return;
+  origenZoom(e.clientX, e.clientY);
   $("dMain").classList.add("zoom");
 });
-$("dMain").addEventListener("pointerleave", ()=>$("dMain").classList.remove("zoom"));
+$("dMain").addEventListener("pointerleave", e=>{ if (e.pointerType === "mouse") $("dMain").classList.remove("zoom"); });
+$("dMain").addEventListener("click", e=>{
+  if (matchMedia("(hover: hover)").matches || !$("dMain").classList.contains("zoomable")) return;
+  const acercar = !$("dMain").classList.contains("zoom");
+  if (acercar) origenZoom(e.clientX, e.clientY);
+  $("dMain").classList.toggle("zoom", acercar);
+});
+$("dMain").addEventListener("touchmove", e=>{
+  if (!$("dMain").classList.contains("zoom")) return;
+  e.preventDefault();   // mientras está acercada, el dedo mueve la foto (no la página)
+  origenZoom(e.touches[0].clientX, e.touches[0].clientY);
+}, {passive: false});
+
+// Celular: el reflejo de luz cruza cada foto cuando el producto aparece en pantalla (una vez).
+if (matchMedia("(hover: none)").matches && !reduceMotion() && "IntersectionObserver" in window){
+  const io = new IntersectionObserver(entradas=>{
+    for (const e of entradas) if (e.isIntersecting){ e.target.classList.add("brilla"); io.unobserve(e.target); }
+  }, {threshold: 0.6});
+  const observar = raiz => raiz.querySelectorAll?.(".card .img:not(.brilla)").forEach(el=>{ if (el.querySelector('img[src^="fotos/"]')) io.observe(el); });
+  new MutationObserver(ms=>{ for (const m of ms) for (const n of m.addedNodes) if (n.nodeType === 1) observar(n); })
+    .observe(document.body, {childList: true, subtree: true});
+  observar(document);
+  document.addEventListener("touchstart", ()=>{}, {passive: true});   // activa el efecto al presionar en iPhone
+}
+
+// Diagnóstico: abrir la página con ?diag muestra qué soporta este celular o navegador.
+const VERSION = "2026-09-24-movil";
+if (new URLSearchParams(location.search).has("diag")){
+  const d = document.createElement("pre");
+  d.style.cssText = "position:fixed;left:8px;right:8px;bottom:8px;z-index:99;margin:0;background:#fff;color:#000;font:12px/1.5 monospace;padding:12px;border-radius:12px;white-space:pre-wrap;box-shadow:0 10px 30px rgba(0,0,0,.5)";
+  d.textContent = [
+    `Versión de la página: ${VERSION}`,
+    `Navegador: ${navigator.userAgent}`,
+    `"Reducir animaciones" del celular: ${reduceMotion() ? "ACTIVADO (por eso se apagan los efectos)" : "no"}`,
+    `Foto que vuela a la ficha: ${document.startViewTransition ? "sí" : "no (navegador antiguo)"}`,
+    `Pantalla táctil: ${matchMedia("(hover: none)").matches ? "sí" : "no"}`
+  ].join("\n");
+  document.body.appendChild(d);
+}
 
 // Encabezado con sombra apenas se baja de la parte de arriba.
 {
