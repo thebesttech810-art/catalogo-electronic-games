@@ -29,6 +29,7 @@ LOCALES = [
     ("scala", "Scala Shopping", "Cumbayá, Isla 5"),
     ("valle", "Plaza del Valle", "Sangolquí, Local B17"),
 ]
+LOGO = '<g fill="#FE8903" transform="matrix(1 0 -.7 1 51.8 0)"><path d="M27.5 44.8H125V56H27.5z"/><path d="M27.5 60.7H125V72H56v16H27.5z"/><path d="M65 77.6h60v14.7a12 12 0 0 1-12 12H27.5V93H97v-5H65z"/></g>'  # logo de Electronic Games, vectorizado del original
 POCAS = 2  # desde cuántas unidades se avisa "últimas unidades" (igual que en la página)
 ECUADOR = timezone(timedelta(hours=-5))  # Ecuador no cambia de hora en el año
 
@@ -83,9 +84,8 @@ def pagina(p, cuando):
     analitica = (f'<script defer src="https://cloud.umami.is/script.js" data-website-id="{e(ANALITICA_ID)}" data-domains="thebesttech810-art.github.io"></script>'
                  if ANALITICA_ID else "")
     img = (f'<img src="../{e(foto)}" alt="{e(p["name"])}" width="600" height="600">' if foto else
-           '<svg viewBox="0 0 500 500" role="img" aria-label="Foto próximamente"><g transform="translate(170 180) skewX(-20)" fill="#FF7A00">'
-           '<rect width="170" height="22" rx="3"/><rect x="42" y="36" width="126" height="22" rx="3" opacity=".7"/>'
-           '<rect y="72" width="170" height="22" rx="3" opacity=".45"/></g>'
+           '<svg viewBox="0 0 500 500" role="img" aria-label="Foto próximamente">'
+           f'<svg x="140" y="170" width="220" height="95" viewBox="6 44.5 140 60">{LOGO}</svg>'
            '<text x="250" y="340" text-anchor="middle" font-family="monospace" font-size="16" fill="#8A8178" letter-spacing="2">FOTO PRÓXIMAMENTE</text></svg>')
     principal = (f'<a class="btn wa" id="wa" href="https://wa.me/{WHATSAPP}?text={quote(mensaje)}" target="_blank" rel="noopener">Avísame cuando llegue</a>'
                  f'<a class="btn ghost" href="../?cat={quote(p.get("cat", ""))}#catalogo">Ver productos parecidos</a>'
@@ -130,7 +130,7 @@ a{{color:inherit}}
 .wrap{{max-width:1080px;margin:0 auto;padding:0 20px}}
 header{{border-bottom:1px solid var(--line)}}
 header .wrap{{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}}
-.marca{{font-weight:900;font-style:italic;text-transform:uppercase;text-decoration:none;font-size:1.1rem}}
+.marca{{display:inline-flex;align-items:center;gap:10px;font-weight:900;font-style:italic;text-transform:uppercase;text-decoration:none;font-size:1.1rem}}
 .marca b{{color:var(--brand)}}
 header nav a{{font-weight:700;font-size:.92rem;color:var(--muted);text-decoration:none;padding:10px 0}}
 header nav a:hover{{color:var(--ink)}}
@@ -166,7 +166,7 @@ footer a{{color:var(--ink)}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><a class="marca" href="../">Electronic <b>Games</b></a><nav><a href="../#catalogo">Ver todo el catálogo</a></nav></div></header>
+<header><div class="wrap"><a class="marca" href="../"><svg viewBox="6 44.5 140 60" width="47" height="20" aria-hidden="true">{LOGO}</svg>Electronic <b>Games</b></a><nav><a href="../#catalogo">Ver todo el catálogo</a></nav></div></header>
 <main class="wrap ficha">
   <div class="foto">{img}</div>
   <div>

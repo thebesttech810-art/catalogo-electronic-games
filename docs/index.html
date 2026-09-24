@@ -76,10 +76,8 @@ button,a,select,label,summary{touch-action:manipulation;-webkit-tap-highlight-co
 header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line)}
 .top-in{display:flex;align-items:center;gap:20px;height:var(--header)}
 .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;flex:none}
-.brand img{height:34px;width:auto}
-.mark{display:inline-flex;flex-direction:column;gap:3px;transform:skewX(-18deg)}
-.mark i{display:block;height:5px;background:var(--brand);border-radius:1px}
-.mark i:nth-child(1){width:22px}.mark i:nth-child(2){width:16px;margin-left:6px}.mark i:nth-child(3){width:22px}
+/* Logo real de Electronic Games (vectorizado: nítido en cualquier tamaño) */
+.logo{flex:none;width:56px;height:24px}
 .wordmark{font-weight:900;font-style:italic;font-size:1.15rem;letter-spacing:.01em;text-transform:uppercase;line-height:1}
 .wordmark b{color:var(--brand);font-weight:900}
 .nav{display:flex;gap:4px;margin-left:12px}
@@ -182,14 +180,12 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdro
 .link-sec:hover{text-decoration:underline}
 
 /* Categorías en bloques tipo "bento", con un abanico de fotos reales */
-.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(210px,auto);gap:14px}
-.tile:first-child{grid-column:span 2;grid-row:span 2}
-.tile:nth-child(2){grid-column:span 2}
-.tile{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;gap:16px;padding:22px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(160deg,var(--surface-hi),var(--surface) 62%);text-align:left;cursor:pointer;color:var(--ink)}
+/* Fila compacta: los mundos por consola ya son la navegación principal */
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tile{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;gap:16px;padding:22px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(160deg,var(--surface-hi),var(--surface) 62%);text-align:left;cursor:pointer;color:var(--ink);min-height:196px}
 .tile-top{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
 .tile strong{display:block;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.4rem,2.4vw,2rem);line-height:.95;letter-spacing:-.015em}
-.tile:first-child strong{font-size:clamp(1.9rem,4.2vw,3.4rem)}
-.tile:nth-child(n+3) strong{font-size:clamp(1.2rem,1.8vw,1.6rem)}
+.tile strong{font-size:clamp(1.2rem,1.9vw,1.65rem)}
 .tile-top > span:first-child{min-width:0}
 .tile .n{display:block;margin-top:8px;color:var(--muted);font-size:.88rem}
 .tile .ir{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);transition:rotate 220ms var(--ease-out)}
@@ -197,7 +193,7 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdro
 .tile:hover{border-color:var(--brand)}
 .tile-ico{position:relative;z-index:1;margin-top:auto;align-self:flex-end;width:72px;height:72px;color:var(--brand);stroke-width:1.5}
 .fan{position:relative;z-index:1;margin-top:auto;align-self:flex-end;width:min(100%,290px);aspect-ratio:1.75/1}
-.tile:first-child .fan{width:min(92%,440px)}
+.tile .fan{width:min(100%,230px)}
 .fan span{position:absolute;bottom:0;width:46%;aspect-ratio:1/1;border-radius:16px;overflow:hidden;background:var(--stage-bg);box-shadow:0 14px 30px rgba(0,0,0,.45),inset 0 0 0 1px rgba(0,0,0,.06);transition:translate 320ms var(--ease-out),rotate 320ms var(--ease-out)}
 .fan img{width:100%;height:100%;object-fit:contain;padding:10%;mix-blend-mode:multiply}
 .fan span:nth-child(1){left:0;rotate:-9deg;translate:0 -4%}
@@ -616,10 +612,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .confianza ul{grid-template-columns:repeat(2,1fr)}
   .confianza li:nth-child(3){border-left:0;padding-left:0}
   .confianza li:nth-child(n+3){border-top:1px solid var(--line)}
-  .tiles{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(190px,auto)}
-  .tile:first-child{grid-row:auto}
-  .tile:nth-child(2){grid-column:auto}
-  .tile:nth-child(4):last-child{grid-column:span 2}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mundos{grid-template-columns:minmax(0,1fr)}
   .mundo{min-height:200px;padding:20px;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
   .pasos{grid-template-columns:repeat(2,1fr)}
@@ -667,12 +660,11 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .wordmark b{display:block}
   .confianza li{font-size:.84rem;gap:10px}
   .sec{padding-top:44px}
-  .tile:first-child strong{font-size:1.7rem}
   /* Bloques angostos: el nombre completo manda; la flecha sobra porque todo el bloque se toca. */
-  .tile:not(:first-child) strong{font-size:1.15rem}
-  .tile:not(:first-child) .ir{display:none}
+  .tile strong{font-size:1.15rem}
+  .tile .ir{display:none}
   .tile .n{font-size:.8rem}
-  .tiles{grid-auto-rows:minmax(170px,auto)}
+  .tile{min-height:150px}
   .rail{grid-auto-columns:minmax(160px,46vw);gap:10px}
   .rail-nav{display:none}
   .dlg{grid-template-columns:minmax(0,1fr)}
@@ -745,14 +737,14 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-logo" viewBox="6 44.5 140 60"><g fill="#FE8903" transform="matrix(1 0 -.7 1 51.8 0)"><path d="M27.5 44.8H125V56H27.5z"/><path d="M27.5 60.7H125V72H56v16H27.5z"/><path d="M65 77.6h60v14.7a12 12 0 0 1-12 12H27.5V93H97v-5H65z"/></g></symbol>
   <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.3s-7.4-4.5-9.1-9.1C1.8 8 3.7 4.6 7.2 4.6c2 0 3.4 1.1 4.8 2.9 1.4-1.8 2.8-2.9 4.8-2.9 3.5 0 5.4 3.4 4.3 6.6-1.7 4.6-9.1 9.1-9.1 9.1Z"/></symbol>
 </svg>
 
 <header class="top">
   <div class="wrap top-in">
     <a class="brand" href="./" aria-label="Electronic Games, inicio">
-      <img id="logoImg" alt="" hidden>
-      <span class="mark" id="logoMark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <svg class="logo" aria-hidden="true"><use href="#i-logo"/></svg>
       <span class="wordmark" translate="no">Electronic <b>Games</b></span>
     </a>
     <nav class="nav" aria-label="Principal">
@@ -874,6 +866,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
         <select id="local"><option value="all">Todos los locales</option></select>
         <label class="sr" for="sort">Ordenar</label>
         <select id="sort">
+          <option value="dest">Destacados</option>
           <option value="rel">Más vendidos</option>
           <option value="nuevo">Recién llegados</option>
           <option value="asc">Menor precio</option>
@@ -940,7 +933,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
 <footer>
   <div class="wrap foot">
     <div>
-      <a class="brand" href="./" aria-label="Electronic Games, inicio"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="wordmark" translate="no">Electronic <b>Games</b></span></a>
+      <a class="brand" href="./" aria-label="Electronic Games, inicio"><svg class="logo" aria-hidden="true"><use href="#i-logo"/></svg><span class="wordmark" translate="no">Electronic <b>Games</b></span></a>
       <p>Consolas, videojuegos, accesorios y servicio técnico en Quito, Cumbayá y Sangolquí.</p>
     </div>
     <div><h3>Tienda</h3><ul id="footCats"></ul></div>
@@ -1118,12 +1111,9 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
 <script>
 /* ============================================================
    CONFIGURACIÓN: número, locales y textos.
-   Para usar tu logo real: guarda la imagen como docs/logo.png
-   y escribe "logo.png" en logo (abajo).
    ============================================================ */
 const CONFIG = {
   whatsapp: "593980807721",   // con código de país, SIN "+"
-  logo: "",                    // vacío = marca de texto (no pide un archivo que no existe)
   // Id del sitio en Umami (medición de visitas gratis y sin cookies). Vacío = no se mide nada.
   // Va también en ANALITICA_ID de paginas_producto.py.
   analitica: "1f84c623-7a7b-4d1f-90cd-ef1e1a646852",
@@ -1164,7 +1154,7 @@ const CONFIG = {
 };
 
 let PRODUCTS = [];
-const S = {cat:"all", q:"", plat:"all", local:"all", sort:"rel", only:false, visibles:0};
+const S = {cat:"all", q:"", plat:"all", local:"all", sort:"dest", only:false, visibles:0};
 
 // ===== Utilidades =====
 const $ = id => document.getElementById(id);
@@ -1214,14 +1204,6 @@ const nLocales = Object.keys(CONFIG.locales).length;
 const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 const buscar = code => PRODUCTS.find(x=>x.code===code);
 
-// Logo real si está configurado; si no, se queda la marca de texto.
-if (CONFIG.logo) {
-  const img = $("logoImg");
-  img.onload = () => { img.hidden = false; $("logoMark").hidden = true; };
-  img.onerror = () => img.remove();
-  img.src = CONFIG.logo;
-}
-
 // Las fotos aparecen con un fundido cuando terminan de cargar (sin "saltos").
 document.documentElement.classList.add("js");
 document.addEventListener("load", e=>{ if (e.target.tagName === "IMG") e.target.classList.add("ok"); }, true);
@@ -1263,15 +1245,37 @@ pintarTiendas();
 setInterval(pintarTiendas, 60000);
 
 // ===== Productos =====
-// Sin foto todavía: la marca sobre fondo transparente, para que se vea sobre el mismo escenario claro que las fotos.
+// Sin foto todavía: "portada tipográfica" con el nombre del producto en grande, su categoría,
+// su consola y el logo. Cada producto se ve distinto y a propósito, no como un espacio vacío.
+// Fondo transparente: se ve sobre el mismo escenario claro que las fotos.
+const LOGO_SVG = `<g fill="#FE8903" transform="matrix(1 0 -.7 1 51.8 0)"><path d="M27.5 44.8H125V56H27.5z"/><path d="M27.5 60.7H125V72H56v16H27.5z"/><path d="M65 77.6h60v14.7a12 12 0 0 1-12 12H27.5V93H97v-5H65z"/></g>`;
 function placeholder(p, i){
-  const cat = esc((p.cat_label || "").toUpperCase());
+  if (p._portada && i === 0) return p._portada;
+  const nombre = p.name.replace(/\s+/g, " ").trim().toUpperCase();
+  const fs = nombre.length <= 24 ? 44 : nombre.length <= 44 ? 37 : 32;
+  const porLinea = Math.floor(390 / (fs * 0.66));
+  const lineas = [];
+  for (const w of nombre.split(" ")) {
+    const k = lineas.length - 1;
+    if (k >= 0 && (lineas[k] + " " + w).length <= porLinea) lineas[k] += " " + w;
+    else lineas.push(w.length > porLinea ? w.slice(0, porLinea - 1) + "…" : w);
+  }
+  const ver = lineas.slice(0, 4);
+  if (lineas.length > 4) ver[3] = ver[3].replace(/\s*\S*$/, "") + "…";
+  const {txt, m} = consolaDe(p);
+  const anchoTag = txt.length * 12 + 28;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
-    <g transform="translate(170 160) skewX(-20)" fill="#FF7A00"><rect width="170" height="22" rx="3"/><rect x="42" y="36" width="126" height="22" rx="3" opacity=".7"/><rect y="72" width="170" height="22" rx="3" opacity=".45"/></g>
-    <text x="250" y="318" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-style="italic" font-size="30" fill="#2A2522">${cat}</text>
-    <text x="250" y="350" text-anchor="middle" font-family="monospace" font-size="15" fill="#8A8178" letter-spacing="2">FOTO ${i+1} · PRÓXIMAMENTE</text>
+    <text x="56" y="152" font-family="Arial,sans-serif" font-weight="700" font-size="20" letter-spacing="3" fill="#D45F00">${esc((p.cat_label || "").toUpperCase())}</text>
+    <g font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-style="italic" font-size="${fs}" fill="#1F1B18">
+      ${ver.map((l, k)=>`<text x="56" y="${Math.round(200 + fs * 0.4 + k * fs * 1.08)}">${esc(l)}</text>`).join("")}
+    </g>
+    ${txt ? `<rect x="56" y="392" width="${anchoTag}" height="38" rx="8" fill="${colorMundo(m)}"/><text x="${56 + anchoTag / 2}" y="418" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="19" fill="${m === "Retro" ? "#140900" : "#fff"}">${esc(txt)}</text>` : ""}
+    <svg x="346" y="388" width="100" height="43" viewBox="6 44.5 140 60">${LOGO_SVG}</svg>
+    <text x="56" y="466" font-family="monospace" font-size="14" letter-spacing="2" fill="#8A8178">FOTO PRÓXIMAMENTE</text>
   </svg>`;
-  return "data:image/svg+xml," + encodeURIComponent(svg);
+  const url = "data:image/svg+xml," + encodeURIComponent(svg);
+  if (i === 0) p._portada = url;
+  return url;
 }
 // El código del producto viaja en data-code (dato), nunca dentro del JavaScript del atributo onerror.
 function onPhotoError(img){
@@ -1282,8 +1286,8 @@ function onPhotoError(img){
 const plataformasDe = p => p._plat || (p._plat = CONFIG.plataformas.filter(([, re])=>re.test(p.name.toUpperCase())).map(([n])=>n));
 // Etiqueta de color con la consola exacta ("PS5", "Switch 2", "Xbox"…); si sirve para varias marcas, "Multi".
 const colorMundo = m => CONFIG.mundos[m]?.c || "#3a373d";
-function etiquetaPlat(p){
-  if (p._tag !== undefined) return p._tag;
+function consolaDe(p){
+  if (p._consola) return p._consola;
   const n = p.name.toUpperCase(), pl = plataformasDe(p);
   const marcas = ["PlayStation", "Nintendo", "Xbox"].filter(m=>pl.includes(m));
   let txt = "", m = marcas[0] || (pl.includes("Retro") ? "Retro" : pl.includes("PC") ? "PC" : "");
@@ -1291,7 +1295,11 @@ function etiquetaPlat(p){
   else if (m === "PlayStation") txt = pl.includes("PS5") ? "PS5" : pl.includes("PS4") ? "PS4" : "PlayStation";
   else if (m === "Nintendo") txt = /SWITCH ?2/.test(n) ? "Switch 2" : /SWITCH|SWICTH/.test(n) ? "Switch" : "Nintendo";
   else txt = m;
-  return (p._tag = txt ? `<span class="plat-tag${m === "Retro" ? " retro" : ""}" style="--c:${colorMundo(m)}">${esc(txt)}</span>` : "");
+  return (p._consola = {txt, m});
+}
+function etiquetaPlat(p){
+  const {txt, m} = consolaDe(p);
+  return txt ? `<span class="plat-tag${m === "Retro" ? " retro" : ""}" style="--c:${colorMundo(m)}">${esc(txt)}</span>` : "";
 }
 // Mundo al que pertenece el filtro de consola actual (PS5 y PS4 viven dentro de PlayStation).
 function mundoActual(){
@@ -1339,6 +1347,9 @@ function cardHTML(p, lazy = true){
 }
 const fotoDe = p => p.photos.length ? p.photos[0] : placeholder(p, 0);
 const skeletons = n => Array.from({length: n}, ()=>`<div class="skel" aria-hidden="true"><div class="img"></div><i></i><i></i><i></i></div>`).join("");
+
+// Destacados: primero lo que tiene foto; dentro de cada grupo se respeta lo más vendido.
+const conFotoPrimero = l => [...l.filter(p=>p.photos.length), ...l.filter(p=>!p.photos.length)];
 
 // Búsqueda por palabras: "palanca ps5 roja" encuentra el producto aunque las palabras estén en otro orden.
 const SINONIMOS = {control: ["palanca"], palanca: ["control"], mando: ["palanca", "control"], joystick: ["palanca", "control"]};
@@ -1416,8 +1427,10 @@ async function loadProducts(){
   pintarMundos();
   datosEstructurados();
 
-  $("railTop").innerHTML = PRODUCTS.slice(0, 12).map(p=>cardHTML(p, false)).join("");
-  const nuevos = PRODUCTS.filter(p=>p.nuevo).slice(0, 12);
+  // Portada como vitrina: lo más vendido que ya tiene foto (si todavía hay pocas fotos, todo).
+  const masVendidos = PRODUCTS.filter(p=>p.photos.length).length >= 6 ? PRODUCTS.filter(p=>p.photos.length) : PRODUCTS;
+  $("railTop").innerHTML = masVendidos.slice(0, 12).map(p=>cardHTML(p, false)).join("");
+  const nuevos = conFotoPrimero(PRODUCTS.filter(p=>p.nuevo)).slice(0, 12);
   $("secNuevos").hidden = !nuevos.length;
   $("railNuevos").innerHTML = nuevos.map(p=>cardHTML(p)).join("");
   document.querySelectorAll(".rail-nav").forEach(actualizarFlechas);
@@ -1570,7 +1583,8 @@ function listaFiltrada(){
     (!S.only || hasStock(p)) &&
     (!q || coincide(p, q))
   );
-  if (S.sort === "rel" && q) list = porRelevancia(list, q);
+  if ((S.sort === "rel" || S.sort === "dest") && q) list = porRelevancia(list, q);
+  else if (S.sort === "dest") list = conFotoPrimero(list);
   if (S.sort === "asc") list = [...list].sort((a,b)=>a.price-b.price);
   if (S.sort === "desc") list = [...list].sort((a,b)=>b.price-a.price);
   if (S.sort === "nuevo") list = [...list].sort((a,b)=>(b.nuevo === true) - (a.nuevo === true));
@@ -1611,7 +1625,7 @@ function aplicarFiltro(cambios, ir = true){
   if ($("menu").open) $("menu").close();
   if (ir) $("catalogo").scrollIntoView({behavior: reduceMotion() ? "auto" : "smooth"});
 }
-function resetAll(){ aplicarFiltro({cat: "all", q: "", plat: "all", local: "all", sort: "rel", only: false}, false); }
+function resetAll(){ aplicarFiltro({cat: "all", q: "", plat: "all", local: "all", sort: "dest", only: false}, false); }
 
 // Solo cambia el botón de los productos cuyo número en el pedido cambió (no se redibuja nada más).
 function refrescarControles(){
