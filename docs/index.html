@@ -1048,7 +1048,13 @@ function render(){
 function sincronizarControles(){
   $("q").value = S.q; $("plat").value = S.plat; $("local").value = S.local; $("sort").value = S.sort; $("onlyStock").checked = S.only;
   document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", c.dataset.cat === S.cat));
-  document.querySelector(`.chip[aria-pressed="true"]`)?.scrollIntoView({block: "nearest", inline: "nearest"});
+  // Solo desliza la fila de categorías; scrollIntoView movía toda la página al abrirla.
+  const fila = $("chips"), chip = fila.querySelector(`.chip[aria-pressed="true"]`);
+  if (chip) {
+    const a = chip.getBoundingClientRect(), b = fila.getBoundingClientRect();
+    if (a.left < b.left) fila.scrollLeft += a.left - b.left - 8;
+    else if (a.right > b.right) fila.scrollLeft += a.right - b.right + 8;
+  }
 }
 function aplicarFiltro(cambios, ir = true){
   Object.assign(S, cambios, {visibles: CONFIG.porPagina});
