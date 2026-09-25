@@ -197,6 +197,41 @@ header.top{position:sticky;top:0;z-index:6;background:var(--bg);border-bottom:1p
 .atajos button{border:1px solid var(--line);background:transparent;color:var(--ink);padding:8px 14px;min-height:40px;border-radius:999px;font-weight:600;font-size:.88rem;cursor:pointer}
 .atajos button:hover{border-color:var(--brand)}
 
+/* ---------- Mascota: el muñequito de la tienda da la bienvenida ---------- */
+/* En computadora está parado frente a la vitrina de productos; en celular, en su propia franja arriba del titular. */
+.mascota{--mascota-x:0;--mascota-alto:2.05;position:absolute;inset:-6% -2% -26px;z-index:1;pointer-events:none;isolation:isolate}
+/* Un halo oscuro detrás, para que se despegue de las fotos de la vitrina */
+.mascota::before{content:"";position:absolute;inset:14% 14% 0;z-index:-1;background:radial-gradient(closest-side,rgba(10,10,11,.9),rgba(10,10,11,.55) 58%,transparent);pointer-events:none}
+.mascota canvas{display:block;width:100%;height:100%;opacity:0;transition:opacity 300ms ease}
+.mascota.listo canvas{opacity:1}
+.mascota-plana{position:absolute;left:50%;bottom:4%;height:78%;width:auto;translate:-50% 0;pointer-events:auto;cursor:pointer;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55))}
+.mascota-plana.entra{animation:plana-cae 900ms cubic-bezier(.3,1.4,.5,1) both}
+.mascota-plana.salta{animation:plana-salta 600ms var(--ease-out)}
+@keyframes plana-cae{from{translate:-50% -70%;opacity:0}60%{opacity:1}}
+@keyframes plana-salta{40%{translate:-50% -14%;rotate:-6deg}}
+/* Globo de diálogo junto a la cabeza (la posición la da la escena 3D en --cx / --cy) */
+.mascota-globo{position:absolute;left:var(--cx,50%);top:var(--cy,18%);z-index:2;width:max-content;max-width:min(240px,62%);margin:0;padding:10px 15px;border-radius:18px;background:var(--ink);color:#0A0A0B;
+  font-weight:800;font-size:.95rem;line-height:1.25;text-wrap:balance;box-shadow:0 14px 30px rgba(0,0,0,.45);translate:62px -118%;transform-origin:0 100%;opacity:0;scale:.5;
+  transition:opacity 180ms ease,scale 320ms cubic-bezier(.3,1.5,.5,1);pointer-events:none}
+.mascota-globo::after{content:"";position:absolute;left:-7px;bottom:10px;width:18px;height:18px;background:inherit;border-radius:0 0 0 6px;rotate:20deg;clip-path:polygon(0 0,100% 100%,0 100%)}
+.mascota-globo.ver{opacity:1;scale:1}
+.mascota.plana .mascota-globo{left:28%;top:12%;translate:-60% 0}
+.mascota-movil{display:none}
+.hero.sobre-mascota,.hero.sobre-mascota *{cursor:pointer}
+@media (max-width:960px){
+  .mascota-movil{display:block;position:relative;height:clamp(170px,48vw,230px);margin:-26px -20px 2px}
+  .mascota-movil .mascota{--mascota-x:.2;--mascota-alto:1.62;--mascota-mano:der;inset:0}
+  .mascota-movil .mascota::before{inset:4% 8% 0 44%}
+  .mascota-movil .mascota-globo{translate:calc(-100% - 62px) -50%;transform-origin:100% 50%;font-size:.9rem;max-width:min(210px,52vw)}
+  .mascota-movil .mascota-globo::after{left:auto;right:-7px;bottom:auto;top:calc(50% - 9px);border-radius:0 0 6px 0;rotate:-45deg;clip-path:polygon(100% 0,100% 100%,0 100%)}
+  .mascota-movil .mascota.plana .mascota-globo{left:40%;top:50%}
+  .mascota-movil .mascota-plana{left:70%;height:92%;bottom:2%}
+}
+@media (prefers-reduced-motion:reduce){
+  .mascota-plana.entra,.mascota-plana.salta{animation:none}
+  .mascota-globo{transition:none}
+}
+
 /* ---------- Franja de confianza ---------- */
 .confianza{border-block:1px solid var(--line);background:var(--surface)}
 .confianza ul{list-style:none;margin:0 auto;padding:0 20px;max-width:1200px;display:grid;grid-template-columns:repeat(4,1fr)}
@@ -497,6 +532,10 @@ dialog.sheet.izq{margin:0 auto 0 0;border-radius:0 18px 18px 0}
 .sug-add:hover{background:var(--brand-hi)}
 .sug-add:active{scale:.94}
 .vacio{padding:48px 10px;text-align:center;color:var(--muted)}
+/* El muñequito en los estados vacíos (pedido, favoritos, búsquedas sin resultado): flota despacio. */
+.mascota-mini{display:block;width:auto;height:118px;margin:0 auto 14px;filter:drop-shadow(0 12px 18px rgba(0,0,0,.5))}
+@media (prefers-reduced-motion:no-preference){ .mascota-mini{animation:flota 2.6s ease-in-out infinite alternate} }
+@keyframes flota{from{translate:0 4px;rotate:-2deg}to{translate:0 -6px;rotate:2deg}}
 .vacio button{margin-top:14px;border:0;background:var(--brand);color:var(--brand-ink);padding:11px 20px;min-height:44px;border-radius:10px;font-weight:800;cursor:pointer}
 .sheet-foot{border-top:1px solid var(--line);padding:12px 20px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:10px}
 .lbl-sec{display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:700}
@@ -659,8 +698,10 @@ header.top.con-sombra{box-shadow:0 10px 30px rgba(0,0,0,.45)}
 .exito p{margin:0;color:var(--muted);max-width:34ch;text-wrap:pretty}
 .exito .cod{font-family:"JetBrains Mono",monospace;color:var(--ink);font-weight:600}
 .acciones-exito{display:grid;gap:10px;width:100%;max-width:340px;margin-top:10px;margin-bottom:auto}
-.exito-check{flex:none;margin-top:auto;width:92px;height:92px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 14px 34px rgba(37,211,102,.35)}
-.exito-check svg{width:48px;height:48px;fill:none;stroke:var(--wa-ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.exito-mascota{position:relative;flex:none;margin-top:auto}
+.exito-mascota img{display:block;height:150px;width:auto;filter:drop-shadow(0 14px 22px rgba(0,0,0,.5))}
+.exito-check{position:absolute;right:-26px;bottom:6px;width:58px;height:58px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 10px 24px rgba(37,211,102,.4);border:3px solid var(--surface)}
+.exito-check svg{width:30px;height:30px;fill:none;stroke:var(--wa-ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .exito-check path{stroke-dasharray:1}
 .confeti{position:absolute;left:50%;top:30%;width:9px;height:14px;border-radius:2px;pointer-events:none}
 
@@ -765,6 +806,8 @@ dialog.kiosco::backdrop{background:#050506}
   .entrada :is(.sec-h,.servicio h2).visto{animation:titulo-entra 760ms var(--ease-out) backwards}
   .entrada .pasos li.visto{animation:paso-entra 700ms var(--ease-out) backwards}
   .entrada .foot-gigante.visto span{animation:letra-sube 760ms var(--ease-out) calc(var(--i,0) * 45ms) backwards}
+  .entrada .foot-mascota:not(.visto) img{opacity:0}
+  .entrada .foot-mascota.visto img{animation:foot-salta 900ms cubic-bezier(.3,1.5,.5,1) 500ms backwards}
   /* Cada producto sube en 3D, uno detrás de otro en la misma fila. */
   .entrada .grid .card.visto:not(.quieto){animation:card-entra 760ms var(--ease-out) calc(var(--d,0) * 80ms) backwards}
 }
@@ -1013,6 +1056,18 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 .pasos li:is(:nth-child(3),:nth-child(4)) .paso-ico{color:currentColor}
 
 /* ---------- Firma gigante al final de la página ---------- */
+.foot-mascota{display:flex;justify-content:flex-end;max-width:1200px;margin:0 auto;padding:0 7%;font-size:clamp(2rem,8.7vw,9.2rem);line-height:0;position:relative;z-index:1;margin-bottom:-.12em}
+.foot-mascota button{all:unset;position:relative;cursor:pointer;line-height:0;border-radius:12px}
+.foot-mascota button:focus-visible{outline:2px solid var(--brand-hi);outline-offset:4px}
+.foot-mascota img{height:max(1.15em,86px);width:auto;transform-origin:50% 100%;filter:drop-shadow(0 12px 18px rgba(0,0,0,.5));transition:rotate 300ms var(--ease-out),translate 300ms var(--ease-out)}
+.foot-mascota button:hover img{rotate:-6deg;translate:0 -6px}
+.foot-globo{position:absolute;right:88%;top:4%;padding:7px 12px;border-radius:14px;background:var(--ink);color:#0A0A0B;font:800 .85rem/1.2 Rubik,system-ui,sans-serif;white-space:nowrap;opacity:0;scale:.6;transform-origin:100% 100%;transition:opacity 160ms ease,scale 260ms cubic-bezier(.3,1.5,.5,1)}
+.foot-mascota button:is(:hover,:focus-visible) .foot-globo{opacity:1;scale:1}
+/* En celular va a la izquierda: a la derecha está el botón flotante de WhatsApp. */
+@media (max-width:700px){
+  .foot-mascota{justify-content:flex-start;padding:0 6%}
+  .foot-globo{right:auto;left:92%;transform-origin:0 100%}
+}
 .foot-gigante{display:flex;justify-content:center;overflow:hidden;margin:0;padding:8px 8px 0;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(2rem,8.7vw,9.2rem);line-height:.86;letter-spacing:-.04em;white-space:nowrap;user-select:none;-webkit-user-select:none}
 .foot-gigante span{display:inline-block;padding:0 .16em .08em;margin:0 -.13em;background:linear-gradient(180deg,var(--ink) 0%,rgba(247,244,239,.08) 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .foot-gigante .g{background-image:linear-gradient(180deg,var(--brand) 0%,rgba(255,122,0,.1) 95%)}
@@ -1068,6 +1123,7 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 @keyframes rayas{from{translate:0 30%}to{translate:0 -30%}}
 @keyframes letra-sube{from{translate:0 80%;opacity:0}}
 @keyframes paso-entra{from{opacity:0;translate:0 60px}}
+@keyframes foot-salta{from{opacity:0;translate:0 70%;rotate:12deg}}
 
 @media (max-height:500px) and (orientation:landscape){
   /* El título de la vitrina 360° queda solo; el subtítulo tapaba el logo en 3D. */
@@ -1392,6 +1448,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
     <svg class="paths" id="paths" viewBox="0 0 696 316" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
     <div class="wrap hero-grid">
     <div class="hero-texto">
+      <div class="mascota-movil" id="mascotaMovil"></div>
       <p class="estado" id="heroEstado">Cargando catálogo…</p>
       <h1><span class="w">Scrollea,</span> <span class="w">compara,</span> <span class="w naranja">elige.</span></h1>
       <p class="lead">Consolas, palancas, juegos y accesorios con <strong>precio y stock al día</strong> en nuestros 3 locales de Quito, Cumbayá y Sangolquí. Arma tu pedido aquí y envíalo por WhatsApp.</p>
@@ -1408,6 +1465,12 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
     </div>
     <div class="vitrina" id="vitrina">
       <div class="stream" id="stream" role="group" aria-label="Productos con foto"></div>
+      <!-- El muñequito de la tienda: en 3D (mascota3d.js) o, sin WebGL, el dibujo. En celular va arriba del titular. -->
+      <div class="mascota" id="mascota">
+        <canvas id="mascotaCanvas" aria-hidden="true"></canvas>
+        <img class="mascota-plana" id="mascotaPlana" src="mascota/mascota.webp" alt="" width="608" height="900" decoding="async" hidden>
+        <p class="mascota-globo" id="mascotaGlobo" role="status"></p>
+      </div>
       <div class="vitrina-acc">
         <button class="stream-pausa" type="button" data-abrir-vitrina><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg><span>Ver en grande</span></button>
         <button class="stream-pausa" id="streamPausa" type="button" aria-pressed="false"><svg class="ico" aria-hidden="true"><use href="#i-pause"/></svg><span>Pausar</span></button>
@@ -1632,6 +1695,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
       <li><a href="https://www.instagram.com/electronicgamesec/" target="_blank" rel="noopener">Instagram @electronicgamesec</a></li>
     </ul></div>
   </div>
+  <div class="foot-mascota"><button type="button" id="mascotaArriba" aria-label="Volver arriba"><span class="foot-globo" aria-hidden="true">¡Volver arriba!</span><img src="mascota/mascota-chica.webp" alt="" width="243" height="360" loading="lazy" decoding="async"></button></div>
   <p class="foot-gigante" aria-hidden="true" translate="no"><span style="--i:0">E</span><span style="--i:1">l</span><span style="--i:2">e</span><span style="--i:3">c</span><span style="--i:4">t</span><span style="--i:5">r</span><span style="--i:6">o</span><span style="--i:7">n</span><span style="--i:8">i</span><span style="--i:9">c</span><span class="esp" style="--i:10"></span><span class="g" style="--i:11">G</span><span class="g" style="--i:12">a</span><span class="g" style="--i:13">m</span><span class="g" style="--i:14">e</span><span class="g" style="--i:15">s</span></p>
   <div class="wrap foot-bottom">
     <span>© <span id="anio">2026</span> Electronic Games</span>
@@ -1699,7 +1763,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
       <div class="lbl-sec" id="sugTit">Te puede faltar</div>
       <div class="sug-rail" id="sugRail" role="list" aria-labelledby="sugTit"></div>
     </div>
-    <div class="vacio" id="cartVacio" hidden>Tu pedido está vacío.<br><button type="button" id="cartSeguir">Ver catálogo</button></div>
+    <div class="vacio" id="cartVacio" hidden><img class="mascota-mini" src="mascota/mascota-chica.webp" alt="" width="243" height="360" loading="lazy" decoding="async">Tu pedido está vacío.<br><button type="button" id="cartSeguir">Ver catálogo</button></div>
     <div class="opciones" id="cartOpciones">
       <div>
         <label class="lbl-sec" for="nombre">Tu nombre (opcional)</label>
@@ -1726,7 +1790,10 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
     <p class="pie"><span>Te confirmamos disponibilidad por chat antes de cobrar.</span><button type="button" id="cartVaciar">Vaciar</button></p>
   </div>
   <div class="exito" id="exito" role="status" hidden>
-    <div class="exito-check" id="exitoCheck"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6 12.5 10.5 17 18.5 8"/></svg></div>
+    <div class="exito-mascota">
+      <img id="exitoMascota" src="mascota/mascota-chica.webp" alt="" width="243" height="360" loading="lazy" decoding="async">
+      <div class="exito-check" id="exitoCheck"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6 12.5 10.5 17 18.5 8"/></svg></div>
+    </div>
     <h3>¡Pedido listo!</h3>
     <p>Tu pedido ya está en WhatsApp. Si aún no lo hiciste, toca <b>Enviar</b> en el chat. Te respondemos para confirmar disponibilidad antes de cobrar.</p>
     <p>Código de tu pedido: <span class="cod" id="exitoCod"></span></p>
@@ -1771,7 +1838,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
   </div>
   <div class="sheet-body">
     <div class="items" id="favsItems"></div>
-    <div class="vacio" id="favsVacio" hidden>Aún no guardas productos.<br>Toca el corazón de un producto para guardarlo aquí.<br><button type="button" id="favsSeguir">Ver catálogo</button></div>
+    <div class="vacio" id="favsVacio" hidden><img class="mascota-mini" src="mascota/mascota-chica.webp" alt="" width="243" height="360" loading="lazy" decoding="async">Aún no guardas productos.<br>Toca el corazón de un producto para guardarlo aquí.<br><button type="button" id="favsSeguir">Ver catálogo</button></div>
   </div>
   <div class="sheet-foot" id="favsFoot">
     <button type="button" class="add-btn" id="favsTodo">Agregar todo a mi pedido</button>
@@ -1970,7 +2037,7 @@ const ENTRADA = (()=>{
       e.target.classList.add("visto");
     }
   }, {rootMargin: "0px 0px -6% 0px"});
-  for (const el of document.querySelectorAll(".reveal, .sec-h, .servicio h2, .pasos li, .foot-gigante")) io.observe(el);
+  for (const el of document.querySelectorAll(".reveal, .sec-h, .servicio h2, .pasos li, .foot-gigante, .foot-mascota")) io.observe(el);
   // Secciones con animaciones que no terminan nunca: se pausan mientras no se ven.
   const pausa = new IntersectionObserver(es=>{ for (const e of es) e.target.classList.toggle("fuera", !e.isIntersecting); });
   for (const el of document.querySelectorAll("#secMundos, #portal")) pausa.observe(el);
@@ -2262,6 +2329,7 @@ async function loadProducts(){
 function pintarEstado(){
   $("heroEstado").innerHTML = `<span><b><span id="nProd">0</span> productos</b> en stock<span id="actualizado"></span></span>`;
   contar($("nProd"), PRODUCTS.length);
+  frasesMascota();
   fetch("meta.json", {cache: "no-cache"}).then(r=>r.ok ? r.json() : null).then(m=>{
     if (!m || !m.actualizado) return;
     const f = new Date(m.actualizado), hoy = new Date();
@@ -2438,7 +2506,7 @@ function render(){
   $("limpiar").hidden = !hayFiltros();
   const vis = list.slice(0, S.visibles);
   $("grid").innerHTML = vis.length ? vis.map(p=>cardHTML(p)).join("") :
-    `<div class="empty" role="listitem"><strong>No encontramos productos con esos filtros.</strong>Prueba con otra palabra o quita los filtros.
+    `<div class="empty" role="listitem"><img class="mascota-mini" src="mascota/mascota-chica.webp" alt="" width="243" height="360" loading="lazy" decoding="async"><strong>No encontramos productos con esos filtros.</strong>Prueba con otra palabra o quita los filtros.
       <div class="atajos">${CONFIG.atajos.map(t=>`<button type="button" data-atajo="${esc(t)}">${esc(t)}</button>`).join("")}</div>
       ${S.q.trim() ? `<span class="pidelo-txt">¿No lo encuentras? Te decimos si lo tenemos o si nos llega.</span>${pideloHTML(S.q.trim())}<br>` : ""}
       <button type="button" data-reset>Ver todo el catálogo</button></div>`;
@@ -2699,7 +2767,7 @@ if (matchMedia("(hover: none)").matches && !reduceMotion() && "DeviceOrientation
 }
 
 // Diagnóstico: abrir la página con ?diag muestra qué soporta este celular o navegador.
-const VERSION = "2026-09-25-fluida";
+const VERSION = "2026-09-25-mascota";
 if (new URLSearchParams(location.search).has("diag")){
   const d = document.createElement("pre");
   d.style.cssText = "position:fixed;left:8px;right:8px;bottom:8px;z-index:99;margin:0;background:#fff;color:#000;font:12px/1.5 monospace;padding:12px;border-radius:12px;white-space:pre-wrap;box-shadow:0 10px 30px rgba(0,0,0,.5)";
@@ -2708,12 +2776,90 @@ if (new URLSearchParams(location.search).has("diag")){
     `Navegador: ${navigator.userAgent}`,
     `"Reducir animaciones" del celular: ${reduceMotion() ? "ACTIVADO (por eso se apagan los efectos)" : "no"}`,
     `Foto que vuela a la ficha: ${document.startViewTransition ? "sí" : "no (navegador antiguo)"}`,
-    `Vitrina 360° en 3D: ${"WebGL2RenderingContext" in window ? "sí" : "no (sin WebGL 2)"}`,
+    `Vitrina 360° y mascota en 3D: ${"WebGL2RenderingContext" in window ? "sí" : "no (sin WebGL 2)"}`,
     `Animaciones con el scroll: ${CSS.supports("animation-timeline: view()") ? "sí" : "no (navegador antiguo)"}`,
     `Pantalla táctil: ${matchMedia("(hover: none)").matches ? "sí" : "no"}`
   ].join("\n");
   document.body.appendChild(d);
 }
+
+// ===== Mascota: el muñequito de la tienda da la bienvenida en la portada =====
+// En 3D (mascota3d.js): cae de un salto, saluda, hace "pulgar arriba" y se queda bailando; si lo tocan,
+// salta y dice algo útil. Sin WebGL 2, con ahorro de datos o con "reducir movimiento", queda el dibujo.
+const MASCOTA = {api: null, frases: []};
+function decirMascota(texto, ms = 3200){
+  const g = $("mascotaGlobo");
+  g.textContent = texto;
+  g.classList.add("ver");
+  clearTimeout(decirMascota.t);
+  decirMascota.t = setTimeout(()=>g.classList.remove("ver"), ms);
+}
+// Frases con datos reales de la tienda (la primera la dice al dar la bienvenida).
+function frasesMascota(){
+  const locales = Object.values(CONFIG.locales).map(l=>l.nombre.replace(/ Shopping$/, ""));
+  const lista = [
+    PRODUCTS.length ? `Tenemos ${PRODUCTS.length} productos listos para ti` : "",
+    "¡Pagando en efectivo o transferencia ahorras!",
+    locales.length > 1 ? `Retira en ${locales.slice(0, -1).join(", ")} o ${locales.at(-1)}` : "",
+    "Arma tu pedido y envíalo por WhatsApp",
+    "¿Buscas algo? Usa la lupa de arriba",
+    "¡Qué chévere tenerte por aquí!",
+  ].filter(Boolean);
+  MASCOTA.frases.splice(0, MASCOTA.frases.length, ...lista);
+}
+// Espera a que termine la intro de la marca (primera visita) para que el salto se vea.
+function trasLaIntro(fn){
+  const html = document.documentElement;
+  if (!html.classList.contains("con-intro")) return fn();
+  const mo = new MutationObserver(()=>{ if (!html.classList.contains("con-intro")){ mo.disconnect(); setTimeout(fn, 150); } });
+  mo.observe(html, {attributes: true, attributeFilter: ["class"]});
+}
+{
+  // En celular va en su franja arriba del titular; en computadora, frente a la vitrina.
+  const mq = matchMedia("(max-width: 960px)");
+  const ubicar = () => { if (mq.matches) $("mascotaMovil").append($("mascota")); else $("vitrina").insertBefore($("mascota"), $("vitrina").querySelector(".vitrina-acc")); };
+  ubicar();
+  mq.addEventListener?.("change", ubicar);
+}
+function mascotaPlana(){
+  const img = $("mascotaPlana");
+  $("mascota").classList.add("plana");
+  img.hidden = false;
+  let i = 0;
+  img.onclick = ()=>{
+    img.classList.remove("salta"); void img.offsetWidth; img.classList.add("salta");
+    if (MASCOTA.frases.length) decirMascota(MASCOTA.frases[i++ % MASCOTA.frases.length], 3000);
+  };
+  trasLaIntro(()=>{
+    img.classList.add("entra");
+    setTimeout(()=>decirMascota("¡Hola! Bienvenidos a Electronic Games", 3600), reduceMotion() ? 0 : 800);
+  });
+}
+async function cargarMascota(){
+  // En el modo vitrina de las pantallas de los locales la portada queda tapada todo el día: ahí no se carga.
+  if (new URLSearchParams(location.search).has("vitrina")) return;
+  const puede = "WebGL2RenderingContext" in window && "ResizeObserver" in window && "IntersectionObserver" in window && !navigator.connection?.saveData && !reduceMotion();
+  if (!puede) return mascotaPlana();
+  try {
+    const {iniciar} = await import(`./mascota3d.js?v=${VERSION}`);
+    MASCOTA.api = iniciar({
+      contenedor: $("mascota"), lienzo: $("mascotaCanvas"), frases: MASCOTA.frases,
+      alDecir: decirMascota, alTocar: ()=>medir("mascota")
+    });
+    trasLaIntro(()=>MASCOTA.api.empezar());
+    new MutationObserver(()=>MASCOTA.api.pausar(!!document.querySelector("dialog[open]")))
+      .observe(document.body, {subtree: true, attributes: true, attributeFilter: ["open"]});
+  } catch (e){
+    console.warn("Mascota 3D no disponible:", e);
+    $("mascotaCanvas").hidden = true;
+    mascotaPlana();
+  }
+}
+cargarMascota();
+$("mascotaArriba").onclick = ()=>{
+  scrollTo({top: 0, behavior: reduceMotion() ? "auto" : "smooth"});
+  setTimeout(()=>MASCOTA.api ? MASCOTA.api.saludar("¡Aquí estoy! ¿Qué buscamos hoy?") : decirMascota("¡Aquí estoy! ¿Qué buscamos hoy?"), reduceMotion() ? 100 : 900);
+};
 
 // Encabezado con sombra apenas se baja de la parte de arriba.
 {
@@ -3210,6 +3356,8 @@ function celebrarPedido(){
     $("exitoCheck").animate([{transform: "perspective(500px) rotateY(180deg) scale(.6)", opacity: 0}, {transform: "perspective(500px) rotateY(0deg) scale(1)", opacity: 1}],
       {duration: 560, easing: "cubic-bezier(.34,1.56,.64,1)"});
     $("exitoCheck").querySelector("path").animate([{strokeDashoffset: 1}, {strokeDashoffset: 0}], {duration: 420, delay: 280, easing: "cubic-bezier(0.23,1,0.32,1)", fill: "backwards"});
+    $("exitoMascota").animate([{translate: "0 60%", scale: ".4", opacity: 0}, {translate: "0 -12%", scale: "1.06", opacity: 1, offset: .6}, {translate: "0 0", scale: "1", opacity: 1}],
+      {duration: 700, easing: "cubic-bezier(.3,1.3,.5,1)"});
     confeti($("exito"));
   };
   // Si WhatsApp tapó la página, la celebración espera a que el cliente vuelva.
@@ -3785,7 +3933,7 @@ function pintarBuscador(){
     const todos = porRelevancia(PRODUCTS.filter(p=>coincide(p, q)), q);
     CMD.lista = todos.slice(0, 8);
     CMD.total = todos.length;
-    $("cmdkArriba").innerHTML = todos.length ? "" : `<div class="cmdk-vacio"><strong>No hay resultados para “${esc(q)}”.</strong>Prueba con otra palabra, o pregúntanos: te decimos si lo tenemos o si nos llega.<br>${pideloHTML(q)}</div>`;
+    $("cmdkArriba").innerHTML = todos.length ? "" : `<div class="cmdk-vacio"><img class="mascota-mini" src="mascota/mascota-chica.webp" alt="" width="243" height="360" loading="lazy" decoding="async"><strong>No hay resultados para “${esc(q)}”.</strong>Prueba con otra palabra, o pregúntanos: te decimos si lo tenemos o si nos llega.<br>${pideloHTML(q)}</div>`;
     if (!todos.length) medirSinResultados(q);
     $("cmdkGrupo").textContent = todos.length ? `${todos.length} resultado${todos.length === 1 ? "" : "s"}` : "";
   }
