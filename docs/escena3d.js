@@ -1,13 +1,14 @@
-/* Vitrina 360°: los productos más vendidos giran en un anillo 3D alrededor del logo de
-   Electronic Games en relieve, sobre un piso brillante que los refleja.
+/* Vitrina 360°: los productos más vendidos giran en un anillo 3D alrededor del muñequito de la
+   tienda (parado en un podio: baila, mira el producto que señalas y presenta el que queda al frente),
+   sobre un piso brillante que los refleja. Si index.html no pasa el muñequito, va el logo en relieve.
    index.html lo carga solo cuando la sección está por verse (import dinámico). Si el
    navegador no tiene WebGL 2, iniciar() falla y la sección simplemente no aparece.
    three.js va recortado a las piezas que se usan aquí en vendor/three.js. */
 import {
   WebGLRenderer, Scene, PerspectiveCamera, Group, Mesh, Shape, ExtrudeGeometry, PlaneGeometry,
-  CircleGeometry, BoxGeometry, BufferGeometry, Float32BufferAttribute, Points, PointsMaterial,
+  CircleGeometry, BoxGeometry, CylinderGeometry, TorusGeometry, BufferGeometry, Float32BufferAttribute, Points, PointsMaterial,
   MeshPhysicalMaterial, MeshBasicMaterial, SpriteMaterial, Sprite, CanvasTexture, Color, Fog,
-  DirectionalLight, PointLight, PMREMGenerator, Raycaster, Vector2, SRGBColorSpace,
+  DirectionalLight, HemisphereLight, PointLight, PMREMGenerator, Raycaster, Vector2, SRGBColorSpace,
   NeutralToneMapping, BackSide, DoubleSide, AdditiveBlending
 } from "./vendor/three.js";
 
@@ -125,7 +126,7 @@ function degradado(tam, paradas){
 }
 
 // ---------- Escena ----------
-export function iniciar({contenedor, lienzo, seccion, productos, reducir = false, alElegir, alCambiar}){
+export function iniciar({contenedor, lienzo, seccion, productos, reducir = false, alElegir, alCambiar, crearMascota}){
   // Calidad según el equipo: en celulares, menos píxeles; si aun así los cuadros tardan, la resolución
   // baja sola (ver vigilar()).
   let pr = Math.min(devicePixelRatio || 1, matchMedia("(pointer: coarse)").matches ? 1.5 : 1.75);
@@ -166,23 +167,41 @@ export function iniciar({contenedor, lienzo, seccion, productos, reducir = false
     color: 0xFFB36B, transparent: true, opacity: .85, depthWrite: false, blending: AdditiveBlending, toneMapped: false}));
   if (N_POLVO) escena.add(puntos);
 
-  // Logo: las tres piezas del logo real, extruidas con bisel, en naranja lacado.
-  const geoLogo = new ExtrudeGeometry(piezasLogo(), {depth: 18, bevelEnabled: true, bevelThickness: 2.4, bevelSize: 1.5, bevelSegments: 5, curveSegments: 14});
-  geoLogo.center();
-  const matLogo = new MeshPhysicalMaterial({color: NARANJA, metalness: .3, roughness: .26, clearcoat: 1, clearcoatRoughness: .08, envMapIntensity: 1.25});
-  const logo = new Mesh(geoLogo, matLogo);
-  logo.scale.setScalar(3.9 / 139);
-  escena.add(logo);
-
   // Espejo: copia de todo, volteada bajo el piso y más tenue (un reflejo barato y convincente).
   const espejo = new Group();
   espejo.scale.y = -1;
   espejo.position.y = 2 * PISO;
   escena.add(espejo);
-  const logoReflejo = new Mesh(geoLogo, matLogo.clone());
-  Object.assign(logoReflejo.material, {transparent: true, opacity: .32, depthWrite: false});
-  logoReflejo.scale.copy(logo.scale);
-  espejo.add(logoReflejo);
+
+  // En el centro: el muñequito sobre un podio (así asoma por encima de la tarjeta del frente)
+  // o, si no vino, el logo real extruido con bisel en naranja lacado.
+  let logo = null, logoReflejo = null, muneco = null;
+  const PODIO = PISO + .95;
+  if (crearMascota){
+    escena.add(new HemisphereLight(0xfff4e8, 0x4a1c00, 1.15));   // solo lo usa el muñequito: las tarjetas no reciben luz
+    muneco = crearMascota({niebla: false});
+    muneco.raiz.scale.setScalar(1.05);
+    muneco.raiz.position.y = PODIO;
+    escena.add(muneco.raiz);
+    const matPodio = new MeshPhysicalMaterial({color: 0x121114, metalness: .4, roughness: .3, clearcoat: 1, clearcoatRoughness: .1});
+    const podio = new Mesh(new CylinderGeometry(1.05, 1.2, PODIO - PISO, 48), matPodio);
+    podio.position.y = (PODIO + PISO) / 2; escena.add(podio);
+    const borde = new Mesh(new TorusGeometry(1.06, .035, 10, 64), new MeshBasicMaterial({color: NARANJA, toneMapped: false}));
+    borde.rotation.x = Math.PI / 2; borde.position.y = PODIO; escena.add(borde);
+    const podioReflejo = new Mesh(podio.geometry, Object.assign(matPodio.clone(), {transparent: true, opacity: .3, depthWrite: false}));
+    podioReflejo.position.copy(podio.position); espejo.add(podioReflejo);
+  } else {
+    const geoLogo = new ExtrudeGeometry(piezasLogo(), {depth: 18, bevelEnabled: true, bevelThickness: 2.4, bevelSize: 1.5, bevelSegments: 5, curveSegments: 14});
+    geoLogo.center();
+    const matLogo = new MeshPhysicalMaterial({color: NARANJA, metalness: .3, roughness: .26, clearcoat: 1, clearcoatRoughness: .08, envMapIntensity: 1.25});
+    logo = new Mesh(geoLogo, matLogo);
+    logo.scale.setScalar(3.9 / 139);
+    escena.add(logo);
+    logoReflejo = new Mesh(geoLogo, matLogo.clone());
+    Object.assign(logoReflejo.material, {transparent: true, opacity: .32, depthWrite: false});
+    logoReflejo.scale.copy(logo.scale);
+    espejo.add(logoReflejo);
+  }
   // El piso tapa el reflejo cada vez más lejos del centro.
   const piso = new Mesh(new CircleGeometry(11, 64), new MeshBasicMaterial({color: FONDO, transparent: true, depthWrite: false,
     alphaMap: new CanvasTexture(degradado(256, [[0, "#5a5a5a"], [.45, "#9a9a9a"], [.8, "#ffffff"]]))}));
@@ -245,6 +264,12 @@ export function iniciar({contenedor, lienzo, seccion, productos, reducir = false
 
   let cajaLienzo = null;   // se mide una vez y se olvida con el scroll o al cambiar de tamaño
   addEventListener("scroll", ()=>{ cajaLienzo = null; }, {passive: true});
+  function tocaMuneco(x, y){
+    const r = cajaLienzo || (cajaLienzo = lienzo.getBoundingClientRect());
+    pAlto.set((x - r.left) / r.width * 2 - 1, -((y - r.top) / r.height) * 2 + 1);
+    rayo.setFromCamera(pAlto, camara);
+    return rayo.intersectObject(muneco.zona, false).length > 0;
+  }
   function tarjetaEn(x, y){
     const r = cajaLienzo || (cajaLienzo = lienzo.getBoundingClientRect());
     pAlto.set((x - r.left) / r.width * 2 - 1, -((y - r.top) / r.height) * 2 + 1);
@@ -279,7 +304,11 @@ export function iniciar({contenedor, lienzo, seccion, productos, reducir = false
     if (performance.now() - arrastre.t > 90) vel = 0;   // si se quedó quieto antes de soltar, no hay inercia
     arrastre = null;
     contenedor.classList.remove("arrastrando");
-    if (toque){ const i = tarjetaEn(e.clientX, e.clientY); if (i >= 0) alElegir?.(productos[i].code, i); }
+    if (toque){
+      const i = tarjetaEn(e.clientX, e.clientY);
+      if (i >= 0) alElegir?.(productos[i].code, i);
+      else if (muneco && tocaMuneco(e.clientX, e.clientY)) saludo = 1.6;   // tocar al muñequito: saluda
+    }
   };
   lienzo.addEventListener("pointerup", soltar);
   lienzo.addEventListener("pointercancel", soltar);   // en celular, un gesto vertical es scroll de la página
@@ -305,7 +334,7 @@ export function iniciar({contenedor, lienzo, seccion, productos, reducir = false
   medir();
 
   // ---------- Cada cuadro ----------
-  let t0 = performance.now(), reloj = 0, ultimaClave = "";
+  let t0 = performance.now(), reloj = 0, ultimaClave = "", presenta = 0, saludo = 0;
   function actualizar(dt){
     reloj += reducir ? 0 : dt;
     const sc = parteScroll();
@@ -317,7 +346,7 @@ export function iniciar({contenedor, lienzo, seccion, productos, reducir = false
     const pos = usuario + sc;
     mostrado = reducir ? pos : mostrado + (pos - mostrado) * (1 - Math.exp(-dt * 9));
     const f = ((Math.round(mostrado) % N) + N) % N;
-    if (f !== frenteActual){ frenteActual = f; alCambiar?.(f); }
+    if (f !== frenteActual){ if (frenteActual >= 0) presenta = 1.7; frenteActual = f; alCambiar?.(f); }
 
     // Tarjeta bajo el mouse: se levanta un poco. (El rayo se lanza solo si algo se movió.)
     const clave = `${puntero.x},${puntero.y},${mostrado.toFixed(3)},${cajaLienzo ? 1 : 0}`;
@@ -342,10 +371,25 @@ export function iniciar({contenedor, lienzo, seccion, productos, reducir = false
     pxS += (px - pxS) * (1 - Math.exp(-dt * 4));
     pyS += (py - pyS) * (1 - Math.exp(-dt * 4));
     const giroVel = Math.max(-1, Math.min(1, (pos - mostrado) * .6));
-    logo.position.y = 1.75 + Math.sin(reloj * 1.2) * .1;
-    logo.rotation.set(-pyS * .35 + .08, Math.sin(reloj * .45) * .32 + pxS * .7 - giroVel * .5, Math.sin(reloj * .6) * .03);
-    logoReflejo.position.copy(logo.position);
-    logoReflejo.rotation.copy(logo.rotation);
+    if (muneco){
+      // Mira la tarjeta que señala el mouse, o hacia donde gira el anillo; presenta la que queda al frente.
+      presenta = Math.max(0, presenta - dt); saludo = Math.max(0, saludo - dt);
+      let mira = pxS * .45 - giroVel * .9;
+      if (sobre >= 0){ const a = Math.atan2(Math.sin((sobre - mostrado) * PASO), Math.cos((sobre - mostrado) * PASO)); mira = Math.max(-1.1, Math.min(1.1, a)); }
+      const quieto = !arrastre && Math.abs(giroVel) < .04;
+      Object.assign(muneco.est, {
+        pose: saludo > 0 ? "saludo" : presenta > 0 ? "presenta" : "reposo", saluda: saludo > 0,
+        ojos: saludo > 0 || presenta > 0 ? "felices" : "abiertos", baila: quieto && !presenta && !saludo && !reducir,
+        mirarY: mira, mirarX: -pyS * .2 + (presenta > 0 ? .16 : 0), cuerpoY: pxS * .12
+      });
+      const pulso = muneco.actualizar(dt);
+      muneco.raiz.position.y = PODIO + Math.abs(pulso) * .03;
+    } else {
+      logo.position.y = 1.75 + Math.sin(reloj * 1.2) * .1;
+      logo.rotation.set(-pyS * .35 + .08, Math.sin(reloj * .45) * .32 + pxS * .7 - giroVel * .5, Math.sin(reloj * .6) * .03);
+      logoReflejo.position.copy(logo.position);
+      logoReflejo.rotation.copy(logo.rotation);
+    }
     orbita.position.set(Math.cos(reloj * .8) * 2.6, 2.4 + Math.sin(reloj * .5) * .6, Math.sin(reloj * .8) * 2.6 + .6);
     halo.material.opacity = .45 + Math.sin(reloj * 1.3) * .06;
 

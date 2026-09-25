@@ -17,12 +17,12 @@
 <meta property="og:title" content="Electronic Games · Catálogo en vivo">
 <meta property="og:description" content="Consolas, palancas, juegos y accesorios con stock en vivo en Quito, Cumbayá y Sangolquí. Pide por WhatsApp.">
 <meta property="og:url" content="https://thebesttech810-art.github.io/catalogo-electronic-games/">
-<meta property="og:image" content="https://thebesttech810-art.github.io/catalogo-electronic-games/og.png">
+<meta property="og:image" content="https://thebesttech810-art.github.io/catalogo-electronic-games/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Electronic Games: Scrollea, compara, elige.">
+<meta property="og:image:alt" content="Electronic Games: el muñequito de la tienda con el pulgar arriba. Scrollea, compara, elige.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://thebesttech810-art.github.io/catalogo-electronic-games/og.png">
+<meta name="twitter:image" content="https://thebesttech810-art.github.io/catalogo-electronic-games/og.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -197,6 +197,61 @@ header.top{position:sticky;top:0;z-index:6;background:var(--bg);border-bottom:1p
 .atajos button{border:1px solid var(--line);background:transparent;color:var(--ink);padding:8px 14px;min-height:40px;border-radius:999px;font-weight:600;font-size:.88rem;cursor:pointer}
 .atajos button:hover{border-color:var(--brand)}
 
+/* ---------- El muñequito en avisos: agregado, agotado, cargando, sin internet ---------- */
+.pop-mascota{inset:auto;top:calc(var(--header) + 6px);right:max(12px,calc((100vw - 1200px) / 2 + 150px));margin:0;padding:0;border:0;background:none;overflow:visible;
+  display:none;align-items:center;gap:0;pointer-events:none}
+.pop-mascota:popover-open{display:flex}
+.pop-mascota img{width:auto;height:92px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.55))}
+.pop-mascota span{order:-1;margin-right:-6px;padding:9px 14px;border-radius:16px 16px 4px 16px;background:var(--brand);color:var(--brand-ink);font-weight:900;font-style:italic;text-transform:uppercase;font-size:1rem;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+.pop-mascota.anima{animation:pop-mascota 1700ms cubic-bezier(.3,1.3,.5,1) both}
+@keyframes pop-mascota{0%{opacity:0;translate:0 -24px;scale:.6}14%{opacity:1;translate:0 0;scale:1.04}22%{scale:1}82%{opacity:1;translate:0 0}100%{opacity:0;translate:0 -12px}}
+.agotado-mascota{display:flex;align-items:center;gap:14px;margin:4px 0 14px;padding:12px 16px 12px 8px;border-radius:16px;border:1px dashed rgba(255,122,0,.45);background:rgba(255,122,0,.07)}
+.agotado-mascota[hidden]{display:none}
+.agotado-mascota img{flex:none;width:auto;height:96px}
+.agotado-mascota p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.4}
+.agotado-mascota b{display:block;color:var(--ink);font-size:1.05rem;font-style:italic;text-transform:uppercase}
+.cargando-mascota{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 0 4px;color:var(--muted);font-weight:700}
+.cargando-mascota img{width:auto;height:84px}
+.empty .mascota-mini.triste{height:130px}
+.aviso-red{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:9;translate:-50% 0;display:flex;align-items:center;gap:10px;padding:8px 18px 8px 10px;border-radius:999px;background:var(--surface-hi);border:1px solid var(--line);box-shadow:0 14px 30px rgba(0,0,0,.5);font-weight:700;font-size:.9rem;max-width:calc(100vw - 32px)}
+.aviso-red[hidden]{display:none}
+.aviso-red img{width:auto;height:46px}
+@media (prefers-reduced-motion:no-preference){
+  .cargando-mascota img{animation:flota 520ms ease-in-out infinite alternate}
+  .aviso-red{animation:subir 420ms var(--ease-out) both}
+}
+/* Modo fiesta (sorpresa: tocar 5 veces seguidas al muñequito de la portada) */
+.hero.fiesta::after{opacity:1;z-index:-1;background:conic-gradient(from var(--giro,0deg) at 70% 45%,rgba(255,122,0,.22),rgba(37,211,102,.16),rgba(0,112,209,.18),rgba(230,0,18,.16),rgba(255,122,0,.22));animation:fiesta-luz 1.2s linear 5}
+@property --giro{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes fiesta-luz{to{--giro:360deg}}
+@media (prefers-reduced-motion:reduce){ .pop-mascota.anima{animation:none;opacity:1} .hero.fiesta::after{animation:none;opacity:.5} }
+
+/* ---------- Ayudante: el muñequito se asoma junto a WhatsApp (una vez por visita) ---------- */
+.ayudante{position:fixed;right:20px;bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:7;display:flex;align-items:flex-end;gap:6px;pointer-events:none}
+.ayudante[hidden]{display:none}
+body:is(.en-anillo,.en-portal) .ayudante{opacity:0;visibility:hidden;transition:opacity 200ms ease,visibility 0s linear 200ms}
+.ayudante > *{pointer-events:auto}
+.ayudante-cara{width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 50% 60%,#2a1606,#0A0A0B 72%);border:3px solid var(--brand);box-shadow:0 14px 30px rgba(0,0,0,.5);order:2}
+.ayudante-globo{order:1;display:grid;gap:4px;margin-bottom:26px;padding:12px 16px;border-radius:18px 18px 4px 18px;background:var(--ink);color:#0A0A0B;text-decoration:none;box-shadow:0 14px 30px rgba(0,0,0,.45);max-width:230px}
+.ayudante-globo b{font-weight:900;font-size:1rem;line-height:1.2}
+.ayudante-globo span{display:flex;align-items:center;gap:6px;font-weight:700;font-size:.82rem;color:#0f7a3c}
+.ayudante-globo .ico{width:16px;height:16px;color:#128c4a}
+.ayudante-cerrar{position:absolute;right:-6px;top:-8px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:1.1rem;line-height:1;cursor:pointer;order:3}
+.ayudante.entra .ayudante-cara{animation:asoma 700ms cubic-bezier(.3,1.4,.5,1) both}
+.ayudante.entra .ayudante-globo{animation:globo-entra 420ms cubic-bezier(.3,1.5,.5,1) 450ms both;transform-origin:100% 100%}
+.ayudante.sale{animation:ayudante-sale 260ms ease forwards}
+@keyframes asoma{from{translate:0 120%;rotate:-20deg}}
+@keyframes globo-entra{from{opacity:0;scale:.4}}
+@keyframes ayudante-sale{to{opacity:0;translate:0 30px}}
+@media (max-width:700px){
+  /* Encima del botón flotante de WhatsApp (y más arriba si está la barra del pedido) */
+  .ayudante{right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));transition:translate 320ms var(--ease-drawer)}
+  body.con-pedido .ayudante{translate:0 -76px}
+  .ayudante-cara{width:72px;height:72px}
+  .ayudante-globo{max-width:200px;margin-bottom:18px}
+}
+@media (prefers-reduced-motion:reduce){ .ayudante.entra :is(.ayudante-cara,.ayudante-globo),.ayudante.sale{animation:none} }
+
 /* ---------- Mascota: el muñequito de la tienda da la bienvenida ---------- */
 /* En computadora está parado frente a la vitrina de productos; en celular, en su propia franja arriba del titular. */
 .mascota{--mascota-x:0;--mascota-alto:2.05;position:absolute;inset:-6% -2% -26px;z-index:1;pointer-events:none;isolation:isolate}
@@ -243,6 +298,8 @@ header.top{position:sticky;top:0;z-index:6;background:var(--bg);border-bottom:1p
 /* ---------- Secciones ---------- */
 .sec{padding:56px 0 8px}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px}
+.sec-mascota{flex:none;width:auto;height:150px;margin:-40px 4% -18px 0;filter:drop-shadow(0 14px 22px rgba(0,0,0,.5))}
+.faq-cab{max-width:820px}
 .sec-h{margin:0;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1;letter-spacing:-.015em;text-wrap:balance}
 .sec-sub{margin:8px 0 0;color:var(--muted);max-width:60ch}
 .link-sec{color:var(--brand-hi);font-weight:700;text-decoration:none;white-space:nowrap;padding:8px 0}
@@ -400,7 +457,8 @@ header.top{position:sticky;top:0;z-index:6;background:var(--bg);border-bottom:1p
 /* Servicio técnico: bloque naranja como los posts de la marca */
 .servicio{margin-top:64px;background:var(--brand);color:var(--brand-ink);position:relative;overflow:hidden}
 .servicio::after{content:"";position:absolute;right:-90px;top:50%;width:300px;height:260px;transform:translateY(-50%) skewX(-18deg);background:repeating-linear-gradient(180deg,rgba(20,9,0,.12) 0 34px,transparent 34px 58px);pointer-events:none}
-.servicio .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:center;padding-block:56px}
+.servicio .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.25fr auto .95fr;gap:28px;align-items:center;padding-block:56px}
+.servicio-mascota{width:auto;height:280px;margin-block:-30px -56px;align-self:end;filter:drop-shadow(0 18px 26px rgba(80,30,0,.45))}
 .servicio h2{margin:0;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(2rem,5vw,3.4rem);line-height:.92;letter-spacing:-.02em;text-wrap:balance}
 .servicio p{margin:16px 0 0;font-size:1.08rem;max-width:48ch;font-weight:500}
 .servicio ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
@@ -732,6 +790,8 @@ dialog.kiosco::backdrop{background:#050506}
 .k-slide{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;gap:clamp(24px,4vw,64px);min-height:0;padding:clamp(72px,10vh,96px) clamp(24px,5vw,80px) clamp(96px,13vh,124px);touch-action:pan-y}
 .k-foto{justify-self:center;width:min(100%,68vh);aspect-ratio:1/1;border-radius:32px;overflow:hidden;background:var(--stage-bg);box-shadow:0 40px 90px rgba(0,0,0,.6)}
 .k-foto img{width:100%;height:100%;object-fit:contain;padding:3%;mix-blend-mode:multiply}
+.k-foto.k-mascota{background:radial-gradient(closest-side,rgba(255,122,0,.35),transparent);box-shadow:none}
+.k-foto.k-mascota img{mix-blend-mode:normal;padding:4%;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
 .k-info{display:flex;flex-direction:column;gap:clamp(6px,1.6vh,18px);min-width:0}
 .k-cat{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-hi);font-size:clamp(.8rem,min(1.4vw,2.2vh),1.2rem)}
 .k-cat .plat-tag{font-size:clamp(.8rem,1.2vw,1rem);padding:4px 10px}
@@ -852,6 +912,8 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .mundos{grid-template-columns:minmax(0,1fr)}
   .mundo{min-height:200px;padding:20px;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
   .servicio .wrap{grid-template-columns:1fr}
+  .servicio-mascota{order:3;justify-self:end;height:190px;margin:-34px 0 -56px}
+  .sec-mascota{height:104px;margin:-26px 0 -10px}
   .tiendas{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr 1fr}
   .tools-in{flex-direction:column;align-items:stretch;gap:10px}
@@ -1046,14 +1108,13 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 .paso-n{min-width:1.55em;font-variant-numeric:tabular-nums;font-weight:900;font-style:italic;font-size:clamp(4.2rem,11vw,9rem);line-height:.8;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px var(--brand);padding-right:.06em}
 .pasos h3{margin:0 0 10px;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.5rem,3.4vw,2.5rem);line-height:.95;letter-spacing:-.015em;text-wrap:balance}
 .pasos p{margin:0;color:var(--muted);font-size:1.05rem;max-width:46ch;text-wrap:pretty}
-.paso-ico{width:clamp(64px,9vw,112px);height:clamp(64px,9vw,112px);stroke-width:1.25;color:var(--brand)}
+.paso-mascota{width:auto;height:clamp(150px,17vw,220px);margin:-18px -8px -26px 0}
 .pasos li:nth-child(3){background:var(--wa);border-color:transparent;color:var(--wa-ink)}
 .pasos li:nth-child(4){background:var(--brand);border-color:transparent;color:var(--brand-ink)}
 .pasos li:nth-child(3) p{color:rgba(5,41,18,.8)}
 .pasos li:nth-child(4) p{color:rgba(20,9,0,.78)}
 .pasos li:nth-child(3) .paso-n{-webkit-text-stroke-color:var(--wa-ink)}
 .pasos li:nth-child(4) .paso-n{-webkit-text-stroke-color:var(--brand-ink)}
-.pasos li:is(:nth-child(3),:nth-child(4)) .paso-ico{color:currentColor}
 
 /* ---------- Firma gigante al final de la página ---------- */
 .foot-mascota{display:flex;justify-content:flex-end;max-width:1200px;margin:0 auto;padding:0 7%;font-size:clamp(2rem,8.7vw,9.2rem);line-height:0;position:relative;z-index:1;margin-bottom:-.12em}
@@ -1131,7 +1192,7 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
   .anillo-cab{padding-top:10px}
   .pasos li{min-height:0;padding:22px 32px}
   .paso-n{font-size:4.2rem}
-  .paso-ico{width:64px;height:64px}
+  .paso-mascota{height:120px;margin:-10px 0}
 }
 @media (max-width:960px){
   .anillo-sec{height:155vh}
@@ -1152,7 +1213,10 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
   .pasos{gap:16px}
   .pasos li{grid-template-columns:minmax(0,1fr);gap:14px;min-height:0;padding:24px 22px 26px;border-radius:24px;top:calc(var(--header) + 16px + var(--i,0) * 12px)}
   .paso-n{font-size:4.2rem}
-  .paso-ico{position:absolute;top:22px;right:22px;width:56px;height:56px;opacity:.9}
+  /* El muñequito en su propia columna a la derecha, para no taparse con el título */
+  .pasos li{grid-template-columns:minmax(0,1fr) auto;column-gap:10px}
+  .pasos li > :not(.paso-mascota){grid-column:1}
+  .paso-mascota{grid-column:2;grid-row:1 / span 2;align-self:center;height:118px;margin:0 -8px 0 0}
 }
 
 /* ============================================================
@@ -1625,10 +1689,10 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
     <div class="wrap">
       <div class="sec-head reveal"><div><h2 class="sec-h" id="comprarTit">Cómo comprar</h2><p class="sec-sub">Pides desde aquí y pagas cuando confirmamos que tu pedido está listo.</p></div></div>
       <ol class="pasos" id="pasos">
-        <li style="--i:0"><span class="paso-n" aria-hidden="true">01</span><div><h3>Arma tu pedido</h3><p>Toca el botón + en cada producto o elige la cantidad en su ficha.</p></div><svg class="ico paso-ico" aria-hidden="true"><use href="#i-bag"/></svg></li>
-        <li style="--i:1"><span class="paso-n" aria-hidden="true">02</span><div><h3>Elige local y pago</h3><p>Abre “Mi pedido”, escoge dónde retiras y si pagas en efectivo, transferencia o tarjeta.</p></div><svg class="ico paso-ico" aria-hidden="true"><use href="#i-card"/></svg></li>
-        <li style="--i:2"><span class="paso-n" aria-hidden="true">03</span><div><h3>Envíalo por WhatsApp</h3><p>El mensaje sale listo con productos, cantidades y total. Te confirmamos disponibilidad.</p></div><svg class="ico paso-ico" aria-hidden="true"><use href="#i-wa"/></svg></li>
-        <li style="--i:3"><span class="paso-n" aria-hidden="true">04</span><div><h3>Retira en el local</h3><p>Pasa por la tienda que elegiste, en el horario de atención.</p></div><svg class="ico paso-ico" aria-hidden="true"><use href="#i-pin"/></svg></li>
+        <li style="--i:0"><span class="paso-n" aria-hidden="true">01</span><div><h3>Arma tu pedido</h3><p>Toca el botón + en cada producto o elige la cantidad en su ficha.</p></div><img class="paso-mascota" src="mascota/poses/funda.webp" alt="" width="497" height="560" loading="lazy" decoding="async"></li>
+        <li style="--i:1"><span class="paso-n" aria-hidden="true">02</span><div><h3>Elige local y pago</h3><p>Abre “Mi pedido”, escoge dónde retiras y si pagas en efectivo, transferencia o tarjeta.</p></div><img class="paso-mascota" src="mascota/poses/tarjeta.webp" alt="" width="485" height="560" loading="lazy" decoding="async"></li>
+        <li style="--i:2"><span class="paso-n" aria-hidden="true">03</span><div><h3>Envíalo por WhatsApp</h3><p>El mensaje sale listo con productos, cantidades y total. Te confirmamos disponibilidad.</p></div><img class="paso-mascota" src="mascota/poses/celular.webp" alt="" width="497" height="560" loading="lazy" decoding="async"></li>
+        <li style="--i:3"><span class="paso-n" aria-hidden="true">04</span><div><h3>Retira en el local</h3><p>Pasa por la tienda que elegiste, en el horario de atención.</p></div><img class="paso-mascota" src="mascota/poses/retira.webp" alt="" width="432" height="560" loading="lazy" decoding="async"></li>
       </ol>
     </div>
   </section>
@@ -1640,6 +1704,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
         <p>Escríbenos con el modelo y lo que le pasa a tu equipo. Te decimos cómo lo resolvemos y en qué local dejarlo.</p>
         <a class="btn btn-dark" id="waServicio" data-tipo="servicio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Cotizar por WhatsApp</a>
       </div>
+      <img class="servicio-mascota" src="mascota/poses/llave.webp" alt="" width="374" height="560" loading="lazy" decoding="async">
       <ul>
         <li><svg class="ico" aria-hidden="true"><use href="#i-console"/></svg>PlayStation, Nintendo y Xbox</li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-pad"/></svg>Palancas y controles</li>
@@ -1650,7 +1715,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
 
   <section class="sec" id="locales" aria-labelledby="locTit">
     <div class="wrap">
-      <div class="sec-head reveal"><div><h2 class="sec-h" id="locTit">Nuestros locales</h2><p class="sec-sub">Retira tu pedido o visítanos en cualquiera de estas tiendas.</p></div></div>
+      <div class="sec-head reveal"><div><h2 class="sec-h" id="locTit">Nuestros locales</h2><p class="sec-sub">Retira tu pedido o visítanos en cualquiera de estas tiendas.</p></div><img class="sec-mascota" src="mascota/poses/saludo.webp" alt="" width="390" height="560" loading="lazy" decoding="async"></div>
       <div class="tiendas reveal" id="tiendas"></div>
       <div class="horario"><span><b>Lunes a sábado</b> 10:00 a 21:00</span><span><b>Domingo</b> 10:30 a 18:30</span></div>
     </div>
@@ -1665,7 +1730,7 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
 
   <section class="sec" id="ayuda" aria-labelledby="faqTit">
     <div class="wrap">
-      <div class="sec-head reveal"><h2 class="sec-h" id="faqTit">Preguntas frecuentes</h2></div>
+      <div class="sec-head reveal faq-cab"><h2 class="sec-h" id="faqTit">Preguntas frecuentes</h2><img class="sec-mascota" src="mascota/poses/piensa.webp" alt="" width="381" height="560" loading="lazy" decoding="async"></div>
       <div class="faq reveal">
         <details><summary>¿Cómo hago un pedido?</summary><p>Agrega productos con el botón +, abre “Mi pedido”, elige el local y la forma de pago, y toca “Enviar pedido por WhatsApp”. Te respondemos por chat para confirmar disponibilidad antes de cobrar.</p></details>
         <details><summary>¿Qué formas de pago aceptan?</summary><p>Efectivo, transferencia y tarjeta. El precio con tarjeta es distinto: lo ves debajo del precio en cada producto y el total cambia solo cuando eliges “Tarjeta” en tu pedido. Todos los precios incluyen IVA.</p></details>
@@ -1727,6 +1792,10 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
           <button type="button" id="dMas" aria-label="Agregar uno">+</button>
         </div>
         <span class="lbl" id="dQtyInfo"></span>
+      </div>
+      <div class="agotado-mascota" id="dAgotado" hidden>
+        <img src="mascota/poses/triste.webp" alt="" width="371" height="560" loading="lazy" decoding="async">
+        <p><b>¡Se nos acabó!</b>Toca “Avísame cuando llegue” y te escribimos apenas vuelva. También podemos buscarte algo parecido.</p>
       </div>
       <div class="acciones">
         <button type="button" class="add-btn" id="dAdd">Agregar al pedido</button>
@@ -1876,6 +1945,16 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
 <div class="cursor" id="cursor" aria-hidden="true"><div class="cursor-anillo"><span id="cursorTxt"></span></div></div>
 
 <a class="wa-float" id="waFloat" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
+<!-- "¡Agregado!": el muñequito levanta el pulgar al sumar algo al pedido (popover: se ve sobre la ficha) -->
+<div class="pop-mascota" id="popMascota" popover="manual" aria-hidden="true"><img src="mascota/poses/pulgar.webp" alt="" width="424" height="560" decoding="async"><span>¡Agregado!</span></div>
+<!-- Aviso de conexión (sin internet / volvió) -->
+<div class="aviso-red" id="avisoRed" role="status" hidden><img src="mascota/poses/triste.webp" alt="" width="371" height="560" decoding="async"><span id="avisoRedTxt"></span></div>
+<!-- El muñequito se asoma una vez por visita para ofrecer ayuda por WhatsApp -->
+<div class="ayudante" id="ayudante" hidden>
+  <a class="ayudante-globo" id="ayudanteLink" target="_blank" rel="noopener"><b>¿Te ayudo a encontrar algo?</b><span><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Escríbenos por WhatsApp</span></a>
+  <img class="ayudante-cara" src="mascota/mascota-cara.webp" alt="" width="200" height="200" loading="lazy" decoding="async">
+  <button class="ayudante-cerrar" id="ayudanteCerrar" type="button" aria-label="Cerrar el mensaje de ayuda">×</button>
+</div>
 
 <!-- Visor de fotos a pantalla completa: pellizcar para acercar, arrastrar y deslizar -->
 <dialog id="visor" class="visor" aria-label="Foto ampliada">
@@ -2257,7 +2336,7 @@ function contar(el, hasta){
 
 // ===== Carga =====
 async function loadProducts(){
-  $("grid").innerHTML = skeletons(8);
+  $("grid").innerHTML = `<div class="cargando-mascota" role="status"><img src="mascota/poses/baila.webp" alt="" width="442" height="560" decoding="async">Cargando productos…</div>` + skeletons(8);
   $("railTop").innerHTML = skeletons(6);
   // La vitrina guarda su lugar desde el inicio para que nada salte cuando llegan las fotos.
   $("stream").innerHTML = [0, 1, 2].map(()=>`<div class="stream-col"><div class="stream-track">${'<div class="stream-item" aria-hidden="true"></div>'.repeat(4)}</div></div>`).join("");
@@ -2267,7 +2346,7 @@ async function loadProducts(){
     if (!res.ok) throw new Error("HTTP " + res.status);
     PRODUCTS = await res.json();
   }catch(err){
-    $("grid").innerHTML = `<div class="empty" role="listitem"><strong>No pudimos cargar el catálogo.</strong>Revisa tu conexión y recarga la página.</div>`;
+    $("grid").innerHTML = `<div class="empty" role="listitem"><img class="mascota-mini triste" src="mascota/poses/triste.webp" alt="" width="371" height="560" decoding="async"><strong>No pudimos cargar el catálogo.</strong>Revisa tu conexión y recarga la página.</div>`;
     $("railTop").innerHTML = "";
     $("vitrina").hidden = true;
     $("heroEstado").textContent = "Catálogo no disponible por ahora";
@@ -2767,7 +2846,7 @@ if (matchMedia("(hover: none)").matches && !reduceMotion() && "DeviceOrientation
 }
 
 // Diagnóstico: abrir la página con ?diag muestra qué soporta este celular o navegador.
-const VERSION = "2026-09-25-mascota";
+const VERSION = "2026-09-25-mascota-2";
 if (new URLSearchParams(location.search).has("diag")){
   const d = document.createElement("pre");
   d.style.cssText = "position:fixed;left:8px;right:8px;bottom:8px;z-index:99;margin:0;background:#fff;color:#000;font:12px/1.5 monospace;padding:12px;border-radius:12px;white-space:pre-wrap;box-shadow:0 10px 30px rgba(0,0,0,.5)";
@@ -2821,13 +2900,27 @@ function trasLaIntro(fn){
   ubicar();
   mq.addEventListener?.("change", ubicar);
 }
+// Modo fiesta (sorpresa): luces de colores en la portada y papelitos que salen del muñequito.
+function fiestaMascota(){
+  medir("mascota-fiesta");
+  const hero = $("hero");
+  hero.classList.remove("fiesta"); void hero.offsetWidth; hero.classList.add("fiesta");
+  clearTimeout(fiestaMascota.t);
+  fiestaMascota.t = setTimeout(()=>hero.classList.remove("fiesta"), 6200);
+  if (reduceMotion()) return;
+  confeti($("mascota"));
+  setTimeout(()=>confeti($("mascota")), 900);
+  setTimeout(()=>confeti($("mascota")), 1800);
+}
 function mascotaPlana(){
   const img = $("mascotaPlana");
   $("mascota").classList.add("plana");
   img.hidden = false;
-  let i = 0;
+  let i = 0, toques = [];
   img.onclick = ()=>{
     img.classList.remove("salta"); void img.offsetWidth; img.classList.add("salta");
+    const ahora = Date.now(); toques = toques.filter(t=>ahora - t < 3000); toques.push(ahora);
+    if (toques.length >= 5){ toques = []; decirMascota("¡Modo fiesta activado!", 3400); fiestaMascota(); return; }
     if (MASCOTA.frases.length) decirMascota(MASCOTA.frases[i++ % MASCOTA.frases.length], 3000);
   };
   trasLaIntro(()=>{
@@ -2844,7 +2937,7 @@ async function cargarMascota(){
     const {iniciar} = await import(`./mascota3d.js?v=${VERSION}`);
     MASCOTA.api = iniciar({
       contenedor: $("mascota"), lienzo: $("mascotaCanvas"), frases: MASCOTA.frases,
-      alDecir: decirMascota, alTocar: ()=>medir("mascota")
+      alDecir: decirMascota, alTocar: ()=>medir("mascota"), alFiesta: fiestaMascota
     });
     trasLaIntro(()=>MASCOTA.api.empezar());
     new MutationObserver(()=>MASCOTA.api.pausar(!!document.querySelector("dialog[open]")))
@@ -2856,6 +2949,61 @@ async function cargarMascota(){
   }
 }
 cargarMascota();
+// Ayudante: después de un rato mirando la tienda (ya fuera de la portada), el muñequito ofrece ayuda
+// por WhatsApp. Una sola vez por visita; no sale con una ventana abierta ni en el modo vitrina.
+{
+  const CLAVE = "eg_ayudante", ya = () => { try { return sessionStorage.getItem(CLAVE); } catch { return "1"; } };
+  const marcar = () => { try { sessionStorage.setItem(CLAVE, "1"); } catch {} };
+  const ocultar = () => { const a = $("ayudante"); if (a.hidden) return; a.classList.add("sale"); setTimeout(()=>{ a.hidden = true; a.classList.remove("entra", "sale"); }, 280); };
+  const mostrar = () => {
+    if (ya()) return;
+    if (document.querySelector("dialog[open]") || scrollY < innerHeight * .8 || document.visibilityState !== "visible" || document.body.matches(".en-anillo, .en-portal")){ setTimeout(mostrar, 6000); return; }
+    marcar();
+    const a = $("ayudante");
+    $("ayudanteLink").href = waLink(`Hola ${CONFIG.storeName}, ¿me ayudan a encontrar un producto?`);
+    a.hidden = false; a.classList.add("entra");
+    medir("ayudante");
+    setTimeout(ocultar, 12000);
+  };
+  if (!VITRINA_URL && !ya()) setTimeout(mostrar, 16000);
+  $("ayudanteCerrar").onclick = ocultar;
+  $("ayudanteLink").addEventListener("click", ()=>{ medir("ayudante-whatsapp"); ocultar(); });
+  $("waFloat").addEventListener("click", marcar);
+}
+
+// Sin internet: el muñequito avisa (triste); cuando vuelve la conexión, levanta el pulgar.
+{
+  const avisar = ok => {
+    const a = $("avisoRed");
+    a.querySelector("img").src = `mascota/poses/${ok ? "pulgar" : "triste"}.webp`;
+    $("avisoRedTxt").textContent = ok ? "¡Volvió el internet!" : "Sin internet: ves lo último que guardamos";
+    a.hidden = false;
+    clearTimeout(avisar.t);
+    if (ok) avisar.t = setTimeout(()=>{ a.hidden = true; }, 2600);
+  };
+  addEventListener("offline", ()=>avisar(false));
+  addEventListener("online", ()=>{ if (!$("avisoRed").hidden) avisar(true); });
+  if (navigator.onLine === false) avisar(false);
+}
+
+// Código secreto en computadora (↑ ↑ ↓ ↓ ← → ← → B A): modo fiesta.
+{
+  const CODIGO = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+  let pos = 0;
+  addEventListener("keydown", e=>{
+    if (e.target.closest?.("input, textarea, select, [contenteditable]")) return;
+    const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    pos = k === CODIGO[pos] ? pos + 1 : (k === CODIGO[0] ? 1 : 0);
+    if (pos < CODIGO.length) return;
+    pos = 0;
+    scrollTo({top: 0, behavior: reduceMotion() ? "auto" : "smooth"});
+    setTimeout(()=>{
+      if (MASCOTA.api) MASCOTA.api.fiesta();
+      else { decirMascota("¡Modo fiesta activado!", 3400); fiestaMascota(); }
+    }, 500);
+  });
+}
+
 $("mascotaArriba").onclick = ()=>{
   scrollTo({top: 0, behavior: reduceMotion() ? "auto" : "smooth"});
   setTimeout(()=>MASCOTA.api ? MASCOTA.api.saludar("¡Aquí estoy! ¿Qué buscamos hoy?") : decirMascota("¡Aquí estoy! ¿Qué buscamos hoy?"), reduceMotion() ? 100 : 900);
@@ -3129,9 +3277,10 @@ function prepararAnillo(){
 }
 async function cargarAnillo(){
   try {
-    const {iniciar} = await import(`./escena3d.js?v=${VERSION}`);   // la versión evita usar una copia vieja tras publicar
+    // La versión evita usar una copia vieja tras publicar. El muñequito del centro es el mismo módulo de la portada.
+    const [{iniciar}, mascota] = await Promise.all([import(`./escena3d.js?v=${VERSION}`), import(`./mascota3d.js?v=${VERSION}`).catch(()=>null)]);
     A3D.api = iniciar({
-      contenedor: $("anilloLienzo"), lienzo: $("anilloCanvas"), seccion: $("secAnillo"), reducir: reduceMotion(),
+      contenedor: $("anilloLienzo"), lienzo: $("anilloCanvas"), seccion: $("secAnillo"), reducir: reduceMotion(), crearMascota: mascota?.crearMascota,
       productos: A3D.lista.map(p=>{
         const {txt, m} = consolaDe(p);
         return {code: p.code, foto: fotoMini(p.photos[0]), respaldo: p.photos[0], precio: precio(p, "efectivo"), tag: txt, tagColor: colorMundo(m), tagInk: m === "Retro" ? "#140900" : "#fff"};
@@ -3417,6 +3566,8 @@ function pintarQR(p){
 function mostrarSlide(){
   clearTimeout(K.timer);
   if (!K.lista.length) return;
+  K.paso = (K.paso || 0) + 1;
+  if (K.paso % 7 === 0 && !K.esMascota && K.lista.length > 3) return mostrarMascotaVitrina();
   K.i = (K.i + K.lista.length) % K.lista.length;
   const p = K.lista[K.i];
   const {m} = consolaDe(p);
@@ -3446,7 +3597,29 @@ function mostrarSlide(){
   const sig = K.lista[(K.i + 1) % K.lista.length];
   if (sig) { const im = new Image(); im.src = sig.photos[0]; }   // la siguiente foto ya lista
 }
-function siguienteVitrina(d){ K.i += d; mostrarSlide(); }
+function siguienteVitrina(d){ if (K.esMascota) K.esMascota = false; else K.i += d; mostrarSlide(); }
+// En la pantalla del local, cada tanto aparece el muñequito invitando a preguntar en caja.
+function mostrarMascotaVitrina(){
+  K.esMascota = true;
+  $("kiosco").style.setProperty("--kc", "#FF7A00");
+  const frases = [["¿Te gustó algo?", "Pregúntanos en caja: te lo mostramos y te decimos el precio en efectivo."],
+                  ["¡Llévatelo hoy!", "Paga en efectivo o transferencia y ahorras. Pregúntanos en caja."],
+                  ["¿Buscas otra cosa?", "Tenemos más en los 3 locales. Pregúntanos en caja o por WhatsApp."]];
+  const [t, d] = frases[Math.floor(K.paso / 7) % frases.length];
+  $("kSlide").innerHTML = `
+    <div class="k-foto k-mascota"><img src="mascota/poses/${K.paso % 14 ? "saludo" : "presenta"}.webp" alt="" decoding="async"></div>
+    <div class="k-info">
+      <div class="k-cat">Electronic Games</div>
+      <h2 class="k-nombre">${t}</h2>
+      <div class="k-tag">${d}</div>
+    </div>`;
+  const slide = $("kSlide");
+  slide.classList.remove("entra"); void slide.offsetWidth; slide.classList.add("entra");
+  const barra = $("kBarra");
+  barra.style.setProperty("--dur", `${K.dur}ms`);
+  barra.classList.remove("corre"); void barra.offsetWidth;
+  if (!K.pausa){ barra.classList.add("corre"); K.timer = setTimeout(()=>siguienteVitrina(1), K.dur); }
+}
 function pausarVitrina(){
   K.pausa = !K.pausa;
   pintarControlesVitrina();
@@ -3601,12 +3774,23 @@ function setCantidad(code, q){
 function confirmarAgregado(p, n, retraso = 0){
   $("aviso").textContent = `Agregado al pedido: ${n > 1 ? n + " x " : ""}${p.name}`;
   try { navigator.vibrate?.(10); } catch(e) {}
+  setTimeout(popAgregado, retraso);
   if (reduceMotion()) return;
   // El contador rebota cuando llega la miniatura que vuela (o al instante si no hay vuelo).
   setTimeout(()=>{
     for (const el of [$("cartCount"), $("cartBarN")])
       el.animate?.([{scale: 1}, {scale: 1.35}, {scale: 1}], {duration: 300, easing: "cubic-bezier(0.23,1,0.32,1)"});
   }, retraso);
+}
+
+// El muñequito levanta el pulgar: "¡Agregado!" (en la capa de arriba, visible también sobre la ficha).
+function popAgregado(){
+  const pop = $("popMascota");
+  if (!pop.showPopover) return;
+  clearTimeout(popAgregado.t);
+  try { if (pop.matches(":popover-open")) pop.hidePopover(); pop.showPopover(); } catch(e) { return; }
+  pop.classList.remove("anima"); void pop.offsetWidth; pop.classList.add("anima");
+  popAgregado.t = setTimeout(()=>{ try { pop.hidePopover(); } catch(e) {} }, reduceMotion() ? 1400 : 1750);
 }
 
 // Quitar y vaciar se pueden deshacer, en vez de pedir confirmación.
@@ -3669,6 +3853,7 @@ function pintarCompra(){
   const ef = precio(p, "efectivo"), tj = precio(p, "tarjeta");
   // Agotado en los 3 locales: en vez de "pedir", la persona deja el aviso para cuando llegue.
   const agotado = !p.digital && !max;
+  $("dAgotado").hidden = !agotado;
   $("dWa").dataset.tipo = agotado ? "aviso" : "consulta";
   $("dWa").innerHTML = `<svg aria-hidden="true"><use href="#i-wa"/></svg>${agotado ? "Avísame cuando llegue" : "Pedir por WhatsApp"}`;
   const que = D.q > 1 ? `${D.q} x ${p.name} (${p.code}), a ${fmt(ef)} c/u` : `${p.name} (${p.code}), a ${fmt(ef)}`;

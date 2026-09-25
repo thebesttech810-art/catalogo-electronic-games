@@ -143,7 +143,7 @@ function armar(mat){
   const geoAnte = new CapsuleGeometry(.13, .18, 6, 14); geoAnte.translate(0, -.2, 0);
   const geoPuno = new TorusGeometry(.14, .055, 10, 24); geoPuno.rotateX(Math.PI / 2);
   const geoMano = new SphereGeometry(.2, 20, 14); geoMano.scale(1, 1.08, .88);
-  const geoPulgar = new CapsuleGeometry(.068, .12, 5, 10); geoPulgar.translate(0, -.1, 0);
+  const geoPulgar = new CapsuleGeometry(.078, .15, 5, 10); geoPulgar.translate(0, -.12, 0);
   const brazos = [-1, 1].map(lado=>{
     const hombro = new Group(); hombro.position.set(lado * .52, 1.5, 0); cuerpo.add(hombro);
     hombro.add(pieza(geoBrazo, mat.negro));
@@ -152,7 +152,7 @@ function armar(mat){
     const puno = pieza(geoPuno, mat.naranja, .02); puno.position.y = -.3; codo.add(puno);
     const mano = new Group(); mano.position.y = -.46; codo.add(mano);
     mano.add(pieza(geoMano, mat.negro));
-    const pulgar = new Group(); pulgar.position.set(-lado * .1, -.12, .08); mano.add(pulgar);
+    const pulgar = new Group(); pulgar.position.set(-lado * .11, -.14, .09); mano.add(pulgar);
     pulgar.add(pieza(geoPulgar, mat.negro, .025));
     return {lado, hombro, codo, mano, pulgar};
   });
@@ -198,14 +198,91 @@ function armar(mat){
 
 // Poses de los brazos: [hombro z, hombro x, codo z, mano z] para el brazo izquierdo de la pantalla
 // (el derecho es el espejo). Todo gira en el plano de frente, como en el dibujo.
-const POSES = {
-  reposo:  {izq: [-.32, 0, -.18, 0], der: [.9, .2, -1.52, .3]},     // la mano derecha en la cadera, como el dibujo
-  saludo:  {izq: [-2.2, .45, -.6, 0], der: [.9, .2, -1.52, .3]},
-  pulgar:  {izq: [-1.1, .45, -1.72, .15], der: [.9, .2, -1.52, .3]},
-  brazos:  {izq: [-2.2, .1, -.5, 0], der: [2.2, .1, .5, 0]},          // festejo: los dos arriba
+const CADERA = [.9, .2, -1.52, .3], SUELTO = [.2, 0, .12, 0];
+export const POSES = {
+  reposo:    {izq: [-.32, 0, -.18, 0], der: CADERA},              // la mano derecha en la cadera, como el dibujo
+  saludo:    {izq: [-2.2, .45, -.6, 0], der: CADERA},
+  pulgar:    {izq: [-1.1, .45, -1.72, .15], der: CADERA},
+  brazos:    {izq: [-2.2, .1, -.5, 0], der: [2.2, .1, .5, 0]},    // festejo: los dos arriba
+  presenta:  {izq: [-.75, -.75, -.55, .6], der: CADERA},            // "¡mira este!": el brazo hacia adelante, la palma arriba
+  triste:    {izq: [-.1, .05, -.04, 0], der: [.1, .05, .04, 0]},    // brazos caídos
+  // Para las poses con objetos (las imágenes de las secciones):
+  sostiene:  {izq: [-.3, -1.1, -1.3, .2], der: CADERA},             // algo en la mano, frente al pecho
+  mira:      {izq: [-.35, -1.25, -1.45, .5], der: CADERA},          // la mano a la altura de la cara (lupa, celular)
+  piensa:    {izq: [-2.8, .1, 1.9, .4], der: CADERA},               // rascándose la cabeza
+  cuelga:    {izq: [-.35, 0, -.05, 0], der: CADERA},                // una funda colgando
+  saludaCon: {izq: [-2.2, .45, -.6, 0], der: [.35, 0, .05, 0]},     // saluda y con la otra mano sostiene algo
 };
 
-export function iniciar({contenedor, lienzo, reducir = false, bienvenida = true, frases = [], alDecir, alTocar}){
+// ---------- La fábrica: el muñequito con sus materiales, poses, ojos y baile ----------
+// La usan la portada (iniciar, más abajo), la vitrina 360° y la herramienta que dibuja las poses.
+// Quien lo usa cambia m.est (pose, ojos, baile, saludo, hacia dónde mira) y llama m.actualizar(dt) en
+// cada cuadro; la posición, los saltos y el aplastón de m.raiz son cosa de cada escena.
+export function crearMascota({niebla = true} = {}){
+  const mat = {
+    naranja: new MeshPhongMaterial({color: NARANJA, specular: 0x6a5a4a, shininess: 70}),
+    casco: new MeshPhongMaterial({color: 0xffffff, specular: 0x7a6e62, shininess: 110, map: texturaCasco()}),
+    negro: new MeshPhongMaterial({color: NEGRO, specular: 0x4a4a52, shininess: 60}),
+    gris: new MeshPhongMaterial({color: GRIS, specular: 0x555555, shininess: 40}),
+    emblema: new MeshPhongMaterial({color: 0xffffff, specular: 0x333333, shininess: 40, alphaTest: .4, visible: false}),
+  };
+  const listoEmblema = texturaEmblema().then(t=>{ mat.emblema.map = t; mat.emblema.visible = true; mat.emblema.needsUpdate = true; });
+  const m = armar(mat);
+  if (!niebla) m.raiz.traverse(o=>{ if (o.material) o.material.fog = false; });
+
+  const est = {pose: "reposo", ojos: "abiertos", baila: false, saluda: false, gesto: 0, mirarY: 0, mirarX: 0, inclina: 0, cuerpoY: 0, parpadea: true};
+  const actual = {izq: [...POSES.reposo.izq], der: [...POSES.reposo.der]};
+  let reloj = 0, tSaludo = 0, cabezaRy = 0, parpadeo = 0, proxParpadeo = 2, pulso = 0;
+  const suave = (a, b, k) => a + (b - a) * k;
+  // Las poses están escritas para el brazo izquierdo de la pantalla; si se pide el derecho, van en espejo.
+  const espejo = ([z, x, c, h]) => [-z, x, -c, -h];
+
+  function actualizar(dt, instantaneo = false){
+    reloj += dt;
+    tSaludo = est.saluda ? tSaludo + dt : 0;
+    pulso = est.baila ? Math.sin(reloj * Math.PI * 2 * 1.7) : 0;   // ~100 golpes por minuto
+    const k = instantaneo ? 1 : 1 - Math.exp(-dt * 9), objetivo = POSES[est.pose] || POSES.reposo;
+    for (const lado of ["izq", "der"]) for (let i = 0; i < 4; i++) actual[lado][i] = suave(actual[lado][i], objetivo[lado][i], k);
+    m.brazos.forEach((b, j)=>{
+      const esGesto = j === est.gesto;
+      const p = esGesto ? actual.izq : actual.der;
+      const [hz, hx, cz, mz] = (j === 1) === esGesto ? espejo(p) : p;
+      const ola = esGesto && est.saluda ? Math.sin(tSaludo * 11) * .45 : 0;
+      const vaiven = pulso * (esGesto ? .08 : .04);
+      b.hombro.rotation.set(hx, 0, hz + vaiven);
+      b.codo.rotation.set(0, 0, cz + ola);
+      b.mano.rotation.set(0, 0, mz + ola * .4);
+      b.pulgar.rotation.set(0, 0, b.lado * (est.pose === "pulgar" && esGesto ? 0 : .9));
+    });
+    // Cabeza y cuerpo: hacia dónde mira, inclinación y el baile.
+    const lado = est.gesto ? -1 : 1;
+    let rx = est.mirarX, rz = est.inclina * lado;
+    if (est.baila){ rx += pulso * .07; rz += Math.sin(reloj * Math.PI * 1.7) * .08; }
+    cabezaRy = instantaneo ? est.mirarY : suave(cabezaRy, est.mirarY, 1 - Math.exp(-dt * 8));
+    m.cabeza.rotation.set(rx, cabezaRy, rz);
+    m.cuerpo.rotation.z = est.baila ? Math.sin(reloj * Math.PI * 1.7) * .035 : 0;
+    m.cuerpo.rotation.y = est.cuerpoY;
+    // Ojos: parpadean cada tanto; felices (^ ^) o tristes (a medio cerrar y caídos).
+    if (est.parpadea){
+      proxParpadeo -= dt;
+      if (proxParpadeo <= 0){ parpadeo = .16; proxParpadeo = 2.2 + Math.random() * 3.5; }
+      parpadeo = Math.max(0, parpadeo - dt);
+    }
+    const cierre = parpadeo > 0 ? Math.sin((1 - parpadeo / .16) * Math.PI) : 0;
+    const felices = est.ojos === "felices", tristes = est.ojos === "tristes";
+    for (const o of m.ojos){
+      o.abierto.visible = !felices; o.feliz.visible = felices;
+      o.ojo.scale.y = felices ? 1 : Math.max(.08, (tristes ? .5 : 1) - cierre);
+      o.ojo.rotation.z = tristes ? -Math.sign(o.x0) * .32 : 0;
+      o.ojo.position.x = o.x0 + est.mirarY * .05;
+    }
+    m.matAro.opacity = .45 + .5 * Math.abs(pulso);
+    return pulso;
+  }
+  return Object.assign(m, {mat, est, actualizar, listoEmblema, get pulso(){ return pulso; }});
+}
+
+export function iniciar({contenedor, lienzo, reducir = false, bienvenida = true, frases = [], alDecir, alTocar, alFiesta}){
   const tactil = matchMedia("(pointer: coarse)").matches;
   let pr = Math.min(devicePixelRatio || 1, tactil ? 1.75 : 2);
   const renderer = new WebGLRenderer({canvas: lienzo, antialias: true, alpha: true, powerPreference: "high-performance"});
@@ -221,15 +298,7 @@ export function iniciar({contenedor, lienzo, reducir = false, bienvenida = true,
   const sol = new DirectionalLight(0xffffff, 2.5); sol.position.set(-5.5, 6.5, 2.6); escena.add(sol);
   const contraluz = new DirectionalLight(0xFF7A00, 3.2); contraluz.position.set(4, 3, -4); escena.add(contraluz);
 
-  const mat = {
-    naranja: new MeshPhongMaterial({color: NARANJA, specular: 0x6a5a4a, shininess: 70}),
-    casco: new MeshPhongMaterial({color: 0xffffff, specular: 0x7a6e62, shininess: 110, map: texturaCasco()}),
-    negro: new MeshPhongMaterial({color: NEGRO, specular: 0x4a4a52, shininess: 60}),
-    gris: new MeshPhongMaterial({color: GRIS, specular: 0x555555, shininess: 40}),
-    emblema: new MeshPhongMaterial({color: 0xffffff, specular: 0x333333, shininess: 40, alphaTest: .4, visible: false}),
-  };
-  texturaEmblema().then(t=>{ mat.emblema.map = t; mat.emblema.visible = true; mat.emblema.needsUpdate = true; });
-  const m = armar(mat);
+  const m = crearMascota();
   escena.add(m.raiz);
 
   // Piso: aro de luz, sombra y la onda al caer.
@@ -316,20 +385,24 @@ export function iniciar({contenedor, lienzo, reducir = false, bienvenida = true,
   portada.addEventListener("pointerleave", ()=>{ px = py = 0; });
   // El lienzo deja pasar el mouse (debajo están los productos de la vitrina): el toque se revisa en la
   // portada y, si cae sobre el muñequito, no abre lo que está detrás.
+  // Cinco toques seguidos (en menos de 3 segundos): modo fiesta.
+  const toques = [];
   portada.addEventListener("click", e=>{
     if (!listo || accion.nombre === "espera" || accion.nombre === "cae" || !tocaMuneco(e.clientX, e.clientY)) return;
     e.preventDefault(); e.stopPropagation();
+    const ahora = performance.now();
+    toques.push(ahora);
+    while (toques.length && ahora - toques[0] > 3000) toques.shift();
     alTocar?.();
-    saltar();
+    if (toques.length >= 5){ toques.length = 0; fiesta(); } else saltar();
   }, true);
 
   // ---------- Animación ----------
   // Pose actual (suavizada) y la que se busca; encima se suman los movimientos de cada acción.
-  const actual = {izq: [...POSES.reposo.izq], der: [...POSES.reposo.der]};
   let pose = "reposo", felices = false;
   let accion = {nombre: bienvenida && !reducir ? "espera" : "baila", t: 0};
-  let alturaY = accion.nombre === "espera" ? 6 : 0, velY = 0, aplaste = 0, velAplaste = 0, giro = 0, cabezaRy = 0;
-  let parpadeo = 0, proxParpadeo = 2, reloj = 0, luz = accion.nombre === "espera" ? 0 : 1;
+  let alturaY = accion.nombre === "espera" ? 6 : 0, velY = 0, aplaste = 0, velAplaste = 0, giro = 0;
+  let reloj = 0, luz = accion.nombre === "espera" ? 0 : 1;
   let fraseI = 0, cola = [];
 
   const decir = (texto, ms = 3200) => alDecir?.(texto, ms);
@@ -350,6 +423,16 @@ export function iniciar({contenedor, lienzo, reducir = false, bienvenida = true,
     secuencia([{nombre: "salta", dur: 1.1, pose: "brazos", felices: true, decir: f, ms: 3000},
                {nombre: "pulgar", dur: 1.4, pose: "pulgar", felices: true, alEmpezar: ()=>{ vidaEstrella = 1; }}]);
   }
+  function fiesta(){
+    const salto = () => { velY = 6.2; alturaY = Math.max(alturaY, .001); };
+    secuencia([
+      {nombre: "salta", dur: .95, pose: "brazos", felices: true, decir: "¡Modo fiesta activado!", ms: 3400, alEmpezar: salto},
+      {nombre: "salta", dur: .95, pose: "brazos", felices: true, alEmpezar: salto},
+      {nombre: "salta", dur: .95, pose: "brazos", felices: true, alEmpezar: salto},
+      {nombre: "pulgar", dur: 1.6, pose: "pulgar", felices: true, alEmpezar: ()=>{ vidaEstrella = 1; }},
+    ]);
+    alFiesta?.();
+  }
   function empezarBienvenida(){
     if (accion.nombre !== "espera") return;
     velY = 0; alturaY = 6;
@@ -363,14 +446,19 @@ export function iniciar({contenedor, lienzo, reducir = false, bienvenida = true,
     fraseI = 1;
   }
 
-  const suave = (a, b, k) => a + (b - a) * k;
   const tmp = new Vector3();
   function actualizar(dt){
     reloj += dt;
     accion.t += dt;
     if (accion.dur && accion.t >= accion.dur) siguiente();
-    const pulso = reducir ? 0 : Math.sin(reloj * Math.PI * 2 * 1.7);   // ~100 golpes por minuto
     const baila = accion.nombre === "baila" && !reducir;
+
+    // El muñequito: pose, ojos, baile y hacia dónde mira (sigue al mouse).
+    pxS += (px - pxS) * (1 - Math.exp(-dt * 5)); pyS += (py - pyS) * (1 - Math.exp(-dt * 5));
+    Object.assign(m.est, {pose, ojos: felices ? "felices" : "abiertos", baila, saluda: accion.nombre === "saluda", gesto,
+      mirarY: pxS * .55 + (accion.nombre === "mira" ? Math.sin(accion.t / .9 * Math.PI * 2) * .55 : 0), mirarX: pyS * .25,
+      inclina: accion.nombre === "saluda" ? .12 : accion.nombre === "pulgar" ? -.08 : 0, cuerpoY: pxS * .15});
+    const pulso = m.actualizar(dt);
 
     // Caída y saltos: gravedad con rebote aplastado al tocar el piso.
     if (accion.nombre !== "espera" && (accion.nombre === "cae" || alturaY > 0 || velY > 0)){
@@ -388,51 +476,7 @@ export function iniciar({contenedor, lienzo, reducir = false, bienvenida = true,
     giro = accion.nombre === "salta" ? Math.min(1, accion.t / .8) * Math.PI * 2 : 0;
     m.raiz.rotation.y = giro;
 
-    // Brazos hacia su pose (más la ola del saludo y el vaivén del baile)
-    const k = 1 - Math.exp(-dt * 9), objetivo = POSES[pose];
-    for (const lado of ["izq", "der"]) for (let i = 0; i < 4; i++) actual[lado][i] = suave(actual[lado][i], objetivo[lado][i], k);
-    // Las poses están escritas para saludar con el brazo izquierdo de la pantalla; si la página pide el
-    // derecho (en celular, el de afuera, para que el globo no tape la mano), se usan en espejo.
-    const espejo = ([z, x, c, h]) => [-z, x, -c, -h];
-    m.brazos.forEach((b, j)=>{
-      const esGesto = j === gesto;
-      const p = esGesto ? actual.izq : actual.der;
-      const [hz, hx, cz, mz] = (j === 1) === esGesto ? espejo(p) : p;
-      let ola = 0, vaiven = 0;
-      if (esGesto && accion.nombre === "saluda") ola = Math.sin(accion.t * 11) * .45;
-      if (baila) vaiven = pulso * (esGesto ? .08 : .04);
-      b.hombro.rotation.set(hx, 0, hz + vaiven);
-      b.codo.rotation.set(0, 0, cz + ola);
-      b.mano.rotation.set(0, 0, mz + ola * .4);
-      b.pulgar.rotation.set(0, 0, b.lado * (pose === "pulgar" && esGesto ? 0 : .9));
-    });
-
-    // Cuerpo y cabeza: baile, mirar alrededor y seguir al mouse.
-    pxS += (px - pxS) * (1 - Math.exp(-dt * 5)); pyS += (py - pyS) * (1 - Math.exp(-dt * 5));
-    let ry = pxS * .55, rx = pyS * .25, rz = 0;
-    if (accion.nombre === "mira") ry += Math.sin(accion.t / .9 * Math.PI * 2) * .55;
-    if (baila){ rx += pulso * .07; rz = Math.sin(reloj * Math.PI * 1.7) * .08; }
-    const s = gesto ? -1 : 1;
-    if (accion.nombre === "saluda") rz = .12 * s;
-    if (accion.nombre === "pulgar") rz = -.08 * s;
-    cabezaRy = suave(cabezaRy, ry, 1 - Math.exp(-dt * 8));
-    m.cabeza.rotation.set(rx, cabezaRy, rz);
-    m.cuerpo.rotation.z = baila ? Math.sin(reloj * Math.PI * 1.7) * .035 : 0;
-    m.cuerpo.rotation.y = pxS * .15;
-
-    // Ojos: parpadeo cada tanto; felices (^ ^) cuando saluda.
-    proxParpadeo -= dt;
-    if (proxParpadeo <= 0){ parpadeo = .16; proxParpadeo = 2.2 + Math.random() * 3.5; }
-    parpadeo = Math.max(0, parpadeo - dt);
-    const cierre = parpadeo > 0 ? Math.sin((1 - parpadeo / .16) * Math.PI) : 0;
-    for (const o of m.ojos){
-      o.abierto.visible = !felices; o.feliz.visible = felices;
-      o.ojo.scale.y = felices ? 1 : Math.max(.08, 1 - cierre);
-      o.ojo.position.x = o.x0 + pxS * .03;
-    }
-
-    // Luz de los audífonos y del piso con la música
-    m.matAro.opacity = .45 + .5 * Math.abs(pulso) * (baila ? 1 : .3);
+    // Luz del piso con la música
     luz = Math.min(1, luz + dt * 1.5);
     aro.material.opacity = luz * (.22 + (baila ? Math.abs(pulso) * .16 : 0));
     luzPiso.material.opacity = luz * .8;
@@ -530,6 +574,7 @@ export function iniciar({contenedor, lienzo, reducir = false, bienvenida = true,
     // La portada avisa cuándo ya se ve (después de la intro de la marca) para que caiga en ese momento.
     empezar(){ if (accion.nombre === "espera") empezarBienvenida(); },
     saludar(texto){ if (accion.nombre === "baila") secuencia([{nombre: "saluda", dur: 2, pose: "saludo", felices: true, decir: texto}]); },
+    fiesta(){ if (accion.nombre !== "espera" && accion.nombre !== "cae") fiesta(); },
     // Con una ventana abierta encima (ficha, pedido, visor) no se dibuja: esa ventana va más fluida.
     pausar(v){ pausado = !!v; revisar(); },
   };
