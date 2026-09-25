@@ -150,7 +150,7 @@ header nav a{{font-weight:700;font-size:.92rem;color:var(--muted);text-decoratio
 header nav a:hover{{color:var(--ink)}}
 .ficha{{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;padding-block:32px 56px;align-items:start}}
 .foto{{aspect-ratio:1/1;border-radius:18px;overflow:hidden;background:radial-gradient(120% 95% at 50% 8%,#fff 0%,#F4F1EC 58%,#E4DED4 100%)}}
-.foto img,.foto svg{{width:100%;height:100%;object-fit:contain;padding:7%;mix-blend-mode:multiply;display:block}}
+.foto img,.foto svg{{width:100%;height:100%;object-fit:contain;padding:2%;mix-blend-mode:multiply;display:block}}
 .migas{{font-size:.85rem;color:var(--muted)}}
 .migas a{{color:var(--brand-hi);font-weight:700;text-decoration:none}}
 h1{{margin:10px 0 6px;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.1;text-wrap:balance}}

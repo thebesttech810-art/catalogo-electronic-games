@@ -72,10 +72,10 @@ function pintarFrente(c, p, img){
   g.addColorStop(0, "#ffffff"); g.addColorStop(.58, "#F4F1EC"); g.addColorStop(1, "#E4DED4");
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
   if (img?.naturalWidth){
-    const caja = W * .8, alto = H - 200, k = Math.min(caja / img.naturalWidth, alto / img.naturalHeight);
+    const caja = W * .92, alto = H - 170, k = Math.min(caja / img.naturalWidth, alto / img.naturalHeight);
     const w = img.naturalWidth * k, h = img.naturalHeight * k;
     ctx.globalCompositeOperation = "multiply";   // el blanco de la foto se funde con el escenario
-    ctx.drawImage(img, (W - w) / 2, 84 + (alto - h) / 2, w, h);
+    ctx.drawImage(img, (W - w) / 2, 64 + (alto - h) / 2, w, h);
     ctx.globalCompositeOperation = "source-over";
   }
   ctx.textBaseline = "middle";
