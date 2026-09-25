@@ -16,7 +16,7 @@ import sys
 from PIL import Image
 
 from generar_catalogo import FOTOS_DIR, SALIDA, SELECCION
-from mejorar_fotos import LADO_ZOOM, guardar_con_zoom, mejorar, ruta_zoom
+from mejorar_fotos import LADO_ZOOM, copias, guardar_con_zoom, mejorar
 
 EXT_OK = {".jpg", ".jpeg", ".png", ".webp"}
 EXT_HEIC = {".heic", ".heif"}
@@ -35,7 +35,7 @@ def codigo_de_carpeta(nombre, codigos):
 
 
 def guardar_foto(origen, destino):
-    """Guarda la foto del catálogo (1000 px) y su copia para acercar (zoom/, 2000 px)."""
+    """Guarda la foto del catálogo (1000 px), su copia para acercar (zoom/, 2000 px) y la mini (mini/, 600 px)."""
     with Image.open(origen) as im:
         guardar_con_zoom(mejorar(im, lado=LADO_ZOOM), destino)
 
@@ -80,18 +80,19 @@ def main():
                 nuevas.append(tmp)
         except Exception as e:
             for tmp in nuevas:
-                os.remove(tmp)
-                if os.path.exists(ruta_zoom(tmp)):
-                    os.remove(ruta_zoom(tmp))
+                for r in [tmp] + copias(tmp):
+                    if os.path.exists(r):
+                        os.remove(r)
             con_error.append(f"{raiz}: {e}")
             continue
         for f in anteriores:
-            os.remove(os.path.join(destino, f))
-            if os.path.exists(ruta_zoom(os.path.join(destino, f))):
-                os.remove(ruta_zoom(os.path.join(destino, f)))
+            for r in [os.path.join(destino, f)] + copias(os.path.join(destino, f)):
+                if os.path.exists(r):
+                    os.remove(r)
         for i, tmp in enumerate(nuevas, start=1):
-            os.replace(tmp, os.path.join(destino, f"{i}.jpg"))
-            os.replace(ruta_zoom(tmp), ruta_zoom(os.path.join(destino, f"{i}.jpg")))
+            final = os.path.join(destino, f"{i}.jpg")
+            for de, a in zip([tmp] + copias(tmp), [final] + copias(final)):
+                os.replace(de, a)
         listos.append((codigo, len(nuevas)))
 
     print(f"\nProductos con fotos listas: {len(listos)}")

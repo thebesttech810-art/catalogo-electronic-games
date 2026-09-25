@@ -126,8 +126,11 @@ function degradado(tam, paradas){
 
 // ---------- Escena ----------
 export function iniciar({contenedor, lienzo, seccion, productos, reducir = false, alElegir, alCambiar}){
+  // Calidad según el equipo: en celulares, menos píxeles; si aun así los cuadros tardan, la resolución
+  // baja sola (ver vigilar()).
+  let pr = Math.min(devicePixelRatio || 1, matchMedia("(pointer: coarse)").matches ? 1.5 : 1.75);
   const renderer = new WebGLRenderer({canvas: lienzo, antialias: true, alpha: true, powerPreference: "high-performance"});
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
+  renderer.setPixelRatio(pr);
   renderer.setClearColor(FONDO, 0);
   renderer.toneMapping = NeutralToneMapping;   // respeta el naranja de la marca (otros lo vuelven café)
   renderer.outputColorSpace = SRGBColorSpace;
@@ -217,6 +220,8 @@ export function iniciar({contenedor, lienzo, seccion, productos, reducir = false
     const img = new Image();
     img.decoding = "async";
     img.onload = ()=>{ t.img = img; pintarFrente(c, p, img); tex.needsUpdate = true; };
+    // Si falta la copia liviana (mini/), se usa la foto normal.
+    img.onerror = ()=>{ if (p.respaldo && img.src !== new URL(p.respaldo, location.href).href) img.src = p.respaldo; };
     img.src = p.foto;
     return t;
   });
@@ -238,8 +243,10 @@ export function iniciar({contenedor, lienzo, seccion, productos, reducir = false
   };
   const parteScroll = () => progresoScroll() * GIRO_SCROLL;
 
+  let cajaLienzo = null;   // se mide una vez y se olvida con el scroll o al cambiar de tamaño
+  addEventListener("scroll", ()=>{ cajaLienzo = null; }, {passive: true});
   function tarjetaEn(x, y){
-    const r = lienzo.getBoundingClientRect();
+    const r = cajaLienzo || (cajaLienzo = lienzo.getBoundingClientRect());
     pAlto.set((x - r.left) / r.width * 2 - 1, -((y - r.top) / r.height) * 2 + 1);
     rayo.setFromCamera(pAlto, camara);
     const hit = rayo.intersectObjects(frentes, false)[0];
@@ -279,6 +286,7 @@ export function iniciar({contenedor, lienzo, seccion, productos, reducir = false
   lienzo.addEventListener("pointerleave", e=>{ if (e.pointerType === "mouse"){ px = py = 0; puntero.set(-1e4, -1e4); } });
 
   function medir(){
+    cajaLienzo = null;
     const w = contenedor.clientWidth, h = contenedor.clientHeight;
     if (!w || !h) return;
     anchoPx = w;
@@ -297,7 +305,7 @@ export function iniciar({contenedor, lienzo, seccion, productos, reducir = false
   medir();
 
   // ---------- Cada cuadro ----------
-  let t0 = performance.now(), reloj = 0;
+  let t0 = performance.now(), reloj = 0, ultimaClave = "";
   function actualizar(dt){
     reloj += reducir ? 0 : dt;
     const sc = parteScroll();
@@ -311,8 +319,10 @@ export function iniciar({contenedor, lienzo, seccion, productos, reducir = false
     const f = ((Math.round(mostrado) % N) + N) % N;
     if (f !== frenteActual){ frenteActual = f; alCambiar?.(f); }
 
-    // Tarjeta bajo el mouse: se levanta un poco.
-    const hover = arrastre || puntero.x < -1e3 ? -1 : tarjetaEn(puntero.x, puntero.y);
+    // Tarjeta bajo el mouse: se levanta un poco. (El rayo se lanza solo si algo se movió.)
+    const clave = `${puntero.x},${puntero.y},${mostrado.toFixed(3)},${cajaLienzo ? 1 : 0}`;
+    const hover = arrastre || puntero.x < -1e3 ? -1 : clave === ultimaClave ? sobre : tarjetaEn(puntero.x, puntero.y);
+    ultimaClave = clave;
     if (hover !== sobre){ sobre = hover; contenedor.dataset.cursor = hover >= 0 ? "Ver" : "Arrastra"; lienzo.style.cursor = hover >= 0 ? "pointer" : ""; }
     tarjetas.forEach((t, i)=>{
       t.lev += ((i === sobre ? 1 : 0) - t.lev) * (reducir ? 1 : 1 - Math.exp(-dt * 10));
@@ -352,24 +362,36 @@ export function iniciar({contenedor, lienzo, seccion, productos, reducir = false
     camara.lookAt(0, .2, 0);
   }
 
-  let visible = false, corriendo = false;
+  // Si más de un tercio de los cuadros tarda (menos de ~38 por segundo), se baja la resolución un paso.
+  let lentos = 0, cuenta = 0;
+  function vigilar(ms){
+    cuenta++; if (ms > 26) lentos++;
+    if (cuenta < 90) return;
+    if (lentos > 30 && pr > 1){ pr = Math.max(1, pr - .25); renderer.setPixelRatio(pr); medir(); }
+    cuenta = lentos = 0;
+  }
+
+  let visible = false, corriendo = false, listo = false;
   function cuadro(ahora){
     if (!corriendo) return;
     requestAnimationFrame(cuadro);
+    vigilar(ahora - t0);
     const dt = Math.min(.05, Math.max(0, (ahora - t0) / 1000));
     t0 = ahora;
     actualizar(dt);
     renderer.render(escena, camara);
   }
   const revisar = () => {
-    const debe = visible && document.visibilityState === "visible";
+    const debe = listo && visible && document.visibilityState === "visible";
     if (debe && !corriendo){ corriendo = true; t0 = performance.now(); requestAnimationFrame(cuadro); }
     else if (!debe) corriendo = false;
   };
   new IntersectionObserver(([e])=>{ visible = e.isIntersecting; revisar(); }).observe(contenedor);
   document.addEventListener("visibilitychange", revisar);
   actualizar(0);
-  renderer.render(escena, camara);
+  // Los shaders se compilan en paralelo (sin congelar la página) antes del primer cuadro.
+  const empezar = () => { listo = true; renderer.render(escena, camara); revisar(); };
+  (renderer.compileAsync ? renderer.compileAsync(escena, camara) : Promise.resolve()).then(empezar, empezar);
 
   return {
     // Botones ‹ ›: gira de a una tarjeta y se detiene justo al frente.

@@ -62,8 +62,12 @@ function mundoDe(p, n){
 }
 
 export function iniciar({contenedor, lienzo, seccion, mundos, logos, reducir = false, alCambiar, alElegir}){
+  // Calidad según el equipo: en celulares, menos píxeles y sin tornasol (el efecto más caro del material);
+  // y si aun así los cuadros tardan, la resolución baja sola (ver vigilar()).
+  const tactil = matchMedia("(pointer: coarse)").matches;
+  let pr = Math.min(devicePixelRatio || 1, tactil ? 1.5 : 1.75);
   const renderer = new WebGLRenderer({canvas: lienzo, antialias: true, alpha: false, powerPreference: "high-performance"});
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
+  renderer.setPixelRatio(pr);
   renderer.toneMapping = NeutralToneMapping;
   renderer.outputColorSpace = SRGBColorSpace;
 
@@ -107,7 +111,7 @@ export function iniciar({contenedor, lienzo, seccion, mundos, logos, reducir = f
     geo.center();
     const cara = m.logo === "eg"
       ? new MeshPhysicalMaterial({color: 0xFF7A00, metalness: .3, roughness: .24, clearcoat: 1, clearcoatRoughness: .06})
-      : new MeshPhysicalMaterial({color: 0xffffff, metalness: 0, roughness: .16, clearcoat: 1, clearcoatRoughness: .04, iridescence: .35, iridescenceIOR: 1.4});
+      : new MeshPhysicalMaterial({color: 0xffffff, metalness: 0, roughness: .16, clearcoat: 1, clearcoatRoughness: .04, iridescence: tactil ? 0 : .35, iridescenceIOR: 1.4});
     const canto = new MeshPhysicalMaterial({color: new Color(m.c).multiplyScalar(m.logo === "eg" ? .55 : .9), metalness: .55, roughness: .3, clearcoat: .6});
     const malla = new Mesh(geo, [cara, canto]);
     malla.scale.setScalar(k);
@@ -115,13 +119,12 @@ export function iniciar({contenedor, lienzo, seccion, mundos, logos, reducir = f
     const soporte = new Group();
     soporte.add(malla);
     mesa.add(soporte);
-    // Luz del color de la marca que roza el logo desde atrás (el canto brilla con su color).
-    const rim = new PointLight(new Color(m.c), 14, 7, 1.5);
-    soporte.add(rim);
-    rim.position.set(-1.6, 1.4, -1.2);
-    return {soporte, malla, rim, c1: new Color(m.c), c2: new Color(m.c2)};
+    return {soporte, malla, c1: new Color(m.c), c2: new Color(m.c2)};
   });
   const mallas = piezas.map(p=>p.malla);
+  // Luz del color de la marca que roza el logo desde atrás (el canto brilla con su color). Solo dos luces
+  // (la del logo que se va y la del que llega) en vez de una por logo: cada luz encarece cada píxel.
+  const rims = [0, 1].map(()=>{ const l = new PointLight(0xffffff, 0, 7, 1.5); escena.add(l); return l; });
 
   // ---------- Estado ----------
   let f = 0, fS = 0, actual = -1, px = 0, py = 0, pxS = 0, pyS = 0, reloj = 0;
@@ -196,7 +199,14 @@ export function iniciar({contenedor, lienzo, seccion, mundos, logos, reducir = f
       p.soporte.scale.setScalar(esc * (.55 + .45 * frente * frente));
       // El del frente se inclina hacia el mouse y se mece un poco; los demás quedan quietos.
       p.malla.rotation.set(frente * (-pyS * .45 + Math.sin(reloj * .7 + k) * .05), frente * (pxS * .7 + Math.sin(reloj * .5 + k) * .18), 0);
-      p.rim.intensity = 14 * frente;
+      p.frente = frente;
+    });
+    mesa.updateMatrixWorld();
+    [a, b].forEach((k, j)=>{
+      const p = piezas[k];
+      p.soporte.localToWorld(rims[j].position.set(-1.6, 1.4, -1.2));   // arriba, a la izquierda y detrás del logo
+      rims[j].color.copy(p.c1);
+      rims[j].intensity = 14 * p.frente;
     });
     resplandor.position.set(dx, dy + .1, R - 2.2);
     sombra.position.set(dx, dy - 1.55 * esc, R);
@@ -211,23 +221,35 @@ export function iniciar({contenedor, lienzo, seccion, mundos, logos, reducir = f
     camara.lookAt(0, .05, R);
   }
 
-  let visible = false, corriendo = false;
+  // Si más de un tercio de los cuadros tarda (menos de ~38 por segundo), se baja la resolución un paso.
+  let lentos = 0, cuenta = 0;
+  function vigilar(ms){
+    cuenta++; if (ms > 26) lentos++;
+    if (cuenta < 90) return;
+    if (lentos > 30 && pr > 1){ pr = Math.max(1, pr - .25); renderer.setPixelRatio(pr); medir(); }
+    cuenta = lentos = 0;
+  }
+
+  let visible = false, corriendo = false, listo = false;
   function cuadro(ahora){
     if (!corriendo) return;
     requestAnimationFrame(cuadro);
+    vigilar(ahora - t0);
     const dt = Math.min(.05, Math.max(0, (ahora - t0) / 1000));
     t0 = ahora;
     actualizar(dt);
     renderer.render(escena, camara);
   }
   const revisar = () => {
-    const debe = visible && document.visibilityState === "visible";
+    const debe = listo && visible && document.visibilityState === "visible";
     if (debe && !corriendo){ corriendo = true; t0 = performance.now(); requestAnimationFrame(cuadro); }
     else if (!debe) corriendo = false;
   };
   new IntersectionObserver(([e])=>{ visible = e.isIntersecting; revisar(); }).observe(contenedor);
   document.addEventListener("visibilitychange", revisar);
   actualizar(0);
-  renderer.render(escena, camara);
+  // Los shaders se compilan en paralelo (sin congelar la página) antes del primer cuadro.
+  const empezar = () => { listo = true; renderer.render(escena, camara); revisar(); };
+  (renderer.compileAsync ? renderer.compileAsync(escena, camara) : Promise.resolve()).then(empezar, empezar);
   return {mundoDe: p=>mundoDe(p, N)};
 }

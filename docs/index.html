@@ -98,7 +98,7 @@ button,a,select,label,summary{touch-action:manipulation;-webkit-tap-highlight-co
 :is(.add,.add-btn,.wa-btn,.wa-top,.cart-btn,.cart-bar,.chip,.seg button,.qty button,.more button,.empty button,.vacio button,.close,.thumbs button,.undo button,.icon-btn,.btn,.tile,.atajos button,.rail-nav button,.share-btn,.mundo,.hero-buscar,.stream-pausa):active:not(:disabled){scale:.97}
 
 /* ---------- Encabezado ---------- */
-header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line)}
+header.top{position:sticky;top:0;z-index:6;background:var(--bg);border-bottom:1px solid var(--line)}
 .top-in{display:flex;align-items:center;gap:20px;height:var(--header)}
 .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;flex:none}
 /* Logo real de Electronic Games (vectorizado: nítido en cualquier tamaño) */
@@ -177,6 +177,8 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdro
 .stream-col:nth-child(2) .stream-track{animation-duration:60s;animation-direction:reverse}
 .stream-col:nth-child(3) .stream-track{animation-duration:54s}
 .stream:hover .stream-track,.stream:focus-within .stream-track,.hero:is(.quieto,.pausa) :is(.stream-track,.paths path){animation-play-state:paused}
+/* Las líneas se redibujan en cada cuadro: mientras se hace scroll se detienen (nadie lo nota) y el scroll va liviano. */
+.hero.moviendo .paths path{animation-play-state:paused}
 @keyframes stream-y{to{transform:translateY(-50%)}}
 @keyframes stream-x{to{transform:translateX(-50%)}}
 .stream-item{all:unset;box-sizing:border-box;position:relative;display:block;aspect-ratio:4/5;border-radius:16px;overflow:hidden;cursor:pointer;background:var(--stage-bg);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
@@ -282,7 +284,7 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdro
 
 /* ---------- Catálogo ---------- */
 .catalogo{padding-top:56px}
-.tools{position:sticky;top:var(--header);z-index:5;background:rgba(10,10,11,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:12px 0;border-block:1px solid var(--line)}
+.tools{position:sticky;top:var(--header);z-index:5;background:var(--bg);padding:12px 0;border-block:1px solid var(--line)}
 .tools-in{display:flex;align-items:center;gap:12px}
 .search{position:relative;flex:0 0 340px}
 .search input{width:100%;height:46px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);padding:0 44px 0 44px;font-size:1rem}
@@ -753,10 +755,18 @@ dialog.kiosco::backdrop{background:#050506}
   .hero h1 .w:nth-child(3){animation-delay:calc(var(--tras,0s) + 180ms)}
   .hero :is(.lead,.hero-buscar,.hero-cta,.hero-abierto){animation:subir 800ms var(--ease-out) calc(var(--tras,0s) + 240ms) both}
   .vitrina{animation:aparecer 900ms var(--ease-out) calc(var(--tras,0s) + 150ms) both}
-  /* Las secciones aparecen al llegar a ellas con el scroll (solo navegadores que lo soportan). */
-  @supports (animation-timeline:view()){
-    .reveal{animation:revelar linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
-  }
+}
+/* Entradas al llegar con el scroll: cada cosa aparece una sola vez (la clase .visto la pone un
+   IntersectionObserver) y solo con transform y opacity, que la GPU anima sin frenar el scroll.
+   Antes estaban atadas al scroll (animation-timeline) y se recalculaban en cada cuadro. */
+@media screen and (prefers-reduced-motion:no-preference){
+  .entrada :is(.reveal,.sec-h,.servicio h2,.pasos li,.grid .card):not(.visto),.entrada .foot-gigante:not(.visto) span{opacity:0}
+  .entrada .reveal.visto{animation:revelar 800ms var(--ease-out) backwards}
+  .entrada :is(.sec-h,.servicio h2).visto{animation:titulo-entra 760ms var(--ease-out) backwards}
+  .entrada .pasos li.visto{animation:paso-entra 700ms var(--ease-out) backwards}
+  .entrada .foot-gigante.visto span{animation:letra-sube 760ms var(--ease-out) calc(var(--i,0) * 45ms) backwards}
+  /* Cada producto sube en 3D, uno detrás de otro en la misma fila. */
+  .entrada .grid .card.visto:not(.quieto){animation:card-entra 760ms var(--ease-out) calc(var(--d,0) * 80ms) backwards}
 }
 @keyframes subir{from{opacity:0;translate:0 .6em;filter:blur(6px)}}
 @keyframes revelar{from{opacity:0;translate:0 28px}}
@@ -969,7 +979,7 @@ html.con-intro{--tras:1.1s}
 body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
 .anillo-flecha{flex:none;width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:rgba(21,20,22,.85);color:var(--ink);display:grid;place-items:center;cursor:pointer}
 .anillo-flecha:hover{border-color:var(--brand)}
-.anillo-ver{all:unset;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 16px;width:min(540px,100%);min-width:0;min-height:66px;padding:10px 10px 10px 20px;border-radius:18px;border:1px solid var(--line);background:rgba(21,20,22,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);cursor:pointer;transition:border-color 160ms ease,scale 160ms var(--ease-out)}
+.anillo-ver{all:unset;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 16px;width:min(540px,100%);min-width:0;min-height:66px;padding:10px 10px 10px 20px;border-radius:18px;border:1px solid var(--line);background:rgba(21,20,22,.94);cursor:pointer;transition:border-color 160ms ease,scale 160ms var(--ease-out)}
 .anillo-ver:hover{border-color:var(--brand)}
 .anillo-ver:active{scale:.98}
 .anillo-ver:focus-visible{outline:2px solid var(--brand-hi);outline-offset:2px}
@@ -988,7 +998,8 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 /* ---------- Cómo comprar: tarjetas que se apilan al bajar ---------- */
 .pasos{list-style:none;margin:0;padding:0 0 12px;display:grid;gap:22px}
 .pasos li{--k:0;position:sticky;top:calc(var(--header) + 26px + var(--i,0) * 18px);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:clamp(18px,4vw,48px);min-height:250px;padding:clamp(24px,4vw,44px);border-radius:30px;border:1px solid var(--line);
-  background:linear-gradient(150deg,var(--surface-hi),var(--surface) 70%);box-shadow:0 -20px 44px rgba(0,0,0,.4);transform-origin:50% 0;scale:calc(1 - var(--k) * .06);filter:brightness(calc(1 - var(--k) * .45));overflow:hidden}
+  background:linear-gradient(150deg,var(--surface-hi),var(--surface) 70%);box-shadow:0 -20px 44px rgba(0,0,0,.4);transform-origin:50% 0;scale:calc(1 - var(--k) * .06);overflow:hidden}
+.pasos li::after{content:"";position:absolute;inset:0;border-radius:inherit;background:#000;opacity:calc(var(--k) * .45);pointer-events:none}
 .paso-n{min-width:1.55em;font-variant-numeric:tabular-nums;font-weight:900;font-style:italic;font-size:clamp(4.2rem,11vw,9rem);line-height:.8;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px var(--brand);padding-right:.06em}
 .pasos h3{margin:0 0 10px;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.5rem,3.4vw,2.5rem);line-height:.95;letter-spacing:-.015em;text-wrap:balance}
 .pasos p{margin:0;color:var(--muted);font-size:1.05rem;max-width:46ch;text-wrap:pretty}
@@ -1046,19 +1057,14 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
     .vitrina{animation:aparecer 900ms var(--ease-out) calc(var(--tras,0s) + 150ms) both,vitrina-sale linear both;animation-timeline:auto,--hero;animation-range:normal,exit 0% exit 100%}
     /* En pantallas angostas la vitrina es una tira: si baja, sus botones quedan bajo las cintas. */
     @media (max-width:960px){ .vitrina{animation:aparecer 900ms var(--ease-out) calc(var(--tras,0s) + 150ms) both} }
-    /* Los títulos suben desde una línea invisible, como en los cortes de un tráiler */
-    .sec-h,.servicio h2{animation:titulo-entra linear both;animation-timeline:view();animation-range:entry 5% entry 75%}
     /* Las rayas del servicio técnico se desplazan más lento que la página */
     .servicio::after{animation:rayas linear both;animation-timeline:view()}
-    /* Las letras de la firma final suben una por una */
-    .foot-gigante span{animation:letra-sube linear both;animation-timeline:view();animation-range:entry calc(var(--i,0) * 3%) entry calc(52% + var(--i,0) * 3%)}
-    .pasos li{animation:paso-entra linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
   }
 }
 @keyframes avance{from{scale:0 1}}
 @keyframes hero-sale{to{translate:0 -80px;opacity:.1}}
 @keyframes vitrina-sale{to{translate:0 90px}}
-@keyframes titulo-entra{from{clip-path:polygon(-6% 125%,106% 125%,106% 125%,-6% 125%);translate:0 .55em}to{clip-path:polygon(-6% -25%,106% -25%,106% 125%,-6% 125%)}}
+@keyframes titulo-entra{from{opacity:0;translate:0 .55em}}
 @keyframes rayas{from{translate:0 30%}to{translate:0 -30%}}
 @keyframes letra-sube{from{translate:0 80%;opacity:0}}
 @keyframes paso-entra{from{opacity:0;translate:0 60px}}
@@ -1154,17 +1160,13 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
   .mundo:nth-child(3) .emblema-gira{animation-delay:-3s}
   .mundo:nth-child(4) .emblema-gira{animation-delay:-4.5s}
 }
+/* Fuera de pantalla las animaciones infinitas se pausan (si no, el navegador las recalcula en cada cuadro). */
+.fuera .emblema-gira,.fuera .portal-pista span::after{animation-play-state:paused}
 @keyframes emblema-gira{from{transform:rotateY(-24deg) rotateX(10deg) translateY(-5%)}to{transform:rotateY(24deg) rotateX(-6deg) translateY(5%)}}
 
-/* Catálogo: cada producto sube en 3D al entrar en pantalla (ligado al scroll) */
-@property --entra{syntax:"<number>";inherits:false;initial-value:0}
-@media (prefers-reduced-motion:no-preference){
-  @supports (animation-timeline:view()){
-    .grid .card{transform:perspective(900px) translateY(calc(var(--entra) * 46px)) rotateX(calc(var(--entra) * 26deg + var(--tx,0deg))) rotateY(var(--ty,0deg));
-      animation:card-entra linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
-  }
-}
-@keyframes card-entra{from{--entra:1;opacity:0}}
+/* Catálogo: cada producto sube en 3D al entrar en pantalla (ver "Entradas al llegar con el scroll").
+   Al terminar la animación vuelve a mandar la inclinación con el mouse. */
+@keyframes card-entra{from{opacity:0;transform:perspective(900px) translateY(46px) rotateX(26deg)}to{opacity:1;transform:perspective(900px) translateY(0) rotateX(0deg)}}
 
 @media (max-width:960px){
   .opiniones{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -1308,12 +1310,13 @@ dialog.visor::backdrop{background:rgba(0,0,0,.85)}
   .faq details::details-content,.undo,.chip-ind,.stream{transition:none}
   .anillo-sec{height:auto}
   .anillo-escena{position:relative;top:auto;height:min(760px,88svh)}
-  .pasos li{scale:1;filter:none}
+  .pasos li{scale:1}
+  .pasos li::after{display:none}
   .cursor{display:none}
   .gallery .main{transform:none!important}
 }
 @media (prefers-reduced-transparency:reduce){
-  header.top,.tools{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
+  header.top,.tools{background:var(--bg)}
 }
 </style>
 </head>
@@ -1941,6 +1944,50 @@ function medirSinResultados(q){
 const pideloHTML = q => `<a class="wa-btn pidelo" data-tipo="pidelo" target="_blank" rel="noopener" href="${esc(waLink(`Hola ${CONFIG.storeName}, ¿tienen ${q}? Lo busqué en el catálogo web y no lo encontré.`))}"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pregúntanos si lo tenemos</a>`;
 const nLocales = Object.keys(CONFIG.locales).length;
 const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+// ===== Entradas: cada sección, título, paso y producto aparece una sola vez al llegar a él =====
+// (con .visto; la animación es de CSS, en la GPU). Lo que ya se ve al volver a pintar el catálogo
+// (buscar, filtrar) queda quieto: no se repite la entrada en cada letra que se escribe.
+const ENTRADA = (()=>{
+  if (reduceMotion() || !("IntersectionObserver" in window)) return null;
+  document.documentElement.classList.add("entrada");
+  // Si se baja rápido (pasando de largo), los productos aparecen ya puestos: animar decenas de
+  // tarjetas a la vez es lo que más frena el scroll en un celular, y a esa velocidad ni se ve.
+  let yAntes = scrollY, tAntes = 0, vel = 0;
+  addEventListener("scroll", ()=>{
+    const t = performance.now(), dt = t - tAntes;
+    vel = dt > 0 && dt < 200 ? Math.abs(scrollY - yAntes) / dt : 0;
+    yAntes = scrollY; tAntes = t;
+  }, {passive: true});
+  const rapido = () => vel > 1.6 && performance.now() - tAntes < 150;   // más de 1600 px por segundo
+  const io = new IntersectionObserver(es=>{
+    let k = 0;
+    const deLargo = rapido();
+    for (const e of es){
+      if (!e.isIntersecting) continue;
+      io.unobserve(e.target);
+      if (deLargo && e.target.classList.contains("card")){ e.target.classList.add("visto", "quieto"); continue; }
+      e.target.style.setProperty("--d", Math.min(k++, 5));
+      e.target.classList.add("visto");
+    }
+  }, {rootMargin: "0px 0px -6% 0px"});
+  for (const el of document.querySelectorAll(".reveal, .sec-h, .servicio h2, .pasos li, .foot-gigante")) io.observe(el);
+  // Secciones con animaciones que no terminan nunca: se pausan mientras no se ven.
+  const pausa = new IntersectionObserver(es=>{ for (const e of es) e.target.classList.toggle("fuera", !e.isIntersecting); });
+  for (const el of document.querySelectorAll("#secMundos, #portal")) pausa.observe(el);
+  // En celulares y tablets los productos aparecen ya puestos (la foto igual se funde al cargar): la entrada
+  // de decenas de tarjetas es lo que más frenaba el scroll con el dedo. Con mouse sí suben en 3D.
+  const conMouse = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  return {
+    observar(els, quietos){
+      if (!conMouse){ for (const el of els) el.classList.add("visto", "quieto"); return; }
+      // quietos: lo que ya está en pantalla (o arriba) se muestra sin animar. Se mide todo antes de escribir.
+      const tope = quietos ? innerHeight : -Infinity;
+      const arriba = els.map(el=>el.getBoundingClientRect().top < tope);
+      els.forEach((el, i)=>{ if (arriba[i]) el.classList.add("visto", "quieto"); else io.observe(el); });
+    }
+  };
+})();
+
 const buscar = code => PRODUCTS.find(x=>x.code===code);
 
 // Las fotos aparecen con un fundido cuando terminan de cargar (sin "saltos").
@@ -2031,14 +2078,17 @@ function placeholder(p, i){
 }
 // El código del producto viaja en data-code (dato), nunca dentro del JavaScript del atributo onerror.
 function onPhotoError(img){
-  // Si falló la copia grande (zoom/), se usa la foto normal; si falló la normal, la portada.
+  // Si falló la copia grande (zoom/) o la liviana (mini/), se usa la foto normal; si falló la normal, la portada.
   if (img.srcset){ img.removeAttribute("srcset"); img.src = img.src; return; }
+  if (img.src.includes("/mini/")){ img.src = img.src.replace("/mini/", "/"); return; }
   img.onerror = null;
   const p = buscar(img.dataset.code);
   if (p) img.src = placeholder(p, Number(img.dataset.i) || 0);
 }
 // fotos/<código>/1.jpg -> fotos/<código>/zoom/1.jpg (2000 px: la crean mejorar_fotos.py y subir_fotos.py)
 const fotoZoom = src => src.replace(/\/([^/]+\.jpg)$/, "/zoom/$1");
+// fotos/<código>/1.jpg -> fotos/<código>/mini/1.jpg (600 px: la de tarjetas y listas; pesa y se dibuja mucho menos)
+const fotoMini = src => src.replace(/\/([^/]+\.jpg)$/, "/mini/$1");
 const plataformasDe = p => p._plat || (p._plat = CONFIG.plataformas.filter(([, re])=>re.test(p.name.toUpperCase())).map(([n])=>n));
 // Etiqueta de color con la consola exacta ("PS5", "Switch 2", "Xbox"…); si sirve para varias marcas, "Multi".
 const colorMundo = m => CONFIG.mundos[m]?.c || "#3a373d";
@@ -2089,7 +2139,7 @@ function cardHTML(p, lazy = true){
   return `<div class="card" data-code="${esc(p.code)}" role="listitem">
     ${stickers ? `<div class="stickers">${stickers}</div>` : ""}
     <button class="card-open" type="button" data-code="${esc(p.code)}">
-      <div class="img"><img src="${esc(p.photos.length ? p.photos[0] : placeholder(p,0))}" alt="" width="500" height="500" ${lazy ? 'loading="lazy"' : ""} decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)"></div>
+      <div class="img"><img src="${esc(fotoDe(p))}" alt="" width="500" height="500" ${lazy ? 'loading="lazy"' : ""} decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)"></div>
       <div class="body">
         <div class="cat-row"><span class="cat">${esc(p.cat_label || "")}</span>${etiquetaPlat(p)}</div>
         <div class="name">${esc(p.name)}</div>
@@ -2103,7 +2153,7 @@ function cardHTML(p, lazy = true){
     <div class="card-add" data-q="${PEDIDO.items.get(p.code) || 0}">${controlTarjeta(p)}</div>
   </div>`;
 }
-const fotoDe = p => p.photos.length ? p.photos[0] : placeholder(p, 0);
+const fotoDe = p => p.photos.length ? fotoMini(p.photos[0]) : placeholder(p, 0);
 // Ahorro pagando en efectivo o transferencia (tarjeta menos efectivo): se muestra en la ficha.
 const ahorroDe = p => Math.max(0, (p.price_tarjeta ?? p.price) - (p.price_efectivo ?? p.price));
 const skeletons = n => Array.from({length: n}, ()=>`<div class="skel" aria-hidden="true"><div class="img"></div><i></i><i></i><i></i></div>`).join("");
@@ -2170,7 +2220,7 @@ async function loadProducts(){
   $("tiles").innerHTML = cats.map(([k,n])=>{
     const fotos = PRODUCTS.filter(p=>p.cat === k && p.photos.length).slice(0, 3);
     const visual = fotos.length === 3
-      ? `<span class="fan" aria-hidden="true">${fotos.map(p=>`<span><img src="${esc(p.photos[0])}" alt="" width="200" height="200" loading="lazy" decoding="async"></span>`).join("")}</span>`
+      ? `<span class="fan" aria-hidden="true">${fotos.map(p=>`<span><img src="${esc(fotoMini(p.photos[0]))}" alt="" width="200" height="200" loading="lazy" decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)"></span>`).join("")}</span>`
       : `<svg class="ico tile-ico" aria-hidden="true"><use href="#${CONFIG.iconos[k] || "i-bag"}"/></svg>`;
     return `<button class="tile" type="button" data-ir-cat="${esc(k)}">
       <span class="tile-top"><span><strong>${esc(etiqueta.get(k))}</strong><span class="n">${n} productos con stock</span></span>
@@ -2237,7 +2287,7 @@ function pintarMundos(){
     return `<button class="mundo" type="button" data-ir-plat="${esc(m)}" style="--c:${cfg.c};--c2:${cfg.c2}">
       <span class="mundo-cab"><strong>${esc(m)}</strong><span class="n">${de.length} productos</span></span>
       <span class="desglose">${[...porCat].sort((a, b)=>b[1] - a[1]).map(([c, n])=>`<span>${cuenta(n, c)}</span>`).join("")}</span>
-      ${fotos.length === 3 ? `<span class="fan" aria-hidden="true">${fotos.map(p=>`<span><img src="${esc(p.photos[0])}" alt="" width="200" height="200" loading="lazy" decoding="async"></span>`).join("")}</span>` : "<span></span>"}
+      ${fotos.length === 3 ? `<span class="fan" aria-hidden="true">${fotos.map(p=>`<span><img src="${esc(fotoMini(p.photos[0]))}" alt="" width="200" height="200" loading="lazy" decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)"></span>`).join("")}</span>` : "<span></span>"}
       <span class="ir" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
       <span class="emblema${m === "Nintendo" ? " ancho" : ""}" aria-hidden="true"><span class="emblema-in"><span class="emblema-gira">${
         Array.from({length: 12}, (_, k)=>`<svg style="--z:${k}"><use href="#${cfg.logo}"/></svg>`).join("")}</span></span></span>
@@ -2290,8 +2340,8 @@ function pintarVitrina(){
 }
 function dibujarLineas(){
   let h = "";
-  for (let i = 0; i < 16; i++){
-    const a = i * 5, b = i * 6;
+  for (let k = 0; k < 10; k++){
+    const i = Math.round(k * 1.6), a = i * 5, b = i * 6;
     h += `<path pathLength="1" style="--i:${i}" stroke-width="${(0.5 + i * 0.03).toFixed(2)}" stroke-opacity="${(0.1 + i * 0.03).toFixed(2)}" d="M-${380 - a} -${189 + b}C-${380 - a} -${189 + b} -${312 - a} ${216 - b} ${152 - a} ${343 - b}C${616 - a} ${470 - b} ${684 - a} ${875 - b} ${684 - a} ${875 - b}"/>`;
   }
   $("paths").innerHTML = h;
@@ -2303,6 +2353,16 @@ if ("IntersectionObserver" in window)
     $("hero").classList.toggle("quieto", !e.isIntersecting);
     document.body.classList.toggle("pasado-hero", !e.isIntersecting);   // muestra el WhatsApp flotante en celular
   }).observe($("hero"));
+{
+  let quieto = 0;
+  addEventListener("scroll", ()=>{
+    const hero = $("hero");
+    if (hero.classList.contains("quieto")) return;
+    if (!quieto) hero.classList.add("moviendo");
+    clearTimeout(quieto);
+    quieto = setTimeout(()=>{ quieto = 0; hero.classList.remove("moviendo"); }, 200);
+  }, {passive: true});
+}
 $("streamPausa").onclick = ()=>{
   const pausa = $("hero").classList.toggle("pausa");
   $("streamPausa").setAttribute("aria-pressed", pausa);
@@ -2385,6 +2445,9 @@ function render(){
   if (S.animar !== undefined && !reduceMotion())
     [...$("grid").children].forEach((c, i)=>{ if (i >= S.animar && c.classList.contains("card")) { c.classList.add("aparece"); c.style.setProperty("--i", Math.min(i - S.animar, 12)); } });
   delete S.animar;
+  // La primera vez los productos entran en 3D al llegar a ellos; después, lo que ya se ve queda quieto.
+  ENTRADA?.observar([...$("grid").querySelectorAll(".card")], render.pintado);
+  render.pintado = true;
   if (!list.length && S.q.trim()) medirSinResultados(S.q.trim());
   pintarMundoActual();
   $("more").hidden = vis.length >= list.length;
@@ -2545,7 +2608,7 @@ function openProduct(code){
     $("dMain").classList.remove("zoom");
   };
   $("dThumbs").hidden = fotos.length < 2;
-  $("dThumbs").innerHTML = fotos.map((src,v)=>`<button type="button" aria-label="Foto ${v+1}"><img src="${esc(src)}" alt="" width="64" height="64" data-code="${esc(p.code)}" data-i="${v}" onerror="onPhotoError(this)"></button>`).join("");
+  $("dThumbs").innerHTML = fotos.map((src,v)=>`<button type="button" aria-label="Foto ${v+1}"><img src="${esc(fotoMini(src))}" alt="" width="64" height="64" data-code="${esc(p.code)}" data-i="${v}" onerror="onPhotoError(this)"></button>`).join("");
   $("dThumbs").querySelectorAll("button").forEach((b,i)=>b.onclick = ()=>show(i));
   show(0);
 
@@ -2636,7 +2699,7 @@ if (matchMedia("(hover: none)").matches && !reduceMotion() && "DeviceOrientation
 }
 
 // Diagnóstico: abrir la página con ?diag muestra qué soporta este celular o navegador.
-const VERSION = "2026-09-25-visor";
+const VERSION = "2026-09-25-fluida";
 if (new URLSearchParams(location.search).has("diag")){
   const d = document.createElement("pre");
   d.style.cssText = "position:fixed;left:8px;right:8px;bottom:8px;z-index:99;margin:0;background:#fff;color:#000;font:12px/1.5 monospace;padding:12px;border-radius:12px;white-space:pre-wrap;box-shadow:0 10px 30px rgba(0,0,0,.5)";
@@ -2749,7 +2812,7 @@ function pintarPortal(k){
     <p class="portal-nombre">${esc(w.m)}</p>
     <p class="portal-frase">${esc(w.cfg.frase)}</p>
     <p class="portal-cifras"><b>${w.n}</b> productos ${w.porCat.slice(0, 4).map(([c, x])=>`<span>${cuenta(x, c)}</span>`).join("")}</p>
-    ${w.fotos.length ? `<div class="portal-fan" aria-hidden="true">${w.fotos.map((p, i)=>`<span style="--k:${i}"><img src="${esc(p.photos[0])}" alt="" width="120" height="120" decoding="async"></span>`).join("")}</div>` : ""}
+    ${w.fotos.length ? `<div class="portal-fan" aria-hidden="true">${w.fotos.map((p, i)=>`<span style="--k:${i}"><img src="${esc(fotoMini(p.photos[0]))}" alt="" width="120" height="120" decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)"></span>`).join("")}</div>` : ""}
     <a class="btn portal-cta" href="#catalogo" data-ir-plat="${esc(w.m)}">Entrar al mundo ${esc(w.m)}<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>`;
   const t = $("portalTexto");
   t.classList.remove("entra"); void t.offsetWidth; t.classList.add("entra");
@@ -2910,8 +2973,13 @@ function prepararAnillo(){
   $("secAnillo").hidden = false;
   pintarInfoAnillo(0);
   new IntersectionObserver(([e])=>document.body.classList.toggle("en-anillo", e.isIntersecting), {rootMargin: "-40% 0px -40% 0px"}).observe($("secAnillo"));
-  const io = new IntersectionObserver(([e])=>{ if (e.isIntersecting){ io.disconnect(); cargarAnillo(); } }, {rootMargin: "900px 0px"});
+  let pedido = false;
+  const cargar = () => { if (pedido) return; pedido = true; io.disconnect(); cargarAnillo(); };
+  const io = new IntersectionObserver(([e])=>{ if (e.isIntersecting) cargar(); }, {rootMargin: "900px 0px"});
   io.observe($("secAnillo"));
+  // Se arma en un momento libre (mientras se mira la portada) y no justo al llegar a ella con el scroll,
+  // que es cuando más se nota una pausa.
+  if ("requestIdleCallback" in window) setTimeout(()=>requestIdleCallback(cargar), 2500);
 }
 async function cargarAnillo(){
   try {
@@ -2920,7 +2988,7 @@ async function cargarAnillo(){
       contenedor: $("anilloLienzo"), lienzo: $("anilloCanvas"), seccion: $("secAnillo"), reducir: reduceMotion(),
       productos: A3D.lista.map(p=>{
         const {txt, m} = consolaDe(p);
-        return {code: p.code, foto: p.photos[0], precio: precio(p, "efectivo"), tag: txt, tagColor: colorMundo(m), tagInk: m === "Retro" ? "#140900" : "#fff"};
+        return {code: p.code, foto: fotoMini(p.photos[0]), respaldo: p.photos[0], precio: precio(p, "efectivo"), tag: txt, tagColor: colorMundo(m), tagInk: m === "Retro" ? "#140900" : "#fff"};
       }),
       alCambiar: pintarInfoAnillo,
       alElegir: code=>{ medir("vitrina-360", {codigo: code}); openProduct(code); }
@@ -3012,13 +3080,17 @@ function alPasar(el, pintar){
       }
     };
     envolver(m);
-    const pals = [...m.querySelectorAll(".pal")];
+    const pals = [...m.querySelectorAll(".pal")], antes = pals.map(()=>"");
     m.classList.add("activo");
     alPasar(m, ()=>{
       const r = m.getBoundingClientRect(), vh = innerHeight;
       const k = Math.min(1, Math.max(0, (vh * 0.88 - r.top) / (r.height * 0.9 + vh * 0.3)));
       const n = k * (pals.length + 1);
-      pals.forEach((w, i)=>w.style.setProperty("--o", (0.14 + 0.86 * Math.min(1, Math.max(0, n - i))).toFixed(2)));
+      // Solo se tocan las palabras que cambian (en cada cuadro son una o dos): así no se recalcula todo el texto.
+      pals.forEach((w, i)=>{
+        const o = (0.14 + 0.86 * Math.min(1, Math.max(0, n - i))).toFixed(2);
+        if (o !== antes[i]){ antes[i] = o; w.style.setProperty("--o", o); }
+      });
     });
   }
 }
@@ -3026,13 +3098,18 @@ function alPasar(el, pintar){
 // ===== Cómo comprar: cada paso se achica y oscurece cuando el siguiente lo tapa =====
 {
   const pasos = [...document.querySelectorAll("#pasos li")];
+  const antes = pasos.map(()=>"");
   if (pasos.length > 1 && !reduceMotion() && "IntersectionObserver" in window)
-    alPasar($("pasos"), ()=>pasos.forEach((li, i)=>{
-      const sig = pasos[i + 1]; if (!sig) return;
-      const top = li.getBoundingClientRect().top, alto = li.offsetHeight;
-      const k = Math.min(1, Math.max(0, (top + alto - sig.getBoundingClientRect().top) / Math.max(1, alto - 18)));
-      li.style.setProperty("--k", k.toFixed(3));
-    }));
+    alPasar($("pasos"), ()=>{
+      // Primero se mide todo y después se escribe: medir entre escrituras obliga al navegador a recalcular.
+      const cajas = pasos.map(li=>li.getBoundingClientRect()), altos = pasos.map(li=>li.offsetHeight);
+      pasos.forEach((li, i)=>{
+        if (i === pasos.length - 1) return;
+        const alto = altos[i];
+        const k = Math.min(1, Math.max(0, (cajas[i].top + alto - cajas[i + 1].top) / Math.max(1, alto - 18))).toFixed(2);
+        if (k !== antes[i]){ antes[i] = k; li.style.setProperty("--k", k); }
+      });
+    });
 }
 
 // ===== Con mouse: cursor de marca, botones magnéticos, texto que rueda y luz en la portada =====
@@ -3488,7 +3565,7 @@ function pintarCarrito(){
       : !hay ? `<div class="aviso out">Agotado en ${esc(L.nombre)}</div>`
       : hay < q ? `<div class="aviso low">En ${esc(L.nombre)} solo hay ${hay}</div>` : "";
     return `<div class="item" data-code="${esc(p.code)}">
-      <img src="${esc(p.photos.length ? p.photos[0] : placeholder(p,0))}" alt="" width="58" height="58" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)">
+      <img src="${esc(fotoDe(p))}" alt="" width="58" height="58" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)">
       <div>
         <div class="nm">${esc(p.name)}</div>
         <div class="pu">${fmt(u)} c/u</div>

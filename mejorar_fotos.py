@@ -2,7 +2,8 @@
 - fondo blanco puro (corrige el gris o el tono de color que deja la luz del local),
 - sin el blanco sobrante alrededor: el producto ocupa siempre lo mismo del cuadro,
 - foto cuadrada (como las tarjetas del catálogo), de 1000 px de lado, más una copia
-  de 2000 px en zoom/ para acercar en la ficha con detalle,
+  de 2000 px en zoom/ para acercar en la ficha con detalle y otra de 600 px en mini/
+  para las tarjetas y listas (carga y se dibuja mucho más rápido en el celular),
 - un poco más de contraste, color y nitidez, sin exagerar.
 
 La usa subir_fotos.py con cada foto nueva. También se puede correr sola para
@@ -21,6 +22,7 @@ from PIL import Image, ImageChops, ImageEnhance, ImageFilter, ImageOps
 
 LADO = 1000          # lado de la foto del catálogo, en píxeles
 LADO_ZOOM = 2000     # lado de la copia para acercar (docs/fotos/<código>/zoom/1.jpg)
+LADO_MINI = 600      # lado de la copia liviana de las tarjetas (docs/fotos/<código>/mini/1.jpg)
 OCUPA = 0.86         # el producto ocupa este tanto del lado más largo del cuadro
 MARCA = b"EG-mejorada-v1"
 CARPETA = "docs/fotos"
@@ -102,12 +104,30 @@ def ruta_zoom(ruta):
     return os.path.join(carpeta, "zoom", nombre)
 
 
+def ruta_mini(ruta):
+    carpeta, nombre = os.path.split(ruta)
+    return os.path.join(carpeta, "mini", nombre)
+
+
+def copias(ruta):
+    """Las copias que acompañan a cada foto (se borran y se renombran junto con ella)."""
+    return [ruta_zoom(ruta), ruta_mini(ruta)]
+
+
+def guardar_mini(im, destino):
+    """im: foto del catálogo (LADO). Guarda la copia liviana para las tarjetas."""
+    os.makedirs(os.path.dirname(ruta_mini(destino)), exist_ok=True)
+    mini = im.convert("RGB").resize((LADO_MINI, LADO_MINI), Image.LANCZOS).filter(ImageFilter.UnsharpMask(radius=0.6, percent=30, threshold=2))
+    mini.save(ruta_mini(destino), "JPEG", quality=82, optimize=True, progressive=True, comment=MARCA)
+
+
 def guardar_con_zoom(grande, destino):
-    """grande: foto mejorada de LADO_ZOOM. Guarda la copia para acercar y, achicada, la del catálogo."""
+    """grande: foto mejorada de LADO_ZOOM. Guarda la copia para acercar, la del catálogo y la mini."""
     os.makedirs(os.path.dirname(ruta_zoom(destino)), exist_ok=True)
     grande.save(ruta_zoom(destino), "JPEG", quality=84, optimize=True, progressive=True, comment=MARCA)
     chica = grande.resize((LADO, LADO), Image.LANCZOS).filter(ImageFilter.UnsharpMask(radius=0.8, percent=35, threshold=2))
     guardar(chica, destino)
+    guardar_mini(chica, destino)
 
 
 def ya_mejorada(ruta):
@@ -116,19 +136,26 @@ def ya_mejorada(ruta):
 
 
 def main(carpeta=CARPETA):
-    hechas = saltadas = 0
+    hechas = minis = saltadas = 0
     for raiz, _, archivos in os.walk(carpeta):
+        if os.path.basename(raiz) in ("zoom", "mini"):
+            continue
         for f in sorted(archivos):
             if not f.lower().endswith(".jpg"):
                 continue
             ruta = os.path.join(raiz, f)
-            if os.path.basename(raiz) == "zoom" or (ya_mejorada(ruta) and os.path.exists(ruta_zoom(ruta))):
-                saltadas += 1
+            if ya_mejorada(ruta) and os.path.exists(ruta_zoom(ruta)):
+                if os.path.exists(ruta_mini(ruta)):
+                    saltadas += 1
+                else:   # ya mejorada: solo le falta la copia liviana
+                    with Image.open(ruta) as im:
+                        guardar_mini(im, ruta)
+                    minis += 1
                 continue
             with Image.open(ruta) as im:
                 guardar_con_zoom(mejorar(im, lado=LADO_ZOOM), ruta)
             hechas += 1
-    print(f"Fotos mejoradas: {hechas}. Ya estaban listas: {saltadas}.")
+    print(f"Fotos mejoradas: {hechas}. Copias mini nuevas: {minis}. Ya estaban listas: {saltadas}.")
 
 
 if __name__ == "__main__":
