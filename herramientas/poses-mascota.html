@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Poses del muñequito</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,700..900&display=swap">
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style></head>
+<body><canvas id="c"></canvas>
+<script type="module">
+/* Dibuja una pose del muñequito (el mismo modelo 3D de la portada) con fondo transparente.
+   Lo usa poses-mascota.mjs: ?pose=funda&w=900&h=1100 */
+import {
+  WebGLRenderer, Scene, PerspectiveCamera, Group, Mesh, Shape, ExtrudeGeometry, PlaneGeometry, BoxGeometry, CylinderGeometry,
+  TorusGeometry, CircleGeometry, CapsuleGeometry, MeshPhongMaterial, MeshBasicMaterial, CanvasTexture, DirectionalLight,
+  HemisphereLight, SRGBColorSpace, BackSide, DoubleSide
+} from "/docs/vendor/three.js";
+import {crearMascota, POSES as POSES_M} from "/docs/mascota3d.js";
+
+const q = new URLSearchParams(location.search), W = +q.get("w") || 900, H = +q.get("h") || 1100;
+const lienzo = document.getElementById("c");
+const renderer = new WebGLRenderer({canvas: lienzo, antialias: true, alpha: true, preserveDrawingBuffer: true});
+renderer.setSize(W, H, false); renderer.setClearColor(0, 0); renderer.outputColorSpace = SRGBColorSpace;
+const escena = new Scene();
+escena.add(new HemisphereLight(0xfff4e8, 0x4a1c00, 2.1));
+const sol = new DirectionalLight(0xffffff, 2.5); sol.position.set(-5.5, 6.5, 2.6); escena.add(sol);
+const contra = new DirectionalLight(0xFF7A00, 3.2); contra.position.set(4, 3, -4); escena.add(contra);
+const camara = new PerspectiveCamera(24, W / H, .1, 60);
+
+const m = crearMascota();
+escena.add(m.raiz);
+
+// ---------- Objetos que sostiene ----------
+const tex = (w, h, dibujar) => { const c = document.createElement("canvas"); c.width = w; c.height = h; dibujar(c.getContext("2d"), w, h); const t = new CanvasTexture(c); t.colorSpace = SRGBColorSpace; t.anisotropy = 4; return t; };
+const contorno = new MeshBasicMaterial({color: 0x050506, side: BackSide});
+const conBorde = (geo, mat, g = .02) => { const gr = new Group(); gr.add(new Mesh(geo, mat)); const o = new Mesh(geo, contorno); o.scale.setScalar(1 + g); gr.add(o); return gr; };
+const NEGRO = new MeshPhongMaterial({color: 0x19181c, specular: 0x4a4a52, shininess: 60});
+const NARANJA = new MeshPhongMaterial({color: 0xFF8A1A, specular: 0x6a5a4a, shininess: 70});
+const LOGO = new Path2D("M27.5 44.8H125V56H27.5zM27.5 60.7H125V72H56v16H27.5zM65 77.6h60v14.7a12 12 0 0 1-12 12H27.5V93H97v-5H65z");
+const logo = (g, x, y, esc, color) => { g.save(); g.translate(x, y); g.scale(esc, esc); g.transform(1, 0, -.7, 1, 45.8, -44.5); g.fillStyle = color; g.fill(LOGO); g.restore(); };
+
+function funda(){
+  const gr = new Group();
+  const cara = tex(256, 280, (g, w, h)=>{ g.fillStyle = "#FF7A00"; g.fillRect(0, 0, w, h); logo(g, 58, 100, 1.1, "#140900");
+    g.fillStyle = "#140900"; g.font = "italic 900 30px Rubik, sans-serif"; g.textAlign = "center"; g.fillText("ELECTRONIC", w / 2, 208); g.fillText("GAMES", w / 2, 240); });
+  const mats = [NARANJA, NARANJA, NARANJA, NARANJA, new MeshPhongMaterial({map: cara, shininess: 30}), NARANJA];
+  const caja = conBorde(new BoxGeometry(.62, .68, .26), mats, .03); caja.position.y = -.52; gr.add(caja);
+  for (const x of [-.14, .14]){ const asa = new Mesh(new TorusGeometry(.12, .025, 8, 24, Math.PI), NEGRO); asa.position.set(x, -.18, 0); gr.add(asa); }
+  return gr;
+}
+function tarjeta(){
+  const t = tex(320, 200, (g, w, h)=>{ const d = g.createLinearGradient(0, 0, w, h); d.addColorStop(0, "#2a282d"); d.addColorStop(1, "#0d0c0e");
+    g.fillStyle = d; g.fillRect(0, 0, w, h); g.fillStyle = "#FF7A00"; g.fillRect(0, 44, w, 26);
+    g.fillStyle = "#E8C66A"; g.beginPath(); g.roundRect(26, 92, 50, 38, 6); g.fill(); logo(g, 212, 128, .62, "#FF7A00");
+    g.fillStyle = "#cfc8c0"; g.font = "600 20px monospace"; g.fillText("•••• 2026", 26, 176); });
+  const gr = conBorde(new BoxGeometry(.66, .42, .025), [NEGRO, NEGRO, NEGRO, NEGRO, new MeshPhongMaterial({map: t, shininess: 90}), NEGRO], .04);
+  gr.position.set(0, -.12, .16); gr.scale.setScalar(1.25); return gr;
+}
+function celular(){
+  const pantalla = tex(220, 400, (g, w, h)=>{ g.fillStyle = "#0b141a"; g.fillRect(0, 0, w, h); g.fillStyle = "#1f8c55"; g.fillRect(0, 0, w, 62);
+    g.fillStyle = "#fff"; g.font = "700 20px sans-serif"; g.fillText("Electronic Games", 16, 40);
+    const burbuja = (x, y, bw, bh, c) => { g.fillStyle = c; g.beginPath(); g.roundRect(x, y, bw, bh, 12); g.fill(); };
+    burbuja(84, 86, 120, 60, "#1f8c55"); burbuja(16, 160, 130, 44, "#26323a"); burbuja(84, 218, 120, 80, "#1f8c55"); burbuja(16, 312, 110, 44, "#26323a");
+    g.fillStyle = "#25D366"; g.beginPath(); g.arc(w - 40, h - 40, 24, 0, Math.PI * 2); g.fill(); });
+  const gr = new Group();
+  const cuerpo = conBorde(new BoxGeometry(.34, .62, .05), NEGRO, .04); gr.add(cuerpo);
+  const p = new Mesh(new PlaneGeometry(.3, .56), new MeshBasicMaterial({map: pantalla, toneMapped: false})); p.position.z = .027; gr.add(p);
+  gr.position.set(0, -.2, .16); gr.scale.setScalar(1.3); return gr;
+}
+function lupa(){
+  const gr = new Group();
+  const aro = new Mesh(new TorusGeometry(.2, .045, 10, 36), NARANJA); aro.position.y = .52; gr.add(aro);
+  const vidrio = new Mesh(new CircleGeometry(.19, 32), new MeshPhongMaterial({color: 0xbfe6ff, transparent: true, opacity: .35, shininess: 120, specular: 0xffffff, side: DoubleSide})); vidrio.position.y = .52; gr.add(vidrio);
+  const mango = conBorde(new CapsuleGeometry(.055, .26, 6, 12), NEGRO, .08); mango.position.y = .16; gr.add(mango);
+  gr.scale.setScalar(1.25);
+  return gr;
+}
+function llave(){
+  const s = new Shape();
+  s.moveTo(-.05, -.5); s.lineTo(.05, -.5); s.lineTo(.05, .12); s.lineTo(.13, .18); s.lineTo(.13, .36); s.lineTo(.06, .3); s.lineTo(.06, .2);
+  s.lineTo(-.06, .2); s.lineTo(-.06, .3); s.lineTo(-.13, .36); s.lineTo(-.13, .18); s.lineTo(-.05, .12); s.closePath();
+  const geo = new ExtrudeGeometry(s, {depth: .05, bevelEnabled: true, bevelThickness: .012, bevelSize: .012, bevelSegments: 2}); geo.center();
+  const gr = conBorde(geo, new MeshPhongMaterial({color: 0xc9ccd2, specular: 0xffffff, shininess: 110}), .06);
+  const cont = new Group(); gr.position.y = .5; cont.add(gr); cont.scale.setScalar(1.5); cont.rotation.z = -.35; return cont;
+}
+function pregunta(){
+  const t = tex(256, 256, (g, w, h)=>{ g.font = "italic 900 230px Rubik, sans-serif"; g.textAlign = "center"; g.textBaseline = "middle";
+    g.lineWidth = 22; g.strokeStyle = "#050506"; g.strokeText("?", w / 2, h / 2 + 10); g.fillStyle = "#FF8A1A"; g.fillText("?", w / 2, h / 2 + 10); });
+  const p = new Mesh(new PlaneGeometry(.9, .9), new MeshBasicMaterial({map: t, transparent: true, toneMapped: false}));
+  p.position.set(1.05, 3.35, .2); p.rotation.z = -.18; return p;
+}
+
+// ---------- Poses ----------
+const POSES = {
+  pulgar:   {pose: "pulgar", ojos: "felices"},
+  saludo:   {pose: "saludo", ojos: "felices", saluda: true},
+  baila:    {pose: "brazos", ojos: "felices", inclina: .14},
+  triste:   {pose: "triste", ojos: "tristes", mirarX: .38, inclina: .1},
+  presenta: {pose: "presenta", ojos: "felices", mirarX: .12},
+  funda:    {pose: "sostiene", ojos: "felices", objeto: funda},
+  tarjeta:  {pose: "sostiene", ojos: "abiertos", objeto: tarjeta},
+  celular:  {pose: "sostiene", ojos: "felices", objeto: celular},
+  retira:   {pose: "saludaCon", ojos: "felices", saluda: true, objeto: funda, otraMano: true},
+  llave:    {pose: "saludo", ojos: "abiertos", objeto: llave, inclina: -.06},
+  lupa:     {pose: "mira", ojos: "abiertos", objeto: lupa, mirarY: .2},
+  piensa:   {pose: "piensa", ojos: "abiertos", mirarX: -.22, mirarY: -.25, inclina: .12, extra: pregunta},
+};
+const p = POSES[q.get("pose")] || POSES.pulgar;
+await document.fonts.load("italic 900 40px Rubik").catch(()=>{});
+await m.listoEmblema;
+Object.assign(m.est, {pose: p.pose, ojos: p.ojos, saluda: false, parpadea: false, mirarY: p.mirarY || 0, mirarX: p.mirarX || 0, inclina: p.inclina || 0});
+if (q.get("p")) POSES_M[p.pose].izq = q.get("p").split(",").map(Number);
+m.actualizar(0, true);
+if (p.saluda){ m.brazos[0].codo.rotation.z -= .3; m.brazos[0].mano.rotation.z -= .15; }   // la mano del saludo, abierta hacia afuera
+m.raiz.rotation.y = +(q.get("giro") ?? -.28);
+if (p.objeto){
+  const mano = m.brazos[p.otraMano ? 1 : 0].mano, obj = p.objeto();
+  mano.add(obj);
+  m.raiz.updateMatrixWorld(true);
+  const giro = obj.quaternion.clone();
+  mano.getWorldQuaternion(giro);
+  obj.quaternion.premultiply(giro.invert());   // de frente a la cámara, sin importar cómo quedó la mano
+  obj.rotateY(.15);
+}
+if (p.extra) m.raiz.add(p.extra());
+
+// Encuadre: el muñequito completo, con aire para la mano levantada.
+const t = Math.tan(camara.fov * Math.PI / 360), d = Math.max(2.05 / t, 1.55 / (t * W / H)) + .6;
+camara.position.set(0, 1.95, d); camara.lookAt(0, 1.6, 0);
+renderer.render(escena, camara);
+document.title = "listo";
+</script></body></html>

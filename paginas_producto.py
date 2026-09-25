@@ -58,7 +58,7 @@ def pagina(p, cuando):
     agotado = not p.get("digital") and total == 0
     url = SITIO + "p/" + quote(archivo_de(p["code"]))
     foto = p["photos"][0] if p.get("photos") else ""
-    og_img = SITIO + foto if foto else SITIO + "og.png"
+    og_img = SITIO + foto if foto else SITIO + "og.jpg"
 
     if p.get("digital"):
         dispo = "Código digital, se entrega por WhatsApp"

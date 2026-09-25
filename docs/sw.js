@@ -2,11 +2,16 @@
    - Páginas y datos (products.json, meta.json): siempre se pide la versión nueva a
      internet y se guarda una copia; sin conexión se usa esa copia. Así cada cambio se
      ve al instante en la app instalada, sin esperar los 10 minutos de caché de GitHub.
-   - Fotos: se muestra la copia guardada al tiro y se actualiza por detrás.
+   - Fotos y dibujos del muñequito: se muestra la copia guardada al tiro y se actualiza por detrás.
+   - Sin internet y sin copia de la página: offline.html (el muñequito avisa que no hay conexión).
    Todo lo demás (fuentes, WhatsApp, etc.) pasa directo, sin tocarlo. */
 const CACHE = "eg-v1";
 
-self.addEventListener("install", () => self.skipWaiting());
+const SIN_CONEXION = ["offline.html", "mascota/poses/triste.webp"];
+self.addEventListener("install", e => {
+  self.skipWaiting();
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SIN_CONEXION)).catch(() => {}));
+});
 self.addEventListener("activate", e => {
   e.waitUntil((async () => {
     for (const k of await caches.keys()) if (k !== CACHE) await caches.delete(k);
@@ -28,6 +33,10 @@ async function primeroInternet(req) {
   } catch (err) {
     const copia = await cache.match(clave);
     if (copia) return copia;
+    if (req.mode === "navigate") {
+      const aviso = await cache.match(new URL("offline.html", self.registration.scope).href);
+      if (aviso) return aviso;
+    }
     throw err;
   }
 }
@@ -49,5 +58,5 @@ self.addEventListener("fetch", e => {
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
   if (req.mode === "navigate" || url.pathname.endsWith(".json")) { e.respondWith(primeroInternet(req)); return; }
-  if (url.pathname.includes("/fotos/")) e.respondWith(copiaYActualiza(e));
+  if (url.pathname.includes("/fotos/") || url.pathname.includes("/mascota/")) e.respondWith(copiaYActualiza(e));
 });

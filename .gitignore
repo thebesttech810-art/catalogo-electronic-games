@@ -16,3 +16,5 @@ FOTOS CATALOGO/
 agent/
 .claude/
 skills-lock.json
+.poses-tmp/
+node_modules/
