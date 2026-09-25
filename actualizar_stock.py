@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 import requests
 
 import paginas_producto
+from descripciones import completar
 from generar_catalogo import (
     BASE_URL, HEADERS, SALIDA, SELECCION, fotos_de, local_de_bodega, precios_con_iva,
     stock_de_producto,
@@ -38,6 +39,7 @@ def main():
     publicados = [p for p in productos if p["code"] in ids]
     for p in productos:
         p["photos"] = fotos_de(p["code"])
+    completar(productos)   # estado, origen, lo que incluye y descripción, leídos del nombre
 
     def consultar(p):
         pid = ids[p["code"]]

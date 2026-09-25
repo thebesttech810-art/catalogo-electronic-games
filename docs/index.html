@@ -1092,6 +1092,120 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
   .paso-ico{position:absolute;top:22px;right:22px;width:56px;height:56px;opacity:.9}
 }
 
+/* ============================================================
+   DETALLES DE PRODUCTO: sellos, ahorro, filtros, opiniones y emblemas 3D
+   ============================================================ */
+/* Tarjetas: "Medio uso" como sticker; origen abajo a la izquierda y ahorro abajo a la derecha de la foto. */
+.sticker.uso{background:#FFC61A;color:#1a1400}
+.sello-origen{position:absolute;left:8px;bottom:8px;z-index:1;display:inline-flex;align-items:center;gap:4px;padding:4px 9px 4px 7px;border-radius:999px;font-size:.66rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;line-height:1.3;background:rgba(10,10,11,.86);color:var(--ink);pointer-events:none}
+.sello-origen .ico{width:13px;height:13px;stroke-width:3;color:var(--ok)}
+.sello-origen.generico{padding-left:9px;background:rgba(255,255,255,.92);color:#3a342f;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
+/* Etiqueta verde tipo ticket (en un círculo no cabían montos como $19.99). */
+.sello-ahorro{position:absolute;right:8px;bottom:9px;z-index:1;display:grid;justify-items:center;gap:1px;padding:5px 8px 6px;border-radius:12px;white-space:nowrap;
+  background:linear-gradient(160deg,#7af5b1,var(--ok) 45%,#1a9d53);color:#04240f;font-weight:900;font-style:italic;font-size:1.02rem;line-height:1;letter-spacing:-.02em;
+  box-shadow:0 8px 18px rgba(0,0,0,.28),inset 0 -3px 0 rgba(0,0,0,.14),inset 0 2px 0 rgba(255,255,255,.4);rotate:-8deg;overflow:hidden;pointer-events:none}
+.sello-ahorro small{font-size:.48rem;font-style:normal;font-weight:800;letter-spacing:.08em;text-transform:uppercase;line-height:1.1}
+.sello-ahorro::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%);translate:-130% 0}
+@media (prefers-reduced-motion:no-preference){
+  /* El sello brilla de vez en cuando, como una etiqueta metalizada; al pasar el mouse da un saltito en 3D. */
+  .sello-ahorro::after{animation:sello-brillo 5.5s var(--ease-out) infinite;animation-delay:calc(var(--i,0) * 180ms)}
+  .sello-ahorro{transition:rotate 400ms cubic-bezier(.34,1.56,.64,1),scale 400ms cubic-bezier(.34,1.56,.64,1)}
+  .card:hover .sello-ahorro{rotate:4deg;scale:1.08}
+}
+@keyframes sello-brillo{0%,72%{translate:-130% 0}100%{translate:130% 0}}
+
+/* Ficha: aviso de ahorro, etiquetas y lo que incluye cada combo */
+#dDetalles{display:grid;gap:12px}
+#dDetalles:empty{display:none}
+.ahorro-banner{display:flex;align-items:center;gap:10px;margin:0;padding:10px 14px;border-radius:12px;background:rgba(61,220,132,.1);border:1px solid rgba(61,220,132,.35);color:#c5f3d8;font-size:.9rem;line-height:1.35}
+.ahorro-banner b{color:var(--ok)}
+.ahorro-banner .ico{flex:none;color:var(--ok)}
+.det-chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.det{display:inline-flex;align-items:center;padding:4px 11px;border-radius:999px;font-size:.78rem;font-weight:800;border:1px solid var(--line);background:var(--surface-hi);line-height:1.4}
+.det.uso{background:#FFC61A;color:#1a1400;border-color:transparent}
+.det.original{color:var(--ok)}
+.det-chips .plat-tag,.k-cat .det{font-size:.78rem;padding:4px 11px;border-radius:999px;line-height:1.4}
+.incluye ul{margin:0;padding-left:18px;color:#d9d3cc;font-size:.92rem;display:grid;gap:2px}
+.incluye .lbl-sec{margin-bottom:4px}
+#dDesc{color:#d9d3cc}
+.k-ahorra{color:var(--ok);font-weight:800}
+/* La foto de la ficha es un objeto en 3D: entra girando y en el celular se inclina con el teléfono. */
+.gallery .main{position:relative;transform:perspective(800px) rotateX(var(--fx,0deg)) rotateY(var(--fy,0deg));transition:transform 220ms var(--ease-out)}
+@media (hover:none) and (prefers-reduced-motion:no-preference){
+  .gallery .main::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:soft-light;
+    background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.55) var(--gx,50%),transparent 75%)}
+}
+
+/* Opiniones reales */
+.opiniones{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.opinion{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;gap:6px;min-height:196px;padding:22px;border-radius:20px;border:1px solid var(--line);
+  background:linear-gradient(160deg,var(--surface-hi),var(--surface) 65%);text-decoration:none;color:var(--ink);transition:border-color 160ms ease,scale 160ms var(--ease-out),translate 200ms var(--ease-out)}
+.opinion::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity 220ms ease;background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(255,122,0,.16),transparent 60%)}
+.opinion:active{scale:.98}
+.op-ico{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:rgba(255,122,0,.14);color:var(--brand);margin-bottom:10px}
+.op-zona{color:var(--brand-hi);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em}
+.opinion strong{font-size:1.18rem;font-weight:800;line-height:1.2}
+.op-cta{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--muted);font-size:.86rem;font-weight:700;line-height:1.3}
+.op-cta .ico{flex:none;width:18px;height:18px;transition:translate 200ms var(--ease-out)}
+.opinion.ig{background:var(--brand);border-color:transparent;color:var(--brand-ink)}
+.opinion.ig .op-ico{background:rgba(20,9,0,.12);color:var(--brand-ink)}
+.opinion.ig .op-zona,.opinion.ig .op-cta{color:rgba(20,9,0,.78)}
+@media (hover:hover) and (pointer:fine){
+  .opinion:hover{border-color:var(--brand)}
+  .opinion:hover::before{opacity:1}
+  .opinion:hover .op-cta{color:var(--ink)}
+  .opinion.ig:hover .op-cta{color:var(--brand-ink)}
+  .opinion:hover .op-cta .ico{translate:4px 0}
+}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .opinion{transform:perspective(900px) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));transition:border-color 160ms ease,scale 160ms var(--ease-out),translate 200ms var(--ease-out),transform 250ms var(--ease-out)}
+  .opinion:hover{translate:0 -3px}
+}
+
+/* Mundos: emblema propio en relieve 3D (12 capas), que flota y mira hacia el mouse */
+.emblema{position:absolute;right:5%;top:10%;z-index:-1;width:min(40%,210px);aspect-ratio:1;pointer-events:none;perspective:700px}
+.emblema-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(calc(var(--ny,0) * -28deg)) rotateY(calc(var(--nx,0) * 36deg));transition:transform 320ms var(--ease-out)}
+.emblema-gira{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(-18deg) rotateX(6deg)}
+.emblema .ico,.emblema img{position:absolute;inset:0;width:100%;height:100%;stroke-width:1.5;opacity:.5;
+  color:color-mix(in srgb,#fff calc(62% - var(--z,0) * 4%),var(--c2));transform:translateZ(calc(var(--z,0) * -2.4px))}
+.emblema img{object-fit:contain;opacity:.9;filter:drop-shadow(0 12px 18px rgba(0,0,0,.35))}
+@media (prefers-reduced-motion:no-preference){
+  .emblema-gira{animation:emblema-gira 6s ease-in-out infinite alternate}
+  .mundo:nth-child(2) .emblema-gira{animation-delay:-1.5s}
+  .mundo:nth-child(3) .emblema-gira{animation-delay:-3s}
+  .mundo:nth-child(4) .emblema-gira{animation-delay:-4.5s}
+}
+@keyframes emblema-gira{from{transform:rotateY(-24deg) rotateX(10deg) translateY(-5%)}to{transform:rotateY(24deg) rotateX(-6deg) translateY(5%)}}
+
+/* Catálogo: cada producto sube en 3D al entrar en pantalla (ligado al scroll) */
+@property --entra{syntax:"<number>";inherits:false;initial-value:0}
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    .grid .card{transform:perspective(900px) translateY(calc(var(--entra) * 46px)) rotateX(calc(var(--entra) * 26deg + var(--tx,0deg))) rotateY(var(--ty,0deg));
+      animation:card-entra linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+  }
+}
+@keyframes card-entra{from{--entra:1;opacity:0}}
+
+@media (max-width:960px){
+  .opiniones{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:700px){
+  .opiniones{gap:10px}
+  .opinion{min-height:0;padding:18px}
+  .op-ico{width:42px;height:42px;margin-bottom:6px}
+  .emblema{width:min(38%,140px);right:4%;top:8%}
+  .sello-ahorro{font-size:.9rem;right:6px;bottom:7px;padding:4px 7px 5px}
+  .sello-origen{left:6px;bottom:6px;padding:3px 8px 3px 6px}
+}
+@media (max-width:420px){
+  .opiniones{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:340px){
+  .sello-ahorro{font-size:.8rem;padding:4px 6px}
+  .sello-ahorro small{font-size:.42rem}
+}
+
 /* ---------- Accesibilidad ---------- */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -1110,6 +1224,7 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
   .anillo-escena{position:relative;top:auto;height:min(760px,88svh)}
   .pasos li{scale:1;filter:none}
   .cursor{display:none}
+  .gallery .main{transform:none!important}
 }
 @media (prefers-reduced-transparency:reduce){
   header.top,.tools{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -1150,6 +1265,8 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-logo" viewBox="6 44.5 140 60"><g fill="#FE8903" transform="matrix(1 0 -.7 1 51.8 0)"><path d="M27.5 44.8H125V56H27.5z"/><path d="M27.5 60.7H125V72H56v16H27.5z"/><path d="M65 77.6h60v14.7a12 12 0 0 1-12 12H27.5V93H97v-5H65z"/></g></symbol>
   <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+  <symbol id="i-hibrida" viewBox="0 0 24 24"><rect x="7" y="6" width="10" height="12" rx="1.2"/><path d="M7 6.5H5.5A2.5 2.5 0 0 0 3 9v6a2.5 2.5 0 0 0 2.5 2.5H7M17 6.5h1.5A2.5 2.5 0 0 1 21 9v6a2.5 2.5 0 0 1-2.5 2.5H17"/><path d="M5 10h.01M19 14h.01"/></symbol>
+  <symbol id="i-arcade" viewBox="0 0 24 24"><path d="M4 16.5h16l-1.2 4H5.2z"/><path d="M12 16.5V9.5"/><circle cx="12" cy="7" r="2.6"/><path d="M15.5 14h2"/></symbol>
   <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.3s-7.4-4.5-9.1-9.1C1.8 8 3.7 4.6 7.2 4.6c2 0 3.4 1.1 4.8 2.9 1.4-1.8 2.8-2.9 4.8-2.9 3.5 0 5.4 3.4 4.3 6.6-1.7 4.6-9.1 9.1-9.1 9.1Z"/></symbol>
 </svg>
 
@@ -1300,6 +1417,22 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
         <select id="plat"><option value="all">Todas las consolas</option></select>
         <label class="sr" for="local">Local</label>
         <select id="local"><option value="all">Todos los locales</option></select>
+        <label class="sr" for="estado">Estado y origen</label>
+        <select id="estado">
+          <option value="all">Cualquier estado</option>
+          <option value="original">Solo originales</option>
+          <option value="generico">Solo genéricos</option>
+          <option value="medio-uso">Solo medio uso</option>
+        </select>
+        <label class="sr" for="precio">Precio</label>
+        <select id="precio">
+          <option value="all">Cualquier precio</option>
+          <option value="25">Hasta $25</option>
+          <option value="50">Hasta $50</option>
+          <option value="100">Hasta $100</option>
+          <option value="300">Hasta $300</option>
+          <option value="mas300">Más de $300</option>
+        </select>
         <label class="sr" for="sort">Ordenar</label>
         <select id="sort">
           <option value="dest">Destacados</option>
@@ -1359,6 +1492,13 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
     </div>
   </section>
 
+  <section class="sec" id="opiniones" aria-labelledby="opTit">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><h2 class="sec-h" id="opTit">Opiniones reales</h2><p class="sec-sub">No escribimos reseñas por nadie: léelas directo en Google Maps y en nuestro Instagram. Y si ya nos compraste, deja la tuya.</p></div></div>
+      <div class="opiniones reveal" id="listaOpiniones"></div>
+    </div>
+  </section>
+
   <section class="sec" id="ayuda" aria-labelledby="faqTit">
     <div class="wrap">
       <div class="sec-head reveal"><h2 class="sec-h" id="faqTit">Preguntas frecuentes</h2></div>
@@ -1411,6 +1551,7 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
       <h2 id="dName"></h2>
       <div class="code" id="dCode" translate="no"></div>
       <div id="dPrice"></div>
+      <div id="dDetalles"></div>
       <p id="dDesc"></p>
       <ul class="dl-locales" id="dLocales"></ul>
       <p class="note" id="dNote" hidden></p>
@@ -1610,9 +1751,10 @@ const CONFIG = {
   tz: "America/Guayaquil",
   horario: { semana: [600, 1260], domingo: [630, 1110] },   // minutos desde medianoche
   locales: {
-    condado: { nombre: "Condado Shopping", zona: "Quito",     detalle: "Isla 21",   maps: "https://www.google.com/maps/search/?api=1&query=Condado%20Shopping%20Quito" },
-    scala:   { nombre: "Scala Shopping",   zona: "Cumbayá",   detalle: "Isla 5",    maps: "https://www.google.com/maps/search/?api=1&query=Scala%20Shopping%20Cumbaya" },
-    valle:   { nombre: "Plaza del Valle",  zona: "Sangolquí", detalle: "Local B17", maps: "https://www.google.com/maps/search/?api=1&query=Centro%20Comercial%20Plaza%20del%20Valle%20Sangolqui" }
+    // resenas: enlace a la ficha de Google Maps del local (Compartir > Copiar vínculo). Vacío = se busca por nombre.
+    condado: { nombre: "Condado Shopping", zona: "Quito",     detalle: "Isla 21",   maps: "https://www.google.com/maps/search/?api=1&query=Condado%20Shopping%20Quito", resenas: "" },
+    scala:   { nombre: "Scala Shopping",   zona: "Cumbayá",   detalle: "Isla 5",    maps: "https://www.google.com/maps/search/?api=1&query=Scala%20Shopping%20Cumbaya", resenas: "" },
+    valle:   { nombre: "Plaza del Valle",  zona: "Sangolquí", detalle: "Local B17", maps: "https://www.google.com/maps/search/?api=1&query=Centro%20Comercial%20Plaza%20del%20Valle%20Sangolqui", resenas: "" }
   },
   // Consola a la que pertenece cada producto, deducida del nombre. Un producto puede estar en
   // varias (una palanca PS5 está en "PS5" y en "PlayStation").
@@ -1627,10 +1769,12 @@ const CONFIG = {
   ],
   // Mundos: cada plataforma grande con el color de su marca (solo dentro de su espacio).
   mundos: {
-    PlayStation: {c: "#0070D1", c2: "#00225A", frase: "Consolas, juegos y DualSense para PS5 y PS4.", subs: ["PS5", "PS4"]},
-    Nintendo:    {c: "#E60012", c2: "#5C0007", frase: "Switch 2, Switch, juegos y controles.", subs: []},
-    Xbox:        {c: "#107C10", c2: "#052E05", frase: "Consolas Xbox, juegos y controles.", subs: []},
-    Retro:       {c: "#FF7A00", c2: "#5A2300", frase: "Consolas portátiles, clásicos y palancas retro.", subs: []}
+    // icono: emblema propio en 3D. logo: ruta a un logo oficial SOLO si la marca o el distribuidor lo autorizan
+    // (p. ej. "logos/playstation.svg"); reemplaza al emblema. Xbox y Nintendo no permiten usar sus logos libremente.
+    PlayStation: {c: "#0070D1", c2: "#00225A", frase: "Consolas, juegos y DualSense para PS5 y PS4.", subs: ["PS5", "PS4"], icono: "i-pad", logo: ""},
+    Nintendo:    {c: "#E60012", c2: "#5C0007", frase: "Switch 2, Switch, juegos y controles.", subs: [], icono: "i-hibrida", logo: ""},
+    Xbox:        {c: "#107C10", c2: "#052E05", frase: "Consolas Xbox, juegos y controles.", subs: [], icono: "i-console", logo: ""},
+    Retro:       {c: "#FF7A00", c2: "#5A2300", frase: "Consolas portátiles, clásicos y palancas retro.", subs: [], icono: "i-arcade", logo: ""}
   },
   atajos: ["PS5", "Nintendo Switch", "Pokémon", "Palanca", "Mario"],
   iconos: { consolas: "i-console", palancas: "i-pad", juegos: "i-disc", accesorios: "i-head" }
@@ -1638,7 +1782,7 @@ const CONFIG = {
 
 let PRODUCTS = [];
 const VITRINA_URL = (u => u.has("vitrina") ? (u.get("vitrina") || "todo").toLowerCase() : null)(new URLSearchParams(location.search));
-const S = {cat:"all", q:"", plat:"all", local:"all", sort:"dest", only:false, visibles:0};
+const S = {cat:"all", q:"", plat:"all", local:"all", estado:"all", precio:"all", sort:"dest", only:false, visibles:0};
 
 // ===== Utilidades =====
 const $ = id => document.getElementById(id);
@@ -1728,6 +1872,19 @@ function pintarTiendas(){
 pintarTiendas();
 setInterval(pintarTiendas, 60000);
 
+// Opiniones: enlaces a las reseñas reales de cada local en Google Maps y al Instagram (nunca reseñas escritas aquí).
+$("listaOpiniones").innerHTML = Object.values(CONFIG.locales).map(L=>`
+  <a class="opinion" href="${esc(L.resenas || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(`${CONFIG.storeName} ${L.nombre} ${L.zona}`))}" target="_blank" rel="noopener">
+    <span class="op-ico" aria-hidden="true"><svg class="ico"><use href="#i-pin"/></svg></span>
+    <span class="op-zona">${esc(L.zona)}</span><strong>${esc(L.nombre)}</strong>
+    <span class="op-cta">Ver y dejar reseñas en Google Maps<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+  </a>`).join("") + `
+  <a class="opinion ig" href="https://www.instagram.com/electronicgamesec/" target="_blank" rel="noopener">
+    <span class="op-ico" aria-hidden="true"><svg class="ico"><use href="#i-ig"/></svg></span>
+    <span class="op-zona">Instagram</span><strong>@electronicgamesec</strong>
+    <span class="op-cta">Novedades y comentarios de clientes<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+  </a>`;
+
 // ===== Productos =====
 // Sin foto todavía: "portada tipográfica" con el nombre del producto en grande, su categoría,
 // su consola y el logo. Cada producto se ve distinto y a propósito, no como un espacio vacío.
@@ -1813,11 +1970,12 @@ const hasStock = p => p.digital || (S.local === "all" ? Object.values(p.stock).s
 function cardHTML(p, lazy = true){
   const [cls, txt] = status(p);
   const efectivo = p.price_efectivo ?? p.price, tarjeta = p.price_tarjeta ?? p.price;
-  const stickers = (p.top ? `<span class="sticker">Top ventas</span>` : "") + (p.nuevo ? `<span class="sticker nuevo">Nuevo</span>` : "");
+  const stickers = (p.top ? `<span class="sticker">Top ventas</span>` : "") + (p.nuevo ? `<span class="sticker nuevo">Nuevo</span>` : "")
+    + (p.estado === "medio-uso" ? `<span class="sticker uso">Medio uso</span>` : "");
   return `<div class="card" data-code="${esc(p.code)}" role="listitem">
     ${stickers ? `<div class="stickers">${stickers}</div>` : ""}
     <button class="card-open" type="button" data-code="${esc(p.code)}">
-      <div class="img"><img src="${esc(p.photos.length ? p.photos[0] : placeholder(p,0))}" alt="" width="500" height="500" ${lazy ? 'loading="lazy"' : ""} decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)"></div>
+      <div class="img"><img src="${esc(p.photos.length ? p.photos[0] : placeholder(p,0))}" alt="" width="500" height="500" ${lazy ? 'loading="lazy"' : ""} decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)">${sellos(p)}</div>
       <div class="body">
         <div class="cat-row"><span class="cat">${esc(p.cat_label || "")}</span>${etiquetaPlat(p)}</div>
         <div class="name">${esc(p.name)}</div>
@@ -1832,6 +1990,15 @@ function cardHTML(p, lazy = true){
   </div>`;
 }
 const fotoDe = p => p.photos.length ? p.photos[0] : placeholder(p, 0);
+// Estado y origen vienen de descripciones.py (leídos del nombre); el ahorro es tarjeta menos efectivo.
+const ahorroDe = p => Math.max(0, (p.price_tarjeta ?? p.price) - (p.price_efectivo ?? p.price));
+const fmtCorto = n => "$" + (Math.abs(n - Math.round(n)) < 0.005 ? Math.round(n) : n.toFixed(2));
+const ORIGEN = {original: "Original", generico: "Genérico"};
+function sellos(p){
+  const a = ahorroDe(p);
+  return (ORIGEN[p.origen] ? `<span class="sello-origen ${p.origen}">${p.origen === "original" ? '<svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>' : ""}${ORIGEN[p.origen]}</span>` : "")
+    + (a >= 1 ? `<span class="sello-ahorro"><small>Ahorra</small>${fmtCorto(a)}<small>en efectivo</small></span>` : "");
+}
 const skeletons = n => Array.from({length: n}, ()=>`<div class="skel" aria-hidden="true"><div class="img"></div><i></i><i></i><i></i></div>`).join("");
 
 // Destacados: primero lo que tiene foto; dentro de cada grupo se respeta lo más vendido.
@@ -1964,6 +2131,9 @@ function pintarMundos(){
       <span class="desglose">${[...porCat].sort((a, b)=>b[1] - a[1]).map(([c, n])=>`<span>${cuenta(n, c)}</span>`).join("")}</span>
       ${fotos.length === 3 ? `<span class="fan" aria-hidden="true">${fotos.map(p=>`<span><img src="${esc(p.photos[0])}" alt="" width="200" height="200" loading="lazy" decoding="async"></span>`).join("")}</span>` : "<span></span>"}
       <span class="ir" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+      <span class="emblema" aria-hidden="true"><span class="emblema-in"><span class="emblema-gira">${cfg.logo
+        ? `<img src="${esc(cfg.logo)}" alt="">`
+        : Array.from({length: 12}, (_, k)=>`<svg class="ico" style="--z:${k}"><use href="#${cfg.icono}"/></svg>`).join("")}</span></span></span>
     </button>`;
   }).join("");
   $("mundos").innerHTML = html;
@@ -2036,7 +2206,7 @@ $("streamPausa").onclick = ()=>{
 if (matchMedia("(hover: hover) and (pointer: fine)").matches){
   let cuadro = 0;
   document.addEventListener("pointermove", e=>{
-    const el = e.target.closest?.(".card, .tile, .mundo"); if (!el) return;
+    const el = e.target.closest?.(".card, .tile, .mundo, .opinion"); if (!el) return;
     cancelAnimationFrame(cuadro);
     cuadro = requestAnimationFrame(()=>{
       const r = el.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
@@ -2050,7 +2220,7 @@ if (matchMedia("(hover: hover) and (pointer: fine)").matches){
   }, {passive: true});
   // Al salir de la tarjeta vuelve a quedar derecha.
   document.addEventListener("pointerout", e=>{
-    const el = e.target.closest?.(".card, .tile, .mundo");
+    const el = e.target.closest?.(".card, .tile, .mundo, .opinion");
     if (!el || el.contains(e.relatedTarget)) return;
     el.style.setProperty("--tx", "0deg");
     el.style.setProperty("--ty", "0deg");
@@ -2083,6 +2253,8 @@ function listaFiltrada(){
     (S.cat === "all" || p.cat === S.cat) &&
     (S.plat === "all" || plataformasDe(p).includes(S.plat)) &&
     (!S.only || hasStock(p)) &&
+    (S.estado === "all" || (S.estado === "medio-uso" ? p.estado === "medio-uso" : p.origen === S.estado)) &&
+    (S.precio === "all" || (S.precio === "mas300" ? precio(p, "efectivo") > 300 : precio(p, "efectivo") <= Number(S.precio))) &&
     (!q || coincide(p, q))
   );
   if ((S.sort === "rel" || S.sort === "dest") && q) list = porRelevancia(list, q);
@@ -2092,7 +2264,7 @@ function listaFiltrada(){
   if (S.sort === "nuevo") list = [...list].sort((a,b)=>(b.nuevo === true) - (a.nuevo === true));
   return list;
 }
-function hayFiltros(){ return S.cat !== "all" || S.plat !== "all" || S.local !== "all" || S.only || S.q.trim() !== ""; }
+function hayFiltros(){ return S.cat !== "all" || S.plat !== "all" || S.local !== "all" || S.estado !== "all" || S.precio !== "all" || S.only || S.q.trim() !== ""; }
 function render(){
   const list = listaFiltrada();
   $("count").textContent = `${list.length} producto${list.length === 1 ? "" : "s"}`;
@@ -2113,6 +2285,7 @@ function render(){
 }
 function sincronizarControles(){
   $("q").value = S.q; $("plat").value = S.plat; $("local").value = S.local; $("sort").value = S.sort; $("onlyStock").checked = S.only;
+  $("estado").value = S.estado; $("precio").value = S.precio;
   document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", c.dataset.cat === S.cat));
   moverIndicador();
   // Solo desliza la fila de categorías; scrollIntoView movía toda la página al abrirla.
@@ -2131,7 +2304,7 @@ function aplicarFiltro(cambios, ir = true){
   if ($("menu").open) $("menu").close();
   if (ir) $("catalogo").scrollIntoView({behavior: reduceMotion() ? "auto" : "smooth"});
 }
-function resetAll(){ aplicarFiltro({cat: "all", q: "", plat: "all", local: "all", sort: "dest", only: false}, false); }
+function resetAll(){ aplicarFiltro({cat: "all", q: "", plat: "all", local: "all", estado: "all", precio: "all", sort: "dest", only: false}, false); }
 
 // Solo cambia el botón de los productos cuyo número en el pedido cambió (no se redibuja nada más).
 function refrescarControles(){
@@ -2153,6 +2326,8 @@ function leerURL(){
   if (u.get("q")) S.q = u.get("q");
   if (CONFIG.plataformas.some(([n])=>n === u.get("plat"))) S.plat = u.get("plat");
   if (CONFIG.locales[u.get("local")]) S.local = u.get("local");
+  if (["original", "generico", "medio-uso"].includes(u.get("estado"))) S.estado = u.get("estado");
+  if (["25", "50", "100", "300", "mas300"].includes(u.get("precio"))) S.precio = u.get("precio");
   sincronizarControles();
   return u.get("p");
 }
@@ -2162,6 +2337,8 @@ function escribirURL(){
   if (S.q.trim()) u.set("q", S.q.trim());
   if (S.plat !== "all") u.set("plat", S.plat);
   if (S.local !== "all") u.set("local", S.local);
+  if (S.estado !== "all") u.set("estado", S.estado);
+  if (S.precio !== "all") u.set("precio", S.precio);
   if ($("dlg").open && D) u.set("p", D.p.code);
   const s = u.toString();
   history.replaceState(null, "", s ? "?" + s : location.pathname);
@@ -2240,8 +2417,18 @@ function openProduct(code){
   $("dCode").textContent = `Código ${p.code}`;
   const efectivo = p.price_efectivo ?? p.price, tarjeta = p.price_tarjeta ?? p.price;
   $("dPrice").innerHTML = `<div class="price-row">${money(efectivo, true)}<span class="price-tag">Efectivo o transferencia, IVA incluido</span>${tarjeta > efectivo ? `<span class="price-tag">Con tarjeta: <b>$${tarjeta.toFixed(2)}</b></span>` : ""}</div>`;
-  $("dDesc").textContent = p.desc || "";
-  $("dDesc").hidden = !p.desc;
+  const ahorro = ahorroDe(p), chips = [
+    p.estado === "medio-uso" ? `<span class="det uso">Medio uso</span>` : "",
+    ORIGEN[p.origen] ? `<span class="det ${p.origen}">${ORIGEN[p.origen]}</span>` : "",
+    etiquetaPlat(p)].join("");
+  $("dDetalles").innerHTML =
+    (ahorro >= 1 ? `<p class="ahorro-banner"><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg><span>Pagando en <b>efectivo o transferencia</b> ahorras <b>${fmt(ahorro)}</b></span></p>` : "")
+    + (chips ? `<div class="det-chips">${chips}</div>` : "")
+    + (p.incluye?.length ? `<div class="incluye"><span class="lbl-sec">Incluye</span><ul>${p.incluye.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>` : "");
+  // La de Contífico si existe; si no, la de descripciones.py (sin el "Incluye…", que ya va en la lista).
+  const desc = (p.desc || (p.incluye?.length ? (p.desc_auto || "").replace(/\s*Incluye [^.]*\./, "") : p.desc_auto) || "").trim();
+  $("dDesc").textContent = desc;
+  $("dDesc").hidden = !desc;
 
   const fotos = p.photos.length ? p.photos : [placeholder(p, 0)];
   const show = v => {
@@ -2282,6 +2469,10 @@ function openProduct(code){
   medir("ver-producto", {codigo: p.code, nombre: p.name.slice(0, 60)});
   pintarCompra();
   if (!$("dlg").open) $("dlg").showModal();
+  // La foto entra girando en 3D (salvo si llega volando desde la tarjeta: ese ya es su movimiento).
+  if (!reduceMotion() && !document.documentElement.classList.contains("vt-ficha"))
+    $("dMain").animate?.([{transform: "perspective(900px) rotateY(-32deg) rotateX(8deg) scale(.9)", opacity: 0.25}, {transform: "perspective(900px)", opacity: 1}],
+      {duration: 750, easing: "cubic-bezier(.2,.9,.25,1.12)"});
   $("dlg").scrollTop = 0;
   $("dRel").scrollLeft = 0;
   actualizarFlechas(document.querySelector('.rail-nav[data-rail="dRel"]'));
@@ -2326,8 +2517,24 @@ if (matchMedia("(hover: none)").matches && !reduceMotion() && "IntersectionObser
   document.addEventListener("touchstart", ()=>{}, {passive: true});   // activa el efecto al presionar en iPhone
 }
 
+// Celular: al inclinar el teléfono, la foto de la ficha se inclina con él y la cruza un brillo (como un objeto real).
+if (matchMedia("(hover: none)").matches && !reduceMotion() && "DeviceOrientationEvent" in window){
+  let base = null, cuadroF = 0;
+  $("dlg").addEventListener("close", ()=>{ base = null; });
+  addEventListener("deviceorientation", e=>{
+    if (!$("dlg").open || e.gamma == null || $("dMain").classList.contains("zoom")) return;
+    if (!base) base = {b: e.beta, g: e.gamma};   // como se tenía el teléfono al abrir = foto derecha
+    const rx = Math.max(-12, Math.min(12, (e.beta - base.b) * -0.5)), ry = Math.max(-14, Math.min(14, (e.gamma - base.g) * 0.6));
+    cancelAnimationFrame(cuadroF);
+    cuadroF = requestAnimationFrame(()=>{
+      const m = $("dMain").style;
+      m.setProperty("--fx", `${rx.toFixed(1)}deg`); m.setProperty("--fy", `${ry.toFixed(1)}deg`); m.setProperty("--gx", `${(50 + ry * 3).toFixed(0)}%`);
+    });
+  }, {passive: true});
+}
+
 // Diagnóstico: abrir la página con ?diag muestra qué soporta este celular o navegador.
-const VERSION = "2026-09-24-marca-3d";
+const VERSION = "2026-09-25-detalles";
 if (new URLSearchParams(location.search).has("diag")){
   const d = document.createElement("pre");
   d.style.cssText = "position:fixed;left:8px;right:8px;bottom:8px;z-index:99;margin:0;background:#fff;color:#000;font:12px/1.5 monospace;padding:12px;border-radius:12px;white-space:pre-wrap;box-shadow:0 10px 30px rgba(0,0,0,.5)";
@@ -2697,10 +2904,10 @@ function mostrarSlide(){
   $("kSlide").innerHTML = `
     <div class="k-foto"><img src="${esc(p.photos[0])}" alt="${esc(p.name)}" decoding="async"></div>
     <div class="k-info">
-      <div class="k-cat">${esc(p.cat_label || "")}${etiquetaPlat(p)}</div>
+      <div class="k-cat">${esc(p.cat_label || "")}${etiquetaPlat(p)}${p.estado === "medio-uso" ? '<span class="det uso">Medio uso</span>' : ""}</div>
       <h2 class="k-nombre">${esc(p.name)}</h2>
       <div class="k-precio"><span>$</span>${e}<small>.${d}</small></div>
-      <div class="k-tag">Efectivo o transferencia, IVA incluido${tj > ef ? ` · Con tarjeta ${fmt(tj)}` : ""}</div>
+      <div class="k-tag">Efectivo o transferencia, IVA incluido${tj - ef >= 1 ? ` · <b class="k-ahorra">Ahorras ${fmt(tj - ef)}</b> (tarjeta ${fmt(tj)})` : tj > ef ? ` · Con tarjeta ${fmt(tj)}` : ""}</div>
       <div class="k-stock ${cls}"><span class="dot"></span>${st}</div>
       <div class="k-qr"><div class="qr" id="kQr" aria-hidden="true"></div><p id="kQrTxt"></p></div>
     </div>`;
@@ -3278,6 +3485,8 @@ $("plat").addEventListener("change", e=>{ S.plat = e.target.value; S.visibles = 
 $("local").addEventListener("change", e=>{ S.local = e.target.value; S.animar = 0; render(); });
 $("sort").addEventListener("change", e=>{ S.sort = e.target.value; S.animar = 0; render(); });
 $("onlyStock").addEventListener("change", e=>{ S.only = e.target.checked; S.visibles = CONFIG.porPagina; S.animar = 0; render(); });
+for (const id of ["estado", "precio"])
+  $(id).addEventListener("change", e=>{ S[id] = e.target.value; S.visibles = CONFIG.porPagina; S.animar = 0; render(); medir("filtro", {[id]: e.target.value}); });
 $("limpiar").addEventListener("click", resetAll);
 $("moreBtn").addEventListener("click", ()=>{ S.animar = S.visibles; S.visibles += CONFIG.porPagina; render(); });
 
