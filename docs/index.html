@@ -511,9 +511,11 @@ dialog.sheet.izq{margin:0 auto 0 0;border-radius:0 18px 18px 0}
 .pie button{border:0;background:none;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:.8rem;padding:10px 8px;min-height:40px;flex:none}
 
 /* Menú en celular */
-.menu-nav{display:flex;flex-direction:column;padding:12px 20px}
-.menu-nav a{padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:800;font-style:italic;text-transform:uppercase;font-size:1.3rem}
-.menu-extra{padding:20px;display:grid;gap:10px;color:var(--muted);font-size:.93rem}
+/* La lista se desliza (antes se cortaba abajo en cualquier celular) y WhatsApp queda siempre a la vista. */
+.menu-nav{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;padding:4px 20px 28px;
+  -webkit-mask-image:linear-gradient(#000 calc(100% - 28px),transparent);mask-image:linear-gradient(#000 calc(100% - 28px),transparent)}
+.menu-nav a{flex:none;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:800;font-style:italic;text-transform:uppercase;font-size:1.2rem;line-height:1.25}
+.menu-extra{flex:none;padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);display:grid;gap:8px;color:var(--muted);font-size:.9rem}
 
 /* ---------- Favoritos, vistos y WhatsApp flotante ---------- */
 .fav{position:absolute;top:10px;right:10px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;display:grid;place-items:center;background:rgba(255,255,255,.92);color:#2A2522;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);transition:scale 160ms var(--ease-out),color 160ms ease}
@@ -649,12 +651,12 @@ header.top.con-sombra{box-shadow:0 10px 30px rgba(0,0,0,.45)}
 }
 
 /* ---------- Pedido enviado: celebración ---------- */
-.exito{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:28px 24px calc(28px + env(safe-area-inset-bottom,0px));text-align:center;background:var(--surface);overflow:hidden}
+.exito{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow:hidden auto;overscroll-behavior:contain;gap:12px;padding:28px 24px calc(28px + env(safe-area-inset-bottom,0px));text-align:center;background:var(--surface)}
 .exito h3{margin:6px 0 0;font-weight:900;font-style:italic;text-transform:uppercase;font-size:1.7rem;line-height:1}
 .exito p{margin:0;color:var(--muted);max-width:34ch;text-wrap:pretty}
 .exito .cod{font-family:"JetBrains Mono",monospace;color:var(--ink);font-weight:600}
-.acciones-exito{display:grid;gap:10px;width:100%;max-width:340px;margin-top:10px}
-.exito-check{width:92px;height:92px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 14px 34px rgba(37,211,102,.35)}
+.acciones-exito{display:grid;gap:10px;width:100%;max-width:340px;margin-top:10px;margin-bottom:auto}
+.exito-check{flex:none;margin-top:auto;width:92px;height:92px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 14px 34px rgba(37,211,102,.35)}
 .exito-check svg{width:48px;height:48px;fill:none;stroke:var(--wa-ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .exito-check path{stroke-dasharray:1}
 .confeti{position:absolute;left:50%;top:30%;width:9px;height:14px;border-radius:2px;pointer-events:none}
@@ -899,6 +901,10 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .card .price-tag{white-space:normal}
   .row{min-height:66px}
 }
+/* Pantallas bajas (celular en horizontal): lo fijo arriba no puede comerse la mitad de la pantalla. */
+@media (max-height:500px) and (orientation:landscape){
+  .tools{position:static}
+}
 
 /* ============================================================
    MARCA: intro, cintas, vitrina 360°, cursor y scroll con cine
@@ -982,7 +988,7 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 .pasos{list-style:none;margin:0;padding:0 0 12px;display:grid;gap:22px}
 .pasos li{--k:0;position:sticky;top:calc(var(--header) + 26px + var(--i,0) * 18px);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:clamp(18px,4vw,48px);min-height:250px;padding:clamp(24px,4vw,44px);border-radius:30px;border:1px solid var(--line);
   background:linear-gradient(150deg,var(--surface-hi),var(--surface) 70%);box-shadow:0 -20px 44px rgba(0,0,0,.4);transform-origin:50% 0;scale:calc(1 - var(--k) * .06);filter:brightness(calc(1 - var(--k) * .45));overflow:hidden}
-.paso-n{font-weight:900;font-style:italic;font-size:clamp(4.2rem,11vw,9rem);line-height:.8;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px var(--brand);padding-right:.06em}
+.paso-n{min-width:1.55em;font-variant-numeric:tabular-nums;font-weight:900;font-style:italic;font-size:clamp(4.2rem,11vw,9rem);line-height:.8;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px var(--brand);padding-right:.06em}
 .pasos h3{margin:0 0 10px;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.5rem,3.4vw,2.5rem);line-height:.95;letter-spacing:-.015em;text-wrap:balance}
 .pasos p{margin:0;color:var(--muted);font-size:1.05rem;max-width:46ch;text-wrap:pretty}
 .paso-ico{width:clamp(64px,9vw,112px);height:clamp(64px,9vw,112px);stroke-width:1.25;color:var(--brand)}
@@ -1056,6 +1062,14 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 @keyframes letra-sube{from{translate:0 80%;opacity:0}}
 @keyframes paso-entra{from{opacity:0;translate:0 60px}}
 
+@media (max-height:500px) and (orientation:landscape){
+  /* El título de la vitrina 360° queda solo; el subtítulo tapaba el logo en 3D. */
+  .anillo-cab .kicker,.anillo-cab .sec-sub{display:none}
+  .anillo-cab{padding-top:10px}
+  .pasos li{min-height:0;padding:22px 32px}
+  .paso-n{font-size:4.2rem}
+  .paso-ico{width:64px;height:64px}
+}
 @media (max-width:960px){
   .anillo-sec{height:155vh}
   .cintas{margin-top:8px;height:132px}
