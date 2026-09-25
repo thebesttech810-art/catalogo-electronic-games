@@ -486,8 +486,11 @@ body:is(.en-anillo,.en-portal) .ayudante{opacity:0;visibility:hidden;transition:
 }
 .tienda-estado,.tienda-isla,.tienda-cuenta{position:absolute;z-index:6;pointer-events:none;display:inline-flex;align-items:center;gap:6px;border-radius:999px;font-weight:800;font-size:.78rem;line-height:1}
 .tienda-estado{left:14px;top:14px;margin:0;padding:7px 11px;background:rgba(10,10,11,.86);box-shadow:0 6px 14px rgba(0,0,0,.35)}
-.tienda-estado.ok .dot{box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:latido 1.8s ease-out infinite}
-@keyframes latido{to{box-shadow:0 0 0 7px rgba(34,197,94,0)}}
+/* El punto verde "late" solo mientras la sección se ve (anillo que crece: transform y opacity, en la GPU) */
+.tienda-estado .dot{position:relative}
+.tienda-estado.ok .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:currentColor;opacity:0}
+.tiendas.activa .tienda-estado.ok .dot::after{animation:latido 1.8s ease-out infinite}
+@keyframes latido{from{opacity:.6;transform:scale(1)}to{opacity:0;transform:scale(2.8)}}
 .tienda-isla{left:14px;bottom:14px;padding:7px 12px;background:var(--brand);color:var(--brand-ink);font-style:italic;text-transform:uppercase;font-weight:900;font-size:.85rem}
 .tienda-cuenta{right:14px;bottom:14px;padding:7px 11px;background:rgba(10,10,11,.86);color:var(--ink)}
 .tienda-cuenta .ico{width:14px;height:14px}
@@ -500,7 +503,7 @@ body:is(.en-anillo,.en-portal) .ayudante{opacity:0;visibility:hidden;transition:
 .tienda-acc > *{margin:0}
 .tienda-ver{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 16px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-weight:700;font-size:.9rem;cursor:pointer}
 .tienda-ver:hover{border-color:var(--brand)}
-@media (prefers-reduced-motion:reduce){ .tienda-pila img{transition:none} .tienda-estado.ok .dot{animation:none} }
+@media (prefers-reduced-motion:reduce){ .tienda-pila img{transition:none} .tiendas.activa .tienda-estado.ok .dot::after{animation:none} }
 .tienda .zona{color:var(--brand-hi);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
 .tienda strong{font-size:1.2rem;font-weight:800}
 .tienda .dir{color:var(--muted);font-size:.93rem}
@@ -2268,6 +2271,7 @@ function iniciarPilas(){
   };
   new IntersectionObserver(([e])=>{
     clearInterval(reloj);
+    $("tiendas").classList.toggle("activa", e.isIntersecting);
     if (e.isIntersecting) reloj = setInterval(pasar, 2200);
   }).observe($("tiendas"));
 }
