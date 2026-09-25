@@ -1,7 +1,8 @@
 """Deja cada foto de producto lista para la tienda, todas con el mismo aspecto:
 - fondo blanco puro (corrige el gris o el tono de color que deja la luz del local),
 - sin el blanco sobrante alrededor: el producto ocupa siempre lo mismo del cuadro,
-- foto cuadrada (como las tarjetas del catálogo), de 1000 px de lado,
+- foto cuadrada (como las tarjetas del catálogo), de 1000 px de lado, más una copia
+  de 2000 px en zoom/ para acercar en la ficha con detalle,
 - un poco más de contraste, color y nitidez, sin exagerar.
 
 La usa subir_fotos.py con cada foto nueva. También se puede correr sola para
@@ -18,7 +19,8 @@ import sys
 
 from PIL import Image, ImageChops, ImageEnhance, ImageFilter, ImageOps
 
-LADO = 1000          # lado de la foto final, en píxeles
+LADO = 1000          # lado de la foto del catálogo, en píxeles
+LADO_ZOOM = 2000     # lado de la copia para acercar (docs/fotos/<código>/zoom/1.jpg)
 OCUPA = 0.86         # el producto ocupa este tanto del lado más largo del cuadro
 MARCA = b"EG-mejorada-v1"
 CARPETA = "docs/fotos"
@@ -67,8 +69,8 @@ def cuadrar(im, fondo=(255, 255, 255)):
     return lienzo
 
 
-def mejorar(im, ampliar=None):
-    """Devuelve la foto mejorada (RGB, LADO x LADO). ampliar(im) puede agrandar las fotos
+def mejorar(im, ampliar=None, lado=LADO):
+    """Devuelve la foto mejorada (RGB, lado x lado). ampliar(im) puede agrandar las fotos
     chicas con un método mejor que el de Pillow (la mejora con IA de una sola vez lo usa)."""
     im = ImageOps.exif_transpose(im)
     if im.mode in ("RGBA", "LA", "P"):
@@ -82,10 +84,10 @@ def mejorar(im, ampliar=None):
     if es_claro(fondo):
         im = recortar(blanquear(im, fondo))
     # Si no, la foto llega hasta el borde (una portada, por ejemplo): se deja entera y se completa con blanco.
-    chica = max(im.size) < LADO * OCUPA
+    chica = max(im.size) < lado * OCUPA
     if chica and ampliar:
         im = ampliar(im)   # solo el producto (sin el fondo que se agrega después): más rápido
-    im = cuadrar(im).resize((LADO, LADO), Image.LANCZOS)
+    im = cuadrar(im).resize((lado, lado), Image.LANCZOS)
     im = ImageEnhance.Contrast(im).enhance(1.04)
     im = ImageEnhance.Color(im).enhance(1.06)
     return im.filter(ImageFilter.UnsharpMask(radius=1.4 if chica else 1.0, percent=70 if chica else 45, threshold=2))
@@ -93,6 +95,19 @@ def mejorar(im, ampliar=None):
 
 def guardar(im, destino):
     im.save(destino, "JPEG", quality=86, optimize=True, progressive=True, comment=MARCA)
+
+
+def ruta_zoom(ruta):
+    carpeta, nombre = os.path.split(ruta)
+    return os.path.join(carpeta, "zoom", nombre)
+
+
+def guardar_con_zoom(grande, destino):
+    """grande: foto mejorada de LADO_ZOOM. Guarda la copia para acercar y, achicada, la del catálogo."""
+    os.makedirs(os.path.dirname(ruta_zoom(destino)), exist_ok=True)
+    grande.save(ruta_zoom(destino), "JPEG", quality=84, optimize=True, progressive=True, comment=MARCA)
+    chica = grande.resize((LADO, LADO), Image.LANCZOS).filter(ImageFilter.UnsharpMask(radius=0.8, percent=35, threshold=2))
+    guardar(chica, destino)
 
 
 def ya_mejorada(ruta):
@@ -107,14 +122,13 @@ def main(carpeta=CARPETA):
             if not f.lower().endswith(".jpg"):
                 continue
             ruta = os.path.join(raiz, f)
-            if ya_mejorada(ruta):
+            if os.path.basename(raiz) == "zoom" or (ya_mejorada(ruta) and os.path.exists(ruta_zoom(ruta))):
                 saltadas += 1
                 continue
             with Image.open(ruta) as im:
-                nueva = mejorar(im)
-            guardar(nueva, ruta)
+                guardar_con_zoom(mejorar(im, lado=LADO_ZOOM), ruta)
             hechas += 1
-    print(f"Fotos mejoradas: {hechas}. Ya estaban mejoradas: {saltadas}.")
+    print(f"Fotos mejoradas: {hechas}. Ya estaban listas: {saltadas}.")
 
 
 if __name__ == "__main__":
