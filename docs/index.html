@@ -106,14 +106,15 @@ header.top{position:sticky;top:0;z-index:6;background:rgba(10,10,11,.86);backdro
 .wordmark{font-weight:900;font-style:italic;font-size:1.15rem;letter-spacing:.01em;text-transform:uppercase;line-height:1}
 .wordmark b{color:var(--brand);font-weight:900}
 .nav{display:flex;gap:4px;margin-left:12px}
-.nav a{text-decoration:none;font-weight:600;font-size:.94rem;color:var(--muted);padding:8px 12px;border-radius:10px}
+.nav a{text-decoration:none;font-weight:600;font-size:.94rem;color:var(--muted);padding:8px 10px;border-radius:10px}
 .nav a:hover{color:var(--ink);background:var(--surface)}
 /* Cada plataforma se subraya con el color de su marca */
 .nav a[data-ir-plat]{position:relative}
 .nav a[data-ir-plat]::after{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;border-radius:2px;background:var(--c);scale:0 1;transition:scale 200ms var(--ease-out)}
 .nav a[data-ir-plat]:hover::after,.nav a[aria-current="true"]::after{scale:1 1}
 .nav a[aria-current="true"]{color:var(--ink)}
-@media (max-width:1180px){.nav-extra{display:none}}
+/* Pantallas medianas: PlayStation y Xbox solo con su logo (el nombre lo siguen leyendo los lectores de pantalla). */
+@media (max-width:1180px){.nav-txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
 .top-actions{display:flex;align-items:center;gap:8px;margin-left:auto;flex:none}
 .brand{min-width:0}
 .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
@@ -617,7 +618,7 @@ header.top.con-sombra{box-shadow:0 10px 30px rgba(0,0,0,.45)}
 /* Celular (sin mouse): los mismos efectos, pensados para el dedo */
 @media (hover:none){
   .gallery .main.zoomable{position:relative}
-  .gallery .main.zoomable::after{content:"Toca para acercar";position:absolute;right:10px;bottom:10px;padding:6px 10px;border-radius:999px;background:rgba(10,10,11,.8);color:#fff;font-size:.75rem;font-weight:700;pointer-events:none;transition:opacity 200ms ease}
+  .gallery .main.zoomable::after{content:"Toca para ampliar";position:absolute;right:10px;bottom:10px;padding:6px 10px;border-radius:999px;background:rgba(10,10,11,.8);color:#fff;font-size:.75rem;font-weight:700;pointer-events:none;transition:opacity 200ms ease}
   .gallery .main.zoom::after{content:"Toca para alejar"}
   .gallery .main.zoom{touch-action:none}
 }
@@ -1083,7 +1084,7 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
   .anillo-ver{padding:8px 8px 8px 14px;min-height:60px;gap:3px 10px}
   .anillo-ver .cat-row{display:none}
   .anillo-ver strong{font-size:.86rem;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-  body.en-anillo .wa-float{opacity:0;scale:.8;visibility:hidden;transition:opacity 200ms ease,scale 200ms var(--ease-out),translate 320ms var(--ease-drawer),visibility 0s linear 200ms}
+  body:is(.en-anillo,.en-portal) .wa-float{opacity:0;scale:.8;visibility:hidden;transition:opacity 200ms ease,scale 200ms var(--ease-out),translate 320ms var(--ease-drawer),visibility 0s linear 200ms}
   .anillo-ver .ir{padding:10px 10px 10px 12px;font-size:1rem}
   .manifiesto{padding:84px 0 24px}
   .pasos{gap:16px}
@@ -1093,25 +1094,8 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 }
 
 /* ============================================================
-   DETALLES DE PRODUCTO: sellos, ahorro, filtros, opiniones y emblemas 3D
+   DETALLES DE PRODUCTO: ahorro, filtros, opiniones y emblemas 3D
    ============================================================ */
-/* Tarjetas: "Medio uso" como sticker; origen abajo a la izquierda y ahorro abajo a la derecha de la foto. */
-.sticker.uso{background:#FFC61A;color:#1a1400}
-.sello-origen{position:absolute;left:6px;bottom:6px;z-index:1;display:inline-flex;align-items:center;gap:3px;padding:2px 7px 2px 5px;border-radius:999px;font-size:.58rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;line-height:1.5;background:rgba(10,10,11,.8);color:var(--ink);pointer-events:none}
-.sello-origen .ico{width:11px;height:11px;stroke-width:3;color:var(--ok)}
-.sello-origen.generico{padding-left:7px;background:rgba(255,255,255,.9);color:#3a342f;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
-/* Ahorro en efectivo: una píldora verde pequeña en la esquina (antes era una etiqueta grande que tapaba la foto). */
-.sello-ahorro{position:absolute;right:6px;bottom:6px;z-index:1;display:inline-flex;align-items:baseline;gap:3px;padding:2px 7px;border-radius:999px;white-space:nowrap;
-  background:var(--ok);color:#04240f;font-size:.58rem;font-weight:700;letter-spacing:.02em;line-height:1.5;box-shadow:0 2px 6px rgba(0,0,0,.18);overflow:hidden;pointer-events:none}
-.sello-ahorro b{font-size:1.2em;font-weight:900;font-style:italic;letter-spacing:-.01em}
-.sello-ahorro::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%);translate:-130% 0}
-@media (prefers-reduced-motion:no-preference){
-  /* El sello brilla de vez en cuando, como una etiqueta metalizada; al pasar el mouse da un saltito en 3D. */
-  .sello-ahorro::after{animation:sello-brillo 5.5s var(--ease-out) infinite;animation-delay:calc(var(--i,0) * 180ms)}
-
-}
-@keyframes sello-brillo{0%,72%{translate:-130% 0}100%{translate:130% 0}}
-
 /* Ficha: aviso de ahorro, etiquetas y lo que incluye cada combo */
 #dDetalles{display:grid;gap:12px}
 #dDetalles:empty{display:none}
@@ -1119,10 +1103,7 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 .ahorro-banner b{color:var(--ok)}
 .ahorro-banner .ico{flex:none;color:var(--ok)}
 .det-chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.det{display:inline-flex;align-items:center;padding:4px 11px;border-radius:999px;font-size:.78rem;font-weight:800;border:1px solid var(--line);background:var(--surface-hi);line-height:1.4}
-.det.uso{background:#FFC61A;color:#1a1400;border-color:transparent}
-.det.original{color:var(--ok)}
-.det-chips .plat-tag,.k-cat .det{font-size:.78rem;padding:4px 11px;border-radius:999px;line-height:1.4}
+.det-chips .plat-tag{font-size:.78rem;padding:4px 11px;border-radius:999px;line-height:1.4}
 .incluye ul{margin:0;padding-left:18px;color:#d9d3cc;font-size:.92rem;display:grid;gap:2px}
 .incluye .lbl-sec{margin-bottom:4px}
 #dDesc{color:#d9d3cc}
@@ -1164,9 +1145,9 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 .emblema{position:absolute;right:5%;top:10%;z-index:-1;width:min(40%,210px);aspect-ratio:1;pointer-events:none;perspective:700px}
 .emblema-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(calc(var(--ny,0) * -28deg)) rotateY(calc(var(--nx,0) * 36deg));transition:transform 320ms var(--ease-out)}
 .emblema-gira{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(-18deg) rotateX(6deg)}
-.emblema .ico,.emblema img{position:absolute;inset:0;width:100%;height:100%;stroke-width:1.5;opacity:.5;
-  color:color-mix(in srgb,#fff calc(62% - var(--z,0) * 4%),var(--c2));transform:translateZ(calc(var(--z,0) * -2.4px))}
-.emblema img{object-fit:contain;opacity:.9;filter:drop-shadow(0 12px 18px rgba(0,0,0,.35))}
+.emblema svg{position:absolute;inset:0;width:100%;height:100%;opacity:.55;fill:currentColor;
+  color:color-mix(in srgb,#fff calc(70% - var(--z,0) * 5%),var(--c2));transform:translateZ(calc(var(--z,0) * -2.6px))}
+.emblema.ancho{width:min(64%,330px);aspect-ratio:1000/246;top:16%}
 @media (prefers-reduced-motion:no-preference){
   .emblema-gira{animation:emblema-gira 6s ease-in-out infinite alternate}
   .mundo:nth-child(2) .emblema-gira{animation-delay:-1.5s}
@@ -1193,12 +1174,121 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
   .opinion{min-height:0;padding:18px}
   .op-ico{width:42px;height:42px;margin-bottom:6px}
   .emblema{width:min(38%,140px);right:4%;top:8%}
+  .emblema.ancho{width:min(54%,200px);top:44%}
 }
 @media (max-width:420px){
   .opiniones{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:340px){
-  .sello-ahorro,.sello-origen{font-size:.54rem;padding-inline:6px}
+}
+
+/* ============================================================
+   LOGOS DE LAS MARCAS, PORTAL DE LOS MUNDOS (3D) Y VISOR DE FOTOS
+   ============================================================ */
+/* Logos (vectorizados de los originales) en el menú, las cintas, la vitrina y los mundos */
+.marca-ico{width:17px;height:17px;flex:none;fill:currentColor}
+.marca-ico.nin{width:66px;height:16px}
+.marca-ico.eg{width:30px;height:13px}
+.nav a[data-ir-plat]{display:inline-flex;align-items:center;gap:7px}
+.menu-nav a[data-ir-plat]{display:flex;align-items:center;gap:12px}
+.menu-nav .marca-ico{width:24px;height:24px}
+.menu-nav .marca-ico.nin{width:104px;height:26px}
+.menu-nav .marca-ico.eg{width:44px;height:19px}
+.cinta-logo{display:inline-block;width:.9em;height:.9em;margin-right:.32em;vertical-align:-.1em;fill:currentColor}
+.cinta-logo.nin{width:4.2em;height:1.03em;margin:0;vertical-align:-.16em}
+.banner-logo{flex:none;width:52px;height:52px;fill:#fff;opacity:.95;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))}
+.banner-logo.ancho{width:150px;height:37px}
+.mundo-banner{justify-content:flex-start}
+.mundo-banner .mundo-subs{margin-left:auto}
+.k-logo{width:18px;height:18px;margin-right:7px;vertical-align:-3px;fill:currentColor}
+.k-logo.ancho{width:70px;height:17px;margin:0}
+
+/* ---------- Portal de los mundos ---------- */
+@property --pc{syntax:"<color>";inherits:true;initial-value:#0070D1}
+@property --pc2{syntax:"<color>";inherits:true;initial-value:#00225A}
+.portal{position:relative;height:calc(100vh + var(--pasos,3) * 78vh)}
+.portal-escena{position:sticky;top:var(--header);height:calc(100vh - var(--header));height:calc(100svh - var(--header));overflow:hidden;isolation:isolate;color:#fff;
+  background:radial-gradient(60% 70% at 70% 45%,var(--pc),var(--pc2));transition:--pc 700ms ease,--pc2 700ms ease}
+.portal-escena canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 900ms ease;cursor:pointer}
+.portal-escena.listo canvas{opacity:1}
+.portal-escena::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.42),transparent 55%)}
+.portal-ui{position:relative;z-index:1;height:100%;display:flex;align-items:center;pointer-events:none}
+.portal-texto{pointer-events:auto;width:min(48%,540px)}
+.portal-texto .kicker{color:rgba(255,255,255,.85)}
+.portal-nombre{margin:0;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(2.8rem,6.2vw,5.6rem);line-height:.86;letter-spacing:-.035em;text-shadow:0 12px 40px rgba(0,0,0,.35);padding-right:.1em}
+.portal-frase{margin:16px 0 0;font-size:1.12rem;line-height:1.45;opacity:.94;max-width:34ch;text-wrap:pretty}
+.portal-cifras{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0 0;font-weight:700}
+.portal-cifras b{font-size:1.7rem;font-weight:900;font-style:italic;line-height:1;margin-right:-2px}
+.portal-cifras span{padding:4px 10px;border-radius:999px;background:rgba(0,0,0,.3);font-size:.8rem;font-weight:700}
+.portal-fan{display:flex;margin:24px 0 0;padding-left:6px}
+.portal-fan span{width:96px;height:96px;flex:none;border-radius:18px;background:var(--stage-bg);box-shadow:0 16px 34px rgba(0,0,0,.45);overflow:hidden;margin-right:-22px;rotate:calc((var(--k) - 1) * 9deg);translate:0 calc((var(--k) - 1) * (var(--k) - 1) * 8px)}
+.portal-fan span:nth-child(2){z-index:1}
+.portal-fan img{width:100%;height:100%;object-fit:contain;padding:4%;mix-blend-mode:multiply}
+.btn.portal-cta{margin-top:26px;background:#fff;color:#0A0A0B;box-shadow:0 14px 34px rgba(0,0,0,.35)}
+.btn.portal-cta:hover{background:#f1efec}
+.portal-cta .ico{width:18px;height:18px;color:var(--pc2)}
+.portal-puntos{position:absolute;z-index:2;right:20px;top:50%;translate:0 -50%;display:grid;gap:10px}
+.portal-puntos button{width:56px;height:56px;border-radius:16px;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.25);color:#fff;display:grid;place-items:center;cursor:pointer;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease,scale 160ms var(--ease-out)}
+.portal-puntos button:active{scale:.94}
+.portal-puntos button[aria-current="true"]{background:#fff;color:var(--c);border-color:#fff}
+.portal-puntos svg{width:28px;height:28px;fill:currentColor}
+.portal-puntos svg.ancho{width:44px;height:11px}
+.portal-pista{position:absolute;z-index:2;left:50%;bottom:22px;translate:-50% 0;display:flex;align-items:center;gap:10px;font-size:.8rem;font-weight:700;opacity:.85;transition:opacity 400ms ease;pointer-events:none;white-space:nowrap}
+.portal-pista span{width:22px;height:34px;border:2px solid currentColor;border-radius:12px;position:relative}
+.portal-pista span::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:7px;margin-left:-2px;border-radius:2px;background:currentColor;animation:rueda 1.6s ease-in-out infinite}
+@keyframes rueda{50%{translate:0 9px;opacity:.3}}
+.portal.sin-pista .portal-pista{opacity:0}
+body.con-portal #secMundos{display:none}
+@media (prefers-reduced-motion:no-preference){
+  .portal-texto.entra > *{animation:portal-entra 720ms var(--ease-out) both}
+  .portal-texto.entra > :nth-child(2){animation-delay:50ms}
+  .portal-texto.entra > :nth-child(3){animation-delay:110ms}
+  .portal-texto.entra > :nth-child(4){animation-delay:160ms}
+  .portal-texto.entra > :nth-child(5){animation-delay:210ms}
+  .portal-texto.entra > :nth-child(6){animation-delay:260ms}
+  .portal-texto.entra .portal-fan span{animation:fan-entra 900ms cubic-bezier(.2,.9,.25,1.12) both;animation-delay:calc(220ms + var(--k) * 90ms)}
+}
+@keyframes portal-entra{from{opacity:0;translate:0 26px;filter:blur(8px)}}
+@keyframes fan-entra{from{opacity:0;transform:perspective(600px) rotateY(-75deg) translateX(-50px) scale(.8)}}
+
+/* ---------- Visor de fotos ---------- */
+dialog.visor{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;border-radius:0;background:#fff;color:#1F1B18;overflow:hidden;box-shadow:none}
+dialog.visor[open]{display:block}
+dialog.visor::backdrop{background:rgba(0,0,0,.85)}
+.visor-lienzo{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;touch-action:none;cursor:zoom-in;user-select:none;-webkit-user-select:none}
+.visor.acercado .visor-lienzo{cursor:grab}
+.visor-lienzo img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;aspect-ratio:1;object-fit:contain;-webkit-user-drag:none;will-change:transform}
+.visor-barra{position:absolute;left:0;right:0;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:calc(12px + env(safe-area-inset-top,0px)) 14px 12px 18px;pointer-events:none}
+.visor-barra > *{pointer-events:auto}
+.visor-n{min-width:44px;font-weight:800;font-variant-numeric:tabular-nums}
+.visor-pista{font-size:.82rem;font-weight:600;color:#6b645d;text-align:center;transition:opacity 300ms ease}
+.visor.acercado .visor-pista{opacity:0}
+.visor .close{position:static;background:#0A0A0B;color:#fff;border-color:transparent}
+.visor-flecha{position:absolute;top:50%;z-index:2;translate:0 -50%;width:50px;height:50px;border-radius:50%;border:0;background:rgba(10,10,11,.82);color:#fff;display:grid;place-items:center;cursor:pointer;transition:opacity 200ms ease}
+.visor-flecha.ant{left:14px}
+.visor-flecha.sig{right:14px}
+.visor.acercado .visor-flecha{opacity:0;pointer-events:none}
+@media (hover:none){ .visor-flecha{display:none} }
+
+@media (max-width:960px),(max-aspect-ratio:1/1){
+  /* Vertical: el logo arriba, el texto abajo sobre un velo oscuro, los logos para saltar abajo del todo. */
+  .portal-escena::after{background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.55) 78%)}
+  .portal-ui{align-items:flex-end;padding-bottom:92px}
+  .portal-texto{width:100%}
+  .portal-nombre{font-size:clamp(2.4rem,11vw,4rem)}
+  .portal-frase{font-size:.98rem;margin-top:10px}
+  .portal-cifras{margin-top:12px}
+  .portal-fan{display:none}
+  .btn.portal-cta{margin-top:16px;width:100%}
+  .portal-puntos{top:auto;bottom:18px;right:50%;translate:50% 0;grid-auto-flow:column}
+  .portal-puntos button{width:52px;height:46px;border-radius:14px}
+  .portal-pista{display:none}
+}
+@media (max-height:500px) and (orientation:landscape){
+  .portal-frase,.portal-fan,.portal-cifras span{display:none}
+  .portal-nombre{font-size:2.6rem}
+  .portal-puntos button{width:44px;height:44px}
 }
 
 /* ---------- Accesibilidad ---------- */
@@ -1262,6 +1352,9 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
   <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
   <symbol id="i-hibrida" viewBox="0 0 24 24"><rect x="7" y="6" width="10" height="12" rx="1.2"/><path d="M7 6.5H5.5A2.5 2.5 0 0 0 3 9v6a2.5 2.5 0 0 0 2.5 2.5H7M17 6.5h1.5A2.5 2.5 0 0 1 21 9v6a2.5 2.5 0 0 1-2.5 2.5H17"/><path d="M5 10h.01M19 14h.01"/></symbol>
   <symbol id="i-arcade" viewBox="0 0 24 24"><path d="M4 16.5h16l-1.2 4H5.2z"/><path d="M12 16.5V9.5"/><circle cx="12" cy="7" r="2.6"/><path d="M15.5 14h2"/></symbol>
+  <symbol id="l-xbox" viewBox="0 0 1000 1000"><path fill="currentColor" stroke="none" d="M477 999C475 999 467 998 457 998C445 997 439 997 436 996C434 995 430 995 427 995C425 995 420 994 417 993C414 992 411 992 410 992C408 992 403 991 389 987C385 986 380 985 378 984C362 981 329 970 317 965C312 963 303 959 298 957C284 951 264 941 251 933C237 925 232 922 229 920C219 913 208 905 204 902C202 901 199 898 198 898C181 887 166 871 161 858C158 852 157 825 160 816C161 813 161 809 161 808C161 805 171 780 178 765C186 749 206 714 217 699C219 695 223 690 224 688C226 685 229 682 230 681C231 680 234 675 237 671C242 663 252 651 265 635C268 631 271 627 272 625C273 624 276 620 279 617C282 613 286 609 288 607C289 604 294 599 298 595C302 590 306 586 307 584C308 582 316 574 325 565C333 556 343 546 346 542C355 532 399 488 407 482C409 480 414 475 420 470C425 465 431 460 433 458C435 457 441 451 446 447C451 442 457 437 459 435C462 433 468 428 474 423C500 401 499 401 512 411C515 414 520 418 522 419C524 421 529 424 532 427C535 430 540 434 542 435C544 437 549 441 552 444C556 448 562 453 565 455C568 458 574 463 578 467C583 472 588 477 591 479C603 491 610 497 625 512C635 521 647 534 652 540C657 545 667 555 673 561C678 567 686 575 689 579C693 583 699 590 703 595C707 599 711 604 713 606C715 609 718 613 721 616C724 619 727 623 729 626C731 628 736 634 740 640C750 652 759 663 761 667C762 668 765 672 767 675C773 681 791 708 804 730C807 736 812 744 813 747C815 750 818 754 819 757C820 759 822 765 825 770C844 808 849 847 836 866C833 872 821 884 816 888C814 889 810 892 808 894C800 900 775 918 765 925C755 931 736 941 729 945C725 946 719 949 715 951C708 955 702 958 681 966C673 970 652 977 641 980C633 982 615 987 599 990C595 991 588 992 585 993C581 994 576 995 573 995C571 995 566 995 563 996C558 997 554 998 545 998C536 998 532 998 528 999C520 1001 484 1001 477 999Z M97 795C94 791 74 761 68 750C59 736 40 695 40 693C40 692 38 689 36 684C31 673 16 628 16 622C15 619 14 615 11 599C10 595 9 591 9 590C9 589 8 585 8 582C7 579 6 575 6 572C6 570 5 565 5 562C3 557 3 553 3 546C3 540 3 535 2 531C-1 521 -1 486 2 473C3 468 3 462 3 454C3 445 3 442 5 437C5 434 6 430 6 427C6 425 7 421 8 418C8 415 9 411 9 409C9 407 10 404 10 401C11 399 12 396 12 394C13 388 15 381 18 369C20 364 21 359 21 359C21 356 31 329 35 319C38 313 40 308 40 308C40 307 41 304 42 301C43 299 45 295 46 293C51 276 91 211 106 193C109 190 112 187 113 186C114 184 118 179 122 175C126 171 132 163 136 159C150 142 150 143 169 143C194 144 232 163 273 196C276 198 279 200 281 201C282 202 286 206 289 209C293 212 297 215 299 217C301 219 306 223 310 227C314 230 320 235 323 238C330 244 355 267 358 271C362 277 360 282 350 294C347 296 343 301 341 304C339 307 335 311 333 314C332 316 328 320 326 323C316 336 294 365 285 378C284 381 281 385 279 387C278 389 273 395 269 402C265 408 257 419 251 427C239 445 218 477 213 486C211 490 207 497 204 502C201 506 196 514 193 520C191 525 187 531 186 533C165 568 137 625 124 660C123 663 121 669 119 673C117 679 116 684 110 707C105 723 103 732 103 734C103 735 103 739 102 742C100 747 100 771 101 792C102 796 100 798 97 795Z M900 795C899 794 899 793 900 790C901 782 901 749 899 742C898 739 897 735 897 733C897 729 896 725 889 700C883 677 880 667 866 635C858 616 834 565 825 549C822 545 818 538 815 532C812 527 808 521 807 519C806 517 803 511 800 507C798 503 794 496 792 492C789 489 783 479 778 471C765 449 731 399 717 380C713 374 708 367 705 363C702 359 699 354 697 351C693 347 687 339 683 333C682 332 679 328 678 326C676 324 673 321 672 319C671 318 669 315 667 313C665 310 662 306 660 304C659 302 655 298 653 295C641 282 639 277 642 272C646 267 670 244 675 241C677 239 683 233 689 228C695 223 701 217 703 216C705 214 709 211 711 209C721 201 737 188 759 174C775 162 795 152 815 146C823 143 844 142 849 144C852 145 860 153 866 160C868 163 873 169 877 173C881 177 885 182 887 184C889 187 892 191 894 193C900 200 913 218 920 230C924 235 930 245 934 252C947 273 962 307 971 333C972 337 975 345 978 352C980 359 982 366 983 368C983 372 986 382 988 388C988 389 989 392 989 393C989 395 989 398 990 401C991 403 992 407 992 409C992 411 992 415 993 418C994 421 995 425 995 427C995 429 995 433 996 435C997 438 997 445 998 453C998 461 999 469 1000 472C1002 479 1001 522 999 531C998 535 998 540 998 547C998 555 997 558 996 563C995 566 995 570 995 573C995 575 994 579 993 582C992 585 992 589 992 590C992 592 991 595 990 599C989 602 989 605 989 606C989 610 977 651 973 663C971 668 968 675 966 681C964 686 962 693 960 695C959 698 956 704 954 709C950 717 942 734 933 750C926 763 909 788 904 793C901 797 901 797 900 795Z M465 129C436 115 426 110 411 104C408 103 401 100 397 99C392 97 387 95 385 94C384 94 379 92 376 91C367 88 351 83 341 81C336 80 329 78 326 78C323 77 318 76 316 76C314 76 310 75 307 74C302 73 253 73 249 74C247 75 245 74 246 72C247 70 262 61 276 54C312 37 343 25 375 17C399 11 406 9 408 9C410 9 414 8 417 8C420 7 424 6 426 6C428 6 432 6 434 5C437 4 444 3 455 3C466 3 474 2 476 1C483 -1 520 -1 527 1C530 2 536 3 546 3C556 3 563 4 566 5C568 6 572 6 574 6C577 6 582 7 586 8C590 9 596 10 600 11C611 13 620 15 626 17C629 17 634 19 638 20C651 24 680 34 693 40C697 41 702 44 704 45C717 50 747 66 751 69C755 73 754 73 727 73C703 73 701 73 696 75C694 75 689 76 687 76C684 76 679 77 676 78C649 84 640 87 632 89C628 91 621 93 617 94C611 96 589 104 579 109C577 110 572 112 570 113C567 113 564 115 563 115C562 116 559 117 556 118C553 119 540 126 527 133C497 149 505 149 465 129Z"/></symbol>
+  <symbol id="l-ps" viewBox="0 0 1000 775"><path fill="currentColor" stroke="none" d="M502 768C489 764 470 757 460 754C449 750 435 746 430 743C424 741 411 737 401 734C383 728 379 726 378 722C375 718 377 3 379 2C382 -1 387 0 398 3C404 5 409 6 410 6C411 6 415 8 420 9C425 11 435 14 443 16C450 18 461 21 467 23C473 24 479 26 479 26C481 26 491 29 512 35C518 37 529 40 537 42C574 51 612 63 628 71C633 73 638 75 639 75C641 75 677 95 687 101C718 122 740 145 758 175C763 184 771 205 777 223C778 227 779 231 780 233C780 235 781 242 781 247C782 253 782 259 783 261C785 267 785 303 783 311C782 315 781 320 781 326C781 332 781 337 780 341C779 344 778 351 777 355C765 406 741 438 705 448C695 451 662 452 650 449C647 448 643 447 642 447C639 447 618 440 612 437C603 432 604 449 603 292C603 136 604 150 592 137C569 109 538 116 535 149C534 160 533 444 534 546C534 548 533 566 533 586C532 630 533 643 534 655C535 660 535 665 535 667C534 669 534 693 534 721C533 770 533 772 532 774C529 777 526 776 502 768Z M570 764C568 763 566 683 569 677C570 674 573 673 588 668C594 666 602 663 604 662C610 660 625 654 646 647C652 644 661 641 665 639C669 638 676 635 681 633C724 618 752 608 758 606C767 602 781 597 800 591C838 578 852 570 852 559C854 545 837 540 792 541C772 541 767 542 736 552C722 557 710 560 710 560C708 560 676 571 672 573C670 574 666 575 664 576C653 579 632 587 625 590C621 591 610 595 600 599C591 602 581 605 578 606C568 611 568 611 568 563C568 519 568 519 571 515C575 512 610 499 616 499C619 499 642 494 661 489C670 487 674 486 680 486C684 486 689 485 691 485C694 484 701 483 707 483C713 482 721 481 725 481C736 479 767 479 777 481C782 481 792 482 800 483C809 483 816 484 819 485C821 485 825 486 826 486C828 486 832 487 836 487C839 488 843 489 845 489C847 489 852 490 855 491C858 492 861 492 862 492C875 492 921 507 947 518C977 531 1003 560 1001 577C998 604 962 627 875 658C864 662 851 666 846 668C841 670 832 673 826 675C819 677 806 682 796 686C785 690 773 694 768 696C762 698 753 701 746 704C739 706 726 711 715 715C705 718 691 723 685 726C679 728 670 731 666 732C663 734 654 737 648 739C641 741 627 747 617 750C606 754 592 759 587 761C573 766 572 766 570 764Z M204 691C201 691 197 690 195 690C193 690 188 689 184 688C180 687 175 687 174 687C170 687 159 684 148 682C145 681 141 680 140 680C139 680 135 679 131 679C127 678 121 676 116 675C112 674 106 673 103 672C100 672 96 671 94 670C93 670 87 668 81 666C76 665 67 662 62 660C37 652 12 636 5 620C-11 590 11 564 72 538C76 537 81 535 83 534C92 530 110 523 129 517C140 513 154 508 161 505C168 502 176 499 179 499C181 498 186 497 189 495C193 494 196 492 198 492C199 492 202 490 206 489C209 487 221 483 233 479C245 475 261 469 269 466C277 463 286 460 289 460C292 459 297 457 302 455C313 450 331 445 335 445C341 445 340 443 340 490C340 538 341 535 329 539C314 544 309 546 305 548C302 549 300 550 299 550C299 550 296 551 294 552C286 555 273 560 262 564C256 566 248 569 244 571C240 573 232 576 226 578C211 582 208 584 198 588C192 591 185 594 181 595C153 603 146 611 151 623C154 629 167 635 178 635C182 635 186 635 189 636C198 638 203 638 213 636C217 636 224 635 227 635C230 635 235 634 238 633C249 630 281 620 283 618C286 617 295 614 307 610C311 608 318 606 322 604C339 598 338 595 337 641C337 682 338 681 327 683C325 683 319 684 315 685C311 686 307 687 305 687C304 687 300 687 296 688C293 689 288 690 284 690C281 690 276 691 272 691C263 694 212 694 204 691Z"/></symbol>
+  <symbol id="l-nintendo" viewBox="0 0 1000 246"><path fill="currentColor" stroke="none" d="M122 245C121 245 119 245 116 245C113 245 112 245 110 244C109 244 107 244 107 244C106 244 104 244 103 243C101 243 100 243 99 242C96 242 91 241 88 239C72 235 55 226 45 217C44 216 42 215 41 214C40 213 31 204 29 202C29 202 28 200 27 199C25 197 24 196 20 189C17 185 10 173 9 168C6 161 3 152 3 150C3 150 3 149 3 148C3 147 2 145 2 144C2 144 2 142 2 141C1 139 1 138 1 135C1 132 1 130 1 127C0 123 0 123 1 119C1 117 1 114 1 111C1 108 1 107 2 105C2 104 2 103 2 102C2 101 3 100 3 98C3 97 4 95 4 93C7 80 15 64 22 53C23 52 25 50 25 49C25 49 27 47 28 46C29 45 30 43 31 43C32 41 39 33 41 32C42 32 43 31 44 29C50 25 64 16 69 13C71 13 73 12 75 11C79 9 88 6 90 6C91 6 93 5 96 4C104 3 105 2 106 2C107 2 109 2 110 2C111 1 112 1 116 1C119 1 120 1 122 1C125 0 875 0 878 1C880 1 881 1 885 1C888 1 889 1 891 2C892 2 893 2 894 2C895 2 897 3 905 4C907 5 909 6 910 6C912 6 922 9 925 11C926 11 928 12 929 13C935 15 951 25 957 30C958 31 959 32 960 33C961 34 968 41 969 42C970 43 971 45 973 46C981 56 989 70 993 84C995 88 996 91 996 91C996 92 996 93 996 94C998 99 998 101 998 102C998 103 998 105 999 106C999 107 999 109 999 112C999 115 999 117 1000 120C1000 123 1000 123 1000 127C999 130 999 132 999 135C999 138 999 139 999 141C998 142 998 144 998 144C998 145 998 147 997 148C997 149 997 150 997 150C997 150 996 152 996 154C996 156 995 158 994 160C994 161 993 163 993 164C993 165 992 167 991 168C990 173 983 185 980 190C976 196 976 197 974 199C973 200 971 202 971 202C970 204 961 213 959 214C958 215 957 216 956 217C950 222 936 231 928 234C927 234 924 235 923 236C919 237 912 240 909 240C908 241 907 241 905 241C904 242 902 242 901 242C901 243 899 243 898 243C896 244 894 244 894 244C893 244 891 244 890 244C889 245 887 245 884 245C881 245 879 245 878 245C874 246 126 246 122 245Z M882 216C883 215 885 215 886 215C888 215 889 215 890 215C891 214 893 214 893 214C894 214 895 214 896 213C897 213 899 213 901 212C902 212 904 212 905 211C912 209 928 202 933 197C933 197 935 196 935 195C938 194 950 182 952 179C957 172 960 165 963 158C965 153 966 152 967 146C967 145 968 143 968 143C968 142 968 141 968 140C968 139 968 137 969 136C970 134 970 113 969 111C969 110 968 108 968 107C968 105 968 103 968 102C966 95 965 91 964 89C963 88 962 86 962 86C961 82 955 71 952 68C951 67 950 66 950 65C949 64 938 53 936 52C936 51 935 50 934 50C930 46 920 41 915 39C914 38 912 38 912 38C911 37 903 35 900 34C896 33 893 32 892 32C892 32 890 32 889 31C888 31 886 31 884 31C883 31 881 31 880 30C876 29 124 29 121 30C119 31 118 31 116 31C114 31 112 31 112 31C111 32 109 32 108 32C104 32 91 36 88 38C88 38 86 39 85 39C81 41 71 46 66 50C66 51 64 51 64 52C62 53 51 63 50 65C50 66 49 67 49 67C46 71 40 82 38 86C37 88 37 90 36 91C35 93 34 96 33 101C33 102 33 104 32 104C32 104 32 105 32 106C32 107 32 109 31 110C31 113 31 133 31 136C32 137 32 139 32 140C32 141 32 142 33 143C33 144 33 145 33 145C33 146 34 148 35 152C38 161 44 174 51 182C53 184 63 194 65 196C77 204 88 209 99 212C101 213 103 213 104 213C105 214 106 214 107 214C108 214 109 214 110 215C111 215 112 215 114 215C116 215 117 215 119 216C122 217 878 217 882 216Z M512 185C511 185 509 184 508 184C507 184 505 184 504 184C503 183 502 183 502 183C500 183 489 179 485 176C476 170 467 157 467 151C467 151 467 150 466 149C466 146 466 138 466 136C466 135 467 134 467 133C470 118 485 105 506 100C509 99 524 99 527 100C528 100 529 101 530 101C535 101 549 108 556 115C561 120 565 127 567 135C569 143 572 142 535 142C504 142 504 142 503 143C502 144 502 162 503 166C505 171 508 174 513 175C521 178 530 172 531 164C531 163 532 162 532 161C532 160 532 159 532 158C532 154 531 155 548 155C566 155 566 154 564 158C558 171 538 184 525 184C524 184 522 185 521 185C519 186 515 186 512 185Z M842 184C841 183 840 183 839 183C832 183 819 175 811 166C800 154 799 135 808 122C809 120 810 119 810 118C811 116 815 112 817 111C818 110 819 110 820 109C823 106 835 101 838 101C838 101 839 100 840 100C841 100 843 100 844 100C845 100 847 99 848 99C850 98 854 98 857 99C858 99 860 100 861 100C863 100 868 101 872 102C883 106 894 116 899 125C903 132 904 143 902 148C902 149 902 150 902 151C901 153 899 158 898 160C892 170 886 175 875 180C872 182 869 182 866 183C866 183 864 183 863 184C860 185 844 184 842 184Z M729 182C727 182 725 182 724 182C723 181 721 181 721 181C719 180 711 176 709 175C708 174 706 173 705 172C704 171 703 170 702 169C702 168 701 167 700 166C692 156 690 137 696 124C704 109 724 97 738 101C739 102 740 102 741 102C742 102 747 103 751 105C757 108 757 110 757 86C757 67 757 67 757 66C759 65 788 65 789 66C790 67 790 179 789 180C788 181 788 181 773 181C757 181 757 181 756 179C755 177 754 177 751 178C745 181 737 183 729 182Z M100 180C99 179 99 67 100 66C101 65 133 65 135 66C136 66 137 68 140 73C141 75 142 77 143 78C144 79 145 81 146 82C146 83 148 86 149 88C154 95 157 100 160 104C160 106 162 108 163 109C165 114 169 119 170 122C171 124 174 128 177 133C178 135 180 137 181 139C183 143 184 143 185 143C185 142 185 139 185 104C186 67 186 67 186 66C188 65 219 65 220 66C221 67 221 179 220 180C219 181 219 181 203 181C186 181 186 181 185 179C184 177 181 173 178 167C176 165 174 161 172 159C171 156 169 154 168 153C168 152 167 150 166 149C165 148 164 146 163 145C163 144 162 142 161 140C160 139 158 136 157 135C156 133 154 130 153 128C151 125 149 122 148 120C146 117 145 115 140 108C137 102 136 101 135 103C135 104 135 118 135 142C135 179 135 179 134 180C133 181 102 181 100 180Z M242 180C241 179 241 106 242 105C244 104 274 104 275 105C276 106 276 179 275 180C274 181 244 181 242 180Z M296 180C295 179 295 106 296 105C297 104 297 104 312 104C330 104 330 104 330 107C330 111 330 111 334 109C345 102 357 99 366 101C367 102 368 102 369 102C369 102 371 103 373 103C386 108 396 121 396 132C396 133 396 135 397 136C398 140 397 179 396 180C395 181 365 181 364 180C363 179 363 179 363 154C363 127 363 128 361 125C360 123 357 119 355 118C346 113 335 116 331 125C330 128 330 128 330 154C329 179 329 179 329 180C327 181 297 181 296 180Z M418 180C417 179 417 179 417 142C416 105 416 105 416 104C415 103 415 103 407 103C397 103 397 103 397 98C397 92 397 93 407 93C417 93 416 94 417 85C417 76 415 77 434 77C453 77 451 76 451 85C451 93 450 93 460 93C470 93 469 93 469 98C469 103 469 103 461 103C456 103 453 103 453 103C451 104 451 102 451 142C451 179 451 179 450 180C449 181 419 181 418 180Z M580 180C579 179 579 106 580 105C581 104 581 104 596 104C614 104 613 104 613 107C613 111 614 111 617 109C621 106 628 103 632 102C633 102 634 101 635 101C641 99 653 101 660 105C669 110 677 118 678 126C679 127 679 129 679 130C680 133 680 179 679 180C678 181 649 181 647 180C647 179 647 179 647 155C647 125 647 125 641 120C633 113 619 115 615 125C614 127 614 127 613 153C613 179 613 179 613 180C611 181 581 181 580 180Z M858 174C862 172 864 170 865 166C866 164 866 164 866 141L866 119L865 116C859 104 843 105 839 118C837 123 837 163 839 166C841 170 844 173 847 175C850 176 856 175 858 174Z M749 169C752 167 754 165 756 160C758 153 757 124 754 119C749 110 732 112 729 122C729 122 729 124 728 125C727 128 728 156 729 159C730 165 733 168 737 170C740 171 746 171 749 169Z M531 130C532 129 533 125 532 122C532 122 531 120 531 119C529 108 513 104 506 114C502 118 501 127 503 130C504 131 530 131 531 130Z M907 100C902 100 900 99 895 95C893 92 892 91 892 88C892 87 891 86 891 85C891 84 891 83 891 83C891 82 891 80 892 79C894 70 905 64 914 67C923 71 928 80 925 89C922 97 917 101 907 100Z M913 98C926 93 927 76 914 70C910 68 909 68 904 70C899 71 898 73 895 77C890 89 901 102 913 98Z M903 92C901 91 901 76 903 75C904 74 913 74 914 75C917 77 918 80 915 83C913 85 913 86 915 88C916 92 916 92 914 92C912 92 912 92 910 89C908 84 906 84 905 89C905 92 904 93 903 92Z M242 87C241 86 241 86 241 77C241 64 239 65 259 65C278 65 276 64 276 77C276 86 276 86 275 87C274 89 244 89 242 87Z M910 82C912 81 913 78 911 77C909 76 907 76 906 78C904 81 907 83 910 82Z"/></symbol>
   <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.3s-7.4-4.5-9.1-9.1C1.8 8 3.7 4.6 7.2 4.6c2 0 3.4 1.1 4.8 2.9 1.4-1.8 2.8-2.9 4.8-2.9 3.5 0 5.4 3.4 4.3 6.6-1.7 4.6-9.1 9.1-9.1 9.1Z"/></symbol>
 </svg>
 
@@ -1272,11 +1365,10 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
       <span class="wordmark" translate="no">Electronic <b>Games</b></span>
     </a>
     <nav class="nav" aria-label="Principal">
-      <a href="#catalogo" data-ir-plat="PlayStation" style="--c:#3D8BFF">PlayStation</a>
-      <a href="#catalogo" data-ir-plat="Nintendo" style="--c:#FF4655">Nintendo</a>
-      <a href="#catalogo" data-ir-plat="Xbox" style="--c:#3DC23D">Xbox</a>
-      <a href="#catalogo" data-ir-plat="Retro" style="--c:var(--brand)">Retro</a>
-      <a href="#locales" class="nav-extra">Locales</a>
+      <a href="#catalogo" data-ir-plat="PlayStation" style="--c:#3D8BFF"><svg class="marca-ico" aria-hidden="true"><use href="#l-ps"/></svg><span class="nav-txt">PlayStation</span></a>
+      <a href="#catalogo" data-ir-plat="Nintendo" style="--c:#FF4655" aria-label="Nintendo"><svg class="marca-ico nin" aria-hidden="true"><use href="#l-nintendo"/></svg></a>
+      <a href="#catalogo" data-ir-plat="Xbox" style="--c:#3DC23D"><svg class="marca-ico" aria-hidden="true"><use href="#l-xbox"/></svg><span class="nav-txt">Xbox</span></a>
+      <a href="#catalogo" data-ir-plat="Retro" style="--c:var(--brand)"><svg class="marca-ico eg" aria-hidden="true"><use href="#i-logo"/></svg>Retro</a>
     </nav>
     <div class="top-actions">
       <button class="icon-btn" id="searchBtn" type="button" aria-label="Buscar productos (Ctrl+K)" aria-keyshortcuts="Control+K /" data-abrir-buscador><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg></button>
@@ -1322,7 +1414,7 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 
   <div class="cintas" aria-hidden="true">
     <div class="cinta cinta-b"><div class="cinta-pista"><span>Condado Shopping</span><i></i><span>Scala Shopping</span><i></i><span>Plaza del Valle</span><i></i><span>Pide por WhatsApp</span><i></i><span>Retira hoy</span><i></i><span>Paga como prefieras</span><i></i><span>Condado Shopping</span><i></i><span>Scala Shopping</span><i></i><span>Plaza del Valle</span><i></i><span>Pide por WhatsApp</span><i></i><span>Retira hoy</span><i></i><span>Paga como prefieras</span><i></i><span>Condado Shopping</span><i></i><span>Scala Shopping</span><i></i><span>Plaza del Valle</span><i></i><span>Pide por WhatsApp</span><i></i><span>Retira hoy</span><i></i><span>Paga como prefieras</span><i></i></div><div class="cinta-pista"><span>Condado Shopping</span><i></i><span>Scala Shopping</span><i></i><span>Plaza del Valle</span><i></i><span>Pide por WhatsApp</span><i></i><span>Retira hoy</span><i></i><span>Paga como prefieras</span><i></i><span>Condado Shopping</span><i></i><span>Scala Shopping</span><i></i><span>Plaza del Valle</span><i></i><span>Pide por WhatsApp</span><i></i><span>Retira hoy</span><i></i><span>Paga como prefieras</span><i></i><span>Condado Shopping</span><i></i><span>Scala Shopping</span><i></i><span>Plaza del Valle</span><i></i><span>Pide por WhatsApp</span><i></i><span>Retira hoy</span><i></i><span>Paga como prefieras</span><i></i></div></div>
-    <div class="cinta cinta-a"><div class="cinta-pista"><span>PlayStation</span><i></i><span>Nintendo</span><i></i><span>Xbox</span><i></i><span>Retro</span><i></i><span>Palancas</span><i></i><span>Juegos</span><i></i><span>Servicio técnico</span><i></i><span>Stock en vivo</span><i></i><span>PlayStation</span><i></i><span>Nintendo</span><i></i><span>Xbox</span><i></i><span>Retro</span><i></i><span>Palancas</span><i></i><span>Juegos</span><i></i><span>Servicio técnico</span><i></i><span>Stock en vivo</span><i></i></div><div class="cinta-pista"><span>PlayStation</span><i></i><span>Nintendo</span><i></i><span>Xbox</span><i></i><span>Retro</span><i></i><span>Palancas</span><i></i><span>Juegos</span><i></i><span>Servicio técnico</span><i></i><span>Stock en vivo</span><i></i><span>PlayStation</span><i></i><span>Nintendo</span><i></i><span>Xbox</span><i></i><span>Retro</span><i></i><span>Palancas</span><i></i><span>Juegos</span><i></i><span>Servicio técnico</span><i></i><span>Stock en vivo</span><i></i></div></div>
+    <div class="cinta cinta-a"><div class="cinta-pista"><span><svg class="cinta-logo"><use href="#l-ps"/></svg>PlayStation</span><i></i><span><svg class="cinta-logo nin"><use href="#l-nintendo"/></svg></span><i></i><span><svg class="cinta-logo"><use href="#l-xbox"/></svg>Xbox</span><i></i><span>Retro</span><i></i><span>Palancas</span><i></i><span>Juegos</span><i></i><span>Servicio técnico</span><i></i><span>Stock en vivo</span><i></i><span><svg class="cinta-logo"><use href="#l-ps"/></svg>PlayStation</span><i></i><span><svg class="cinta-logo nin"><use href="#l-nintendo"/></svg></span><i></i><span><svg class="cinta-logo"><use href="#l-xbox"/></svg>Xbox</span><i></i><span>Retro</span><i></i><span>Palancas</span><i></i><span>Juegos</span><i></i><span>Servicio técnico</span><i></i><span>Stock en vivo</span><i></i></div><div class="cinta-pista"><span><svg class="cinta-logo"><use href="#l-ps"/></svg>PlayStation</span><i></i><span><svg class="cinta-logo nin"><use href="#l-nintendo"/></svg></span><i></i><span><svg class="cinta-logo"><use href="#l-xbox"/></svg>Xbox</span><i></i><span>Retro</span><i></i><span>Palancas</span><i></i><span>Juegos</span><i></i><span>Servicio técnico</span><i></i><span>Stock en vivo</span><i></i><span><svg class="cinta-logo"><use href="#l-ps"/></svg>PlayStation</span><i></i><span><svg class="cinta-logo nin"><use href="#l-nintendo"/></svg></span><i></i><span><svg class="cinta-logo"><use href="#l-xbox"/></svg>Xbox</span><i></i><span>Retro</span><i></i><span>Palancas</span><i></i><span>Juegos</span><i></i><span>Servicio técnico</span><i></i><span>Stock en vivo</span><i></i></div></div>
   </div>
 
   <div class="confianza">
@@ -1333,6 +1425,16 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
       <li><svg class="ico" aria-hidden="true"><use href="#i-wrench"/></svg><span><b>Servicio técnico</b>Para consolas y palancas</span></li>
     </ul>
   </div>
+
+  <section class="portal" id="portal" aria-labelledby="portalTit" hidden>
+    <h2 class="sr" id="portalTit">Elige tu consola: PlayStation, Nintendo, Xbox y Retro</h2>
+    <div class="portal-escena" id="portalEscena">
+      <canvas id="portalCanvas" aria-hidden="true" data-cursor="Entrar"></canvas>
+      <div class="wrap portal-ui"><div class="portal-texto" id="portalTexto"></div></div>
+      <div class="portal-puntos" id="portalPuntos" role="group" aria-label="Ir a un mundo"></div>
+      <div class="portal-pista" aria-hidden="true"><span></span>Desliza para cambiar de mundo</div>
+    </div>
+  </section>
 
   <section class="sec" aria-labelledby="mundosTit" id="secMundos" hidden>
     <div class="wrap">
@@ -1640,10 +1742,10 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
   <nav class="menu-nav" aria-label="Menú">
     <a href="#catalogo" data-abrir-buscador>Buscar productos</a>
     <a href="#catalogo" data-abrir-favoritos>Mis favoritos<span id="menuFavN"></span></a>
-    <a href="#catalogo" data-ir-plat="PlayStation">PlayStation</a>
-    <a href="#catalogo" data-ir-plat="Nintendo">Nintendo</a>
-    <a href="#catalogo" data-ir-plat="Xbox">Xbox</a>
-    <a href="#catalogo" data-ir-plat="Retro">Retro</a>
+    <a href="#catalogo" data-ir-plat="PlayStation"><svg class="marca-ico" aria-hidden="true"><use href="#l-ps"/></svg>PlayStation</a>
+    <a href="#catalogo" data-ir-plat="Nintendo" aria-label="Nintendo"><svg class="marca-ico nin" aria-hidden="true"><use href="#l-nintendo"/></svg></a>
+    <a href="#catalogo" data-ir-plat="Xbox"><svg class="marca-ico" aria-hidden="true"><use href="#l-xbox"/></svg>Xbox</a>
+    <a href="#catalogo" data-ir-plat="Retro"><svg class="marca-ico eg" aria-hidden="true"><use href="#i-logo"/></svg>Retro</a>
     <a href="#catalogo">Catálogo completo</a>
     <a href="#catalogo" data-abrir-vitrina>Vitrina en pantalla completa</a>
     <a href="#comprar">Cómo comprar</a>
@@ -1703,6 +1805,18 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 <div class="cursor" id="cursor" aria-hidden="true"><div class="cursor-anillo"><span id="cursorTxt"></span></div></div>
 
 <a class="wa-float" id="waFloat" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
+
+<!-- Visor de fotos a pantalla completa: pellizcar para acercar, arrastrar y deslizar -->
+<dialog id="visor" class="visor" aria-label="Foto ampliada">
+  <div class="visor-lienzo" id="visorLienzo"><img id="visorImg" alt="" draggable="false"></div>
+  <div class="visor-barra">
+    <span class="visor-n" id="visorN"></span>
+    <span class="visor-pista" id="visorPista">Pellizca o toca dos veces para acercar</span>
+    <button class="close" id="visorCerrar" type="button" aria-label="Cerrar">×</button>
+  </div>
+  <button class="visor-flecha ant" id="visorAnt" type="button" aria-label="Foto anterior"><svg class="ico" aria-hidden="true"><use href="#i-left"/></svg></button>
+  <button class="visor-flecha sig" id="visorSig" type="button" aria-label="Foto siguiente"><svg class="ico" aria-hidden="true"><use href="#i-right"/></svg></button>
+</dialog>
 
 <!-- Buscador rápido -->
 <dialog id="cmdk" class="cmdk" aria-label="Buscar productos">
@@ -1766,10 +1880,11 @@ const CONFIG = {
   mundos: {
     // icono: emblema propio en 3D. logo: ruta a un logo oficial SOLO si la marca o el distribuidor lo autorizan
     // (p. ej. "logos/playstation.svg"); reemplaza al emblema. Xbox y Nintendo no permiten usar sus logos libremente.
-    PlayStation: {c: "#0070D1", c2: "#00225A", frase: "Consolas, juegos y DualSense para PS5 y PS4.", subs: ["PS5", "PS4"], icono: "i-pad", logo: ""},
-    Nintendo:    {c: "#E60012", c2: "#5C0007", frase: "Switch 2, Switch, juegos y controles.", subs: [], icono: "i-hibrida", logo: ""},
-    Xbox:        {c: "#107C10", c2: "#052E05", frase: "Consolas Xbox, juegos y controles.", subs: [], icono: "i-console", logo: ""},
-    Retro:       {c: "#FF7A00", c2: "#5A2300", frase: "Consolas portátiles, clásicos y palancas retro.", subs: [], icono: "i-arcade", logo: ""}
+    // logo: símbolo del logo de la marca en el sprite SVG; logo3d: su forma en logos3d.json ("eg" = el de la tienda).
+    PlayStation: {c: "#0070D1", c2: "#00225A", frase: "Consolas, juegos y DualSense para PS5 y PS4.", subs: ["PS5", "PS4"], logo: "l-ps", logo3d: "playstation"},
+    Nintendo:    {c: "#E60012", c2: "#5C0007", frase: "Switch 2, Switch, juegos y controles.", subs: [], logo: "l-nintendo", logo3d: "nintendo"},
+    Xbox:        {c: "#107C10", c2: "#052E05", frase: "Consolas Xbox, juegos y controles.", subs: [], logo: "l-xbox", logo3d: "xbox"},
+    Retro:       {c: "#FF7A00", c2: "#5A2300", frase: "Consolas portátiles, clásicos y palancas retro.", subs: [], logo: "i-logo", logo3d: "eg"}
   },
   atajos: ["PS5", "Nintendo Switch", "Pokémon", "Palanca", "Mario"],
   iconos: { consolas: "i-console", palancas: "i-pad", juegos: "i-disc", accesorios: "i-head" }
@@ -1915,10 +2030,14 @@ function placeholder(p, i){
 }
 // El código del producto viaja en data-code (dato), nunca dentro del JavaScript del atributo onerror.
 function onPhotoError(img){
+  // Si falló la copia grande (zoom/), se usa la foto normal; si falló la normal, la portada.
+  if (img.srcset){ img.removeAttribute("srcset"); img.src = img.src; return; }
   img.onerror = null;
   const p = buscar(img.dataset.code);
   if (p) img.src = placeholder(p, Number(img.dataset.i) || 0);
 }
+// fotos/<código>/1.jpg -> fotos/<código>/zoom/1.jpg (2000 px: la crean mejorar_fotos.py y subir_fotos.py)
+const fotoZoom = src => src.replace(/\/([^/]+\.jpg)$/, "/zoom/$1");
 const plataformasDe = p => p._plat || (p._plat = CONFIG.plataformas.filter(([, re])=>re.test(p.name.toUpperCase())).map(([n])=>n));
 // Etiqueta de color con la consola exacta ("PS5", "Switch 2", "Xbox"…); si sirve para varias marcas, "Multi".
 const colorMundo = m => CONFIG.mundos[m]?.c || "#3a373d";
@@ -1965,12 +2084,11 @@ const hasStock = p => p.digital || (S.local === "all" ? Object.values(p.stock).s
 function cardHTML(p, lazy = true){
   const [cls, txt] = status(p);
   const efectivo = p.price_efectivo ?? p.price, tarjeta = p.price_tarjeta ?? p.price;
-  const stickers = (p.top ? `<span class="sticker">Top ventas</span>` : "") + (p.nuevo ? `<span class="sticker nuevo">Nuevo</span>` : "")
-    + (p.estado === "medio-uso" ? `<span class="sticker uso">Medio uso</span>` : "");
+  const stickers = (p.top ? `<span class="sticker">Top ventas</span>` : "") + (p.nuevo ? `<span class="sticker nuevo">Nuevo</span>` : "");
   return `<div class="card" data-code="${esc(p.code)}" role="listitem">
     ${stickers ? `<div class="stickers">${stickers}</div>` : ""}
     <button class="card-open" type="button" data-code="${esc(p.code)}">
-      <div class="img"><img src="${esc(p.photos.length ? p.photos[0] : placeholder(p,0))}" alt="" width="500" height="500" ${lazy ? 'loading="lazy"' : ""} decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)">${sellos(p)}</div>
+      <div class="img"><img src="${esc(p.photos.length ? p.photos[0] : placeholder(p,0))}" alt="" width="500" height="500" ${lazy ? 'loading="lazy"' : ""} decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)"></div>
       <div class="body">
         <div class="cat-row"><span class="cat">${esc(p.cat_label || "")}</span>${etiquetaPlat(p)}</div>
         <div class="name">${esc(p.name)}</div>
@@ -1985,15 +2103,8 @@ function cardHTML(p, lazy = true){
   </div>`;
 }
 const fotoDe = p => p.photos.length ? p.photos[0] : placeholder(p, 0);
-// Estado y origen vienen de descripciones.py (leídos del nombre); el ahorro es tarjeta menos efectivo.
+// Ahorro pagando en efectivo o transferencia (tarjeta menos efectivo): se muestra en la ficha.
 const ahorroDe = p => Math.max(0, (p.price_tarjeta ?? p.price) - (p.price_efectivo ?? p.price));
-const fmtCorto = n => "$" + (Math.abs(n - Math.round(n)) < 0.005 ? Math.round(n) : n.toFixed(2));
-const ORIGEN = {original: "Original", generico: "Genérico"};
-function sellos(p){
-  const a = ahorroDe(p);
-  return (ORIGEN[p.origen] ? `<span class="sello-origen ${p.origen}">${p.origen === "original" ? '<svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>' : ""}${ORIGEN[p.origen]}</span>` : "")
-    + (a >= 1 ? `<span class="sello-ahorro">Efectivo <b>−${fmtCorto(a)}</b></span>` : "");
-}
 const skeletons = n => Array.from({length: n}, ()=>`<div class="skel" aria-hidden="true"><div class="img"></div><i></i><i></i><i></i></div>`).join("");
 
 // Destacados: primero lo que tiene foto; dentro de cada grupo se respeta lo más vendido.
@@ -2073,6 +2184,7 @@ async function loadProducts(){
   const conPlat = CONFIG.plataformas.filter(([n])=>porPlat.get(n));
   $("plat").insertAdjacentHTML("beforeend", conPlat.map(([n])=>`<option value="${esc(n)}">${esc(n)} (${porPlat.get(n)})</option>`).join(""));
   pintarMundos();
+  prepararPortal();
   prepararAnillo();
   datosEstructurados();
 
@@ -2126,9 +2238,8 @@ function pintarMundos(){
       <span class="desglose">${[...porCat].sort((a, b)=>b[1] - a[1]).map(([c, n])=>`<span>${cuenta(n, c)}</span>`).join("")}</span>
       ${fotos.length === 3 ? `<span class="fan" aria-hidden="true">${fotos.map(p=>`<span><img src="${esc(p.photos[0])}" alt="" width="200" height="200" loading="lazy" decoding="async"></span>`).join("")}</span>` : "<span></span>"}
       <span class="ir" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
-      <span class="emblema" aria-hidden="true"><span class="emblema-in"><span class="emblema-gira">${cfg.logo
-        ? `<img src="${esc(cfg.logo)}" alt="">`
-        : Array.from({length: 12}, (_, k)=>`<svg class="ico" style="--z:${k}"><use href="#${cfg.icono}"/></svg>`).join("")}</span></span></span>
+      <span class="emblema${m === "Nintendo" ? " ancho" : ""}" aria-hidden="true"><span class="emblema-in"><span class="emblema-gira">${
+        Array.from({length: 12}, (_, k)=>`<svg style="--z:${k}"><use href="#${cfg.logo}"/></svg>`).join("")}</span></span></span>
     </button>`;
   }).join("");
   $("mundos").innerHTML = html;
@@ -2144,7 +2255,7 @@ function pintarMundoActual(){
     const subs = cfg.subs.filter(s=>PRODUCTS.some(p=>plataformasDe(p).includes(s)));
     $("mundoBanner").style.setProperty("--c", cfg.c);
     $("mundoBanner").style.setProperty("--c2", cfg.c2);
-    $("mundoBanner").innerHTML = `<div><h3>Mundo ${esc(m)}</h3><p>${n} productos. ${esc(cfg.frase)}</p></div>
+    $("mundoBanner").innerHTML = `<svg class="banner-logo${m === "Nintendo" ? " ancho" : ""}" aria-hidden="true"><use href="#${cfg.logo}"/></svg><div><h3>Mundo ${esc(m)}</h3><p>${n} productos. ${esc(cfg.frase)}</p></div>
       <div class="mundo-subs" role="group" aria-label="Consola">
         ${subs.length ? `<button type="button" data-ir-plat="${esc(m)}" aria-pressed="${S.plat === m}">Todo ${esc(m)}</button>` +
           subs.map(s=>`<button type="button" data-ir-plat="${esc(s)}" aria-pressed="${S.plat === s}">${esc(s)}</button>`).join("") : ""}
@@ -2412,10 +2523,7 @@ function openProduct(code){
   $("dCode").textContent = `Código ${p.code}`;
   const efectivo = p.price_efectivo ?? p.price, tarjeta = p.price_tarjeta ?? p.price;
   $("dPrice").innerHTML = `<div class="price-row">${money(efectivo, true)}<span class="price-tag">Efectivo o transferencia, IVA incluido</span>${tarjeta > efectivo ? `<span class="price-tag">Con tarjeta: <b>$${tarjeta.toFixed(2)}</b></span>` : ""}</div>`;
-  const ahorro = ahorroDe(p), chips = [
-    p.estado === "medio-uso" ? `<span class="det uso">Medio uso</span>` : "",
-    ORIGEN[p.origen] ? `<span class="det ${p.origen}">${ORIGEN[p.origen]}</span>` : "",
-    etiquetaPlat(p)].join("");
+  const ahorro = ahorroDe(p), chips = etiquetaPlat(p);
   $("dDetalles").innerHTML =
     (ahorro >= 1 ? `<p class="ahorro-banner"><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg><span>Pagando en <b>efectivo o transferencia</b> ahorras <b>${fmt(ahorro)}</b></span></p>` : "")
     + (chips ? `<div class="det-chips">${chips}</div>` : "")
@@ -2427,7 +2535,10 @@ function openProduct(code){
 
   const fotos = p.photos.length ? p.photos : [placeholder(p, 0)];
   const show = v => {
-    $("dMain").innerHTML = `<img src="${esc(fotos[v])}" alt="${esc(p.name)}, foto ${v+1}" width="500" height="500" data-code="${esc(p.code)}" data-i="${v}" onerror="onPhotoError(this)">`;
+    // Celular de alta resolución: el navegador toma la copia de 2000 px (se ve nítida al acercar).
+    const grande = p.photos.length ? ` srcset="${esc(fotos[v])} 1000w, ${esc(fotoZoom(fotos[v]))} 2000w" sizes="(max-width: 700px) 94vw, 450px"` : "";
+    $("dMain").innerHTML = `<img src="${esc(fotos[v])}"${grande} alt="${esc(p.name)}, foto ${v+1}" width="500" height="500" data-code="${esc(p.code)}" data-i="${v}" onerror="onPhotoError(this)">`;
+    $("dMain").dataset.v = v;
     $("dThumbs").querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-current", i === v));
     $("dMain").classList.toggle("zoomable", p.photos.length > 0);
     $("dMain").classList.remove("zoom");
@@ -2485,20 +2596,15 @@ function origenZoom(x, y){
 $("dMain").addEventListener("pointermove", e=>{
   if (e.pointerType !== "mouse" || !$("dMain").classList.contains("zoomable")) return;
   origenZoom(e.clientX, e.clientY);
+  const img = $("dMain").querySelector("img");
+  if (img?.srcset && img.sizes !== "2000px") img.sizes = "2000px";   // la lupa usa la copia de 2000 px
   $("dMain").classList.add("zoom");
 });
 $("dMain").addEventListener("pointerleave", e=>{ if (e.pointerType === "mouse") $("dMain").classList.remove("zoom"); });
-$("dMain").addEventListener("click", e=>{
-  if (matchMedia("(hover: hover)").matches || !$("dMain").classList.contains("zoomable")) return;
-  const acercar = !$("dMain").classList.contains("zoom");
-  if (acercar) origenZoom(e.clientX, e.clientY);
-  $("dMain").classList.toggle("zoom", acercar);
+$("dMain").addEventListener("click", ()=>{
+  if (!$("dMain").classList.contains("zoomable") || !D) return;
+  abrirVisor(D.p, Number($("dMain").dataset.v) || 0);
 });
-$("dMain").addEventListener("touchmove", e=>{
-  if (!$("dMain").classList.contains("zoom")) return;
-  e.preventDefault();   // mientras está acercada, el dedo mueve la foto (no la página)
-  origenZoom(e.touches[0].clientX, e.touches[0].clientY);
-}, {passive: false});
 
 // Celular: el reflejo de luz cruza cada foto cuando el producto aparece en pantalla (una vez).
 if (matchMedia("(hover: none)").matches && !reduceMotion() && "IntersectionObserver" in window){
@@ -2529,7 +2635,7 @@ if (matchMedia("(hover: none)").matches && !reduceMotion() && "DeviceOrientation
 }
 
 // Diagnóstico: abrir la página con ?diag muestra qué soporta este celular o navegador.
-const VERSION = "2026-09-25-fotos";
+const VERSION = "2026-09-25-mundos-3d";
 if (new URLSearchParams(location.search).has("diag")){
   const d = document.createElement("pre");
   d.style.cssText = "position:fixed;left:8px;right:8px;bottom:8px;z-index:99;margin:0;background:#fff;color:#000;font:12px/1.5 monospace;padding:12px;border-radius:12px;white-space:pre-wrap;box-shadow:0 10px 30px rgba(0,0,0,.5)";
@@ -2588,6 +2694,200 @@ if (!reduceMotion()){
       inclinar(14 + (b - 45) / 7, g / 4);
     }, {passive: true});
   }
+}
+
+// ===== Portal de los mundos: logos en 3D que giran con el scroll =====
+// Cada marca ocupa la pantalla con su color y su logo en relieve; el texto, las cifras y el botón
+// de entrar cambian con ella. Sin WebGL 2, con "reducir movimiento" o ahorro de datos, quedan las tarjetas.
+const PORTAL = {mundos: [], i: -1, pista: true};
+function prepararPortal(){
+  const puede = "WebGL2RenderingContext" in window && "ResizeObserver" in window && "IntersectionObserver" in window && !navigator.connection?.saveData && !reduceMotion();
+  const orden = {consolas: 0, palancas: 1, juegos: 2, accesorios: 3};
+  PORTAL.mundos = Object.entries(CONFIG.mundos).map(([m, cfg])=>{
+    const de = PRODUCTS.filter(p=>plataformasDe(p).includes(m));
+    const fotos = de.filter(p=>p.photos.length).sort((a, b)=>(orden[a.cat] ?? 9) - (orden[b.cat] ?? 9)).slice(0, 3);
+    const porCat = new Map();
+    for (const p of de) porCat.set(p.cat_label || p.cat, (porCat.get(p.cat_label || p.cat) || 0) + 1);
+    return {m, cfg, n: de.length, fotos, porCat: [...porCat].sort((a, b)=>b[1] - a[1])};
+  }).filter(w=>w.n);
+  if (!puede || PORTAL.mundos.length < 2) return;
+  $("portal").hidden = false;
+  $("portal").style.setProperty("--pasos", PORTAL.mundos.length - 1);
+  new IntersectionObserver(([e])=>document.body.classList.toggle("en-portal", e.isIntersecting), {rootMargin: "-40% 0px -40% 0px"}).observe($("portal"));
+  document.body.classList.add("con-portal");
+  $("portalPuntos").innerHTML = PORTAL.mundos.map((w, k)=>`<button type="button" data-portal="${k}" aria-label="Ver el mundo ${esc(w.m)}" style="--c:${w.cfg.c}">
+    <svg class="${w.m === "Nintendo" ? "ancho" : ""}" aria-hidden="true"><use href="#${w.cfg.logo}"/></svg></button>`).join("");
+  pintarPortal(0);
+  const io = new IntersectionObserver(([e])=>{ if (e.isIntersecting){ io.disconnect(); cargarPortal(); } }, {rootMargin: "900px 0px"});
+  io.observe($("portal"));
+}
+async function cargarPortal(){
+  try {
+    const [{iniciar}, logos] = await Promise.all([import(`./portal3d.js?v=${VERSION}`), fetch(`logos3d.json?v=${VERSION}`).then(r=>r.json())]);
+    iniciar({contenedor: $("portalEscena"), lienzo: $("portalCanvas"), seccion: $("portal"), logos, reducir: reduceMotion(),
+      mundos: PORTAL.mundos.map(w=>({logo: w.cfg.logo3d, c: w.cfg.c, c2: w.cfg.c2})),
+      alCambiar: pintarPortal,
+      alElegir: k=>{ const w = PORTAL.mundos[k]; medir("mundo", {plataforma: w.m, desde: "portal"}); aplicarFiltro({plat: w.m, cat: "all", q: ""}); }});
+    $("portalEscena").classList.add("listo");
+  } catch(e) {
+    $("portal").hidden = true;   // sin 3D: vuelven las tarjetas de los mundos
+    document.body.classList.remove("con-portal");
+  }
+}
+function pintarPortal(k){
+  const w = PORTAL.mundos[k]; if (!w || PORTAL.i === k) return;
+  if (PORTAL.i >= 0 && PORTAL.pista){ PORTAL.pista = false; $("portal").classList.add("sin-pista"); }
+  PORTAL.i = k;
+  const n = PORTAL.mundos.length, dos = x => String(x).padStart(2, "0");
+  const cuenta = (c, t) => `${c} ${esc((c === 1 ? t.replace(/s$/i, "") : t).toLowerCase())}`;
+  const e = $("portalEscena");
+  e.style.setProperty("--pc", w.cfg.c);
+  e.style.setProperty("--pc2", w.cfg.c2);
+  $("portalTexto").innerHTML = `
+    <p class="kicker">Elige tu consola · ${dos(k + 1)}/${dos(n)}</p>
+    <p class="portal-nombre">${esc(w.m)}</p>
+    <p class="portal-frase">${esc(w.cfg.frase)}</p>
+    <p class="portal-cifras"><b>${w.n}</b> productos ${w.porCat.slice(0, 4).map(([c, x])=>`<span>${cuenta(x, c)}</span>`).join("")}</p>
+    ${w.fotos.length ? `<div class="portal-fan" aria-hidden="true">${w.fotos.map((p, i)=>`<span style="--k:${i}"><img src="${esc(p.photos[0])}" alt="" width="120" height="120" decoding="async"></span>`).join("")}</div>` : ""}
+    <a class="btn portal-cta" href="#catalogo" data-ir-plat="${esc(w.m)}">Entrar al mundo ${esc(w.m)}<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>`;
+  const t = $("portalTexto");
+  t.classList.remove("entra"); void t.offsetWidth; t.classList.add("entra");
+  $("portalPuntos").querySelectorAll("button").forEach((b, i)=>b.setAttribute("aria-current", i === k));
+}
+// Los botones de logos llevan la página hasta el mundo elegido (la tornamesa gira sola).
+$("portalPuntos").addEventListener("click", e=>{
+  const b = e.target.closest("[data-portal]"); if (!b) return;
+  const s = $("portal"), k = Number(b.dataset.portal), recorrido = s.offsetHeight - innerHeight;
+  scrollTo({top: s.getBoundingClientRect().top + scrollY + recorrido * k / (PORTAL.mundos.length - 1), behavior: reduceMotion() ? "auto" : "smooth"});
+});
+
+// ===== Visor de fotos a pantalla completa =====
+// Muestra la copia de 2000 px: pellizcar o tocar dos veces acerca (hasta 5x), arrastrar recorre la
+// foto, deslizar de lado cambia de foto y deslizar hacia abajo cierra. Con mouse: clic o rueda acercan.
+const V = {p: null, i: 0, s: 1, x: 0, y: 0, dedos: new Map(), gesto: null, ultimoToque: 0};
+function abrirVisor(p, i){
+  if (!p.photos.length) return;
+  V.p = p; V.i = i;
+  $("visor").showModal();
+  pintarVisor();
+  medir("zoom-foto", {codigo: p.code});
+}
+function pintarVisor(){
+  const src = V.p.photos[V.i], img = $("visorImg");
+  V.s = 1; V.x = V.y = 0;
+  img.style.opacity = "";
+  aplicarVisor(false);
+  img.alt = `${V.p.name}, foto ${V.i + 1}`;
+  img.src = src;   // la foto normal aparece al instante y se cambia por la de 2000 px cuando llega
+  const grande = new Image();
+  grande.onload = ()=>{ if (V.p?.photos[V.i] === src) img.src = grande.src; };
+  grande.src = fotoZoom(src);
+  const n = V.p.photos.length;
+  $("visorN").textContent = n > 1 ? `${V.i + 1} / ${n}` : "";
+  $("visorAnt").hidden = $("visorSig").hidden = n < 2;
+}
+function limitesVisor(){
+  const img = $("visorImg"), r = $("visorLienzo").getBoundingClientRect();
+  return {mx: Math.max(0, (img.clientWidth * V.s - r.width) / 2), my: Math.max(0, (img.clientHeight * V.s - r.height) / 2)};
+}
+function aplicarVisor(anim = true){
+  const {mx, my} = limitesVisor();
+  V.x = Math.max(-mx, Math.min(mx, V.x));
+  V.y = Math.max(-my, Math.min(my, V.y));
+  const img = $("visorImg");
+  img.style.transition = anim && !reduceMotion() ? "transform 280ms cubic-bezier(.2,.8,.2,1)" : "none";
+  img.style.transform = `translate(${V.x.toFixed(1)}px, ${V.y.toFixed(1)}px) scale(${V.s.toFixed(3)})`;
+  $("visor").classList.toggle("acercado", V.s > 1.02);
+}
+// Acerca a la escala s dejando quieto el punto (cx, cy) de la pantalla.
+function zoomVisor(s, cx, cy, anim){
+  const r = $("visorLienzo").getBoundingClientRect();
+  const ox = cx - (r.left + r.width / 2), oy = cy - (r.top + r.height / 2);
+  const s1 = Math.max(1, Math.min(5, s));
+  V.x = ox - (ox - V.x) * s1 / V.s;
+  V.y = oy - (oy - V.y) * s1 / V.s;
+  V.s = s1;
+  aplicarVisor(anim);
+}
+function cambiarFotoVisor(d){
+  const n = V.p.photos.length; if (n < 2) return;
+  V.i = (V.i + d + n) % n;
+  pintarVisor();
+  if (!reduceMotion()) $("visorImg").animate?.([{opacity: 0, translate: `${d * 40}px 0`}, {opacity: 1, translate: "0 0"}], {duration: 260, easing: "cubic-bezier(.2,.8,.2,1)"});
+}
+{
+  const L = $("visorLienzo"), dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+  L.addEventListener("pointerdown", e=>{
+    L.setPointerCapture(e.pointerId);
+    V.dedos.set(e.pointerId, {x: e.clientX, y: e.clientY});
+    const d = [...V.dedos.values()];
+    if (d.length === 1) V.gesto = {tipo: "uno", x: e.clientX, y: e.clientY, vx: V.x, vy: V.y, movio: false};
+    else if (d.length === 2) V.gesto = {tipo: "pinza", d: dist(d[0], d[1]), s: V.s, mx: (d[0].x + d[1].x) / 2, my: (d[0].y + d[1].y) / 2, vx: V.x, vy: V.y};
+  });
+  L.addEventListener("pointermove", e=>{
+    if (!V.dedos.has(e.pointerId) || !V.gesto) return;
+    V.dedos.set(e.pointerId, {x: e.clientX, y: e.clientY});
+    const d = [...V.dedos.values()], g = V.gesto;
+    if (g.tipo === "pinza" && d.length === 2){
+      const mx = (d[0].x + d[1].x) / 2, my = (d[0].y + d[1].y) / 2;
+      V.s = g.s; V.x = g.vx + (mx - g.mx); V.y = g.vy + (my - g.my);
+      zoomVisor(g.s * dist(d[0], d[1]) / g.d, mx, my, false);
+    } else if (g.tipo === "uno"){
+      const dx = e.clientX - g.x, dy = e.clientY - g.y;
+      if (Math.hypot(dx, dy) > 8) g.movio = true;
+      if (V.s > 1.02){ V.x = g.vx + dx; V.y = g.vy + dy; aplicarVisor(false); }
+      else if (g.movio && e.pointerType !== "mouse"){   // sin acercar: la foto sigue al dedo (cambiar o cerrar)
+        const img = $("visorImg");
+        img.style.transition = "none";
+        img.style.transform = Math.abs(dx) > Math.abs(dy) ? `translate(${dx}px, 0)` : `translate(0, ${Math.max(0, dy)}px) scale(${1 - Math.max(0, dy) / 1400})`;
+        img.style.opacity = Math.abs(dy) > Math.abs(dx) ? String(1 - Math.max(0, dy) / 500) : "";
+      }
+    }
+  });
+  const soltar = e=>{
+    if (!V.dedos.has(e.pointerId)) return;
+    V.dedos.delete(e.pointerId);
+    const g = V.gesto;
+    if (V.dedos.size === 1 && g?.tipo === "pinza"){   // levantó un dedo: sigue arrastrando con el otro
+      const [q] = V.dedos.values();
+      V.gesto = {tipo: "uno", x: q.x, y: q.y, vx: V.x, vy: V.y, movio: true};
+      return;
+    }
+    if (V.dedos.size) return;
+    V.gesto = null;
+    if (!g || g.tipo !== "uno") return;
+    const dx = e.clientX - g.x, dy = e.clientY - g.y;
+    if (!g.movio){
+      // Toque: con mouse, un clic acerca/aleja; con el dedo, dos toques seguidos.
+      const ahora = performance.now(), doble = ahora - V.ultimoToque < 320;
+      V.ultimoToque = doble ? 0 : ahora;
+      if (e.pointerType === "mouse" || doble){
+        if (V.s > 1.02){ V.s = 1; V.x = V.y = 0; aplicarVisor(); }
+        else zoomVisor(2.6, e.clientX, e.clientY, true);
+      }
+      return;
+    }
+    if (V.s <= 1.02 && e.pointerType !== "mouse"){
+      $("visorImg").style.opacity = "";
+      if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy)) cambiarFotoVisor(dx < 0 ? 1 : -1);
+      else if (dy > 120) $("visor").close();
+      else aplicarVisor();
+    }
+  };
+  L.addEventListener("pointerup", soltar);
+  L.addEventListener("pointercancel", soltar);
+  L.addEventListener("wheel", e=>{ e.preventDefault(); zoomVisor(V.s * (e.deltaY < 0 ? 1.18 : 1 / 1.18), e.clientX, e.clientY, false); }, {passive: false});
+  $("visorCerrar").onclick = ()=>$("visor").close();
+  $("visorAnt").onclick = ()=>cambiarFotoVisor(-1);
+  $("visorSig").onclick = ()=>cambiarFotoVisor(1);
+  $("visor").addEventListener("keydown", e=>{
+    if (e.key === "ArrowRight") cambiarFotoVisor(1);
+    else if (e.key === "ArrowLeft") cambiarFotoVisor(-1);
+    else if (e.key === "+" || e.key === "=") zoomVisor(V.s * 1.4, innerWidth / 2, innerHeight / 2, true);
+    else if (e.key === "-") zoomVisor(V.s / 1.4, innerWidth / 2, innerHeight / 2, true);
+  });
+  $("visor").addEventListener("close", ()=>{ V.dedos.clear(); V.gesto = null; });
+  addEventListener("resize", ()=>{ if ($("visor").open) aplicarVisor(false); }, {passive: true});
 }
 
 // ===== Vitrina 360°: anillo 3D de productos alrededor del logo en relieve =====
@@ -2857,7 +3157,7 @@ function listaVitrina(){
 function pintarControlesVitrina(){
   const mundos = Object.keys(CONFIG.mundos).filter(m=>PRODUCTS.some(p=>p.photos.length && maxQty(p) > 0 && plataformasDe(p).includes(m)));
   $("kMundos").innerHTML = [["todo", "Todo"], ...mundos.map(m=>[m.toLowerCase(), m])]
-    .map(([k, n])=>`<button type="button" data-k-mundo="${esc(k)}" aria-pressed="${K.mundo === k}">${esc(n)}</button>`).join("");
+    .map(([k, n])=>`<button type="button" data-k-mundo="${esc(k)}" aria-pressed="${K.mundo === k}">${CONFIG.mundos[n] ? `<svg class="k-logo${n === "Nintendo" ? " ancho" : ""}" aria-hidden="true"><use href="#${CONFIG.mundos[n].logo}"/></svg>` : ""}${n === "Nintendo" ? `<span class="sr">${n}</span>` : esc(n)}</button>`).join("");
   $("kPausa").textContent = K.pausa ? "Reanudar" : "Pausar";
   $("kPausa").setAttribute("aria-pressed", K.pausa);
 }
@@ -2899,7 +3199,7 @@ function mostrarSlide(){
   $("kSlide").innerHTML = `
     <div class="k-foto"><img src="${esc(p.photos[0])}" alt="${esc(p.name)}" decoding="async"></div>
     <div class="k-info">
-      <div class="k-cat">${esc(p.cat_label || "")}${etiquetaPlat(p)}${p.estado === "medio-uso" ? '<span class="det uso">Medio uso</span>' : ""}</div>
+      <div class="k-cat">${esc(p.cat_label || "")}${etiquetaPlat(p)}</div>
       <h2 class="k-nombre">${esc(p.name)}</h2>
       <div class="k-precio"><span>$</span>${e}<small>.${d}</small></div>
       <div class="k-tag">Efectivo o transferencia, IVA incluido${tj - ef >= 1 ? ` · <b class="k-ahorra">Ahorras ${fmt(tj - ef)}</b> (tarjeta ${fmt(tj)})` : tj > ef ? ` · Con tarjeta ${fmt(tj)}` : ""}</div>

@@ -73,8 +73,6 @@ def pagina(p, cuando):
     info = detalles(p)
     desc = (p.get("desc") or "").strip() or info["desc_auto"]
     ahorro = tarjeta - efectivo
-    etiquetas = "".join(f'<span class="et {c}">{t}</span>' for c, t in [
-        ("uso", "Medio uso" if info["estado"] else ""), ("orig", {"original": "Original", "generico": "Genérico"}.get(info["origen"], ""))] if t)
     filas = "" if p.get("digital") else "".join(
         f'<li><span>{e(nombre)}<small>{e(lugar)}</small></span>'
         f'<span class="st {"out" if not stock.get(k) else "low" if stock.get(k) <= POCAS else "ok"}"><i></i>{disponibles(stock.get(k, 0))}</span></li>'
@@ -160,10 +158,6 @@ h1{{margin:10px 0 6px;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.1;text-
 .precio small{{font-size:.5em}}
 .tag{{margin:6px 0 0;color:var(--muted);font-size:.9rem}}
 .tag b{{color:var(--ink)}}
-.ets{{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}}
-.et{{padding:4px 11px;border-radius:999px;font-size:.8rem;font-weight:800;background:#1F1D21;border:1px solid var(--line)}}
-.et.uso{{background:#FFC61A;color:#1a1400;border-color:transparent}}
-.et.orig{{color:var(--ok)}}
 .desc{{margin:14px 0 0;color:#d9d3cc;font-size:1rem;max-width:52ch}}
 .ahorro{{margin:12px 0 0;padding:10px 14px;border-radius:12px;background:rgba(61,220,132,.12);border:1px solid rgba(61,220,132,.35);color:var(--ok);font-weight:700;font-size:.92rem}}
 ul{{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--line)}}
@@ -196,7 +190,6 @@ footer a{{color:var(--ink)}}
     <p class="precio"><span>$</span>{entero}<small>.{dec}</small></p>
     <p class="tag">Efectivo o transferencia, IVA incluido{f" · Con tarjeta: <b>{dinero(tarjeta)}</b>" if tarjeta > efectivo else ""}</p>
     {f'<p class="ahorro">Pagando en efectivo o transferencia ahorras {dinero(ahorro)}</p>' if ahorro > 0.009 else ""}
-    {f'<div class="ets">{etiquetas}</div>' if etiquetas else ""}
     {f'<p class="desc">{e(desc)}</p>' if desc else ""}
     {f"<ul>{filas}</ul>" if filas else f'<p class="dispo">{e(dispo)}</p>'}
     <div class="acciones">{principal}</div>
