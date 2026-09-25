@@ -1,6 +1,7 @@
 """Toma la carpeta de fotos que devuelve la persona de las fotos (por defecto
-"FOTOS CATALOGO", o la que se arrastre sobre subir_fotos.bat), achica cada foto,
-la guarda en docs/fotos/<código>/1.jpg, 2.jpg... y la publica en GitHub.
+"FOTOS CATALOGO", o la que se arrastre sobre subir_fotos.bat), mejora cada foto
+(fondo blanco, recorte, cuadrada y más nítida: ver mejorar_fotos.py), la guarda en
+docs/fotos/<código>/1.jpg, 2.jpg... y la publica en GitHub.
 
 Cada carpeta de producto se reconoce por el código que lleva en su nombre
 ("NNN - CÓDIGO - NOMBRE"). Las fotos de un producto reemplazan a las anteriores."""
@@ -12,14 +13,14 @@ import shutil
 import subprocess
 import sys
 
-from PIL import Image, ImageOps
+from PIL import Image
 
 from generar_catalogo import FOTOS_DIR, SALIDA, SELECCION
+from mejorar_fotos import guardar, mejorar
 
 EXT_OK = {".jpg", ".jpeg", ".png", ".webp"}
 EXT_HEIC = {".heic", ".heif"}
 MAX_FOTOS = 5
-LADO_MAX = 1200  # píxeles del lado más largo: nítido en pantalla y liviano en datos móviles
 
 
 def orden_natural(nombre):
@@ -35,16 +36,7 @@ def codigo_de_carpeta(nombre, codigos):
 
 def guardar_foto(origen, destino):
     with Image.open(origen) as im:
-        im = ImageOps.exif_transpose(im)  # respeta si la foto se tomó con el celular girado
-        if im.mode in ("RGBA", "LA", "P"):
-            im = im.convert("RGBA")
-            fondo = Image.new("RGB", im.size, (255, 255, 255))
-            fondo.paste(im, mask=im.split()[-1])
-            im = fondo
-        else:
-            im = im.convert("RGB")
-        im.thumbnail((LADO_MAX, LADO_MAX))
-        im.save(destino, "JPEG", quality=82, optimize=True, progressive=True)
+        guardar(mejorar(im), destino)
 
 
 def git(*args):
