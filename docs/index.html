@@ -1256,9 +1256,10 @@ body.con-portal #secMundos{display:none}
 dialog.visor{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;border-radius:0;background:#fff;color:#1F1B18;overflow:hidden;box-shadow:none}
 dialog.visor[open]{display:block}
 dialog.visor::backdrop{background:rgba(0,0,0,.85)}
-.visor-lienzo{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;touch-action:none;cursor:zoom-in;user-select:none;-webkit-user-select:none}
+/* La foto entra completa en cualquier pantalla (antes, en pantallas anchas, se estiraba al ancho y se cortaba abajo). */
+.visor-lienzo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:calc(68px + env(safe-area-inset-top,0px)) 16px calc(20px + env(safe-area-inset-bottom,0px));overflow:hidden;touch-action:none;cursor:zoom-in;user-select:none;-webkit-user-select:none}
 .visor.acercado .visor-lienzo{cursor:grab}
-.visor-lienzo img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;aspect-ratio:1;object-fit:contain;-webkit-user-drag:none;will-change:transform}
+.visor-lienzo img{display:block;flex:none;width:auto;height:auto;max-width:100%;max-height:100%;min-width:0;min-height:0;object-fit:contain;-webkit-user-drag:none;will-change:transform}
 .visor-barra{position:absolute;left:0;right:0;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:calc(12px + env(safe-area-inset-top,0px)) 14px 12px 18px;pointer-events:none}
 .visor-barra > *{pointer-events:auto}
 .visor-n{min-width:44px;font-weight:800;font-variant-numeric:tabular-nums}
@@ -2635,7 +2636,7 @@ if (matchMedia("(hover: none)").matches && !reduceMotion() && "DeviceOrientation
 }
 
 // Diagnóstico: abrir la página con ?diag muestra qué soporta este celular o navegador.
-const VERSION = "2026-09-25-mundos-3d";
+const VERSION = "2026-09-25-visor";
 if (new URLSearchParams(location.search).has("diag")){
   const d = document.createElement("pre");
   d.style.cssText = "position:fixed;left:8px;right:8px;bottom:8px;z-index:99;margin:0;background:#fff;color:#000;font:12px/1.5 monospace;padding:12px;border-radius:12px;white-space:pre-wrap;box-shadow:0 10px 30px rgba(0,0,0,.5)";
@@ -2786,14 +2787,17 @@ function pintarVisor(){
   $("visorN").textContent = n > 1 ? `${V.i + 1} / ${n}` : "";
   $("visorAnt").hidden = $("visorSig").hidden = n < 2;
 }
+// Centro de la foto sin acercar y hasta dónde se puede mover: acercada, sus bordes nunca se despegan de los de la pantalla.
 function limitesVisor(){
-  const img = $("visorImg"), r = $("visorLienzo").getBoundingClientRect();
-  return {mx: Math.max(0, (img.clientWidth * V.s - r.width) / 2), my: Math.max(0, (img.clientHeight * V.s - r.height) / 2)};
+  const img = $("visorImg"), L = $("visorLienzo").getBoundingClientRect();
+  const cx = L.left + img.offsetLeft + img.clientWidth / 2, cy = L.top + img.offsetTop + img.clientHeight / 2;
+  const eje = (c, tam, ini, vista) => tam <= vista ? [0, 0] : [ini + vista - c - tam / 2, ini - c + tam / 2];
+  return {cx, cy, x: eje(cx, img.clientWidth * V.s, L.left, L.width), y: eje(cy, img.clientHeight * V.s, L.top, L.height)};
 }
 function aplicarVisor(anim = true){
-  const {mx, my} = limitesVisor();
-  V.x = Math.max(-mx, Math.min(mx, V.x));
-  V.y = Math.max(-my, Math.min(my, V.y));
+  const {x, y} = limitesVisor();
+  V.x = Math.max(x[0], Math.min(x[1], V.x));
+  V.y = Math.max(y[0], Math.min(y[1], V.y));
   const img = $("visorImg");
   img.style.transition = anim && !reduceMotion() ? "transform 280ms cubic-bezier(.2,.8,.2,1)" : "none";
   img.style.transform = `translate(${V.x.toFixed(1)}px, ${V.y.toFixed(1)}px) scale(${V.s.toFixed(3)})`;
@@ -2801,8 +2805,8 @@ function aplicarVisor(anim = true){
 }
 // Acerca a la escala s dejando quieto el punto (cx, cy) de la pantalla.
 function zoomVisor(s, cx, cy, anim){
-  const r = $("visorLienzo").getBoundingClientRect();
-  const ox = cx - (r.left + r.width / 2), oy = cy - (r.top + r.height / 2);
+  const c = limitesVisor();
+  const ox = cx - c.cx, oy = cy - c.cy;
   const s1 = Math.max(1, Math.min(5, s));
   V.x = ox - (ox - V.x) * s1 / V.s;
   V.y = oy - (oy - V.y) * s1 / V.s;
