@@ -467,13 +467,48 @@ body:is(.en-anillo,.en-portal) .ayudante{opacity:0;visibility:hidden;transition:
 .servicio .btn{margin-top:26px}
 
 /* Locales */
-.tiendas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.tienda{display:flex;flex-direction:column;gap:4px;padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.tiendas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.tienda{display:flex;flex-direction:column;gap:4px;padding:14px 14px 18px;border:1px solid var(--line);border-radius:20px;background:var(--surface)}
+/* Pila de fotos de la isla, como polaroids: la de adelante y dos asomando detrás */
+.tienda-fotos{position:relative;margin-bottom:14px}
+.tienda-pila{all:unset;box-sizing:border-box;position:relative;display:block;width:100%;aspect-ratio:4/3;cursor:zoom-in;border-radius:14px}
+.tienda-pila:focus-visible{outline:2px solid var(--brand-hi);outline-offset:4px}
+.tienda-pila img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:14px;border:5px solid #F2EEE8;background:#1c1b1f;box-shadow:0 16px 30px rgba(0,0,0,.5);
+  transition:transform 700ms cubic-bezier(.3,1.25,.5,1),opacity 420ms ease}
+.tienda-pila img[data-pos="0"]{z-index:4}
+.tienda-pila img[data-pos="1"]{z-index:3;transform:translate(10px,-10px) rotate(3.5deg) scale(.95)}
+.tienda-pila img[data-pos="2"]{z-index:2;transform:translate(-11px,-8px) rotate(-4.5deg) scale(.93)}
+.tienda-pila img[data-pos="3"]{z-index:1;opacity:0;transform:scale(.9)}
+.tienda-pila img.sale{z-index:5;opacity:0;transform:translateY(-16%) rotate(-7deg) scale(1.04);transition-duration:360ms,300ms}
+@media (hover:hover){
+  .tienda:hover .tienda-pila img[data-pos="1"]{transform:translate(20px,-16px) rotate(7deg) scale(.95)}
+  .tienda:hover .tienda-pila img[data-pos="2"]{transform:translate(-22px,-12px) rotate(-9deg) scale(.93)}
+}
+.tienda-estado,.tienda-isla,.tienda-cuenta{position:absolute;z-index:6;pointer-events:none;display:inline-flex;align-items:center;gap:6px;border-radius:999px;font-weight:800;font-size:.78rem;line-height:1}
+.tienda-estado{left:14px;top:14px;margin:0;padding:7px 11px;background:rgba(10,10,11,.86);box-shadow:0 6px 14px rgba(0,0,0,.35)}
+/* El punto verde "late" solo mientras la sección se ve (anillo que crece: transform y opacity, en la GPU) */
+.tienda-estado .dot{position:relative}
+.tienda-estado.ok .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:currentColor;opacity:0}
+.tiendas.activa .tienda-estado.ok .dot::after{animation:latido 1.8s ease-out infinite}
+@keyframes latido{from{opacity:.6;transform:scale(1)}to{opacity:0;transform:scale(2.8)}}
+.tienda-isla{left:14px;bottom:14px;padding:7px 12px;background:var(--brand);color:var(--brand-ink);font-style:italic;text-transform:uppercase;font-weight:900;font-size:.85rem}
+.tienda-cuenta{right:14px;bottom:14px;padding:7px 11px;background:rgba(10,10,11,.86);color:var(--ink)}
+.tienda-cuenta .ico{width:14px;height:14px}
+/* Local sin fotos: póster de la marca con el muñequito */
+.tienda-poster{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:radial-gradient(90% 90% at 80% 90%,#FF9A2E,#FF7A00 45%,#B34A00);box-shadow:0 16px 30px rgba(0,0,0,.5)}
+.tienda-poster-logo{position:absolute;left:-12%;top:-8%;width:95%;height:auto;aspect-ratio:140/60;fill:rgba(20,9,0,.14)}
+.tienda-poster img{position:absolute;right:4%;bottom:-4%;height:96%;width:auto;filter:drop-shadow(0 14px 18px rgba(60,20,0,.5))}
+.tienda-poster b{position:absolute;left:18px;bottom:52px;max-width:44%;color:#140900;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(1.1rem,1.9vw,1.55rem);line-height:.95}
+.tienda-acc{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tienda-acc > *{margin:0}
+.tienda-ver{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 16px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-weight:700;font-size:.9rem;cursor:pointer}
+.tienda-ver:hover{border-color:var(--brand)}
+@media (prefers-reduced-motion:reduce){ .tienda-pila img{transition:none} .tiendas.activa .tienda-estado.ok .dot::after{animation:none} }
 .tienda .zona{color:var(--brand-hi);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
 .tienda strong{font-size:1.2rem;font-weight:800}
 .tienda .dir{color:var(--muted);font-size:.93rem}
 .abierto{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font-size:.85rem;font-weight:600}
-.tienda a{margin-top:14px;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 16px;border-radius:12px;border:1px solid var(--line);text-decoration:none;font-weight:700;font-size:.9rem}
+.tienda a{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 16px;border-radius:12px;border:1px solid var(--line);text-decoration:none;font-weight:700;font-size:.9rem}
 .tienda a:hover{border-color:var(--brand)}
 .horario{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:18px;color:var(--muted);font-size:.93rem}
 .horario b{color:var(--ink);font-weight:600}
@@ -1378,6 +1413,9 @@ body.con-portal #secMundos{display:none}
 dialog.visor{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;border-radius:0;background:#fff;color:#1F1B18;overflow:hidden;box-shadow:none}
 dialog.visor[open]{display:block}
 dialog.visor::backdrop{background:rgba(0,0,0,.85)}
+dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
+.visor.oscuro .visor-pista{color:#a39c94}
+.visor.oscuro .close{background:#fff;color:#0A0A0B}
 /* La foto entra completa en cualquier pantalla (antes, en pantallas anchas, se estiraba al ancho y se cortaba abajo). */
 .visor-lienzo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:calc(68px + env(safe-area-inset-top,0px)) 16px calc(20px + env(safe-area-inset-bottom,0px));overflow:hidden;touch-action:none;cursor:zoom-in;user-select:none;-webkit-user-select:none}
 .visor.acercado .visor-lienzo{cursor:grab}
@@ -2011,8 +2049,9 @@ const CONFIG = {
   horario: { semana: [600, 1260], domingo: [630, 1110] },   // minutos desde medianoche
   locales: {
     // resenas: enlace a la ficha de Google Maps del local (Compartir > Copiar vínculo). Vacío = se busca por nombre.
-    condado: { nombre: "Condado Shopping", zona: "Quito",     detalle: "Isla 21",   maps: "https://www.google.com/maps/search/?api=1&query=Condado%20Shopping%20Quito", resenas: "" },
-    scala:   { nombre: "Scala Shopping",   zona: "Cumbayá",   detalle: "Isla 5",    maps: "https://www.google.com/maps/search/?api=1&query=Scala%20Shopping%20Cumbaya", resenas: "" },
+    // fotos: las de la isla (docs/locales/<local>/1.jpg, 2.jpg…, con sus copias mini/ y zoom/). Sin fotos, va un póster.
+    condado: { nombre: "Condado Shopping", zona: "Quito",     detalle: "Isla 21",   fotos: ["locales/condado/1.jpg", "locales/condado/2.jpg", "locales/condado/3.jpg", "locales/condado/4.jpg"], maps: "https://www.google.com/maps/search/?api=1&query=Condado%20Shopping%20Quito", resenas: "" },
+    scala:   { nombre: "Scala Shopping",   zona: "Cumbayá",   detalle: "Isla 5",    fotos: ["locales/scala/1.jpg", "locales/scala/2.jpg", "locales/scala/3.jpg", "locales/scala/4.jpg", "locales/scala/5.jpg"], maps: "https://www.google.com/maps/search/?api=1&query=Scala%20Shopping%20Cumbaya", resenas: "" },
     valle:   { nombre: "Plaza del Valle",  zona: "Sangolquí", detalle: "Local B17", maps: "https://www.google.com/maps/search/?api=1&query=Centro%20Comercial%20Plaza%20del%20Valle%20Sangolqui", resenas: "" }
   },
   // Consola a la que pertenece cada producto, deducida del nombre. Un producto puede estar en
@@ -2160,21 +2199,84 @@ function estadoTienda(){
   const manana = dia === "Sat" ? CONFIG.horario.domingo[0] : CONFIG.horario.semana[0];
   return {cls: "out", txt: `Cerrado, abre mañana a las ${hhmm(manana)}`, resumen: `Locales cerrados, abren mañana a las ${hhmm(manana)}`};
 }
+// ===== Locales: cada isla con su pila de fotos (se barajan solas mientras se ven; al tocarlas se abren
+// en el visor). El local sin fotos lleva un póster con el muñequito. =====
+const fotosLocal = k => {
+  const L = CONFIG.locales[k];
+  return {code: "local-" + k, name: `Isla de ${CONFIG.storeName} en ${L.nombre}`, photos: L.fotos || []};
+};
 function pintarTiendas(){
-  const e = estadoTienda();
-  $("tiendas").innerHTML = Object.values(CONFIG.locales).map(L=>`
-    <div class="tienda">
+  $("tiendas").innerHTML = Object.entries(CONFIG.locales).map(([k, L])=>{
+    const fotos = L.fotos || [];
+    const pila = fotos.length
+      ? `<button class="tienda-pila" type="button" data-local="${esc(k)}" aria-label="Ver las ${fotos.length} fotos de la isla en ${esc(L.nombre)}">${
+          fotos.map((src, i)=>`<img src="${esc(fotoMini(src))}" srcset="${esc(fotoMini(src))} 720w, ${esc(src)} 1400w" sizes="(max-width: 700px) 90vw, 400px" alt="" width="720" height="540" loading="lazy" decoding="async" data-pos="${Math.min(i, 3)}" onerror="this.removeAttribute('srcset')">`).join("")
+        }</button>
+        <span class="tienda-cuenta" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg>${fotos.length} fotos</span>`
+      : `<div class="tienda-poster" aria-hidden="true"><svg class="tienda-poster-logo"><use href="#i-logo"/></svg>
+          <img src="mascota/poses/retira.webp" alt="" width="432" height="560" loading="lazy" decoding="async"><b>¡Te esperamos!</b></div>`;
+    return `
+    <article class="tienda">
+      <div class="tienda-fotos">
+        ${pila}
+        <span class="tienda-estado"><span class="dot"></span><span class="txt"></span></span>
+        <span class="tienda-isla" aria-hidden="true">${esc(L.detalle)}</span>
+      </div>
       <span class="zona">${L.zona}</span>
       <strong>${L.nombre}</strong>
       <span class="dir">${L.detalle}</span>
-      <span class="abierto ${e.cls}"><span class="dot"></span>${e.txt}</span>
-      <a href="${L.maps}" target="_blank" rel="noopener"><svg class="ico" style="width:18px;height:18px" aria-hidden="true"><use href="#i-map"/></svg>Cómo llegar</a>
-    </div>`).join("");
+      <div class="tienda-acc">
+        <a href="${L.maps}" target="_blank" rel="noopener"><svg class="ico" style="width:18px;height:18px" aria-hidden="true"><use href="#i-map"/></svg>Cómo llegar</a>
+        ${fotos.length ? `<button type="button" class="tienda-ver" data-local="${esc(k)}"><svg class="ico" style="width:18px;height:18px" aria-hidden="true"><use href="#i-expand"/></svg>Ver la isla</button>` : ""}
+      </div>
+    </article>`;
+  }).join("");
+  estadoTiendas();
+  iniciarPilas();
+}
+// El estado (abierto / cerrado) se actualiza cada minuto sin volver a pintar las tarjetas.
+function estadoTiendas(){
+  const e = estadoTienda();
+  for (const el of document.querySelectorAll(".tienda-estado")){ el.className = `tienda-estado ${e.cls}`; el.querySelector(".txt").textContent = e.txt; }
   $("heroAbierto").className = "hero-abierto " + e.cls;
   $("heroAbierto").innerHTML = `<span class="dot"></span>${e.resumen}`;
 }
+function iniciarPilas(){
+  const pilas = [...document.querySelectorAll(".tienda-pila")];
+  for (const pila of pilas){
+    const fotos = [...pila.querySelectorAll("img")];
+    pila.orden = fotos.map((_, i)=>i);   // orden[0]: la de adelante
+    pila.siguiente = () => {
+      if (pila.moviendo) return;
+      pila.moviendo = true;
+      const frente = fotos[pila.orden[0]];
+      frente.classList.add("sale");   // se levanta y se va…
+      setTimeout(()=>{                // …y queda al fondo mientras las otras avanzan
+        frente.classList.remove("sale");
+        pila.orden.push(pila.orden.shift());
+        pila.orden.forEach((f, pos)=>{ fotos[f].dataset.pos = Math.min(pos, 3); });
+        pila.moviendo = false;
+      }, 360);
+    };
+    pila.onclick = ()=>abrirVisor(fotosLocal(pila.dataset.local), pila.orden[0], {oscuro: true});
+  }
+  document.querySelectorAll(".tienda-ver").forEach(b=>{ b.onclick = ()=>abrirVisor(fotosLocal(b.dataset.local), 0, {oscuro: true}); });
+  // Se barajan solas cada 4 s (una pila a la vez) solo mientras la sección se ve y sin el mouse encima.
+  if (!pilas.length || reduceMotion() || !("IntersectionObserver" in window)) return;
+  let reloj = 0, turno = 0;
+  const pasar = () => {
+    if (document.visibilityState !== "visible" || document.querySelector("dialog[open]")) return;
+    const pila = pilas[turno++ % pilas.length];
+    if (!pila.matches(":hover")) pila.siguiente();
+  };
+  new IntersectionObserver(([e])=>{
+    clearInterval(reloj);
+    $("tiendas").classList.toggle("activa", e.isIntersecting);
+    if (e.isIntersecting) reloj = setInterval(pasar, 2200);
+  }).observe($("tiendas"));
+}
 pintarTiendas();
-setInterval(pintarTiendas, 60000);
+setInterval(estadoTiendas, 60000);
 
 // Opiniones: enlaces a las reseñas reales de cada local en Google Maps y al Instagram (nunca reseñas escritas aquí).
 $("listaOpiniones").innerHTML = Object.values(CONFIG.locales).map(L=>`
@@ -2232,9 +2334,9 @@ function onPhotoError(img){
   if (p) img.src = placeholder(p, Number(img.dataset.i) || 0);
 }
 // fotos/<código>/1.jpg -> fotos/<código>/zoom/1.jpg (2000 px: la crean mejorar_fotos.py y subir_fotos.py)
-const fotoZoom = src => src.replace(/\/([^/]+\.jpg)$/, "/zoom/$1");
+function fotoZoom(src){ return src.replace(/\/([^/]+\.jpg)$/, "/zoom/$1"); }
 // fotos/<código>/1.jpg -> fotos/<código>/mini/1.jpg (600 px: la de tarjetas y listas; pesa y se dibuja mucho menos)
-const fotoMini = src => src.replace(/\/([^/]+\.jpg)$/, "/mini/$1");
+function fotoMini(src){ return src.replace(/\/([^/]+\.jpg)$/, "/mini/$1"); }   // declarada como función: la usan también los locales, que se pintan antes
 const plataformasDe = p => p._plat || (p._plat = CONFIG.plataformas.filter(([, re])=>re.test(p.name.toUpperCase())).map(([n])=>n));
 // Etiqueta de color con la consola exacta ("PS5", "Switch 2", "Xbox"…); si sirve para varias marcas, "Multi".
 const colorMundo = m => CONFIG.mundos[m]?.c || "#3a373d";
@@ -2846,7 +2948,7 @@ if (matchMedia("(hover: none)").matches && !reduceMotion() && "DeviceOrientation
 }
 
 // Diagnóstico: abrir la página con ?diag muestra qué soporta este celular o navegador.
-const VERSION = "2026-09-25-mascota-2";
+const VERSION = "2026-09-25-locales";
 if (new URLSearchParams(location.search).has("diag")){
   const d = document.createElement("pre");
   d.style.cssText = "position:fixed;left:8px;right:8px;bottom:8px;z-index:99;margin:0;background:#fff;color:#000;font:12px/1.5 monospace;padding:12px;border-radius:12px;white-space:pre-wrap;box-shadow:0 10px 30px rgba(0,0,0,.5)";
@@ -3123,9 +3225,10 @@ $("portalPuntos").addEventListener("click", e=>{
 // Muestra la copia de 2000 px: pellizcar o tocar dos veces acerca (hasta 5x), arrastrar recorre la
 // foto, deslizar de lado cambia de foto y deslizar hacia abajo cierra. Con mouse: clic o rueda acercan.
 const V = {p: null, i: 0, s: 1, x: 0, y: 0, dedos: new Map(), gesto: null, ultimoToque: 0};
-function abrirVisor(p, i){
+function abrirVisor(p, i, {oscuro = false} = {}){
   if (!p.photos.length) return;
   V.p = p; V.i = i;
+  $("visor").classList.toggle("oscuro", oscuro);   // fotos de los locales: fondo oscuro, no el blanco de los productos
   $("visor").showModal();
   pintarVisor();
   medir("zoom-foto", {codigo: p.code});
