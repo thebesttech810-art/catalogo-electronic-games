@@ -8,9 +8,10 @@
 // este archivo: todo eso vive en la página.
 
 const ORIGENES = ["https://thebesttech810-art.github.io"];
-// Si el primero está saturado (503), sin cuota (429) o ya no existe (404), se
-// prueba el otro: cada modelo tiene su propia cuota gratis.
-const MODELOS = ["gemini-flash-lite-latest", "gemini-3.1-flash-lite"];
+// Modelos gratis que compiten (ver la carrera más abajo). Cada uno tiene su propia cuota y su
+// propia fila en Google: cuando uno está saturado (503), sin cuota (429) o ya no existe (404),
+// casi siempre otro sí responde.
+const MODELOS = ["gemini-flash-lite-latest", "gemini-3.1-flash-lite", "gemini-3.1-flash-lite-preview"];
 const POR_MINUTO = 15, POR_DIA = 300;   // mensajes por persona (IP)
 
 const PERSONA =
@@ -97,42 +98,43 @@ export default {
 };
 
 // Gemini a veces se encola y tarda 20 s en empezar a contestar (y a veces responde "saturado").
-// Por eso: se le pide al modelo principal; si falla o no empieza a contestar en 4 s, se le pide
-// lo mismo al de respaldo y se usa el que conteste primero. Si los dos fallan, una vuelta más.
-const esperar = (ms) => new Promise((res) => setTimeout(res, ms));
-async function pedirAGemini(env, peticion, enVivo) {
+// Por eso se hace una carrera escalonada: se le pide al modelo principal; si a los 2 s no
+// empezó a contestar, también al segundo; a los 4 s al tercero, y si siguen sin contestar, otra
+// vuelta. Si uno falla, el siguiente sale enseguida. Se usa el primero que conteste y los
+// demás se cancelan.
+const PLAN = [[MODELOS[0], 0], [MODELOS[1], 2000], [MODELOS[2], 4000], [MODELOS[0], 8000], [MODELOS[1], 12000], [MODELOS[2], 17000]];
+function pedirAGemini(env, peticion, enVivo) {
+  const base = env.GEMINI_BASE || "https://generativelanguage.googleapis.com";
   const metodo = enVivo ? "streamGenerateContent?alt=sse&" : "generateContent?";
   const cuerpo = JSON.stringify(peticion);
-  let ultimo = 503;
-  const pedir = async (modelo, abiertos) => {
-    const ctl = new AbortController(), t0 = Date.now();
-    abiertos.push(ctl);
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelo}:${metodo}key=${env.GEMINI_API_KEY}`, {
-      method: "POST", headers: { "Content-Type": "application/json" }, body: cuerpo, signal: ctl.signal,
-    });
-    console.log(`${modelo} -> ${r.status} en ${Date.now() - t0} ms`);   // se ve en los registros de Cloudflare
-    if ([404, 429, 500, 503].includes(r.status)) {
-      ultimo = r.status;
-      await r.body?.cancel();
-      throw new Error(String(r.status));
-    }
-    return { r, ctl };
-  };
-  for (const pausa of [0, 600]) {
-    if (pausa) await esperar(pausa);
-    const abiertos = [];
-    const principal = pedir(MODELOS[0], abiertos);
-    const respaldo = Promise.race([principal.then(() => "ok", () => "fallo"), esperar(4000).then(() => "lento")])
-      .then((como) => { if (como === "ok") throw new Error("no hace falta"); return pedir(MODELOS[1], abiertos); });
-    try {
-      const { r, ctl } = await Promise.any([principal, respaldo]);
-      for (const otro of abiertos) if (otro !== ctl) otro.abort();   // se corta el que perdió la carrera
-      return r;
-    } catch {
-      /* los dos fallaron: otra vuelta */
-    }
-  }
-  return new Response(JSON.stringify({ error: "saturado" }), { status: ultimo });
+  const abiertos = [];
+  let ultimo = 503, lanzados = 0, fallidos = 0, listo = false, reloj;
+  return new Promise((resolver) => {
+    const lanzar = () => {
+      clearTimeout(reloj);
+      if (listo || lanzados >= PLAN.length) return;
+      const [modelo, cuando] = PLAN[lanzados++];
+      if (lanzados < PLAN.length) reloj = setTimeout(lanzar, PLAN[lanzados][1] - cuando);
+      const ctl = new AbortController(), t0 = Date.now();
+      abiertos.push(ctl);
+      fetch(`${base}/v1beta/models/${modelo}:${metodo}key=${env.GEMINI_API_KEY}`, {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: cuerpo, signal: ctl.signal,
+      }).then(async (r) => {
+        console.log(`${modelo} -> ${r.status} en ${Date.now() - t0} ms`);   // se ve en los registros de Cloudflare
+        if ([404, 429, 500, 503].includes(r.status)) { ultimo = r.status; await r.body?.cancel(); throw new Error(String(r.status)); }
+        if (listo) { ctl.abort(); return; }
+        listo = true;
+        clearTimeout(reloj);
+        for (const otro of abiertos) if (otro !== ctl) otro.abort();   // se cortan los que perdieron la carrera
+        resolver(r);
+      }).catch(() => {
+        if (listo) return;
+        if (++fallidos === PLAN.length) { listo = true; resolver(new Response(JSON.stringify({ error: "saturado" }), { status: ultimo })); }
+        else { clearTimeout(reloj); reloj = setTimeout(lanzar, 300); }   // si uno falla, el siguiente sale enseguida
+      });
+    };
+    lanzar();
+  });
 }
 
 // Límite por persona. Cloudflare reparte el tráfico en varias copias del

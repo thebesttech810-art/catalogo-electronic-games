@@ -3215,7 +3215,9 @@ const PALABRAS_VACIAS = new Set(("que para con los las una uno unos unas tienen 
   "horario horarios hora abrir atienden servicio tecnico reparar reparan arreglar arreglan garantia envio envios envian domicilio pagar pago pagos tarjeta " +
   "efectivo transferencia terminar enviar whatsapp retirar retiro retiras nombre ayuda ayudame ayudar gracias ok okay listo quitar quita cambiar cambia " +
   "cuentame cuenta saber sirve funciona original originales generico genericos usado medio uso incluye trae viene caja prende prender enciende encender " +
-  "falla fallas dano danado danada roto rota problema problemas").split(" "));
+  "falla fallas dano danado danada roto rota problema problemas producto productos articulo articulos item items opcion opciones modelo " +
+  "modelos marca marcas catalogo disponible disponibles oferta ofertas promocion promociones descuento descuentos entraron ingresaron llegado " +
+  "salio salieron lanzaron venta ventas vende venden mostrar ensenar quisiera gustaria interesa busca").split(" "));
 // Palabras que la gente usa y el catálogo escribe distinto.
 const SINONIMOS_CHAT = {futbol: ["fifa", "fc 2", "efootball", "pes 20"], soccer: ["fifa", "fc 2"], carros: ["kart", "racing", "gran turismo", "forza", "need for speed", "crash team"],
   carreras: ["kart", "racing", "gran turismo", "forza", "need for speed"], pelea: ["mortal kombat", "street fighter", "tekken", "smash", "dragon ball"],
@@ -3253,11 +3255,12 @@ function analizarConsulta(texto){
   const barato = /\b(barat[oa]s?|economic[oa]s?)\b/.test(t);
   const nuevo = /\b(nuev[oa]s?|novedad(es)?|recien|llego|llegaron|lanzamientos?)\b/.test(t);
   const top = /\b(mas vendid[oa]s?|top|popular(es)?|recomienda[s]?|recomendacion|regal[oa]r?|mejor(es)?)\b/.test(t);
+  const oferta = /\b(ofertas?|descuentos?|promo(cion(es)?)?|rebajas?|ahorr\w*)\b/.test(t);
   const palabras = [...new Set((t.replace(GENERICAS_CHAT, " ").match(/[a-z0-9]{3,}/g) || []))]
     .filter(w => !PALABRAS_VACIAS.has(w) && !LOCALES_CHAT.has(w) && !esPlataforma(w) && !/^\d+$/.test(w));
   const servicio = /\b(servicio tecnico|reparar|reparacion|arregl\w*|no (prende|enciende|carga|funciona|lee)|se (dano|quemo|rompio))\b/.test(t);
-  return {plat, cat, max, min, barato, nuevo, top, palabras, servicio, quiere: QUIERE_PRODUCTO.test(t),
-    filtros: !!(plat || cat || max != null || min != null || nuevo || top)};
+  return {plat, cat, max, min, barato, nuevo, top, oferta, palabras, servicio, quiere: QUIERE_PRODUCTO.test(t),
+    filtros: !!(plat || cat || max != null || min != null || nuevo || top || oferta)};
 }
 const variantes = w => [w, w.length > 5 && w.endsWith("es") ? w.slice(0, -2) : null, w.length > 4 && w.endsWith("s") ? w.slice(0, -1) : null,
   ...(SINONIMOS_CHAT[w] || []), ...(SINONIMOS[w] || [])].filter(Boolean);
@@ -3268,7 +3271,7 @@ function buscarParaChat(actual, anterior){
     const a = analizarConsulta(anterior);
     c.palabras = a.palabras;
     for (const k of ["plat", "cat", "max", "min"]) c[k] ??= a[k];
-    c.nuevo ||= a.nuevo; c.top ||= a.top; c.barato ||= a.barato; c.quiere ||= a.quiere;
+    c.nuevo ||= a.nuevo; c.top ||= a.top; c.barato ||= a.barato; c.oferta ||= a.oferta; c.quiere ||= a.quiere;
     c.filtros ||= a.filtros;
   }
   const efectivo = p => precio(p, "efectivo");
@@ -3277,6 +3280,8 @@ function buscarParaChat(actual, anterior){
   let lista = filtrar(false), nota = "";
   // Una palabra que está en pocos productos ("iphone") pesa más que una que está en muchos ("pro").
   const esta = (p, w) => variantes(w).some(v => textoBusqueda(p).includes(v));
+  // Un verbo que no está en ningún nombre ("tengan", "quisieran") no es lo que se busca.
+  c.palabras = c.palabras.filter(w => !/(ar|er|ir|an|en|amos|emos|imos|aron|ieron|ando|iendo|ria|rian)$/.test(w) || PRODUCTS.some(p => esta(p, w)));
   const peso = Object.fromEntries(c.palabras.map(w => { const n = PRODUCTS.filter(p => esta(p, w)).length; return [w, n <= 10 ? 4 : n <= 30 ? 2 : 1]; }));
   const puntuar = ls => {
     const puntos = new Map();
@@ -3305,6 +3310,11 @@ function buscarParaChat(actual, anterior){
     c.barato = c.max != null;
   }
   if (c.top && !c.palabras.length && lista.filter(p => p.top).length >= 3) lista = lista.filter(p => p.top);
+  if (c.oferta && !sinCoincidencia){   // no hay ofertas cargadas: lo que sí hay es el ahorro pagando en efectivo
+    lista = lista.filter(p => ahorroDe(p) >= 1).sort((a, b) => ahorroDe(b) - ahorroDe(a));
+    nota = "no hay ofertas especiales publicadas; estos son los que más ahorran pagando en efectivo o transferencia en vez de tarjeta";
+    return {c, lista, sinCoincidencia, nota};
+  }
   const hay = p => maxQty(p) > 0 ? 1 : 0;
   lista.sort((a, b) => (puntos.get(b) || 0) - (puntos.get(a) || 0) || hay(b) - hay(a) ||
     (c.barato || c.max != null ? efectivo(a) - efectivo(b) : 0) || (b.top === true) - (a.top === true));
@@ -3503,11 +3513,10 @@ function limpiarTexto(t){
 }
 function completarAcciones(t, acciones, pregunta){
   const hay = n => acciones.some(a => n.includes(a.nombre));
-  if (!hay(["mostrar_productos"])){
+  if (!hay(["mostrar_productos", "agregar_al_pedido", "cambiar_cantidad", "abrir_producto", "ver_catalogo", "datos_del_pedido", "ver_pedido"])){
     const codigos = codigosEn(t);
     if (codigos.length) acciones.unshift({nombre: "mostrar_productos", args: {codigos}});
-    else if (/👇|mira (estas|estos|las|los|este|esta)|te (muestro|dejo|comparto)|aqu[ií] (tienes|te)|estas son|estos son|opciones/i.test(t) && CHAT.ultimaBusqueda?.length)
-      acciones.unshift({nombre: "mostrar_productos", args: {codigos: CHAT.ultimaBusqueda}});
+    else if (CHAT.ultimaBusqueda?.length) acciones.unshift({nombre: "mostrar_productos", args: {codigos: CHAT.ultimaBusqueda}});
   }
   // Lo que pidió el cliente, aunque la IA no haya usado la función.
   const q = norm(pregunta);
