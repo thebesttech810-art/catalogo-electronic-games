@@ -265,36 +265,79 @@ body:is(.en-anillo,.en-portal) .chat-boton{opacity:0;visibility:hidden;transitio
 }
 
 /* ---------- Chat con el muñequito (IA) ---------- */
-.chat-mascota{position:fixed;inset:auto 20px calc(22px + env(safe-area-inset-bottom,0px)) auto;margin:0;z-index:20;width:min(360px,calc(100vw - 32px));max-height:min(560px,calc(100vh - 100px));border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);box-shadow:0 24px 60px rgba(0,0,0,.5);padding:0;overflow:hidden}
-.chat-mascota[open]{display:flex;flex-direction:column}
+.chat-mascota{position:fixed;inset:auto 20px calc(22px + env(safe-area-inset-bottom,0px)) auto;margin:0;z-index:20;width:min(380px,calc(100vw - 32px));height:min(600px,calc(100vh - 100px));height:min(600px,calc(100dvh - 100px));border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);box-shadow:0 24px 60px rgba(0,0,0,.5);padding:0;overflow:hidden}
+.chat-mascota[open]{display:flex;flex-direction:column;animation:chat-entra 220ms cubic-bezier(.3,1.4,.5,1) both}
 .chat-mascota::backdrop{background:transparent}
-.chat-mascota[open]{animation:chat-entra 220ms cubic-bezier(.3,1.4,.5,1) both}
 @keyframes chat-entra{from{opacity:0;translate:0 16px;scale:.97}}
-.chat-cab{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--surface-hi);color:var(--ink);flex:none}
-.chat-cab img{width:38px;height:38px;border-radius:50%;object-fit:cover;flex:none}
+.chat-mascota svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.chat-cab{display:flex;align-items:center;gap:6px;padding:10px 8px 10px 14px;border-bottom:1px solid var(--line);background:var(--surface-hi);color:var(--ink);flex:none}
+.chat-cab img{width:38px;height:38px;border-radius:50%;object-fit:cover;flex:none;margin-right:4px}
 .chat-cab div{display:grid;gap:1px;flex:1;min-width:0}
-.chat-cab b{font-size:.92rem}
+.chat-cab b{font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .chat-cab span{font-size:.74rem;color:var(--muted)}
-.chat-cab button{background:none;border:0;color:var(--ink);font-size:1.3rem;line-height:1;cursor:pointer;padding:4px;opacity:.85}
-.chat-cuerpo{flex:1;overflow-y:auto;padding:12px 14px;display:grid;gap:8px;overscroll-behavior:contain}
-.chat-msj{max-width:82%;padding:8px 12px;border-radius:14px;font-size:.88rem;line-height:1.35;white-space:pre-wrap;overflow-wrap:anywhere}
-.chat-msj.mia{justify-self:end;background:var(--brand);color:#0A0A0B;border-bottom-right-radius:4px}
-.chat-msj.suya{justify-self:start;background:var(--fondo,rgba(127,127,127,.14));border-bottom-left-radius:4px}
-.chat-msj.pensando{display:flex;gap:4px;align-items:center;padding:10px 14px}
+.chat-cab button{flex:none;width:36px;height:36px;display:grid;place-items:center;background:none;border:0;border-radius:10px;color:var(--ink);font-size:1.35rem;line-height:1;cursor:pointer;opacity:.85}
+.chat-cab button:hover{background:rgba(255,255,255,.08);opacity:1}
+.chat-cab button svg{width:19px;height:19px}
+.chat-cab button[aria-pressed="true"]{color:var(--brand);opacity:1}
+.chat-cab button[hidden]{display:none}
+.chat-cuerpo{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain}
+.chat-cuerpo > *{flex-shrink:0}
+.chat-cuerpo:focus{outline:none}
+body.chat-abierto .chat-boton{display:none}
+.chat-msj{max-width:84%;padding:8px 12px;border-radius:14px;font-size:.88rem;line-height:1.4;white-space:pre-wrap;overflow-wrap:anywhere}
+.chat-msj b{font-weight:800}
+.chat-msj.mia{align-self:flex-end;background:var(--brand);color:#0A0A0B;border-bottom-right-radius:4px}
+.chat-msj.suya{align-self:flex-start;background:var(--surface-hi);border-bottom-left-radius:4px}
+.chat-msj.error{border:1px solid rgba(255,122,0,.35)}
+.chat-msj:has(.chat-pose){display:flex;gap:10px;align-items:flex-end}
+.chat-pose{flex:none;height:54px;width:auto;margin:-2px 0 -4px -4px;align-self:flex-end}
+.chat-msj.pensando{display:flex;gap:4px;align-items:center;padding:8px 14px 8px 10px}
+.chat-msj.pensando .chat-pose{height:44px;margin:-4px 6px -6px -4px;animation:chat-piensa 1.6s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes chat-piensa{50%{rotate:-4deg}}
 .chat-msj.pensando i{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.5;animation:chat-punto 1s ease infinite}
-.chat-msj.pensando i:nth-child(2){animation-delay:.15s}
-.chat-msj.pensando i:nth-child(3){animation-delay:.3s}
+.chat-msj.pensando i:nth-of-type(2){animation-delay:.15s}
+.chat-msj.pensando i:nth-of-type(3){animation-delay:.3s}
 @keyframes chat-punto{0%,80%,100%{opacity:.3;translate:0 0}40%{opacity:1;translate:0 -3px}}
-.chat-form{display:flex;gap:8px;align-items:flex-end;padding:10px 12px;border-top:1px solid var(--line);flex:none}
-.chat-form textarea{flex:1;resize:none;max-height:90px;border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:var(--surface);color:var(--ink);font:inherit;font-size:.88rem}
-.chat-form button{flex:none;width:38px;height:38px;border-radius:50%;border:0;background:var(--brand);color:#0A0A0B;display:grid;place-items:center;cursor:pointer}
+.chat-cont{display:grid;gap:8px;justify-items:start;min-width:0}
+.chat-reintentar{padding:6px 12px;border:1px solid var(--brand);border-radius:999px;background:none;color:var(--brand);font:inherit;font-size:.8rem;font-weight:800;cursor:pointer}
+.chat-msj.con-enlace{padding:0;background:none}
+.chat-enlace{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:var(--ink);color:#0A0A0B;font-weight:800;font-size:.86rem;text-decoration:none}
+.chat-enlace.wa{background:#25D366;color:#062b14}
+.chat-enlace svg{width:18px;height:18px}
+.chat-prods{align-self:stretch;display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 0 6px;margin:0 -14px;padding-inline:14px;scroll-padding-inline:14px;scrollbar-width:thin}
+.chat-prod{flex:0 0 136px;scroll-snap-align:start;display:flex;flex-direction:column;background:var(--surface-hi);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.chat-prod-abrir{display:flex;flex-direction:column;gap:6px;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.chat-prod-abrir img{width:100%;aspect-ratio:1;object-fit:contain;background:#fff}
+.chat-prod-abrir span{padding:0 8px;font-size:.74rem;font-weight:700;line-height:1.25;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:2.8em}
+.chat-prod-pie{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:6px 6px 6px 8px}
+.chat-prod-pie b{font-size:.86rem}
+.chat-prod .card-add{position:static}
+.chat-prod .add{width:34px;height:34px;border-radius:10px;font-size:1.3rem}
+.chat-prod .add.in{font-size:.9rem}
+.chat-chips{flex:none;display:flex;gap:6px;overflow-x:auto;padding:0 12px 10px;scrollbar-width:none}
+.chat-chips[hidden]{display:none}
+.chat-chips button{flex:none;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface-hi);color:var(--ink);font:inherit;font-size:.78rem;font-weight:700;white-space:nowrap;cursor:pointer}
+.chat-chips button:hover{border-color:var(--brand)}
+.chat-form{display:flex;gap:6px;align-items:flex-end;padding:10px 12px;border-top:1px solid var(--line);flex:none}
+.chat-form textarea{flex:1;min-width:0;resize:none;max-height:90px;border:1px solid var(--line);border-radius:12px;padding:9px 10px;background:var(--surface);color:var(--ink);font:inherit;font-size:16px;line-height:1.3}
+.chat-form button{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:var(--brand);color:#0A0A0B;display:grid;place-items:center;cursor:pointer}
 .chat-form button svg{width:18px;height:18px}
+.chat-form button[type=submit] svg{fill:currentColor;stroke:none}
 .chat-form button:disabled{opacity:.5;cursor:default}
-.chat-wa{flex:none;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px;font-size:.8rem;font-weight:700;color:#0f7a3c;text-decoration:none;border-top:1px solid var(--line)}
+.chat-form .chat-mic{background:var(--surface-hi);color:var(--ink)}
+.chat-form .chat-mic[hidden]{display:none}
+.chat-mic.escuchando{background:#e5484d;color:#fff;animation:chat-escucha 1.2s ease-in-out infinite}
+@keyframes chat-escucha{50%{box-shadow:0 0 0 7px rgba(229,72,77,.25)}}
+.chat-wa{flex:none;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;font-size:.78rem;font-weight:700;color:#3ddc84;text-decoration:none;border-top:1px solid var(--line)}
 .chat-wa svg{width:15px;height:15px}
-@media (max-width:700px){
-  .chat-mascota{right:12px;left:12px;width:auto;bottom:calc(84px + env(safe-area-inset-bottom,0px));max-height:min(70vh,520px)}
+@media (min-width:701px){
+  /* Con la barra "Ver mi pedido" abajo, el chat se sube para no taparla. */
+  body.con-pedido .chat-mascota{bottom:calc(96px + env(safe-area-inset-bottom,0px));height:min(600px,calc(100dvh - 176px))}
 }
+@media (max-width:700px){
+  .chat-mascota{right:10px;left:10px;width:auto;bottom:calc(10px + env(safe-area-inset-bottom,0px));height:min(78vh,620px);height:min(78dvh,620px)}
+}
+@media (prefers-reduced-motion:reduce){ .chat-mascota[open],.chat-msj.pensando .chat-pose,.chat-mic.escuchando{animation:none} }
 
 /* ---------- Mascota: el muñequito de la tienda da la bienvenida ---------- */
 /* En computadora está parado frente a la vitrina de productos; en celular, en su propia franja arriba del titular. */
@@ -1552,6 +1595,8 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5.5h16v11H9l-4 3.5v-3.5H4v-11Z"/><path d="M8 10h8M8 13h5"/></symbol>
   <symbol id="i-enviar" viewBox="0 0 24 24"><path d="M4 12 20 4l-4.5 16-4.5-6.5L4 12Z"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+  <symbol id="i-voz" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4v-5Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
   <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
   <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></symbol>
@@ -1890,6 +1935,7 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
         <div class="pie-acc">
           <button type="button" class="share-btn" id="dFav" aria-pressed="false"><svg class="ico" style="width:18px;height:18px" aria-hidden="true"><use href="#i-heart"/></svg><span id="dFavTxt">Guardar</span></button>
           <button type="button" class="share-btn" id="dShare"><svg class="ico" style="width:18px;height:18px" aria-hidden="true"><use href="#i-share"/></svg><span id="dShareTxt">Compartir</span></button>
+          <button type="button" class="share-btn" id="dChat" hidden><svg class="ico" style="width:18px;height:18px" aria-hidden="true"><use href="#i-chat"/></svg><span>Preguntar</span></button>
         </div>
       </div>
     </div>
@@ -2048,12 +2094,16 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
 <dialog id="chatMascota" class="chat-mascota" aria-label="Chat con el muñequito">
   <header class="chat-cab">
     <img src="mascota/mascota-cara.webp" alt="" width="200" height="200" decoding="async">
-    <div><b>Asistente de Electronic Games</b><span>Te responde el muñequito</span></div>
+    <div><b>Electronic Games</b><span id="chatEstado">Te responde el muñequito</span></div>
+    <button id="chatVoz" type="button" aria-pressed="false" aria-label="Leer las respuestas en voz alta" hidden><svg aria-hidden="true"><use href="#i-voz"/></svg></button>
+    <button id="chatNuevo" type="button" aria-label="Empezar una conversación nueva" title="Conversación nueva"><svg aria-hidden="true"><use href="#i-refresh"/></svg></button>
     <button id="chatCerrar" type="button" aria-label="Cerrar chat">×</button>
   </header>
-  <div class="chat-cuerpo" id="chatCuerpo" role="log" aria-live="polite"></div>
+  <div class="chat-cuerpo" id="chatCuerpo" role="log" aria-live="polite" tabindex="-1"></div>
+  <div class="chat-chips" id="chatChips" hidden></div>
   <form class="chat-form" id="chatForm">
-    <textarea id="chatTexto" rows="1" maxlength="500" placeholder="Escríbele algo…" autocomplete="off"></textarea>
+    <button type="button" id="chatMic" class="chat-mic" aria-label="Hablarle con el micrófono" hidden><svg aria-hidden="true"><use href="#i-mic"/></svg></button>
+    <textarea id="chatTexto" rows="1" maxlength="500" placeholder="Escríbele algo…" autocomplete="off" aria-label="Tu mensaje"></textarea>
     <button type="submit" id="chatEnviar" aria-label="Enviar"><svg aria-hidden="true"><use href="#i-enviar"/></svg></button>
   </form>
   <a class="chat-wa" id="chatWa" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Prefiero escribir por WhatsApp</a>
@@ -2479,8 +2529,9 @@ const conFotoPrimero = l => [...l.filter(p=>p.photos.length), ...l.filter(p=>!p.
 
 // Búsqueda por palabras: "palanca ps5 roja" encuentra el producto aunque las palabras estén en otro orden.
 const SINONIMOS = {control: ["palanca"], palanca: ["control"], mando: ["palanca", "control"], joystick: ["palanca", "control"]};
+const textoBusqueda = p => p._txt || (p._txt = norm(`${p.name} ${p.code} ${p.cat_label || ""} ${plataformasDe(p).join(" ")}`));
 function coincide(p, q){
-  const texto = p._txt || (p._txt = norm(`${p.name} ${p.code} ${p.cat_label || ""} ${plataformasDe(p).join(" ")}`));
+  const texto = textoBusqueda(p);
   return norm(q).split(/\s+/).filter(Boolean).every(w => texto.includes(w) || (SINONIMOS[w] || []).some(s => texto.includes(s)));
 }
 // Primero lo que empieza como lo escrito ("palanca ps5" → las palancas, no los estuches); en empate, lo más vendido.
@@ -2795,7 +2846,7 @@ function resetAll(){ aplicarFiltro({cat: "all", q: "", plat: "all", local: "all"
 
 // Solo cambia el botón de los productos cuyo número en el pedido cambió (no se redibuja nada más).
 function refrescarControles(){
-  document.querySelectorAll(".card[data-code]").forEach(card=>{
+  document.querySelectorAll(".card[data-code], .chat-prod[data-code]").forEach(card=>{
     const p = buscar(card.dataset.code); if (!p) return;
     const box = card.querySelector(".card-add"), q = String(PEDIDO.items.get(p.code) || 0);
     if (box.dataset.q === q) return;
@@ -3120,147 +3171,638 @@ async function cargarMascota(){
 }
 cargarMascota();
 
-// Chat con el muñequito (IA vía Worker de Cloudflare). Si no hay URL configurada
-// (CONFIG.chatMascotaUrl), el botón de "abrir chat" simplemente lleva a WhatsApp.
-//
-// El Worker no guarda ni conoce nada de la tienda: en cada mensaje le mandamos un
-// "contexto" armado aquí, a partir de CONFIG y del catálogo (PRODUCTS) ya cargado.
-// Así el muñequito siempre responde con los locales, horarios y precios/stock tal
-// como están en la página en ese momento, sin tener que tocar el código del Worker
-// cada vez que cambia algo en la web.
+// ===== Chat con el muñequito (IA) =====
+// La página arma en cada mensaje el contexto (hora, locales, pedido, productos relacionados con
+// la pregunta) y le dice a la IA qué puede hacer aquí (HERRAMIENTAS_CHAT: agregar al pedido,
+// mostrar productos, abrir fichas…). El Worker de Cloudflare solo guarda la clave de Gemini y
+// pasa la respuesta en vivo, así que agregar o cambiar algo del chat no obliga a tocar el Worker.
+// Sin URL configurada (CONFIG.chatMascotaUrl), el botón de "abrir chat" lleva a WhatsApp.
+const CLAVE_CHAT = "eg_chat_v1", CLAVE_CHAT_VOZ = "eg_chat_voz";
+const CHAT = {mensajes: [], enviando: false, citados: [], leerProxima: false,
+  voz: (()=>{ try { return localStorage.getItem(CLAVE_CHAT_VOZ) === "1"; } catch(e) { return false; } })()};
+const enCelular = () => matchMedia("(max-width: 700px)").matches;
+
+// --- Lo que sabe: hora, locales, pedido y los productos que tienen que ver con la pregunta ---
 function horarioTexto(){
   const hm = m => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
   const [s0, s1] = CONFIG.horario.semana, [d0, d1] = CONFIG.horario.domingo;
   return `Lunes a sábado de ${hm(s0)} a ${hm(s1)}. Domingo de ${hm(d0)} a ${hm(d1)}.`;
 }
 function localesTexto(){
-  return Object.values(CONFIG.locales).map(l => `${l.nombre} (${l.zona}${l.detalle ? ", " + l.detalle : ""})`).join("; ");
+  return Object.entries(CONFIG.locales).map(([k, l]) => `[${k}] ${l.nombre} (${l.zona}${l.detalle ? ", " + l.detalle : ""})`).join("; ");
 }
-function lineaProducto(p){
-  const precio = p.price_efectivo ?? p.price;
-  const tarjeta = p.price_tarjeta;
-  const precioTxt = tarjeta && tarjeta !== precio ? `$${precio} (tarjeta $${tarjeta})` : `$${precio}`;
-  const stockTxt = Object.entries(p.stock || {})
-    .filter(([, v]) => v > 0)
-    .map(([k, v]) => `${CONFIG.locales[k]?.nombre || k} ${v}`)
-    .join(", ") || "agotado";
-  return `- ${p.name} | código: ${p.code} | ${p.cat_label} | ${precioTxt} | stock: ${stockTxt}`;
+function ahoraTexto(){
+  const f = new Intl.DateTimeFormat("es-EC", {timeZone: CONFIG.tz, weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit", hourCycle: "h23"}).format(new Date());
+  return `Ahora en Ecuador es ${f}. Estado de los locales: ${estadoTienda().txt}.`;
 }
-const sinTildes = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
-// Mandar los 280+ productos en cada mensaje hacía que la IA tardara mucho en
-// responder (tiene que "leer" todo ese texto antes de contestar). En vez de
-// eso, se buscan solo los productos relacionados con lo que se preguntó; si
-// la pregunta es general (o no se encuentra nada), se manda un resumen corto
-// por categoría en vez del catálogo entero.
-function catalogoTexto(mensaje){
-  const palabras = [...new Set((sinTildes(mensaje || "").match(/[a-z0-9]{3,}/g) || []))];
-  const encontrados = palabras.length
-    ? PRODUCTS.filter(p => { const n = sinTildes(p.name); return palabras.some(w => n.includes(w)); }).slice(0, 40)
-    : [];
-  if (encontrados.length) return `Productos que coinciden con la pregunta:\n${encontrados.map(lineaProducto).join("\n")}`;
-  const porCat = {};
-  for (const p of PRODUCTS) porCat[p.cat_label] = (porCat[p.cat_label] || 0) + 1;
-  return `No hubo una coincidencia puntual con el catálogo; resumen por categoría (${PRODUCTS.length} productos en total):\n` +
-    Object.entries(porCat).map(([c, n]) => `- ${c}: ${n}`).join("\n") +
-    `\nSi preguntan por un producto puntual, pide el nombre exacto para buscarlo con su precio y stock.`;
+function lineaProducto(p, conDesc){
+  const efectivo = p.price_efectivo ?? p.price, tarjeta = p.price_tarjeta;
+  const precioTxt = tarjeta && tarjeta !== efectivo ? `$${efectivo} (tarjeta $${tarjeta})` : `$${efectivo}`;
+  const stockTxt = Object.entries(p.stock || {}).filter(([, v]) => v > 0)
+    .map(([k, v]) => `${CONFIG.locales[k]?.nombre || k} ${v}`).join(", ") || (p.digital ? "código digital" : "agotado");
+  const extra = [consolaDe(p).txt, p.nuevo && "nuevo", p.top && "top ventas"].filter(Boolean).join(", ");
+  const desc = conDesc && p.desc ? ` | ${p.desc.replace(/\s+/g, " ").slice(0, 160)}` : "";
+  return `- ${p.name} | código: ${p.code} | ${p.cat_label}${extra ? " | " + extra : ""} | ${precioTxt} | stock: ${stockTxt}${desc}`;
+}
+const PALABRAS_VACIAS = new Set(("que para con los las una uno unos unas tienen tiene tienes tendran hay quiero queria quisiera busco buscando necesito " +
+  "cuanto cuanta cuesta cuestan vale valen precio precios del por algo este ese esa esta estos esos esas estas eso esto muestrame muestra ensename " +
+  "dame agrega agregame agregar anade anademe pon ponme pedido carrito favor porfa porfavor gracias hola buenas buenos dias tardes noches como donde " +
+  "cual cuales mas menos hasta dolares dolar usd son sus mis tus mismo ver tambien pero sin sobre entre desde cuando todo toda todos todas otro otra " +
+  "otros otras bien muy aqui alli ahi puedes puede pueden podrias seria sera cosa cosas tipo ella ellos algun alguna algunos algunas cualquier tengo " +
+  "presupuesto maximo barato barata baratos baratas economico economica mejor mejores recomiendas recomienda recomendacion regalo regalar nino nina " +
+  "ninos ninas hijo hija sobrino anos edad nuevo nueva nuevos nuevas novedad novedades recien llego llegaron vendido vendidos popular top quisieramos " +
+  "estan esta ubicados ubicado ubicacion ubican queda quedan direccion llegar llego local locales tienda tiendas abren abierto abiertos cierran cierra " +
+  "horario horarios hora abrir atienden servicio tecnico reparar reparan arreglar arreglan garantia envio envios envian domicilio pagar pago pagos tarjeta " +
+  "efectivo transferencia terminar enviar whatsapp retirar retiro retiras nombre ayuda ayudame ayudar gracias ok okay listo quitar quita cambiar cambia " +
+  "cuentame cuenta saber sirve funciona original originales generico genericos usado medio uso incluye trae viene caja prende prender enciende encender " +
+  "falla fallas dano danado danada roto rota problema problemas").split(" "));
+// Palabras que la gente usa y el catálogo escribe distinto.
+const SINONIMOS_CHAT = {futbol: ["fifa", "fc 2", "efootball", "pes 20"], soccer: ["fifa", "fc 2"], carros: ["kart", "racing", "gran turismo", "forza", "need for speed", "crash team"],
+  carreras: ["kart", "racing", "gran turismo", "forza", "need for speed"], pelea: ["mortal kombat", "street fighter", "tekken", "smash", "dragon ball"],
+  peleas: ["mortal kombat", "street fighter", "tekken", "smash", "dragon ball"], terror: ["resident evil", "silent hill", "outlast"],
+  disparos: ["call of duty", "battlefield", "halo", "fortnite"], guerra: ["call of duty", "battlefield"], switch: ["swicth"], switch2: ["switch 2", "swicth 2"],
+  audifonos: ["audifono", "headset", "auricular", "diadema"], pokemones: ["pokemon"], cartas: ["tcg", "carta", "booster"]};
+const CATEGORIAS_CHAT = [
+  ["juegos", /\b(video)?juegos?\b|\btitulos?\b/],
+  ["consolas", /\bconsolas?\b/],
+  ["palancas", /\b(control(es)?|mandos?|palancas?|joysticks?|joy-?cons?|dualsense|dualshock)\b/],
+  ["accesorios", /\b(accesorios?|audifonos?|headsets?|auriculares?|cargador(es)?|cables?|fundas?|estuches?|bases?|memorias?|volantes?|protector(es)?)\b/],
+];
+// Estas nombran la categoría en general; las demás (audífonos, volante…) además se buscan en el nombre.
+const GENERICAS_CHAT = /\b(video)?juegos?\b|\btitulos?\b|\bconsolas?\b|\baccesorios?\b|\bcontrol(es)?\b|\bmandos?\b|\bpalancas?\b|\bjoysticks?\b/g;
+const ALIAS_CONSOLA = [[/\bplay ?station ?5\b|\bplay ?5\b|\bps ?5\b/g, " ps5 "], [/\bplay ?station ?4\b|\bplay ?4\b|\bps ?4\b/g, " ps4 "],
+  [/\bplay ?station\b|\bplay\b/g, " playstation "], [/\bswitch ?2\b/g, " switch2 "]];
+const esPlataforma = w => w !== "switch" && w !== "switch2" && CONFIG.plataformas.some(([, re]) => re.test(w.toUpperCase()));
+const QUIERE_PRODUCTO = /\b(tienen|tienes|hay|venden|vendes|busco|buscando|quiero|quisiera|necesito|precio|cuesta|cuestan|vale|valen|stock|disponible|llega|llegan|consigo)\b/;
+const LOCALES_CHAT = new Set(Object.entries(CONFIG.locales).flatMap(([k, L]) => [k, ...norm(`${L.nombre} ${L.zona}`).split(/\s+/)]));
+function analizarConsulta(texto){
+  let t = norm(texto).replace(/\b(a nombre de|me llamo|mi nombre es|soy)\b.*$/, " ");
+  for (const [re, r] of ALIAS_CONSOLA) t = t.replace(re, r);
+  const T = t.toUpperCase().replace("SWITCH2", "SWITCH 2");
+  const plats = CONFIG.plataformas.filter(([, re]) => re.test(T)).map(([n]) => n);
+  const mundos = new Set(plats.map(n => CONFIG.mundos[n] ? n : Object.keys(CONFIG.mundos).find(m => CONFIG.mundos[m].subs.includes(n)) || n));
+  const plat = mundos.size === 1 ? (plats.find(n => !CONFIG.mundos[n]) || plats[0]) : null;   // lo más puntual: "PS5" antes que "PlayStation"
+  const cats = CATEGORIAS_CHAT.filter(([, re]) => re.test(t)).map(([c]) => c);
+  const cat = cats.length === 1 ? cats[0] : null;
+  let max = null, min = null;
+  const plata = t.match(/\$\s*(\d{1,5}(?:[.,]\d{1,2})?)|(\d{1,5}(?:[.,]\d{1,2})?)\s*(?:\$|dolares?|usd)|(?:menos de|hasta|maximo|no mas de|presupuesto(?: de)?|tengo)\s*\$?\s*(\d{1,5})/);
+  if (plata){
+    const v = parseFloat((plata[1] || plata[2] || plata[3]).replace(",", "."));
+    if (/\b(mas de|desde|mayor a|minimo|arriba de)\s*\$?\s*\d/.test(t)) min = v; else max = v;
+  }
+  const barato = /\b(barat[oa]s?|economic[oa]s?)\b/.test(t);
+  const nuevo = /\b(nuev[oa]s?|novedad(es)?|recien|llego|llegaron|lanzamientos?)\b/.test(t);
+  const top = /\b(mas vendid[oa]s?|top|popular(es)?|recomienda[s]?|recomendacion|regal[oa]r?|mejor(es)?)\b/.test(t);
+  const palabras = [...new Set((t.replace(GENERICAS_CHAT, " ").match(/[a-z0-9]{3,}/g) || []))]
+    .filter(w => !PALABRAS_VACIAS.has(w) && !LOCALES_CHAT.has(w) && !esPlataforma(w) && !/^\d+$/.test(w));
+  const servicio = /\b(servicio tecnico|reparar|reparacion|arregl\w*|no (prende|enciende|carga|funciona|lee)|se (dano|quemo|rompio))\b/.test(t);
+  return {plat, cat, max, min, barato, nuevo, top, palabras, servicio, quiere: QUIERE_PRODUCTO.test(t),
+    filtros: !!(plat || cat || max != null || min != null || nuevo || top)};
+}
+const variantes = w => [w, w.length > 5 && w.endsWith("es") ? w.slice(0, -2) : null, w.length > 4 && w.endsWith("s") ? w.slice(0, -1) : null,
+  ...(SINONIMOS_CHAT[w] || []), ...(SINONIMOS[w] || [])].filter(Boolean);
+function buscarParaChat(actual, anterior){
+  const c = analizarConsulta(actual);
+  if (c.servicio && !c.cat) return {c, lista: [], sinCoincidencia: false, nota: ""};   // es de servicio técnico, no una búsqueda
+  if (anterior && !c.palabras.length){   // "¿y para PS4?" sigue hablando de lo de antes
+    const a = analizarConsulta(anterior);
+    c.palabras = a.palabras;
+    for (const k of ["plat", "cat", "max", "min"]) c[k] ??= a[k];
+    c.nuevo ||= a.nuevo; c.top ||= a.top; c.barato ||= a.barato; c.quiere ||= a.quiere;
+    c.filtros ||= a.filtros;
+  }
+  const efectivo = p => precio(p, "efectivo");
+  const filtrar = (sinPrecio) => PRODUCTS.filter(p => (!c.plat || plataformasDe(p).includes(c.plat)) && (!c.cat || p.cat === c.cat) &&
+    (sinPrecio || c.max == null || efectivo(p) <= c.max) && (sinPrecio || c.min == null || efectivo(p) >= c.min) && (!c.nuevo || p.nuevo));
+  let lista = filtrar(false), nota = "";
+  // Una palabra que está en pocos productos ("iphone") pesa más que una que está en muchos ("pro").
+  const esta = (p, w) => variantes(w).some(v => textoBusqueda(p).includes(v));
+  const peso = Object.fromEntries(c.palabras.map(w => { const n = PRODUCTS.filter(p => esta(p, w)).length; return [w, n <= 10 ? 4 : n <= 30 ? 2 : 1]; }));
+  const puntuar = ls => {
+    const puntos = new Map();
+    for (const p of ls){
+      const s = c.palabras.reduce((s, w) => s + (esta(p, w) ? peso[w] : 0), 0);
+      if (s) puntos.set(p, s);
+    }
+    const mejor = Math.max(0, ...puntos.values());
+    for (const [p, s] of puntos) if (s < mejor * 0.6) puntos.delete(p);   // solo los que coinciden en lo importante
+    return puntos;
+  };
+  let puntos = new Map(), sinCoincidencia = false;
+  if (c.palabras.length){
+    puntos = puntuar(lista);
+    if (!puntos.size && (c.max != null || c.min != null)){   // quizá existe, pero en otro precio
+      const sinTope = puntuar(filtrar(true));
+      if (sinTope.size){ puntos = sinTope; lista = [...sinTope.keys()]; nota = "en ese precio no hay; estos son los que hay"; }
+    }
+    if (puntos.size) lista = lista.filter(p => puntos.has(p));
+    else if (c.filtros || c.quiere) sinCoincidencia = true;
+    else lista = [];   // no era una búsqueda ("¿dónde están?")
+  } else if (!c.filtros) lista = [];
+  else if (!lista.length && (c.max != null || c.min != null)){   // "juegos de PS5 de menos de $30": los más baratos que sí hay
+    lista = filtrar(true);
+    nota = `no hay por ${c.max != null ? "menos de $" + c.max : "más de $" + c.min}; estos son los más cercanos`;
+    c.barato = c.max != null;
+  }
+  if (c.top && !c.palabras.length && lista.filter(p => p.top).length >= 3) lista = lista.filter(p => p.top);
+  const hay = p => maxQty(p) > 0 ? 1 : 0;
+  lista.sort((a, b) => (puntos.get(b) || 0) - (puntos.get(a) || 0) || hay(b) - hay(a) ||
+    (c.barato || c.max != null ? efectivo(a) - efectivo(b) : 0) || (b.top === true) - (a.top === true));
+  return {c, lista, sinCoincidencia, nota};
+}
+function pedidoTexto(){
+  const ls = lineas();
+  if (!ls.length) return "Pedido actual del cliente: vacío.";
+  const L = PEDIDO.retiro && CONFIG.locales[PEDIDO.retiro];
+  const sug = sugerencias(4);
+  return `Pedido actual del cliente (${unidades()} unidades, total ${fmt(totalPedido())} pagando ${PEDIDO.pago === "tarjeta" ? "con tarjeta" : "en efectivo o transferencia"}; ` +
+    `retiro: ${L ? L.nombre : "sin elegir"}${PEDIDO.nombre ? "; a nombre de " + PEDIDO.nombre : ""}):\n` +
+    ls.map(({p, q}) => `- ${q} x ${p.name} | código: ${p.code} | disponibles: ${maxQty(p)}`).join("\n") +
+    (sug.length ? `\nCombinan con su pedido (ofrécelos si viene al caso):\n${sug.map(p => lineaProducto(p)).join("\n")}` : "");
+}
+function resumenCatalogo(){
+  const cats = {}, mundos = {};
+  for (const p of PRODUCTS){
+    cats[p.cat_label] = (cats[p.cat_label] || 0) + 1;
+    for (const m of Object.keys(CONFIG.mundos)) if (plataformasDe(p).includes(m)) mundos[m] = (mundos[m] || 0) + 1;
+  }
+  return `Catálogo: ${PRODUCTS.length} productos. Por categoría: ${Object.entries(cats).map(([c, n]) => `${c} ${n}`).join(", ")}. ` +
+    `Por consola: ${Object.entries(mundos).map(([m, n]) => `${m} ${n}`).join(", ")}.`;
 }
 function contextoTienda(mensaje){
-  return [
+  const anterior = [...CHAT.mensajes].reverse().find(m => m.rol === "usuario" && m.texto && m.texto !== mensaje)?.texto;
+  const partes = [
+    ahoraTexto(),
     `Tienda: ${CONFIG.storeName}. WhatsApp: +${CONFIG.whatsapp}. Instagram: @electronicgamesec.`,
-    `Locales (ahí se retiran los pedidos y se recibe el servicio técnico): ${localesTexto()}.`,
+    `Locales (la clave entre corchetes es la que se usa en las funciones; ahí se retiran los pedidos y se recibe el servicio técnico): ${localesTexto()}.`,
     `Horario de los 3 locales: ${horarioTexto()}`,
-    `Cómo comprar: se arma el pedido en la página (botón + en cada producto), se abre "Mi pedido", se elige el local donde se retira y la forma de pago (efectivo, transferencia o tarjeta; con tarjeta el precio puede ser distinto al de contado, se confirma en el catálogo), y se envía por WhatsApp ya con productos, cantidades y total. Ahí se confirma disponibilidad antes de cobrar. No hay pago dentro de la web, ni envío a domicilio.`,
-    `Servicio técnico: reciben consolas y palancas/controles de PlayStation, Nintendo y Xbox en los 3 locales; se cotiza por WhatsApp indicando el modelo y qué le pasa al equipo.`,
-    `El stock que se ve en la página sale del sistema de inventario y se actualiza cada 15 minutos. Los precios ya incluyen IVA.`,
-    `La web no publica una política de garantía ni de envíos a domicilio: si preguntan por eso, dilo con honestidad y sugiere confirmarlo por WhatsApp.`,
-    `Puedes agregar productos al pedido del cliente directamente en la página usando la función agregar_al_pedido, con el "código" EXACTO del producto tal como aparece abajo (nunca inventes un código). Úsala solo cuando el cliente pida claramente agregar, comprar o llevar un producto y ya identificaste con certeza cuál es de la lista de abajo; si hay varias opciones parecidas (distintos modelos, colores o ediciones) pregunta primero cuál antes de agregar. Después de agregarlo, el cliente sigue el pedido desde el botón "Mi pedido" de la página.`,
-    PRODUCTS.length
-      ? catalogoTexto(mensaje)
-      : `El catálogo todavía no cargó en esta visita: si preguntan por un producto puntual, sugiere revisarlo en la página o preguntar por WhatsApp.`,
-  ].join("\n\n");
+    `Cómo comprar: se arma el pedido en la página, se elige el local de retiro y la forma de pago (efectivo, transferencia o tarjeta; con tarjeta algunos precios son más altos) y se envía por WhatsApp, donde se confirma la disponibilidad antes de cobrar. No hay pago dentro de la web ni envío a domicilio.`,
+    `Servicio técnico: consolas y palancas/controles de PlayStation, Nintendo y Xbox, en los 3 locales; se cotiza por WhatsApp con el modelo y la falla.`,
+    `El stock sale del inventario y se actualiza cada 15 minutos. Los precios incluyen IVA. La web no publica política de garantía ni de envíos: si preguntan, dilo y ofrece WhatsApp.`,
+    `Cómo usar las funciones (hacen cosas de verdad en la página):
+- Si recomiendas o mencionas productos concretos, muéstralos con mostrar_productos (hasta 6 códigos) y en el texto no repitas nombres largos, precios ni códigos: basta algo como "Mira estas opciones 👇".
+- agregar_al_pedido solo cuando el cliente pida claramente agregar, comprar o llevar algo y sepas con certeza cuál es; si hay varias versiones parecidas, muéstralas y pregunta cuál. Usa solo códigos de este contexto, nunca inventes uno.
+- cambiar_cantidad para cambiar o quitar (cantidad 0) algo que ya está en el pedido.
+- datos_del_pedido para elegir el local de retiro, la forma de pago o el nombre.
+- ver_pedido cuando quiera terminar, pagar, enviar o revisar su pedido (lo envía él mismo por WhatsApp desde ahí).
+- abrir_producto para ver fotos y detalles de uno; ver_catalogo para ver muchos productos de una consola, categoría o búsqueda.
+- guardar_favorito si quiere guardarlo para después; como_llegar si pregunta la ubicación o cómo llegar a un local.
+- preparar_whatsapp para: servicio técnico (primero pregunta el equipo y la falla, luego arma el mensaje), un producto que no está en el catálogo (para que le avisen cuando llegue), garantía, envíos o cualquier cosa que no sepas.
+- Después de usar una función la página ya le confirma al cliente: no repitas "listo, lo agregué".
+- Si dices "mira estas opciones", "te dejo el botón" o algo así, TIENES que llamar a la función en esa misma respuesta.
+Formato: de 1 a 3 frases. Puedes usar **negritas** y listas cortas con guiones. Nunca escribas códigos de producto, nombres de funciones, notas técnicas, tablas ni enlaces en el texto.`,
+    pedidoTexto(),
+  ];
+  const ficha = buscar(CHAT.desdeFicha);
+  if (ficha) partes.push(`El cliente viene de la ficha de «${ficha.name}» (código ${ficha.code}) y quiere saber más: cuéntale en el chat lo más útil (precio, stock por local, para qué consola es, qué incluye). No le vuelvas a abrir la ficha.\n${lineaProducto(ficha, true)}`);
+  if (!PRODUCTS.length) partes.push("El catálogo todavía no cargó en esta visita: si preguntan por un producto, sugiere revisarlo en la página o preguntar por WhatsApp.");
+  else {
+    partes.push(resumenCatalogo());
+    const {c, lista, sinCoincidencia, nota} = buscarParaChat(mensaje, anterior);
+    CHAT.ultimaBusqueda = sinCoincidencia ? [] : lista.slice(0, 6).map(p => p.code);
+    CHAT.noEncontrado = sinCoincidencia && c.quiere ? c.palabras.join(" ") : "";
+    const vistos = new Set(lista.slice(0, 30).map(p => p.code));
+    if (sinCoincidencia){
+      medir("chat-sin-resultados", {q: c.palabras.join(" ").slice(0, 60)});
+      partes.push(`No hay ningún producto que coincida con «${c.palabras.join(" ")}» en el catálogo. Dilo con honestidad y ofrece preguntar por WhatsApp (preparar_whatsapp) para que le avisen si llega.` +
+        (lista.length ? ` Parecidos que sí hay (${lista.length}):\n${lista.slice(0, 12).map(p => lineaProducto(p)).join("\n")}` : ""));
+    } else if (lista.length){
+      partes.push(`Productos relacionados con la pregunta (${lista.length} en total${lista.length > 30 ? ", aquí los 30 más relevantes" : ""}${nota ? "; ojo: " + nota : ""}):\n` +
+        lista.slice(0, 30).map((p, i) => lineaProducto(p, i < 5)).join("\n"));
+    }
+    const antes = CHAT.citados.map(buscar).filter(p => p && !vistos.has(p.code)).slice(0, 8);
+    if (antes.length) partes.push(`Productos de los que ya se habló en esta conversación:\n${antes.map(p => lineaProducto(p)).join("\n")}`);
+    const miro = VISTOS.map(buscar).filter(p => p && !vistos.has(p.code)).slice(0, 3);
+    if (miro.length) partes.push(`Productos que el cliente miró hace poco en la página (el primero es el último):\n${miro.map(p => lineaProducto(p)).join("\n")}`);
+    const favs = favoritosVigentes().slice(0, 5);
+    if (favs.length) partes.push(`Sus favoritos: ${favs.map(p => `${p.name} (código ${p.code})`).join("; ")}.`);
+  }
+  return partes.join("\n\n").slice(0, 28000);
 }
-let chatHistorial = [];
-let chatEnviando = false;
-function pintarMsjChat(texto, propio){
+
+// --- Lo que puede hacer en la página ---
+const HERRAMIENTAS_CHAT = [
+  {name: "mostrar_productos", description: "Muestra en el chat tarjetas con foto, precio y botón de agregar de hasta 6 productos del CONTEXTO. Úsala siempre que recomiendes o menciones productos concretos.",
+    parameters: {type: "OBJECT", properties: {codigos: {type: "ARRAY", items: {type: "STRING"}, description: "Códigos exactos del CONTEXTO, del más al menos relevante."}}, required: ["codigos"]}},
+  {name: "agregar_al_pedido", description: "Agrega un producto del CONTEXTO al pedido del cliente. Solo cuando lo pide claramente y sabes con certeza cuál es.",
+    parameters: {type: "OBJECT", properties: {codigo: {type: "STRING", description: "Código exacto del CONTEXTO."}, cantidad: {type: "INTEGER", description: "Cuántos agregar; si no lo dice, 1."}}, required: ["codigo"]}},
+  {name: "cambiar_cantidad", description: "Cambia la cantidad de un producto que ya está en el pedido; con 0 lo quita.",
+    parameters: {type: "OBJECT", properties: {codigo: {type: "STRING"}, cantidad: {type: "INTEGER", description: "Cantidad final (0 = quitar)."}}, required: ["codigo", "cantidad"]}},
+  {name: "datos_del_pedido", description: "Elige el local donde se retira el pedido, la forma de pago o el nombre de quien retira.",
+    parameters: {type: "OBJECT", properties: {
+      local: {type: "STRING", enum: Object.keys(CONFIG.locales), description: "Clave del local (la que va entre corchetes en el CONTEXTO)."},
+      pago: {type: "STRING", enum: ["efectivo", "transferencia", "tarjeta"]},
+      nombre: {type: "STRING", description: "Nombre de quien retira."}}}},
+  {name: "ver_pedido", description: "Abre 'Mi pedido' para que el cliente lo revise y lo envíe él mismo por WhatsApp."},
+  {name: "abrir_producto", description: "Abre la ficha completa de un producto (fotos grandes, detalles y stock por local).",
+    parameters: {type: "OBJECT", properties: {codigo: {type: "STRING"}}, required: ["codigo"]}},
+  {name: "ver_catalogo", description: "Lleva al catálogo de la página filtrado, para ver muchos productos a la vez.",
+    parameters: {type: "OBJECT", properties: {
+      busqueda: {type: "STRING", description: "Palabras a buscar, por ejemplo 'mario' o 'volante'."},
+      categoria: {type: "STRING", enum: ["consolas", "palancas", "juegos", "accesorios"]},
+      consola: {type: "STRING", enum: [...new Set(CONFIG.plataformas.map(([n]) => n))]}}}},
+  {name: "guardar_favorito", description: "Guarda un producto en los favoritos del cliente.",
+    parameters: {type: "OBJECT", properties: {codigo: {type: "STRING"}}, required: ["codigo"]}},
+  {name: "como_llegar", description: "Muestra un botón para abrir en Google Maps la ubicación de un local.",
+    parameters: {type: "OBJECT", properties: {local: {type: "STRING", enum: Object.keys(CONFIG.locales)}}, required: ["local"]}},
+  {name: "preparar_whatsapp", description: "Muestra un botón que abre WhatsApp de la tienda con un mensaje ya escrito (servicio técnico, producto que no está en el catálogo, garantía, envíos o algo que no sepas).",
+    parameters: {type: "OBJECT", properties: {mensaje: {type: "STRING", description: "Mensaje completo para la tienda, en primera persona del cliente."}, boton: {type: "STRING", description: "Texto corto del botón."}}, required: ["mensaje"]}},
+];
+const decir = texto => agregarMensaje({rol: "mascota", texto});
+function citar(ps){ CHAT.citados = [...new Set([...ps.map(p => p.code), ...CHAT.citados])].slice(0, 12); }
+const ACCIONES_CHAT = {
+  mostrar_productos({codigos}){
+    const ps = [...new Set(Array.isArray(codigos) ? codigos : [])].map(buscar).filter(Boolean).slice(0, 6);
+    if (!ps.length) return;
+    citar(ps);
+    agregarMensaje({rol: "mascota", productos: ps.map(p => p.code)});
+  },
+  agregar_al_pedido({codigo, cantidad}){
+    const p = buscar(codigo);
+    if (!p) return decir("No logré identificar bien ese producto para agregarlo — dime el nombre tal como aparece en la página.");
+    const max = maxQty(p);
+    if (!max) return decir(`${p.name} está agotado por ahora 😔 Si quieres, te dejo listo un WhatsApp para que te avisen cuando llegue.`);
+    const actual = PEDIDO.items.get(p.code) || 0, nueva = Math.min(actual + Math.max(1, Math.min(20, parseInt(cantidad, 10) || 1)), max);
+    citar([p]);
+    if (nueva === actual) return decir(`Ya tienes en tu pedido todas las unidades disponibles de ${p.name} (${max}).`);
+    setCantidad(p.code, nueva);
+    confirmarAgregado(p, nueva - actual);
+    medir("agregar-al-pedido", {codigo: p.code, via: "chat"});
+    decir(`¡Listo! Agregué ${nueva - actual > 1 ? (nueva - actual) + " x " : ""}${p.name} a tu pedido 🛒` + (nueva - actual < (parseInt(cantidad, 10) || 1) ? ` (solo hay ${max} disponibles)` : ""));
+  },
+  cambiar_cantidad({codigo, cantidad}){
+    const p = buscar(codigo), antes = p ? PEDIDO.items.get(p.code) || 0 : 0;
+    if (!p || !antes) return decir("Ese producto no está en tu pedido.");
+    const q = Math.max(0, Math.min(parseInt(cantidad, 10) || 0, maxQty(p)));
+    if (!q) guardarDeshacer(`Quitaste ${p.name}`);
+    setCantidad(p.code, q);
+    decir(q ? `Listo, ahora tienes ${q} x ${p.name} en tu pedido.` : `Listo, quité ${p.name} de tu pedido.`);
+  },
+  datos_del_pedido({local, pago, nombre}){
+    const hecho = [];
+    if (local && CONFIG.locales[local]){ PEDIDO.retiro = local; hecho.push(`retiras en ${CONFIG.locales[local].nombre}`); }
+    if (pago){ PEDIDO.pago = pago === "tarjeta" ? "tarjeta" : "efectivo"; hecho.push(pago === "tarjeta" ? "pagas con tarjeta" : `pagas ${pago === "transferencia" ? "por transferencia" : "en efectivo"}`); }
+    if (typeof nombre === "string" && nombre.trim()){ PEDIDO.nombre = nombre.trim().slice(0, 60); $("nombre").value = PEDIDO.nombre; hecho.push(`a nombre de ${PEDIDO.nombre}`); }
+    if (!hecho.length) return;
+    guardarPedido(); actualizarPedido();
+    decir(`Anotado: ${hecho.join(", ")} ✅`);
+  },
+  ver_pedido(){
+    if (!unidades()) return decir("Tu pedido todavía está vacío. ¿Te ayudo a encontrar algo?");
+    abrirCarrito();
+    decir("Te abrí tu pedido: revísalo y toca «Enviar por WhatsApp» para mandarlo 📲");
+  },
+  abrir_producto({codigo}){
+    const p = buscar(codigo);
+    if (!p) return decir("No encontré ese producto en el catálogo.");
+    citar([p]);
+    // Si justo viene de esa ficha, no se la vuelve a abrir: se le deja la tarjeta aquí.
+    if (p.code === CHAT.desdeFicha) return ACCIONES_CHAT.mostrar_productos({codigos: [p.code]});
+    decir(`Te abrí la ficha de ${p.name} 👀`);
+    abrirProducto(p.code);
+  },
+  ver_catalogo({busqueda, categoria, consola}){
+    const cat = ["consolas", "palancas", "juegos", "accesorios"].includes(categoria) ? categoria : "all";
+    const plat = CONFIG.plataformas.some(([n]) => n === consola) ? consola : "all";
+    aplicarFiltro({q: String(busqueda || "").slice(0, 60), cat, plat});
+    const n = listaFiltrada().length;
+    decir(n ? `Te llevé al catálogo: ${n} producto${n === 1 ? "" : "s"} 👇` : "No encontré productos con eso en el catálogo 😔");
+    if (enCelular()) $("chatMascota").close();
+  },
+  guardar_favorito({codigo}){
+    const p = buscar(codigo);
+    if (!p) return;
+    if (!FAVS.has(p.code)) alternarFavorito(p.code);
+    decir(`Guardé ${p.name} en tus favoritos ❤️`);
+  },
+  como_llegar({local}){
+    const L = CONFIG.locales[local];
+    if (L) agregarMensaje({rol: "mascota", enlace: {href: L.maps, texto: `Cómo llegar a ${L.nombre}`, tipo: "mapa"}});
+  },
+  preparar_whatsapp({mensaje, boton}){
+    const m = String(mensaje || "").trim().slice(0, 700);
+    if (m) agregarMensaje({rol: "mascota", enlace: {href: waLink(m), texto: String(boton || "Enviar por WhatsApp").slice(0, 40), tipo: "wa"}});
+  },
+};
+function ejecutarAccionChat(accion){
+  const f = ACCIONES_CHAT[accion?.nombre];
+  if (!f) return;
+  medir("chat-accion", {nombre: accion.nombre});
+  try { f(accion.args || {}); } catch(e) {}
+}
+
+// El modelo "lite" a veces escribe los códigos en vez de mostrar las tarjetas, anuncia "mira estas
+// opciones 👇" sin mostrarlas, o deja notas técnicas: la página lo corrige sola.
+const NOMBRES_HERRAMIENTAS = new RegExp(HERRAMIENTAS_CHAT.map(h => h.name).join("|"));
+const codigosEn = t => [...new Set((t.match(/[A-Za-z0-9][A-Za-z0-9.\-]{3,}/g) || []).map(c => c.replace(/\.+$/, "")).filter(c => /[\d.\-]/.test(c) && buscar(c)))];
+function limpiarTexto(t){
+  for (const c of codigosEn(t)) t = t.split(c).join("");
+  return t.split("\n").filter(l => !NOMBRES_HERRAMIENTAS.test(l)).join("\n")
+    .replace(/[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]+/g, "")
+    .replace(/\(\s*(c[oó]digo:?)?\s*\)/gi, "").replace(/\(\s*(le|te) (mostr|dej)[^)]*\)/gi, "").replace(/^[ \t]*[-*•][ \t]*$/gm, "").replace(/\n{3,}/g, "\n\n").trim();
+}
+function completarAcciones(t, acciones, pregunta){
+  const hay = n => acciones.some(a => n.includes(a.nombre));
+  if (!hay(["mostrar_productos"])){
+    const codigos = codigosEn(t);
+    if (codigos.length) acciones.unshift({nombre: "mostrar_productos", args: {codigos}});
+    else if (/👇|mira (estas|estos|las|los|este|esta)|te (muestro|dejo|comparto)|aqu[ií] (tienes|te)|estas son|estos son|opciones/i.test(t) && CHAT.ultimaBusqueda?.length)
+      acciones.unshift({nombre: "mostrar_productos", args: {codigos: CHAT.ultimaBusqueda}});
+  }
+  // Lo que pidió el cliente, aunque la IA no haya usado la función.
+  const q = norm(pregunta);
+  if (!hay(["ver_pedido"]) && unidades() && /\b(termin|finaliz|envi|mand|complet|cerr|revis)\w*\b.{0,20}\bpedido\b|\bver (mi )?pedido\b|\bquiero pagar( ya)?$/.test(q))
+    acciones.push({nombre: "ver_pedido", args: {}});
+  if (!hay(["como_llegar"]) && /\b(como (llego|llegar|voy)|ubicacion|ubicados?|donde (queda|quedan|esta|estan)|direccion|mapa)\b/.test(q)){
+    const nombrados = Object.entries(CONFIG.locales).filter(([k, L]) => q.includes(k) || q.includes(norm(L.zona)) || q.includes(norm(L.nombre).split(" ")[0]));
+    for (const [k] of nombrados.length ? nombrados : Object.entries(CONFIG.locales)) acciones.push({nombre: "como_llegar", args: {local: k}});
+  }
+  if (!hay(["preparar_whatsapp", "ver_pedido"]) && CHAT.noEncontrado)
+    acciones.push({nombre: "preparar_whatsapp", args: {mensaje: `Hola ${CONFIG.storeName}, ¿tienen ${CHAT.noEncontrado}? Me gustaría que me avisen cuando llegue.`, boton: "Avísenme cuando llegue"}});
+  else if (!hay(["preparar_whatsapp", "como_llegar", "ver_pedido"]) && /whatsapp/i.test(t) && !CHAT.mensajes.slice(-6).some(m => m.enlace?.tipo === "wa"))
+    acciones.push({nombre: "preparar_whatsapp", args: {mensaje: `Hola ${CONFIG.storeName}, ${pregunta}`, boton: "Escribir por WhatsApp"}});
+  return acciones;
+}
+
+// --- Cómo se ve ---
+function formatoChat(t){
+  return esc(t).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/^[ \t]*[-*•][ \t]+/gm, "• ").replace(/\n{3,}/g, "\n\n").trim();
+}
+function tarjetaChat(p){
+  return `<div class="chat-prod" data-code="${esc(p.code)}">
+    <button type="button" class="chat-prod-abrir" data-chat-abrir="${esc(p.code)}" aria-label="Ver ${esc(p.name)}">
+      <img src="${esc(fotoDe(p))}" alt="" width="132" height="132" loading="lazy" decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)">
+      <span>${esc(p.name)}</span>
+    </button>
+    <div class="chat-prod-pie"><b>${fmt(precio(p, "efectivo"))}</b><div class="card-add" data-q="${PEDIDO.items.get(p.code) || 0}">${controlTarjeta(p)}</div></div>
+  </div>`;
+}
+function elementoMensaje(m){
   const d = document.createElement("div");
-  d.className = `chat-msj ${propio ? "mia" : "suya"}`;
-  d.textContent = texto;
-  $("chatCuerpo").append(d);
-  $("chatCuerpo").scrollTop = $("chatCuerpo").scrollHeight;
+  if (m.productos){
+    const ps = m.productos.map(buscar).filter(Boolean);
+    d.className = "chat-prods";
+    d.innerHTML = ps.map(tarjetaChat).join("");
+    return ps.length ? d : null;
+  }
+  d.className = `chat-msj ${m.rol === "usuario" ? "mia" : "suya"}${m.error ? " error" : ""}`;
+  if (m.enlace){
+    d.classList.add("con-enlace");
+    d.innerHTML = `<a class="chat-enlace ${m.enlace.tipo === "wa" ? "wa" : ""}" href="${esc(m.enlace.href)}" target="_blank" rel="noopener"${m.enlace.tipo === "wa" ? ' data-tipo="chat"' : ""}>` +
+      `<svg aria-hidden="true"><use href="#${m.enlace.tipo === "wa" ? "i-wa" : "i-pin"}"/></svg>${esc(m.enlace.texto)}</a>`;
+    return d;
+  }
+  if (m.saludo) d.innerHTML = `<img class="chat-pose" src="mascota/poses/saludo.webp" alt="" width="390" height="560" decoding="async">`;
+  if (m.error) d.innerHTML = `<img class="chat-pose" src="mascota/poses/triste.webp" alt="" width="371" height="560" decoding="async">`;
+  d.insertAdjacentHTML("beforeend", `<span class="chat-cont"><span class="chat-txt">${formatoChat(m.texto || "")}</span>` +
+    (m.error && m.reintentar ? `<button type="button" class="chat-reintentar" data-reintentar>Reintentar</button>` : "") + `</span>`);
   return d;
 }
-function abrirChat(){
+function bajarChat(){ const c = $("chatCuerpo"); c.scrollTop = c.scrollHeight; }
+function agregarMensaje(m, guardar = true){
+  CHAT.mensajes.push(m);
+  const el = elementoMensaje(m);
+  if (el) $("chatCuerpo").append(el);
+  bajarChat();
+  if (guardar && m.rol === "mascota" && m.texto && !m.saludo) leerEnVoz(m.texto);
+  if (guardar) guardarChat();
+  pintarChips();
+  return el;
+}
+function guardarChat(){
+  try { localStorage.setItem(CLAVE_CHAT, JSON.stringify({t: Date.now(), citados: CHAT.citados, mensajes: CHAT.mensajes.filter(m => !m.error).slice(-40)})); } catch(e) {}
+}
+function cargarChat(){
+  try {
+    const d = JSON.parse(localStorage.getItem(CLAVE_CHAT) || "null");
+    if (!d || Date.now() - d.t > 3 * 86400000 || !Array.isArray(d.mensajes)) return false;
+    CHAT.citados = Array.isArray(d.citados) ? d.citados.filter(c => typeof c === "string") : [];
+    for (const m of d.mensajes) if (m && typeof m === "object") agregarMensaje(m, false);
+    return CHAT.mensajes.length > 0;
+  } catch(e) { return false; }
+}
+function saludarChat(){
+  agregarMensaje({rol: "mascota", saludo: true, texto: `¡Hola! Soy el muñequito de ${CONFIG.storeName} 🎮 Te ayudo a encontrar juegos, consolas y accesorios, armar tu pedido o llegar a un local. ¿Qué buscas?`});
+}
+function nuevaConversacion(){
+  CHAT.mensajes = []; CHAT.citados = [];
+  $("chatCuerpo").innerHTML = "";
+  try { localStorage.removeItem(CLAVE_CHAT); } catch(e) {}
+  saludarChat();
+  $("chatTexto").focus();
+}
+// Botones rápidos: al empezar la conversación (y "terminar mi pedido" si ya hay algo).
+function pintarChips(){
+  const chips = $("chatChips");
+  if (CHAT.mensajes.some(m => m.rol === "usuario") || CHAT.enviando){ chips.hidden = true; return; }
+  const visto = VISTOS.map(buscar).find(Boolean);
+  const ls = [
+    unidades() && ["🛒 Terminar mi pedido", "Quiero terminar mi pedido"],
+    visto && ["👀 El que estaba viendo", `Cuéntame del ${visto.name}`],
+    ["🆕 ¿Qué llegó nuevo?", "¿Qué productos nuevos llegaron?"],
+    ["🔥 Lo más vendido", "¿Qué es lo más vendido?"],
+    ["🎁 Ayúdame con un regalo", "Quiero regalar algo, ¿qué me recomiendas?"],
+    ["📍 ¿Dónde están?", "¿Dónde están los locales y a qué hora abren?"],
+    ["🔧 Servicio técnico", "Necesito servicio técnico"],
+  ].filter(Boolean);
+  chips.innerHTML = ls.map(([t, m]) => `<button type="button" data-chip="${esc(m)}">${esc(t)}</button>`).join("");
+  chips.hidden = false;
+}
+function estadoChat(txt){ $("chatEstado").textContent = txt || "Te responde el muñequito"; }
+
+// --- Voz: dictar (micrófono) y escuchar las respuestas ---
+function leerEnVoz(texto){
+  if (!("speechSynthesis" in window) || !(CHAT.voz || CHAT.leerProxima)) return;
+  CHAT.leerProxima = false;
+  const limpio = texto.replace(/\*\*/g, "").replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\u{FE0F}]/gu, "").trim();
+  if (!limpio) return;
+  const u = new SpeechSynthesisUtterance(limpio);
+  u.lang = "es-EC";
+  const v = speechSynthesis.getVoices().find(v => /^es(-|_)(EC|419|MX|US|CO)/i.test(v.lang)) || speechSynthesis.getVoices().find(v => /^es/i.test(v.lang));
+  if (v) u.voice = v;
+  speechSynthesis.speak(u);
+}
+function pintarVoz(){
+  $("chatVoz").setAttribute("aria-pressed", CHAT.voz);
+  $("chatVoz").title = CHAT.voz ? "Dejar de leer en voz alta" : "Leer las respuestas en voz alta";
+}
+const Reconocer = window.SpeechRecognition || window.webkitSpeechRecognition;
+let dictado = null;
+function dictar(){
+  if (dictado){ dictado.stop(); return; }
+  const r = new Reconocer();
+  r.lang = "es-EC"; r.interimResults = true; r.maxAlternatives = 1;
+  let final = "";
+  r.onresult = e => {
+    let t = "";
+    for (const res of e.results) t += res[0].transcript;
+    $("chatTexto").value = t;
+    if (e.results[e.results.length - 1].isFinal) final = t;
+  };
+  r.onerror = e => { if (e.error === "not-allowed" || e.error === "service-not-allowed") decir("No tengo permiso para usar el micrófono 🎤 Actívalo en tu navegador o escríbeme."); };
+  r.onend = () => {
+    dictado = null; $("chatMic").classList.remove("escuchando");
+    if (final.trim()){ CHAT.leerProxima = true; $("chatTexto").value = ""; enviarChat(final); }
+  };
+  dictado = r;
+  $("chatMic").classList.add("escuchando");
+  try { r.start(); } catch(e) { dictado = null; $("chatMic").classList.remove("escuchando"); }
+}
+
+// --- Conversar: la respuesta llega en vivo y las acciones se ejecutan al final ---
+async function* leerEventos(resp){
+  const lector = resp.body.getReader(), dec = new TextDecoder();
+  let buf = "";
+  const bloque = b => { const datos = b.split(/\r?\n/).filter(l => l.startsWith("data:")).map(l => l.slice(5).trim()).join(""); try { return datos ? JSON.parse(datos) : null; } catch(e) { return null; } };
+  for (;;){
+    const {value, done} = await lector.read();
+    if (done) break;
+    buf += dec.decode(value, {stream: true});
+    let m;
+    while ((m = /\r?\n\r?\n/.exec(buf))){
+      const ev = bloque(buf.slice(0, m.index));
+      buf = buf.slice(m.index + m[0].length);
+      if (ev) yield ev;
+    }
+  }
+  const ev = bloque(buf);
+  if (ev) yield ev;
+}
+function historialParaIA(){
+  return CHAT.mensajes.filter(m => !m.error && !m.saludo).map(m =>
+    m.productos ? {rol: "mascota", texto: `(Le mostré: ${m.productos.map(buscar).filter(Boolean).map(p => p.name).join("; ")})`}
+    : m.enlace ? {rol: "mascota", texto: `(Le dejé un botón: ${m.enlace.texto})`}
+    : {rol: m.rol, texto: m.texto}).filter(m => m.texto).slice(-12);
+}
+async function enviarChat(texto, reintento = false){
+  texto = String(texto || "").trim();
+  if (CHAT.enviando || !texto) return;
+  CHAT.enviando = true;
+  $("chatEnviar").disabled = true;
+  const historial = historialParaIA();
+  // Al reintentar, la pregunta ya está en pantalla (y al final del historial): no se repite.
+  if (reintento){ const u = historial[historial.length - 1]; if (u?.rol === "usuario" && u.texto === texto) historial.pop(); }
+  else agregarMensaje({rol: "usuario", texto});
+  medir("chat-mensaje");
+  const pensando = document.createElement("div");
+  pensando.className = "chat-msj suya pensando";
+  pensando.innerHTML = `<img class="chat-pose" src="mascota/poses/piensa.webp" alt="" width="381" height="560" decoding="async"><i></i><i></i><i></i>`;
+  $("chatCuerpo").append(pensando);
+  bajarChat();
+  estadoChat("Pensando…");
+  const corte = new AbortController(), reloj = setTimeout(() => corte.abort(), 45000);
+  let texto_ = "", burbuja = null;
+  const acciones = [];
+  try {
+    const r = await fetch(CONFIG.chatMascotaUrl, {
+      method: "POST", headers: {"Content-Type": "application/json"}, signal: corte.signal,
+      body: JSON.stringify({mensaje: texto, historial, contexto: contextoTienda(texto), herramientas: HERRAMIENTAS_CHAT, stream: true}),
+    });
+    if (!r.ok){
+      let d = {}; try { d = await r.json(); } catch(e) {}
+      throw Object.assign(new Error(d.error || "error"), {estado: d.estado || r.status, aviso: r.status === 429 ? d.error : ""});
+    }
+    const pintar = () => {
+      if (!burbuja){ pensando.remove(); estadoChat("Escribiendo…"); burbuja = document.createElement("div"); burbuja.className = "chat-msj suya"; $("chatCuerpo").append(burbuja); }
+      burbuja.innerHTML = `<span class="chat-txt">${formatoChat(limpiarTexto(texto_))}</span>`;
+      bajarChat();
+    };
+    if ((r.headers.get("Content-Type") || "").includes("event-stream")){
+      for await (const ev of leerEventos(r)){
+        for (const part of ev.candidates?.[0]?.content?.parts || []){
+          if (part.text){ texto_ += part.text; pintar(); }
+          if (part.functionCall) acciones.push({nombre: part.functionCall.name, args: part.functionCall.args || {}});
+        }
+      }
+    } else {   // Worker anterior: todo junto
+      const d = await r.json();
+      if (d.error) throw Object.assign(new Error(d.error), {estado: d.estado});
+      texto_ = d.respuesta || "";
+      acciones.push(...(d.acciones || (d.accion ? [d.accion] : [])));
+      if (texto_) pintar();
+    }
+    pensando.remove();
+    completarAcciones(texto_, acciones, texto);
+    const limpio = limpiarTexto(texto_);
+    burbuja?.remove(); burbuja = null;
+    if (limpio) agregarMensaje({rol: "mascota", texto: limpio});
+    for (const a of acciones) ejecutarAccionChat(a);
+    if (!limpio && !acciones.length) throw new Error("vacío");
+  } catch(e) {
+    pensando.remove();
+    if (burbuja && limpiarTexto(texto_)){ burbuja.remove(); agregarMensaje({rol: "mascota", texto: limpiarTexto(texto_)}); }
+    else {
+      burbuja?.remove();
+      agregarMensaje({rol: "mascota", error: true, reintentar: texto,
+        texto: e.aviso || (e.name === "AbortError" ? "Me tardé demasiado 😅 ¿Lo intentamos otra vez?" : "No pude responder justo ahora 😅 Toca «Reintentar» o escríbenos por WhatsApp.")}, false);
+    }
+  } finally {
+    clearTimeout(reloj);
+    CHAT.desdeFicha = "";
+    CHAT.enviando = false;
+    $("chatEnviar").disabled = false;
+    estadoChat();
+    guardarChat();
+  }
+}
+function abrirChat(pregunta){
   if (!CONFIG.chatMascotaUrl){ open($("chatWa").href, "_blank"); return; }
   const d = $("chatMascota");
   if (!d.open){
     d.show();
-    if (!chatHistorial.length) pintarMsjChat(`¡Hola! Soy el asistente de ${CONFIG.storeName}. ¿En qué te ayudo? 🎮`, false);
+    document.body.classList.add("chat-abierto");
+    if (!CHAT.mensajes.length && !cargarChat()) saludarChat();
+    pintarChips();
     medir("chat-abierto");
+    requestAnimationFrame(bajarChat);
   }
-  $("chatTexto").focus();
-}
-// Cuando la IA decide usar la función "agregar_al_pedido" (ve el contexto y el
-// mensaje del cliente), esto la ejecuta de verdad sobre el pedido de la página,
-// reusando lo mismo que hace el botón "+" de las tarjetas. Si el código que
-// mandó no es de un producto real, no se agrega nada (nunca inventa un producto).
-function ejecutarAccionChat(accion){
-  const p = buscar(accion.args?.codigo);
-  if (!p){ pintarMsjChat("No logré identificar bien ese producto para agregarlo — dime el nombre tal como aparece en la página.", false); return; }
-  const cant = Math.max(1, Math.min(20, parseInt(accion.args?.cantidad, 10) || 1));
-  const max = maxQty(p);
-  if (!max){ pintarMsjChat(`${p.name} está agotado por ahora, no lo pude agregar 😔`, false); return; }
-  const actual = PEDIDO.items.get(p.code) || 0;
-  const nueva = Math.min(actual + cant, max);
-  setCantidad(p.code, nueva);
-  confirmarAgregado(p, nueva - actual);
-  medir("agregar-al-pedido", { codigo: p.code, via: "chat" });
-  pintarMsjChat(`¡Listo! Agregué ${nueva - actual > 1 ? (nueva - actual) + " x " : ""}${p.name} a tu pedido 🛒`, false);
-}
-async function enviarChat(texto){
-  if (chatEnviando || !texto.trim()) return;
-  chatEnviando = true;
-  $("chatEnviar").disabled = true;
-  pintarMsjChat(texto, true);
-  const previo = chatHistorial.slice();
-  chatHistorial.push({ rol: "usuario", texto });
-  const pensando = document.createElement("div");
-  pensando.className = "chat-msj suya pensando";
-  pensando.append(document.createElement("i"), document.createElement("i"), document.createElement("i"));
-  $("chatCuerpo").append(pensando);
-  $("chatCuerpo").scrollTop = $("chatCuerpo").scrollHeight;
-  try {
-    const r = await fetch(CONFIG.chatMascotaUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mensaje: texto, historial: previo, contexto: contextoTienda(texto) }),
-    });
-    const data = await r.json();
-    pensando.remove();
-    if (!r.ok || data.error) throw new Error(data.error || "error");
-    if (data.accion?.nombre === "agregar_al_pedido") ejecutarAccionChat(data.accion);
-    if (data.respuesta){
-      pintarMsjChat(data.respuesta, false);
-      chatHistorial.push({ rol: "mascota", texto: data.respuesta });
-    }
-  } catch {
-    pensando.remove();
-    pintarMsjChat("No pude responder justo ahora 😅 Escríbenos por WhatsApp y te ayudamos.", false);
-  } finally {
-    chatEnviando = false;
-    $("chatEnviar").disabled = false;
-  }
+  if (typeof pregunta === "string" && pregunta) enviarChat(pregunta);
+  // En celular no se abre el teclado solo (ni queda marcado el primer botón).
+  if (enCelular()) $("chatCuerpo").focus({preventScroll: true}); else $("chatTexto").focus();
 }
 {
   const form = $("chatForm"), texto = $("chatTexto");
   $("chatWa").href = waLink(`Hola ${CONFIG.storeName}, ¿me ayudan a encontrar un producto?`);
-  $("chatCerrar").onclick = () => $("chatMascota").close();
+  $("chatCerrar").onclick = () => { $("chatMascota").close(); try { speechSynthesis.cancel(); } catch(e) {} };
+  $("chatMascota").addEventListener("close", () => document.body.classList.remove("chat-abierto"));
+  $("chatNuevo").onclick = nuevaConversacion;
   form.addEventListener("submit", e => {
     e.preventDefault();
     const v = texto.value; texto.value = ""; texto.style.height = "auto";
     enviarChat(v);
   });
   texto.addEventListener("input", () => { texto.style.height = "auto"; texto.style.height = Math.min(texto.scrollHeight, 90) + "px"; });
-  texto.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey){ e.preventDefault(); form.requestSubmit(); } });
+  texto.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing){ e.preventDefault(); form.requestSubmit(); } });
+  $("chatChips").addEventListener("click", e => { const b = e.target.closest("[data-chip]"); if (b) enviarChat(b.dataset.chip); });
+  $("chatCuerpo").addEventListener("click", e => {
+    const ver = e.target.closest("[data-chat-abrir]");
+    if (ver){ ACCIONES_CHAT.abrir_producto({codigo: ver.dataset.chatAbrir}); return; }
+    const otra = e.target.closest("[data-reintentar]");
+    if (otra && !CHAT.enviando){
+      const t = CHAT.mensajes.find(x => x.error && x.reintentar)?.reintentar;
+      CHAT.mensajes = CHAT.mensajes.filter(x => !x.error);
+      otra.closest(".chat-msj").remove();
+      if (t) enviarChat(t, true);
+    }
+  });
+  if ("speechSynthesis" in window){
+    $("chatVoz").hidden = false; pintarVoz();
+    $("chatVoz").onclick = () => {
+      CHAT.voz = !CHAT.voz; pintarVoz();
+      try { localStorage.setItem(CLAVE_CHAT_VOZ, CHAT.voz ? "1" : "0"); } catch(e) {}
+      if (!CHAT.voz) speechSynthesis.cancel();
+    };
+  }
+  if (Reconocer){ $("chatMic").hidden = false; $("chatMic").onclick = dictar; }
+  // Desde la ficha: "Preguntar" abre el chat hablando de ese producto.
+  if (CONFIG.chatMascotaUrl) $("dChat").hidden = false;
+  $("dChat").onclick = () => {
+    const p = D?.p; if (!p) return;
+    $("dlg").close();
+    citar([p]);
+    CHAT.desdeFicha = p.code;
+    abrirChat(`Cuéntame del ${p.name}`);
+  };
 }
 
 // Ayudante: después de un rato mirando la tienda (ya fuera de la portada), el muñequito ofrece
@@ -3285,7 +3827,7 @@ async function enviarChat(texto){
   $("ayudanteCerrar").onclick = ocultar;
   $("ayudanteLink").addEventListener("click", ()=>{ medir("ayudante-chat"); ocultar(); abrirChat(); });
   $("ayudanteCara").addEventListener("click", ()=>{ medir("ayudante-chat"); ocultar(); abrirChat(); });
-  $("chatBoton").addEventListener("click", abrirChat);
+  $("chatBoton").addEventListener("click", () => abrirChat());
   $("waFloat").addEventListener("click", marcar);
 }
 
