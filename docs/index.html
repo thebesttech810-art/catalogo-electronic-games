@@ -1611,6 +1611,116 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
 @media (prefers-reduced-transparency:reduce){
   header.top,.tools{background:var(--bg)}
 }
+
+/* ---------- Tarjetas: brillo holográfico con el color de su consola ---------- */
+.card::before{background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--c,#FF7A00) 22%,transparent),transparent 60%)}
+.card::after{background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--c,#FF7A00) 75%,#fff),transparent 70%)}
+.card .img::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity 260ms ease;mix-blend-mode:overlay;
+  background:linear-gradient(125deg,transparent 14%,rgba(255,79,216,.5) 30%,rgba(77,232,255,.5) 44%,rgba(255,243,107,.45) 58%,rgba(125,255,138,.45) 72%,transparent 88%);
+  background-size:240% 240%;background-position:calc(50% + var(--nx,0) * 140%) calc(50% + var(--ny,0) * 140%)}
+@media (hover:hover) and (pointer:fine){
+  .card:hover .img::before{opacity:.75}
+  .card:hover{border-color:color-mix(in srgb,var(--c,#FF7A00) 60%,#3a373d);box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 40px -8px color-mix(in srgb,var(--c,#FF7A00) 75%,transparent)}
+}
+/* Los más vendidos son "cartas raras": borde de colores que gira. */
+@property --giro{syntax:"<angle>";inherits:false;initial-value:0deg}
+.card.rara{border-color:transparent}
+.card.rara::after{opacity:1;padding:2px;background:conic-gradient(from var(--giro),#FF7A00,#ff4fd8,#4de8ff,#FFC61A,#FF7A00);animation:giro 5s linear infinite}
+@keyframes giro{to{--giro:360deg}}
+/* Etiquetas con destello y "Últimas unidades" que late */
+.sticker{position:relative;overflow:hidden}
+.sticker::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%);translate:-130% 0;animation:destello 4.2s ease-in-out infinite}
+.sticker.nuevo::after{animation-delay:1.4s}
+@keyframes destello{0%,60%{translate:-130% 0}85%,100%{translate:130% 0}}
+.stock.low .dot{position:relative}
+.stock.low .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:currentColor;animation:latido 1.6s ease-out infinite}
+@keyframes latido{from{scale:1;opacity:.7}to{scale:2.8;opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .card.rara::after,.sticker::after,.stock.low .dot::after{animation:none}
+  .sticker::after,.stock.low .dot::after{opacity:0}
+}
+
+/* ---------- Podio de lo más vendido ---------- */
+.podio-caja{margin-bottom:26px}
+.podio-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 0 18px;padding-bottom:2px}
+.podio-tabs::-webkit-scrollbar{display:none}
+.podio-tabs button{flex:none;padding:9px 15px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-weight:800;font-size:.86rem;cursor:pointer}
+.podio-tabs button:hover{border-color:var(--brand)}
+.podio-tabs button[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.podio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.18fr) minmax(0,1fr);align-items:end;gap:12px;max-width:780px;margin:0 auto}
+.podio-lugar{all:unset;box-sizing:border-box;cursor:pointer;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;min-width:0}
+.podio-lugar:focus-visible{outline:2px solid var(--brand-hi);outline-offset:4px;border-radius:14px}
+.podio-corona{font-size:1.9rem;line-height:1;margin-bottom:-4px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5));animation:flota 2.6s ease-in-out infinite}
+@keyframes flota{50%{translate:0 -6px}}
+.podio-foto{position:relative;width:100%;max-width:190px;aspect-ratio:1;border-radius:18px;background:var(--stage-bg);box-shadow:0 14px 30px rgba(0,0,0,.45);transition:translate 220ms var(--ease-out)}
+.podio-foto img{width:100%;height:100%;object-fit:contain;padding:7%;mix-blend-mode:multiply;border-radius:inherit}
+.l1 .podio-foto{max-width:220px;box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 0 3px #FFC61A,0 0 46px rgba(255,198,26,.4)}
+.podio-medalla{position:absolute;left:-6px;top:-8px;font-size:1.9rem;line-height:1;filter:drop-shadow(0 4px 6px rgba(0,0,0,.45))}
+.podio-nombre{font-weight:700;font-size:.8rem;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.5em;width:100%}
+.podio-precio{font-weight:900;font-style:italic;font-size:1.05rem;color:var(--brand-hi)}
+.podio-base{position:relative;overflow:hidden;width:100%;display:grid;place-items:center;border-radius:12px 12px 4px 4px;color:rgba(26,18,4,.85);font-weight:900;font-style:italic;font-size:2.2rem;line-height:1;box-shadow:inset 0 2px 0 rgba(255,255,255,.5)}
+.podio-base::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);translate:-130% 0;animation:destello 5s ease-in-out infinite}
+.l1 .podio-base{height:112px;background:linear-gradient(180deg,#FFE27A,#FFB800 60%,#C98A00)}
+.l2 .podio-base{height:82px;background:linear-gradient(180deg,#F4F6F8,#C5CBD3 60%,#8E97A3)}
+.l3 .podio-base{height:60px;background:linear-gradient(180deg,#FFC9A1,#E08A4E 60%,#A45A28)}
+.l2 .podio-base::after{animation-delay:.8s}
+.l3 .podio-base::after{animation-delay:1.6s}
+@media (hover:hover) and (pointer:fine){ .podio-lugar:hover .podio-foto{translate:0 -6px} }
+@media (max-width:560px){
+  .podio{gap:8px}
+  .podio-nombre{font-size:.72rem}
+  .podio-precio{font-size:.92rem}
+  .podio-medalla{font-size:1.5rem}
+  .l1 .podio-base{height:92px} .l2 .podio-base{height:68px} .l3 .podio-base{height:50px}
+  .podio-base{font-size:1.8rem}
+}
+@media (prefers-reduced-motion:reduce){ .podio-corona,.podio-base::after{animation:none} .podio-base::after{opacity:0} }
+
+/* ---------- Test "¿Qué consola me compro?" ---------- */
+.guia-banner{position:relative;overflow:hidden;isolation:isolate;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:18px 30px;padding:26px 30px;border-radius:24px;
+  background:radial-gradient(120% 150% at 0% 0%,#4a2200 0%,#1a1410 45%,#121113 100%);border:1px solid rgba(255,122,0,.4)}
+.guia-banner > img{height:190px;width:auto;margin:-12px 0 -28px;filter:drop-shadow(0 16px 24px rgba(0,0,0,.55))}
+.guia-banner .sec-h{margin:0}
+.guia-banner .sec-sub{margin:8px 0 18px;max-width:52ch}
+.guia-flota{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.guia-flota i{position:absolute;font-style:normal;font-size:1.8rem;opacity:.28;animation:flota 3.4s ease-in-out infinite}
+.guia-flota i:nth-child(1){right:6%;top:14%}
+.guia-flota i:nth-child(2){right:20%;bottom:12%;animation-delay:.7s;font-size:1.4rem}
+.guia-flota i:nth-child(3){right:34%;top:10%;animation-delay:1.3s;font-size:1.2rem}
+.guia-flota i:nth-child(4){right:9%;bottom:30%;animation-delay:2s;font-size:2.2rem}
+@media (max-width:640px){
+  .guia-banner{grid-template-columns:1fr;justify-items:center;text-align:center;padding:22px 18px}
+  .guia-banner > img{height:140px;margin:-6px 0 -10px}
+  .guia-banner .sec-sub{margin-inline:auto}
+  .guia-flota i:nth-child(2),.guia-flota i:nth-child(4){display:none}
+}
+@media (prefers-reduced-motion:reduce){ .guia-flota i{animation:none} }
+.chat-msj.festejo{position:relative;overflow:visible}
+
+/* ---------- Logros ---------- */
+.logro[popover]{inset:auto;position:fixed;top:calc(74px + env(safe-area-inset-top,0px));left:50%;translate:-50% 0;margin:0;padding:10px 20px 10px 10px;border:1px solid rgba(255,198,26,.55);border-radius:20px;width:max-content;
+  background:linear-gradient(90deg,#221807,#131214 70%);color:var(--ink);display:none;align-items:center;gap:12px;max-width:min(92vw,440px);box-shadow:0 18px 44px rgba(0,0,0,.6),0 0 30px rgba(255,198,26,.25);overflow:visible}
+.logro[popover]:popover-open{display:flex;animation:logro-entra 650ms cubic-bezier(.3,1.4,.5,1)}
+@keyframes logro-entra{from{opacity:0;translate:-50% -30px;scale:.9}}
+.logro-ico{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:1.55rem;background:radial-gradient(circle at 40% 35%,#FFE27A,#FF9A00 70%);box-shadow:0 0 0 3px rgba(255,198,26,.3),0 0 18px rgba(255,198,26,.5)}
+.logro small{display:block;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#FFC61A}
+.logro b{display:block;font-size:1rem;line-height:1.2}
+.logro .d{display:block;font-size:.78rem;color:var(--muted)}
+.logros-barra{height:10px;border-radius:999px;background:var(--surface-hi);overflow:hidden;margin:4px 0 16px}
+.logros-barra i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#FF7A00,#FFC61A)}
+.logros-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.logro-item{display:grid;justify-items:center;gap:4px;text-align:center;padding:14px 10px;border-radius:14px;border:1px solid var(--line);background:var(--surface-hi)}
+.logro-item .logro-ico{width:52px;height:52px}
+.logro-item b{font-size:.88rem}
+.logro-item span:not(.logro-ico){font-size:.74rem;color:var(--muted)}
+.logro-item.bloqueado .logro-ico{background:#2a282d;box-shadow:none;filter:grayscale(1);opacity:.55}
+.logro-item.bloqueado b{color:var(--muted)}
+@media (prefers-reduced-motion:reduce){ .logro[popover]:popover-open{animation:none} }
+
+/* ---------- "Avísame cuando llegue" ---------- */
+.empty > button.avisame,.cmdk-vacio .avisame{display:inline-flex;margin:12px 0 0 8px;padding:11px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface-hi);color:var(--ink);font:inherit;font-weight:800;cursor:pointer}
+.avisame:disabled{opacity:.7;cursor:default}
+.ayudante.llego .ayudante-globo span{color:#b35400}
 </style>
 </head>
 <body>
@@ -1774,6 +1884,21 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
     </div>
   </section>
 
+  <section class="sec" aria-labelledby="guiaTit" id="secGuia" hidden>
+    <div class="wrap">
+      <div class="guia-banner reveal">
+        <img src="mascota/poses/piensa.webp" alt="" width="381" height="560" loading="lazy" decoding="async">
+        <div>
+          <p class="kicker">Test de 30 segundos</p>
+          <h2 class="sec-h" id="guiaTit">¿No sabes qué consola comprar?</h2>
+          <p class="sec-sub">Responde 4 preguntas y el muñequito te recomienda la ideal entre las que tenemos en stock.</p>
+          <button class="btn btn-brand" type="button" data-guia>🎮 Hacer el test</button>
+        </div>
+        <span class="guia-flota" aria-hidden="true"><i>🎮</i><i>🕹️</i><i>👾</i><i>⭐</i></span>
+      </div>
+    </div>
+  </section>
+
   <section class="sec" aria-labelledby="vistosTit" id="secVistos" hidden>
     <div class="wrap sec-head">
       <div><h2 class="sec-h" id="vistosTit">Vistos recientemente</h2><p class="sec-sub">Para que retomes donde te quedaste.</p></div>
@@ -1789,6 +1914,10 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
     <div class="wrap sec-head">
       <div><h2 class="sec-h" id="topTit">Lo más vendido</h2><p class="sec-sub">Lo que más se llevó la gente en los últimos 30 días.</p></div>
       <div class="rail-nav" data-rail="railTop"><button type="button" data-dir="-1" aria-label="Anteriores"><svg class="ico" aria-hidden="true"><use href="#i-left"/></svg></button><button type="button" data-dir="1" aria-label="Siguientes"><svg class="ico" aria-hidden="true"><use href="#i-right"/></svg></button></div>
+    </div>
+    <div class="wrap podio-caja" id="podioCaja" hidden>
+      <div class="podio-tabs" id="podioTabs" role="tablist" aria-label="Categoría del podio"></div>
+      <div class="podio" id="podio"></div>
     </div>
     <div class="rail" id="railTop" role="list" aria-label="Lo más vendido"></div>
   </section>
@@ -2062,6 +2191,7 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
     <a href="#catalogo" data-abrir-buscador>Buscar productos</a>
     <a href="#catalogo" data-abrir-favoritos>Mis favoritos<span id="menuFavN"></span></a>
     <a href="#catalogo" data-abrir-pedidos>Mis pedidos<span id="menuPedN"></span></a>
+    <a href="#" data-abrir-logros>🏆 Mis logros<span id="menuLogN"></span></a>
     <a href="#" data-instalar id="menuInstalar" hidden>Instalar la app</a>
     <a href="#catalogo" data-ir-plat="PlayStation"><svg class="marca-ico" aria-hidden="true"><use href="#l-ps"/></svg>PlayStation</a>
     <a href="#catalogo" data-ir-plat="Nintendo" aria-label="Nintendo"><svg class="marca-ico nin" aria-hidden="true"><use href="#l-nintendo"/></svg></a>
@@ -2110,6 +2240,20 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
   <div class="sheet-foot"><p class="pie"><span>Se guardan solo en este dispositivo: los últimos 10 pedidos que enviaste por WhatsApp.</span></p></div>
 </dialog>
 
+<!-- Mis logros: se desbloquean usando la tienda (como en los videojuegos) -->
+<dialog id="logros" class="sheet" aria-labelledby="logrosTitle">
+  <div class="sheet-head">
+    <h2 id="logrosTitle">Mis logros</h2>
+    <button class="close" id="logrosClose" type="button" aria-label="Cerrar">×</button>
+  </div>
+  <div class="sheet-body">
+    <p id="logrosCuenta"></p>
+    <div class="logros-barra"><i id="logrosBarra"></i></div>
+    <div class="logros-lista" id="logrosLista"></div>
+  </div>
+  <div class="sheet-foot"><p class="pie"><span>Se guardan solo en este dispositivo.</span></p></div>
+</dialog>
+
 <!-- Vitrina en pantalla completa (para una tablet en la tienda) -->
 <dialog id="kiosco" class="kiosco" aria-label="Vitrina de productos">
   <div class="k-marco" id="kMarco">
@@ -2149,6 +2293,12 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
   <button class="ayudante-cara" id="ayudanteCara" type="button" aria-label="Abrir chat con el muñequito"><img src="mascota/mascota-cara.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></button>
   <button class="ayudante-cerrar" id="ayudanteCerrar" type="button" aria-label="Cerrar el mensaje de ayuda">×</button>
 </div>
+<div class="ayudante llego" id="llego" hidden>
+  <button class="ayudante-globo" id="llegoVer" type="button"><b>¡Llegó lo que buscabas! 🔔</b><span id="llegoTxt"></span></button>
+  <button class="ayudante-cara" id="llegoCara" type="button" aria-label="Ver lo que llegó"><img src="mascota/mascota-cara.webp" alt="" width="200" height="200" loading="lazy" decoding="async"></button>
+  <button class="ayudante-cerrar" id="llegoCerrar" type="button" aria-label="Cerrar el aviso">×</button>
+</div>
+<div class="logro" id="logro" popover="manual" role="status"></div>
 <!-- Botón fijo para reabrir el chat con el muñequito después del primer aviso -->
 <button class="chat-boton" id="chatBoton" type="button" aria-label="Abrir chat con el muñequito" hidden>
   <img src="mascota/mascota-cara.webp" alt="" width="200" height="200" loading="lazy" decoding="async">
@@ -2301,7 +2451,7 @@ if (CONFIG.analitica) {
   s.onload = () => { try { window.umami.track(); } catch(e) {} };
   document.head.appendChild(s);
 }
-function medir(evento, datos){ try { window.umami?.track(evento, datos); } catch(e) {} }
+function medir(evento, datos){ try { window.umami?.track(evento, datos); } catch(e) {} try { logroPorEvento(evento, datos); } catch(e) {} }
 let esperaSinResultados = 0;
 function medirSinResultados(q){
   clearTimeout(esperaSinResultados);
@@ -2309,6 +2459,7 @@ function medirSinResultados(q){
 }
 // "¿No lo encuentras?": convierte una búsqueda vacía en una consulta por WhatsApp.
 const pideloHTML = q => `<a class="wa-btn pidelo" data-tipo="pidelo" target="_blank" rel="noopener" href="${esc(waLink(`Hola ${CONFIG.storeName}, ¿tienen ${q}? Lo busqué en el catálogo web y no lo encontré.`))}"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pregúntanos si lo tenemos</a>`;
+const avisameHTML = q => `<button type="button" class="avisame" data-avisame="${esc(q)}">🔔 Avísame aquí cuando llegue</button>`;
 const nLocales = Object.keys(CONFIG.locales).length;
 const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 // ===== Entradas: cada sección, título, paso y producto aparece una sola vez al llegar a él =====
@@ -2566,7 +2717,7 @@ function cardHTML(p, lazy = true){
   const [cls, txt] = status(p);
   const efectivo = p.price_efectivo ?? p.price, tarjeta = p.price_tarjeta ?? p.price;
   const stickers = (p.top ? `<span class="sticker">Top ventas</span>` : "") + (p.nuevo ? `<span class="sticker nuevo">Nuevo</span>` : "");
-  return `<div class="card" data-code="${esc(p.code)}" role="listitem">
+  return `<div class="card${p.top ? " rara" : ""}" data-code="${esc(p.code)}" role="listitem" style="--c:${CONFIG.mundos[consolaDe(p).m]?.c || "#FF7A00"}">
     ${stickers ? `<div class="stickers">${stickers}</div>` : ""}
     <button class="card-open" type="button" data-code="${esc(p.code)}">
       <div class="img"><img src="${esc(fotoDe(p))}" alt="" width="500" height="500" ${lazy ? 'loading="lazy"' : ""} decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)"></div>
@@ -2617,6 +2768,29 @@ function contar(el, hasta){
     if (k < 1) requestAnimationFrame(paso);
   };
   requestAnimationFrame(paso);
+}
+
+// Podio de lo más vendido por categoría. El orden es el de ventas de los últimos 30 días (products.json ya
+// viene así) y solo entra lo que se vendió ("vendido", sin cifras; lo pone generar_catalogo.py) y hoy tiene stock.
+const EMOJI_CAT = {consolas: "🎮", palancas: "🕹️", juegos: "💿", accesorios: "🎧"};
+let podioCat = null;
+function pintarPodio(){
+  const vendidos = PRODUCTS.filter(p => p.vendido && maxQty(p) > 0);
+  const orden = c => { const i = Object.keys(EMOJI_CAT).indexOf(c); return i < 0 ? 99 : i; };
+  const cats = [...new Set(vendidos.map(p => p.cat))].filter(c => vendidos.filter(p => p.cat === c).length >= 3).sort((a, b) => orden(a) - orden(b));
+  $("podioCaja").hidden = !cats.length;
+  if (!cats.length) return;
+  if (!cats.includes(podioCat)) podioCat = cats[0];
+  $("podioTabs").hidden = cats.length < 2;
+  $("podioTabs").innerHTML = cats.map(c => `<button type="button" role="tab" aria-selected="${c === podioCat}" data-podio-cat="${esc(c)}">${EMOJI_CAT[c] || "⭐"} ${esc(vendidos.find(p => p.cat === c).cat_label)}</button>`).join("");
+  const [a, b, c] = vendidos.filter(p => p.cat === podioCat);
+  $("podio").innerHTML = [[b, 2], [a, 1], [c, 3]].map(([p, n]) => `<button type="button" class="podio-lugar l${n}" data-podio="${esc(p.code)}" aria-label="Puesto ${n}: ${esc(p.name)}">
+      ${n === 1 ? `<span class="podio-corona" aria-hidden="true">👑</span>` : ""}
+      <span class="podio-foto"><img src="${esc(fotoDe(p))}" alt="" width="220" height="220" loading="lazy" decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)"><span class="podio-medalla" aria-hidden="true">${["🥇", "🥈", "🥉"][n - 1]}</span></span>
+      <span class="podio-nombre">${esc(p.name)}</span>
+      <span class="podio-precio">${fmt(precio(p, "efectivo"))}</span>
+      <span class="podio-base" aria-hidden="true">${n}</span>
+    </button>`).join("");
 }
 
 // ===== Carga =====
@@ -2673,6 +2847,7 @@ async function loadProducts(){
   // Portada como vitrina: lo más vendido que ya tiene foto (si todavía hay pocas fotos, todo).
   const masVendidos = PRODUCTS.filter(p=>p.photos.length).length >= 6 ? PRODUCTS.filter(p=>p.photos.length) : PRODUCTS;
   $("railTop").innerHTML = masVendidos.slice(0, 12).map(p=>cardHTML(p, false)).join("");
+  pintarPodio();
   const nuevos = conFotoPrimero(PRODUCTS.filter(p=>p.nuevo)).slice(0, 12);
   $("secNuevos").hidden = !nuevos.length;
   $("railNuevos").innerHTML = nuevos.map(p=>cardHTML(p)).join("");
@@ -2688,6 +2863,7 @@ async function loadProducts(){
   if (VITRINA_URL){ K.mundo = VITRINA_URL; abrirVitrina(true); }
   else if (abrir && buscar(abrir)) openProduct(abrir);
   else if (new URLSearchParams(location.search).has("cat") || location.hash === "#catalogo") $("catalogo").scrollIntoView();
+  if (!VITRINA_URL) setTimeout(revisarAvisos, 3500);
 }
 
 function pintarEstado(){
@@ -2872,7 +3048,7 @@ function render(){
   $("grid").innerHTML = vis.length ? vis.map(p=>cardHTML(p)).join("") :
     `<div class="empty" role="listitem"><img class="mascota-mini" src="mascota/mascota-chica.webp" alt="" width="243" height="360" loading="lazy" decoding="async"><strong>No encontramos productos con esos filtros.</strong>Prueba con otra palabra o quita los filtros.
       <div class="atajos">${CONFIG.atajos.map(t=>`<button type="button" data-atajo="${esc(t)}">${esc(t)}</button>`).join("")}</div>
-      ${S.q.trim() ? `<span class="pidelo-txt">¿No lo encuentras? Te decimos si lo tenemos o si nos llega.</span>${pideloHTML(S.q.trim())}<br>` : ""}
+      ${S.q.trim() ? `<span class="pidelo-txt">¿No lo encuentras? Te decimos si lo tenemos o si nos llega.</span>${pideloHTML(S.q.trim())}${avisameHTML(S.q.trim())}<br>` : ""}
       <button type="button" data-reset>Ver todo el catálogo</button></div>`;
   if (S.animar !== undefined && !reduceMotion())
     [...$("grid").children].forEach((c, i)=>{ if (i >= S.animar && c.classList.contains("card")) { c.classList.add("aparece"); c.style.setProperty("--i", Math.min(i - S.animar, 12)); } });
@@ -3293,6 +3469,137 @@ $("pedidosClose").onclick = () => $("pedidos").close();
 $("pedidos").addEventListener("click", e => { if (e.target === $("pedidos")) $("pedidos").close(); });
 pintarPedidosN();
 
+// ===== "Avísame cuando llegue": se guarda lo que alguien buscó y no había; cuando vuelve y ya llegó, el muñequito le avisa =====
+// (en este dispositivo, sin cuentas ni servidor). Con código: un producto agotado; con palabras: una búsqueda sin resultados.
+const CLAVE_AVISOS = "eg_avisos_v1";
+function leerAvisos(){
+  try { const v = JSON.parse(localStorage.getItem(CLAVE_AVISOS) || "[]");
+    return Array.isArray(v) ? v.filter(a => a && (a.q || a.codigo) && Date.now() - (a.t || 0) < 60 * 86400000) : []; }
+  catch(e) { return []; }
+}
+function guardarAvisos(ls){ try { localStorage.setItem(CLAVE_AVISOS, JSON.stringify(ls.slice(0, 15))); } catch(e) {} }
+const hayAhora = a => a.codigo ? [buscar(a.codigo)].filter(p => p && maxQty(p) > 0) : PRODUCTS.filter(p => maxQty(p) > 0 && coincide(p, a.q));
+function guardarAviso(a){
+  a = a.codigo ? {codigo: String(a.codigo)} : {q: String(a.q || "").trim().slice(0, 60)};
+  if (!a.codigo && !a.q) return;
+  a.t = Date.now();
+  a.habia = hayAhora(a).map(p => p.code);   // lo que ya había (en otra categoría, por ejemplo) no cuenta como "llegó"
+  guardarAvisos([a, ...leerAvisos().filter(x => a.codigo ? x.codigo !== a.codigo : norm(x.q || "") !== norm(a.q))]);
+  medir("avisame", {q: (a.q || a.codigo).slice(0, 60)});
+}
+let LLEGO = null;
+function revisarAvisos(){
+  const ls = leerAvisos();
+  if (!ls.length || !PRODUCTS.length) return;
+  LLEGO = ls.map(a => ({a, ps: hayAhora(a).filter(p => !(a.habia || []).includes(p.code))})).find(x => x.ps.length) || null;
+  if (!LLEGO) return;
+  guardarAvisos(ls.filter(a => a !== LLEGO.a));
+  const mostrar = () => {
+    if (document.querySelector("dialog[open]") || document.body.matches(".en-anillo, .en-portal") || !$("ayudante").hidden){ setTimeout(mostrar, 5000); return; }
+    try { sessionStorage.setItem("eg_ayudante", "1"); } catch(e) {}   // hoy no sale también el "¿te ayudo?"
+    $("chatBoton").hidden = true;
+    const [p] = LLEGO.ps;
+    $("llegoTxt").textContent = LLEGO.ps.length === 1 ? `${p.name.slice(0, 70)} ya está en la tienda →` : `«${LLEGO.a.q}»: ${LLEGO.ps.length} productos →`;
+    const el = $("llego");
+    el.hidden = false; el.classList.add("entra");
+    medir("avisame-llego", {q: (LLEGO.a.q || LLEGO.a.codigo).slice(0, 60)});
+  };
+  mostrar();
+}
+function cerrarLlego(){
+  const el = $("llego");
+  if (el.hidden) return;
+  el.classList.add("sale");
+  setTimeout(() => { el.hidden = true; el.classList.remove("entra", "sale"); if (CONFIG.chatMascotaUrl && !VITRINA_URL) $("chatBoton").hidden = false; }, 280);
+}
+function verLlego(){
+  cerrarLlego();
+  if (!LLEGO) return;
+  if (LLEGO.ps.length === 1) abrirProducto(LLEGO.ps[0].code);
+  else aplicarFiltro({q: LLEGO.a.q, cat: "all", plat: "all"});
+}
+$("llegoVer").onclick = verLlego;
+$("llegoCara").onclick = verLlego;
+$("llegoCerrar").onclick = cerrarLlego;
+
+// ===== Logros: como en los videojuegos, se desbloquean usando la tienda (solo en este dispositivo) =====
+// Se enteran por las mismas mediciones de la página (medir); no se ganan en la vitrina de la tienda.
+const CLAVE_LOGROS = "eg_logros_v1";
+const LOGROS = [
+  {id: "primer-item", ico: "🛒", t: "Primer ítem", d: "Agrega tu primer producto al pedido."},
+  {id: "coleccionista", ico: "❤️", t: "Coleccionista", d: "Guarda un producto en favoritos."},
+  {id: "curioso", ico: "🔍", t: "Curioso", d: "Mira 10 productos distintos."},
+  {id: "explorador", ico: "🌎", t: "Explorador de mundos", d: "Entra a 3 mundos de consolas."},
+  {id: "ojo", ico: "🦅", t: "Ojo de halcón", d: "Haz zoom a la foto de un producto."},
+  {id: "vitrina", ico: "🔄", t: "Mirada 360°", d: "Abre un producto desde la vitrina 3D."},
+  {id: "charla", ico: "💬", t: "Buena charla", d: "Conversa con el muñequito."},
+  {id: "decidido", ico: "🎮", t: "Ya sé lo que quiero", d: "Termina el test «¿Qué consola me compro?»."},
+  {id: "amigo", ico: "🤝", t: "Buen amigo", d: "Comparte un producto."},
+  {id: "fiesta", ico: "🎉", t: "Modo fiesta", d: "Descubre la fiesta secreta del muñequito."},
+  {id: "gg", ico: "🏆", t: "¡GG!", d: "Envía tu primer pedido por WhatsApp."},
+];
+function leerLogros(){
+  try { const v = JSON.parse(localStorage.getItem(CLAVE_LOGROS) || "{}");
+    return {ok: v.ok && typeof v.ok === "object" ? v.ok : {}, vistos: Array.isArray(v.vistos) ? v.vistos : [], mundos: Array.isArray(v.mundos) ? v.mundos : []}; }
+  catch(e) { return {ok: {}, vistos: [], mundos: []}; }
+}
+function guardarLogros(L){ try { localStorage.setItem(CLAVE_LOGROS, JSON.stringify(L)); } catch(e) {} }
+function logroPorEvento(ev, d = {}){
+  if (VITRINA_URL || $("kiosco").open) return;
+  const L = leerLogros();
+  let id = {"agregar-al-pedido": "primer-item", "zoom-foto": "ojo", "vitrina-360": "vitrina", "chat-mensaje": "charla",
+    "guia-consola": "decidido", "compartir": "amigo", "mascota-fiesta": "fiesta"}[ev] || null;
+  if (ev === "favorito" && d.accion === "guardar") id = "coleccionista";
+  if (ev === "whatsapp") id = d.tipo === "pedido" ? "gg" : d.tipo === "compartir" ? "amigo" : null;
+  if (ev === "ver-producto" && d.codigo && !L.ok.curioso){
+    L.vistos = [...new Set([...L.vistos, d.codigo])].slice(-10); guardarLogros(L);
+    if (L.vistos.length >= 10) id = "curioso";
+  }
+  if (ev === "mundo" && d.plataforma && !L.ok.explorador){
+    L.mundos = [...new Set([...L.mundos, d.plataforma])]; guardarLogros(L);
+    if (L.mundos.length >= 3) id = "explorador";
+  }
+  if (id) desbloquear(id);
+}
+const COLA_LOGROS = [];
+function desbloquear(id){
+  const L = leerLogros(), l = LOGROS.find(x => x.id === id);
+  if (!l || L.ok[id]) return;
+  L.ok[id] = Date.now(); guardarLogros(L);
+  pintarLogrosN();
+  COLA_LOGROS.push(l);
+  if (COLA_LOGROS.length === 1) setTimeout(mostrarLogro, 700);
+}
+function mostrarLogro(){
+  const l = COLA_LOGROS[0], el = $("logro");
+  if (!l) return;
+  el.innerHTML = `<span class="logro-ico" aria-hidden="true">${l.ico}</span><span><small>🏆 Logro desbloqueado</small><b>${esc(l.t)}</b><span class="d">${esc(l.d)}</span></span>`;
+  try { el.hidePopover(); } catch(e) {}
+  try { el.showPopover(); } catch(e) {}
+  $("aviso").textContent = `Logro desbloqueado: ${l.t}`;
+  try { navigator.vibrate?.([12, 60, 12]); } catch(e) {}
+  setTimeout(() => {
+    try { el.hidePopover(); } catch(e) {}
+    COLA_LOGROS.shift();
+    if (COLA_LOGROS.length) setTimeout(mostrarLogro, 450);
+  }, 4200);
+}
+const logrosHechos = () => { const L = leerLogros(); return LOGROS.filter(l => L.ok[l.id]).length; };
+function pintarLogrosN(){ $("menuLogN").textContent = ` (${logrosHechos()}/${LOGROS.length})`; }
+function abrirLogros(){
+  for (const d of ["dlg", "menu", "cart", "cmdk", "favs", "pedidos"]) if ($(d).open) $(d).close();
+  const L = leerLogros(), n = logrosHechos();
+  $("logrosCuenta").innerHTML = `<b>${n} de ${LOGROS.length}</b> logros desbloqueados${n === LOGROS.length ? ". ¡Los completaste todos! 🏆" : "."}`;
+  $("logrosBarra").style.width = `${Math.round(n / LOGROS.length * 100)}%`;
+  $("logrosLista").innerHTML = LOGROS.map(l => `<div class="logro-item${L.ok[l.id] ? "" : " bloqueado"}"><span class="logro-ico" aria-hidden="true">${L.ok[l.id] ? l.ico : "🔒"}</span><b>${esc(l.t)}</b><span>${esc(l.d)}</span></div>`).join("");
+  $("logros").showModal();
+  medir("logros-abiertos", {n});
+}
+$("logrosClose").onclick = () => $("logros").close();
+$("logros").addEventListener("click", e => { if (e.target === $("logros")) $("logros").close(); });
+$("logro").addEventListener("click", () => { try { $("logro").hidePopover(); } catch(e) {} abrirLogros(); });
+pintarLogrosN();
+
 // Instalar la página como app: Chrome/Edge/Android avisan que se puede; en iPhone se explica cómo.
 let instalador = null;
 const esIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !navigator.standalone;
@@ -3350,9 +3657,12 @@ function lineaProducto(p, conDesc){
   const precioTxt = tarjeta && tarjeta !== efectivo ? `$${efectivo} (tarjeta $${tarjeta})` : `$${efectivo}`;
   const stockTxt = Object.entries(p.stock || {}).filter(([, v]) => v > 0)
     .map(([k, v]) => `${CONFIG.locales[k]?.nombre || k} ${v}`).join(", ") || (p.digital ? "código digital" : "agotado");
-  const extra = [consolaDe(p).txt, p.nuevo && "nuevo", p.top && "top ventas"].filter(Boolean).join(", ");
-  const desc = conDesc && p.desc ? ` | ${p.desc.replace(/\s+/g, " ").slice(0, 160)}` : "";
-  return `- ${p.name} | código: ${p.code} | ${p.cat_label}${extra ? " | " + extra : ""} | ${precioTxt} | stock: ${stockTxt}${desc}`;
+  const extra = [consolaDe(p).txt, p.origen === "original" && "original", p.origen === "generico" && "genérico", p.estado === "medio-uso" && "medio uso",
+    p.nuevo && "nuevo", p.top && "top ventas"].filter(Boolean).join(", ");
+  const d = (p.desc || (p.incluye?.length ? (p.desc_auto || "").replace(/\s*Incluye [^.]*\./, "") : p.desc_auto) || "").replace(/\s+/g, " ").trim();
+  const desc = conDesc && d ? ` | ${d.slice(0, 200)}` : "";
+  const incluye = p.incluye?.length ? ` | incluye: ${p.incluye.join(", ")}` : "";
+  return `- ${p.name} | código: ${p.code} | ${p.cat_label}${extra ? " | " + extra : ""} | ${precioTxt} | stock: ${stockTxt}${incluye}${desc}`;
 }
 const PALABRAS_VACIAS = new Set(("que para con los las una uno unos unas tienen tiene tienes tendran hay quiero queria quisiera busco buscando necesito " +
   "cuanto cuanta cuesta cuestan vale valen precio precios del por algo este ese esa esta estos esos esas estas eso esto muestrame muestra ensename " +
@@ -3394,7 +3704,9 @@ function analizarConsulta(texto){
   const plats = CONFIG.plataformas.filter(([, re]) => re.test(T)).map(([n]) => n);
   const mundos = new Set(plats.map(n => CONFIG.mundos[n] ? n : Object.keys(CONFIG.mundos).find(m => CONFIG.mundos[m].subs.includes(n)) || n));
   const plat = mundos.size === 1 ? (plats.find(n => !CONFIG.mundos[n]) || plats[0]) : null;   // lo más puntual: "PS5" antes que "PlayStation"
-  const cats = CATEGORIAS_CHAT.filter(([, re]) => re.test(t)).map(([c]) => c);
+  // "un control para qué consola": la consola dice para cuál es, no que busque consolas.
+  const tc = t.replace(/\b(para|de) (que|cual|mi|la|una|esa|tu|su) consola\b/g, " ");
+  const cats = CATEGORIAS_CHAT.filter(([, re]) => re.test(tc)).map(([c]) => c);
   const cat = cats.length === 1 ? cats[0] : null;
   let max = null, min = null;
   const plata = t.match(/\$\s*(\d{1,5}(?:[.,]\d{1,2})?)|(\d{1,5}(?:[.,]\d{1,2})?)\s*(?:\$|dolares?|usd)|(?:menos de|hasta|maximo|no mas de|presupuesto(?: de)?|tengo)\s*\$?\s*(\d{1,5})/);
@@ -3419,7 +3731,7 @@ function buscarParaChat(actual, anterior){
   if (c.servicio && !c.cat) return {c, lista: [], sinCoincidencia: false, nota: ""};   // es de servicio técnico, no una búsqueda
   if (anterior && !c.palabras.length){   // "¿y para PS4?" sigue hablando de lo de antes
     const a = analizarConsulta(anterior);
-    c.palabras = a.palabras;
+    if (!c.cat || c.cat === a.cat) c.palabras = a.palabras;   // "¿y un control?" ya no busca lo de antes
     for (const k of ["plat", "cat", "max", "min"]) c[k] ??= a[k];
     c.nuevo ||= a.nuevo; c.top ||= a.top; c.barato ||= a.barato; c.oferta ||= a.oferta; c.quiere ||= a.quiere;
     c.filtros ||= a.filtros;
@@ -3516,14 +3828,16 @@ function contextoTienda(mensaje){
 - repetir_pedido para volver a pedir lo de un pedido ya enviado; compartir_producto si quiere mandarle un producto a alguien; instalar_app si quiere la tienda como app.
 - guardar_favorito si quiere guardarlo para después; como_llegar si pregunta la ubicación o cómo llegar a un local.
 - preparar_whatsapp para: servicio técnico (primero pregunta el equipo y la falla, luego arma el mensaje), un producto que no está en el catálogo (para que le avisen cuando llegue), saber cómo va un pedido ya enviado (con su código), garantía, envíos o cualquier cosa que no sepas.
+- Características: de productos de marca conocidos (juegos, consolas y controles oficiales) puedes contar lo que se sabe en general: de qué trata el juego, para cuántos jugadores, sus modos, qué ofrece la consola. De productos genéricos o sin marca di solo lo que dice su descripción aquí y ofrece WhatsApp para más detalles. Precio, stock, qué incluye y garantía: solo de este CONTEXTO.
+- Si no sabe qué consola comprar, la página tiene un test de 4 preguntas: dile que escriba «¿Qué consola me compro?».
 - Después de usar una función la página ya le confirma al cliente: no repitas "listo, lo agregué".
 - Si dices "mira estas opciones", "te dejo el botón" o algo así, TIENES que llamar a la función en esa misma respuesta.
-Formato: de 1 a 3 frases. Puedes usar **negritas** y listas cortas con guiones. Nunca escribas códigos de producto, nombres de funciones, notas técnicas, tablas ni enlaces en el texto.`,
+Formato: de 1 a 3 frases (o una lista corta de hasta 4 puntos si cuentas características). Puedes usar **negritas** y listas cortas con guiones. Nunca escribas códigos de producto, nombres de funciones, notas técnicas, tablas ni enlaces en el texto.`,
     pedidoTexto(),
     pedidosTexto(),
   ].filter(Boolean);
   const ficha = buscar(CHAT.desdeFicha);
-  if (ficha) partes.push(`El cliente viene de la ficha de «${ficha.name}» (código ${ficha.code}) y quiere saber más: cuéntale en el chat lo más útil (precio, stock por local, para qué consola es, qué incluye). No le vuelvas a abrir la ficha.\n${lineaProducto(ficha, true)}`);
+  if (ficha) partes.push(`El cliente viene de la ficha de «${ficha.name}» (código ${ficha.code}) y quiere saber más: cuéntale en el chat lo más útil (precio, stock por local, para qué consola es, qué incluye y, si es de una marca conocida, sus características principales). No le vuelvas a abrir la ficha.\n${lineaProducto(ficha, true)}`);
   if (!PRODUCTS.length) partes.push("El catálogo todavía no cargó en esta visita: si preguntan por un producto, sugiere revisarlo en la página o preguntar por WhatsApp.");
   else {
     partes.push(resumenCatalogo());
@@ -3597,7 +3911,10 @@ const ACCIONES_CHAT = {
     const p = buscar(codigo);
     if (!p) return decir("No logré identificar bien ese producto para agregarlo — dime el nombre tal como aparece en la página.");
     const max = maxQty(p);
-    if (!max) return decir(`${p.name} está agotado por ahora 😔 Si quieres, te dejo listo un WhatsApp para que te avisen cuando llegue.`);
+    if (!max){
+      decir(`${p.name} está agotado por ahora 😔 Si quieres, te aviso aquí cuando vuelva.`);
+      return agregarMensaje({rol: "mascota", botones: [{texto: "🔔 Avísame aquí cuando vuelva", accion: "avisame-codigo", valor: p.code}]});
+    }
     const actual = PEDIDO.items.get(p.code) || 0, nueva = Math.min(actual + Math.max(1, Math.min(20, parseInt(cantidad, 10) || 1)), max);
     citar([p]);
     if (nueva === actual) return decir(`Ya tienes en tu pedido todas las unidades disponibles de ${p.name} (${max}).`);
@@ -3706,6 +4023,9 @@ const ACCIONES_CHAT = {
       {texto: "Mandar por WhatsApp", icono: "wa", href: `https://wa.me/?text=${encodeURIComponent(`Mira: ${p.name} a ${fmt(precio(p, "efectivo"))} en ${CONFIG.storeName} ${url}`)}`},
       {texto: "Copiar enlace", accion: "copiar", valor: url}]});
   },
+  avisar_llegada({q}){
+    if (q) agregarMensaje({rol: "mascota", botones: [{texto: "🔔 Avísame aquí cuando llegue", accion: "avisame", valor: String(q).slice(0, 60)}]});
+  },
   instalar_app(){
     if (matchMedia("(display-mode: standalone)").matches || navigator.standalone) return decir("¡Ya la estás usando como app! 🙌");
     if (instalador) return agregarMensaje({rol: "mascota", botones: [{texto: "Instalar la app", accion: "instalar"}]});
@@ -3782,7 +4102,100 @@ function completarAcciones(t, acciones, pregunta){
     acciones.push({nombre: "preparar_whatsapp", args: {mensaje: `Hola ${CONFIG.storeName}, ¿tienen ${CHAT.noEncontrado}? Me gustaría que me avisen cuando llegue.`, boton: "Avísenme cuando llegue"}});
   else if (!hay(["preparar_whatsapp", "como_llegar", "ver_pedido", "mis_pedidos"]) && /whatsapp/i.test(t) && !CHAT.mensajes.slice(-6).some(m => m.enlace?.tipo === "wa"))
     acciones.push({nombre: "preparar_whatsapp", args: {mensaje: `Hola ${CONFIG.storeName}, ${pregunta}`, boton: "Escribir por WhatsApp"}});
+  // Si no lo hay (o la IA ofrece que le avisen), también se le puede avisar aquí cuando llegue.
+  const ofreceAviso = acciones.some(a => a.nombre === "preparar_whatsapp" && /avis|cuando (les |nos )?llegue/i.test(`${a.args?.boton} ${a.args?.mensaje}`));
+  const qAviso = CHAT.noEncontrado || (ofreceAviso ? analizarConsulta(pregunta).palabras.join(" ") : "");
+  if (qAviso) acciones.push({nombre: "avisar_llegada", args: {q: qAviso}});
   return acciones;
+}
+
+// --- Test "¿Qué consola me compro?": preguntas con botones (sin IA, al instante) y consolas reales en stock ---
+const GUIA = [
+  {id: "quien", q: "¡Vamos! 🎮 Son 4 preguntas rápidas. ¿Para quién es la consola?", o: [["🙋 Para mí", "adulto"], ["🧒 Un niño o niña", "nino"], ["👨‍👩‍👧 Toda la familia", "familia"]]},
+  {id: "gusta", q: "¿Qué le gusta jugar?", o: [["⚽ Fútbol y deportes", "deportes"], ["🍄 Mario y aventuras", "aventura"], ["💥 Acción y disparos", "accion"], ["👾 Clásicos retro", "retro"], ["🎲 De todo un poco", "todo"]]},
+  {id: "donde", q: "¿Dónde va a jugar?", o: [["📺 En la TV", "tv"], ["🎒 En cualquier lado", "portatil"], ["🔁 Las dos", "ambos"]]},
+  {id: "plata", q: "¿Cuánto quieres gastar, más o menos?", o: [["Hasta $150", 150], ["Hasta $400", 400], ["Hasta $800", 800], ["💎 Lo mejor que haya", 0]]},
+];
+// Qué tan bien le va a cada tipo de consola con cada gusto (g) y cada persona (p), de 0 a 3.
+const FAMILIAS = [
+  {id: "ps5", re: /\bPS5\b|PLAYSTATION 5/, nombre: "PlayStation 5", por: "Tiene gráficos de última generación y los juegos más nuevos (EA Sports FC, Spider-Man, Call of Duty…).",
+    g: {deportes: 3, accion: 3, aventura: 2, todo: 3}, p: {adulto: 3, nino: 1, familia: 2}},
+  {id: "ps4", re: /\bPS4\b/, nombre: "PlayStation 4", por: "Tiene un catálogo enorme de juegos y cuesta mucho menos que una PS5.",
+    g: {deportes: 3, accion: 3, aventura: 2, todo: 3, retro: 1}, p: {adulto: 2, nino: 2, familia: 2}},
+  {id: "xbox", re: /XBOX (SERIES|ONE)/, nombre: "Xbox", por: "Es ideal para acción, carreras y disparos (Forza, Halo, Call of Duty).",
+    g: {deportes: 2, accion: 3, aventura: 1, todo: 2}, p: {adulto: 3, nino: 1, familia: 1}},
+  {id: "switch", re: /SWI[CT]{2}H/, nombre: "Nintendo Switch", por: "Se juega en la TV y también como portátil, y tiene Mario, Pokémon y Zelda: perfecta para niños y familia.",
+    g: {deportes: 2, accion: 1, aventura: 3, todo: 3, retro: 1}, p: {adulto: 2, nino: 3, familia: 3}},
+  {id: "bolsillo", re: /\bR36|\bX9\b|CONSOLA SUP\b|\bK10\b|MINI GAME/, nombre: "Consola retro portátil", por: "Es portátil, económica y perfecta para jugar los clásicos.",
+    g: {retro: 3, todo: 1, aventura: 1}, p: {nino: 2, adulto: 1, familia: 1}},
+  {id: "retro", re: /ATARI|SNES|NESS|SUPER NINTENDO|GAME ?STICK|ARCADE|PANDORA/, nombre: "Consola retro", por: "Es para jugar los clásicos de siempre en la TV.",
+    g: {retro: 3, todo: 1}, p: {familia: 2, adulto: 2, nino: 1}},
+  {id: "clasica", re: /\bPS[23]\b|XBOX 360|\bPSP\b/, nombre: "Consola clásica", por: "Es una consola de generaciones anteriores, a buen precio, para revivir sus grandes juegos.",
+    g: {retro: 2, accion: 1, deportes: 1, todo: 1}, p: {adulto: 2, nino: 1, familia: 1}},
+];
+const NO_GUIA = /PORTAL|DJ HERO|OCULUS|QUEST/;   // necesitan otra consola o no son para jugar en la TV
+const PORTATIL = /SWI[CT]{2}H|\bPSP\b|\bR36|\bX9\b|CONSOLA SUP\b|\bK10\b|MINI GAME/;
+const PIDE_GUIA = /\b(que|cual) consola (me )?(compro|comprar|recomiendas?|recomiendan|elijo|escojo|conviene)\b|\b(hacer|repetir|hazme|haz) (el )?test\b|\bayudame a (elegir|escoger) (una )?consola\b|\btest de (la )?consola/;
+function recomendarConsolas(r){
+  const efectivo = p => precio(p, "efectivo");
+  const todas = PRODUCTS.filter(p => p.cat === "consolas" && maxQty(p) > 0 && !NO_GUIA.test(p.name.toUpperCase()))
+    .map(p => ({p, N: p.name.toUpperCase()})).map(x => ({...x, f: FAMILIAS.find(f => f.re.test(x.N))})).filter(x => x.f);
+  if (!todas.length) return {lista: []};
+  const tope = r.plata || Infinity, masCara = Math.max(...todas.map(x => efectivo(x.p)));
+  const puntos = ({p, N, f}) => {
+    const port = PORTATIL.test(N), tv = !port || f.id === "switch";
+    let s = (f.g[r.gusta] || 0) * 2 + (f.p[r.quien] || 0);
+    if (r.donde === "tv") s += tv ? 1 : -4;
+    if (r.donde === "portatil") s += port ? 3 : -4;
+    if (r.donde === "ambos") s += port && tv ? 3 : -1;
+    s += r.plata ? efectivo(p) / r.plata * 1.5 : efectivo(p) / masCara * 4;   // aprovechar el presupuesto / "lo mejor"
+    if (/MEDIO USO|USAD|HACK/.test(N)) s -= 0.8;
+    if (p.photos.length) s += 0.4;   // a igual puntaje, la que se puede ver en foto
+    return s;
+  };
+  let lista = todas.filter(x => efectivo(x.p) <= tope);
+  const sinPresupuesto = !lista.length;
+  if (sinPresupuesto) lista = [...todas].sort((a, b) => efectivo(a.p) - efectivo(b.p)).slice(0, 3);
+  lista = lista.map(x => ({...x, s: puntos(x)})).sort((a, b) => b.s - a.s);
+  const elegidas = [], familias = new Set();   // primero una de cada tipo, para que haya de dónde escoger
+  for (const x of lista) if (!familias.has(x.f.id)){ familias.add(x.f.id); elegidas.push(x); }
+  for (const x of lista) if (elegidas.length < 3 && !elegidas.includes(x)) elegidas.push(x);
+  return {lista: elegidas.slice(0, 3), sinPresupuesto};
+}
+function iniciarGuia(){ medir("guia-inicio"); preguntarGuia(0); }
+function preguntarGuia(i){
+  const g = GUIA[i];
+  agregarMensaje({rol: "mascota", texto: g.q});
+  agregarMensaje({rol: "mascota", opciones: g.o.map(([t]) => t), guia: g.id});
+}
+// Las respuestas salen de la conversación (así también funciona después de recargar la página).
+function respuestasGuia(){
+  const r = {};
+  for (const m of [...CHAT.mensajes].reverse()){
+    if (!m.guia) continue;
+    const o = GUIA.find(g => g.id === m.guia)?.o.find(([t]) => t === m.elegida);
+    if (o && !(m.guia in r)) r[m.guia] = o[1];
+    if (m.guia === "quien") break;
+  }
+  return r;
+}
+function responderGuia(m){
+  agregarMensaje({rol: "usuario", texto: m.elegida});
+  const i = GUIA.findIndex(g => g.id === m.guia);
+  if (i < GUIA.length - 1) setTimeout(() => preguntarGuia(i + 1), 300);
+  else setTimeout(resultadoGuia, 300);
+}
+function resultadoGuia(){
+  const {lista, sinPresupuesto} = recomendarConsolas(respuestasGuia());
+  if (!lista.length) return decir("Justo ahora no tenemos consolas disponibles 😔 Escríbenos por WhatsApp y te avisamos cuando lleguen.");
+  const [x] = lista;
+  const el = agregarMensaje({rol: "mascota", festejo: true, texto: sinPresupuesto
+    ? "Con ese presupuesto no tenemos consolas ahora mismo 😅 Estas son las más económicas que hay:"
+    : `🏆 ¡Tu consola ideal: **${x.f.nombre}**! ${x.f.por}`});
+  if (el && !reduceMotion()) confeti(el);
+  ACCIONES_CHAT.mostrar_productos({codigos: lista.map(y => y.p.code)});
+  agregarMensaje({rol: "mascota", opciones: ["💬 Cuéntame más de la primera", "🔁 Repetir el test"]});
+  medir("guia-consola", {familia: x.f.id});
 }
 
 // --- Cómo se ve ---
@@ -3858,6 +4271,7 @@ function elementoMensaje(m){
     return d;
   }
   if (m.saludo) d.innerHTML = `<img class="chat-pose" src="mascota/poses/saludo.webp" alt="" width="390" height="560" decoding="async">`;
+  if (m.festejo){ d.classList.add("festejo"); d.innerHTML = `<img class="chat-pose" src="mascota/poses/baila.webp" alt="" width="442" height="560" decoding="async">`; }
   if (m.error) d.innerHTML = `<img class="chat-pose" src="mascota/poses/triste.webp" alt="" width="371" height="560" decoding="async">`;
   d.insertAdjacentHTML("beforeend", `<span class="chat-cont"><span class="chat-txt">${formatoChat(m.texto || "")}</span>` +
     (m.error && m.reintentar ? `<button type="button" class="chat-reintentar" data-reintentar>Reintentar</button>` : "") +
@@ -3865,7 +4279,8 @@ function elementoMensaje(m){
   return d;
 }
 // Botones que el chat puede dejar (los atiende el manejador general de la página o el del chat).
-const BOTONES_CHAT = {"abrir-favoritos": "data-abrir-favoritos", "ver-pedido": "data-ver-pedido", "abrir-pedidos": "data-abrir-pedidos", instalar: "data-instalar", copiar: "data-copiar"};
+const BOTONES_CHAT = {"abrir-favoritos": "data-abrir-favoritos", "ver-pedido": "data-ver-pedido", "abrir-pedidos": "data-abrir-pedidos", instalar: "data-instalar", copiar: "data-copiar",
+  avisame: "data-avisame", "avisame-codigo": "data-avisame-codigo"};
 const MSJ_DE = new WeakMap();   // elemento en pantalla -> su mensaje (para las opciones y "Deshacer")
 // Con mouse no se puede deslizar de lado: las flechas aparecen solo si hay más productos hacia ese lado.
 function flechasChat(caja){
@@ -3915,6 +4330,7 @@ function pintarChips(){
     unidades() && ["🛒 Terminar mi pedido", "Quiero terminar mi pedido"],
     visto && ["👀 El que estaba viendo", `Cuéntame del ${visto.name}`],
     leerPedidos().length && ["📦 Mis pedidos", "Muéstrame mis pedidos"],
+    ["🎮 ¿Qué consola me compro?", "¿Qué consola me compro?"],
     ["🆕 ¿Qué llegó nuevo?", "¿Qué productos nuevos llegaron?"],
     ["🔥 Lo más vendido", "¿Qué es lo más vendido?"],
     ["🎁 Ayúdame con un regalo", "Quiero regalar algo, ¿qué me recomiendas?"],
@@ -3998,6 +4414,8 @@ function historialParaIA(){
 async function enviarChat(texto, reintento = false){
   texto = String(texto || "").trim();
   if (CHAT.enviando || !texto) return;
+  const q = norm(texto);
+  if (!reintento && PIDE_GUIA.test(q) && !/\b(control|palanca|mando|juego|accesorio|audifono)/.test(q)){ agregarMensaje({rol: "usuario", texto}); iniciarGuia(); return; }
   CHAT.enviando = true;
   $("chatEnviar").disabled = true;
   const historial = historialParaIA();
@@ -4108,7 +4526,7 @@ function abrirChat(pregunta){
       for (const b of op.parentElement.children) b.disabled = true;
       op.classList.add("elegida");
       medir("chat-opcion");
-      enviarChat(m.elegida);
+      if (m.guia) responderGuia(m); else enviarChat(m.elegida);
       return;
     }
     const des = e.target.closest("[data-chat-deshacer]");
@@ -4148,6 +4566,7 @@ function abrirChat(pregunta){
   if (Reconocer){ $("chatMic").hidden = false; $("chatMic").onclick = dictar; }
   // Desde la ficha: "Preguntar" abre el chat hablando de ese producto.
   if (CONFIG.chatMascotaUrl) $("dChat").hidden = false;
+  $("secGuia").hidden = !CONFIG.chatMascotaUrl || !!VITRINA_URL;
   $("dChat").onclick = () => {
     const p = D?.p; if (!p) return;
     $("dlg").close();
@@ -4935,6 +5354,7 @@ document.addEventListener("visibilitychange", ()=>{ if (document.visibilityState
 async function compartir(){
   // Se comparte la página propia del producto: la vista previa en WhatsApp muestra su foto y precio.
   const p = D.p, url = paginaDe(p);
+  medir("compartir", {via: "ficha"});
   const datos = {title: p.name, text: `${p.name} a ${fmt(p.price_efectivo ?? p.price)} en ${CONFIG.storeName}`, url};
   try {
     if (navigator.share) { await navigator.share(datos); return; }
@@ -5331,7 +5751,7 @@ function pintarBuscador(){
     const todos = porRelevancia(PRODUCTS.filter(p=>coincide(p, q)), q);
     CMD.lista = todos.slice(0, 8);
     CMD.total = todos.length;
-    $("cmdkArriba").innerHTML = todos.length ? "" : `<div class="cmdk-vacio"><img class="mascota-mini" src="mascota/mascota-chica.webp" alt="" width="243" height="360" loading="lazy" decoding="async"><strong>No hay resultados para “${esc(q)}”.</strong>Prueba con otra palabra, o pregúntanos: te decimos si lo tenemos o si nos llega.<br>${pideloHTML(q)}</div>`;
+    $("cmdkArriba").innerHTML = todos.length ? "" : `<div class="cmdk-vacio"><img class="mascota-mini" src="mascota/mascota-chica.webp" alt="" width="243" height="360" loading="lazy" decoding="async"><strong>No hay resultados para “${esc(q)}”.</strong>Prueba con otra palabra, o pregúntanos: te decimos si lo tenemos o si nos llega.<br>${pideloHTML(q)}${avisameHTML(q)}</div>`;
     if (!todos.length) medirSinResultados(q);
     $("cmdkGrupo").textContent = todos.length ? `${todos.length} resultado${todos.length === 1 ? "" : "s"}` : "";
   }
@@ -5431,6 +5851,18 @@ document.addEventListener("click", e=>{
   if (e.target.closest("[data-abrir-buscador]")){ e.preventDefault(); abrirBuscador(); return; }
   if (e.target.closest("[data-abrir-favoritos]")){ e.preventDefault(); abrirFavoritos(); return; }
   if (e.target.closest("[data-abrir-pedidos]")){ e.preventDefault(); abrirPedidos(); return; }
+  if (e.target.closest("[data-abrir-logros]")){ e.preventDefault(); abrirLogros(); return; }
+  if (e.target.closest("[data-guia]")){ abrirChat("¿Qué consola me compro?"); return; }
+  const av = e.target.closest("[data-avisame], [data-avisame-codigo]");
+  if (av){
+    guardarAviso(av.dataset.avisameCodigo ? {codigo: av.dataset.avisameCodigo} : {q: av.dataset.avisame});
+    av.textContent = "✓ Listo: te aviso aquí cuando llegue 🔔"; av.disabled = true;
+    return;
+  }
+  const pod = e.target.closest("[data-podio]");
+  if (pod){ abrirProducto(pod.dataset.podio, pod.querySelector(".podio-foto")); return; }
+  const podc = e.target.closest("[data-podio-cat]");
+  if (podc){ podioCat = podc.dataset.podioCat; pintarPodio(); return; }
   const inst = e.target.closest("[data-instalar]");
   if (inst){ e.preventDefault(); instalarApp().then(ok => { if (inst.closest("#chatMascota")) decir(ok ? "¡Listo! Ya la tienes como app 🎉" : "Cuando quieras, me pides instalarla otra vez 🙂"); }); return; }
   const rep = e.target.closest("[data-repetir]");

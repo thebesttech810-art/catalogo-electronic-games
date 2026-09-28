@@ -202,6 +202,9 @@ def main():
     # Sticker "Top ventas" para los más vendidos (sin publicar cifras).
     for i, x in enumerate(salida):
         x["top"] = i < TOP_VENTAS and x["_rot"][1] > 0
+        # Para el podio de cada categoría en la página: solo "se vendió en los últimos 30 días", sin cifras.
+        if x["_rot"][1] > 0:
+            x["vendido"] = True
     seleccion = {x["code"]: x["_id"] for x in salida}
     # Las cifras de venta son internas: no se publican en el JSON del sitio.
     for x in salida:
