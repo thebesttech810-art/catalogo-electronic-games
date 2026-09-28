@@ -3122,6 +3122,46 @@ cargarMascota();
 
 // Chat con el muñequito (IA vía Worker de Cloudflare). Si no hay URL configurada
 // (CONFIG.chatMascotaUrl), el botón de "abrir chat" simplemente lleva a WhatsApp.
+//
+// El Worker no guarda ni conoce nada de la tienda: en cada mensaje le mandamos un
+// "contexto" armado aquí, a partir de CONFIG y del catálogo (PRODUCTS) ya cargado.
+// Así el muñequito siempre responde con los locales, horarios y precios/stock tal
+// como están en la página en ese momento, sin tener que tocar el código del Worker
+// cada vez que cambia algo en la web.
+function horarioTexto(){
+  const hm = m => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
+  const [s0, s1] = CONFIG.horario.semana, [d0, d1] = CONFIG.horario.domingo;
+  return `Lunes a sábado de ${hm(s0)} a ${hm(s1)}. Domingo de ${hm(d0)} a ${hm(d1)}.`;
+}
+function localesTexto(){
+  return Object.values(CONFIG.locales).map(l => `${l.nombre} (${l.zona}${l.detalle ? ", " + l.detalle : ""})`).join("; ");
+}
+function catalogoTexto(){
+  return PRODUCTS.map(p => {
+    const precio = p.price_efectivo ?? p.price;
+    const tarjeta = p.price_tarjeta;
+    const precioTxt = tarjeta && tarjeta !== precio ? `$${precio} (tarjeta $${tarjeta})` : `$${precio}`;
+    const stockTxt = Object.entries(p.stock || {})
+      .filter(([, v]) => v > 0)
+      .map(([k, v]) => `${CONFIG.locales[k]?.nombre || k} ${v}`)
+      .join(", ") || "agotado";
+    return `- ${p.name} | ${p.cat_label} | ${precioTxt} | stock: ${stockTxt}`;
+  }).join("\n");
+}
+function contextoTienda(){
+  return [
+    `Tienda: ${CONFIG.storeName}. WhatsApp: +${CONFIG.whatsapp}. Instagram: @electronicgamesec.`,
+    `Locales (ahí se retiran los pedidos y se recibe el servicio técnico): ${localesTexto()}.`,
+    `Horario de los 3 locales: ${horarioTexto()}`,
+    `Cómo comprar: se arma el pedido en la página (botón + en cada producto), se abre "Mi pedido", se elige el local donde se retira y la forma de pago (efectivo, transferencia o tarjeta; con tarjeta el precio puede ser distinto al de contado, se confirma en el catálogo), y se envía por WhatsApp ya con productos, cantidades y total. Ahí se confirma disponibilidad antes de cobrar. No hay pago dentro de la web, ni envío a domicilio.`,
+    `Servicio técnico: reciben consolas y palancas/controles de PlayStation, Nintendo y Xbox en los 3 locales; se cotiza por WhatsApp indicando el modelo y qué le pasa al equipo.`,
+    `El stock que se ve en la página sale del sistema de inventario y se actualiza cada 15 minutos. Los precios ya incluyen IVA.`,
+    `La web no publica una política de garantía ni de envíos a domicilio: si preguntan por eso, dilo con honestidad y sugiere confirmarlo por WhatsApp.`,
+    PRODUCTS.length
+      ? `Catálogo actual, uno por línea (nombre | categoría | precio | stock por local; si un local no aparece es porque no hay stock ahí):\n${catalogoTexto()}`
+      : `El catálogo todavía no cargó en esta visita: si preguntan por un producto puntual, sugiere revisarlo en la página o preguntar por WhatsApp.`,
+  ].join("\n\n");
+}
 let chatHistorial = [];
 let chatEnviando = false;
 function pintarMsjChat(texto, propio){
@@ -3158,7 +3198,7 @@ async function enviarChat(texto){
     const r = await fetch(CONFIG.chatMascotaUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mensaje: texto, historial: previo }),
+      body: JSON.stringify({ mensaje: texto, historial: previo, contexto: contextoTienda() }),
     });
     const data = await r.json();
     pensando.remove();
