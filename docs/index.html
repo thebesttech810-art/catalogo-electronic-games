@@ -270,12 +270,12 @@ body:is(.en-anillo,.en-portal) .chat-boton{opacity:0;visibility:hidden;transitio
 .chat-mascota::backdrop{background:transparent}
 .chat-mascota[open]{animation:chat-entra 220ms cubic-bezier(.3,1.4,.5,1) both}
 @keyframes chat-entra{from{opacity:0;translate:0 16px;scale:.97}}
-.chat-cab{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--ink);color:#fff;flex:none}
+.chat-cab{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--surface-hi);color:var(--ink);flex:none}
 .chat-cab img{width:38px;height:38px;border-radius:50%;object-fit:cover;flex:none}
 .chat-cab div{display:grid;gap:1px;flex:1;min-width:0}
 .chat-cab b{font-size:.92rem}
-.chat-cab span{font-size:.74rem;opacity:.75}
-.chat-cab button{background:none;border:0;color:#fff;font-size:1.3rem;line-height:1;cursor:pointer;padding:4px;opacity:.85}
+.chat-cab span{font-size:.74rem;color:var(--muted)}
+.chat-cab button{background:none;border:0;color:var(--ink);font-size:1.3rem;line-height:1;cursor:pointer;padding:4px;opacity:.85}
 .chat-cuerpo{flex:1;overflow-y:auto;padding:12px 14px;display:grid;gap:8px;overscroll-behavior:contain}
 .chat-msj{max-width:82%;padding:8px 12px;border-radius:14px;font-size:.88rem;line-height:1.35;white-space:pre-wrap;overflow-wrap:anywhere}
 .chat-msj.mia{justify-self:end;background:var(--brand);color:#0A0A0B;border-bottom-right-radius:4px}
@@ -3144,7 +3144,7 @@ function lineaProducto(p){
     .filter(([, v]) => v > 0)
     .map(([k, v]) => `${CONFIG.locales[k]?.nombre || k} ${v}`)
     .join(", ") || "agotado";
-  return `- ${p.name} | ${p.cat_label} | ${precioTxt} | stock: ${stockTxt}`;
+  return `- ${p.name} | código: ${p.code} | ${p.cat_label} | ${precioTxt} | stock: ${stockTxt}`;
 }
 const sinTildes = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 // Mandar los 280+ productos en cada mensaje hacía que la IA tardara mucho en
@@ -3173,6 +3173,7 @@ function contextoTienda(mensaje){
     `Servicio técnico: reciben consolas y palancas/controles de PlayStation, Nintendo y Xbox en los 3 locales; se cotiza por WhatsApp indicando el modelo y qué le pasa al equipo.`,
     `El stock que se ve en la página sale del sistema de inventario y se actualiza cada 15 minutos. Los precios ya incluyen IVA.`,
     `La web no publica una política de garantía ni de envíos a domicilio: si preguntan por eso, dilo con honestidad y sugiere confirmarlo por WhatsApp.`,
+    `Puedes agregar productos al pedido del cliente directamente en la página usando la función agregar_al_pedido, con el "código" EXACTO del producto tal como aparece abajo (nunca inventes un código). Úsala solo cuando el cliente pida claramente agregar, comprar o llevar un producto y ya identificaste con certeza cuál es de la lista de abajo; si hay varias opciones parecidas (distintos modelos, colores o ediciones) pregunta primero cuál antes de agregar. Después de agregarlo, el cliente sigue el pedido desde el botón "Mi pedido" de la página.`,
     PRODUCTS.length
       ? catalogoTexto(mensaje)
       : `El catálogo todavía no cargó en esta visita: si preguntan por un producto puntual, sugiere revisarlo en la página o preguntar por WhatsApp.`,
@@ -3198,6 +3199,23 @@ function abrirChat(){
   }
   $("chatTexto").focus();
 }
+// Cuando la IA decide usar la función "agregar_al_pedido" (ve el contexto y el
+// mensaje del cliente), esto la ejecuta de verdad sobre el pedido de la página,
+// reusando lo mismo que hace el botón "+" de las tarjetas. Si el código que
+// mandó no es de un producto real, no se agrega nada (nunca inventa un producto).
+function ejecutarAccionChat(accion){
+  const p = buscar(accion.args?.codigo);
+  if (!p){ pintarMsjChat("No logré identificar bien ese producto para agregarlo — dime el nombre tal como aparece en la página.", false); return; }
+  const cant = Math.max(1, Math.min(20, parseInt(accion.args?.cantidad, 10) || 1));
+  const max = maxQty(p);
+  if (!max){ pintarMsjChat(`${p.name} está agotado por ahora, no lo pude agregar 😔`, false); return; }
+  const actual = PEDIDO.items.get(p.code) || 0;
+  const nueva = Math.min(actual + cant, max);
+  setCantidad(p.code, nueva);
+  confirmarAgregado(p, nueva - actual);
+  medir("agregar-al-pedido", { codigo: p.code, via: "chat" });
+  pintarMsjChat(`¡Listo! Agregué ${nueva - actual > 1 ? (nueva - actual) + " x " : ""}${p.name} a tu pedido 🛒`, false);
+}
 async function enviarChat(texto){
   if (chatEnviando || !texto.trim()) return;
   chatEnviando = true;
@@ -3219,8 +3237,11 @@ async function enviarChat(texto){
     const data = await r.json();
     pensando.remove();
     if (!r.ok || data.error) throw new Error(data.error || "error");
-    pintarMsjChat(data.respuesta, false);
-    chatHistorial.push({ rol: "mascota", texto: data.respuesta });
+    if (data.accion?.nombre === "agregar_al_pedido") ejecutarAccionChat(data.accion);
+    if (data.respuesta){
+      pintarMsjChat(data.respuesta, false);
+      chatHistorial.push({ rol: "mascota", texto: data.respuesta });
+    }
   } catch {
     pensando.remove();
     pintarMsjChat("No pude responder justo ahora 😅 Escríbenos por WhatsApp y te ayudamos.", false);
