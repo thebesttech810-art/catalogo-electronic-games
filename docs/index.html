@@ -264,6 +264,22 @@ body:is(.en-anillo,.en-portal) .chat-boton{opacity:0;visibility:hidden;transitio
   body.con-pedido .chat-boton{translate:0 -76px}
 }
 
+/* ---------- Mis pedidos ---------- */
+.pedidos-lista{display:grid;gap:12px}
+.pedido-h{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--surface-hi);display:grid;gap:8px}
+.pedido-h-cab{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:baseline}
+.pedido-h-cab b{font-size:.95rem;letter-spacing:.02em}
+.pedido-h-cab span{font-size:.78rem;color:var(--muted)}
+.pedido-h ul{margin:0;padding-left:18px;font-size:.84rem;display:grid;gap:2px}
+.pedido-h-pie{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pedido-h-pie > b{margin-right:auto;font-size:1rem}
+.pedido-h-pie .wa-btn,.pedido-h-pie .add-btn{min-height:40px;padding:8px 12px;font-size:.82rem}
+.exito-nota{font-size:.82rem;color:var(--muted)}
+.menu-nav a[hidden],#instalarIOS[hidden]{display:none}
+.share-btn.llama{border-color:var(--brand);color:var(--brand);animation:llama 1.1s ease-in-out 3}
+@keyframes llama{50%{box-shadow:0 0 0 6px rgba(255,122,0,.25)}}
+@media (prefers-reduced-motion:reduce){ .share-btn.llama{animation:none} }
+
 /* ---------- Chat con el muñequito (IA) ---------- */
 .chat-mascota{position:fixed;inset:auto 20px calc(22px + env(safe-area-inset-bottom,0px)) auto;margin:0;z-index:20;width:min(380px,calc(100vw - 32px));height:min(600px,calc(100vh - 100px));height:min(600px,calc(100dvh - 100px));border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);box-shadow:0 24px 60px rgba(0,0,0,.5);padding:0;overflow:hidden}
 .chat-mascota[open]{display:flex;flex-direction:column;animation:chat-entra 220ms cubic-bezier(.3,1.4,.5,1) both}
@@ -304,7 +320,13 @@ body.chat-abierto .chat-boton{display:none}
 .chat-enlace{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:var(--ink);color:#0A0A0B;font-weight:800;font-size:.86rem;text-decoration:none}
 .chat-enlace.wa{background:#25D366;color:#062b14}
 .chat-enlace svg{width:18px;height:18px}
-.chat-prods{align-self:stretch;display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 0 6px;margin:0 -14px;padding-inline:14px;scroll-padding-inline:14px;scrollbar-width:thin}
+.chat-prods-caja{position:relative;align-self:stretch;margin:0 -14px}
+.chat-prods{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 14px 6px;scroll-padding-inline:14px;scrollbar-width:thin}
+.chat-flecha{display:none;position:absolute;top:calc(50% - 22px);width:36px;height:36px;place-items:center;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--ink);box-shadow:0 6px 16px rgba(0,0,0,.45);cursor:pointer;z-index:1}
+.chat-flecha.izq{left:6px}
+.chat-flecha.der{right:6px}
+.chat-flecha svg{width:18px;height:18px}
+.chat-flecha:hover{border-color:var(--brand);color:var(--brand)}
 .chat-prod{flex:0 0 136px;scroll-snap-align:start;display:flex;flex-direction:column;background:var(--surface-hi);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .chat-prod-abrir{display:flex;flex-direction:column;gap:6px;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
 .chat-prod-abrir img{width:100%;aspect-ratio:1;object-fit:contain;background:#fff}
@@ -315,7 +337,33 @@ body.chat-abierto .chat-boton{display:none}
 .chat-prod .add{width:34px;height:34px;border-radius:10px;font-size:1.3rem}
 .chat-prod .add.in{font-size:.9rem}
 .chat-chips{flex:none;display:flex;gap:6px;overflow-x:auto;padding:0 12px 10px;scrollbar-width:none}
+.chat-opciones{align-self:flex-start;display:flex;flex-wrap:wrap;gap:6px;max-width:94%}
+.chat-opciones button{padding:7px 12px;border:1px solid var(--brand);border-radius:999px;background:none;color:var(--brand);font:inherit;font-size:.8rem;font-weight:800;cursor:pointer}
+.chat-opciones button:hover:not(:disabled){background:rgba(255,122,0,.12)}
+.chat-opciones button:disabled{opacity:.45;cursor:default}
+.chat-opciones button.elegida{opacity:1;background:var(--brand);color:#0A0A0B}
+.chat-comparar{align-self:stretch;overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface-hi)}
+.chat-comparar table{width:100%;border-collapse:collapse;font-size:.74rem;line-height:1.3}
+.chat-comparar th,.chat-comparar td{padding:6px;border-bottom:1px solid var(--line);text-align:center;vertical-align:top}
+.chat-comparar tbody th{text-align:left;color:var(--muted);font-weight:700;white-space:nowrap}
+.chat-comparar tr:last-child > *{border-bottom:0}
+.chat-comparar thead button{display:grid;gap:4px;justify-items:center;border:0;background:none;color:inherit;font:inherit;font-weight:700;cursor:pointer;padding:0}
+.chat-comparar thead img{width:64px;height:64px;object-fit:contain;background:#fff;border-radius:8px}
+.chat-comparar thead span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:.7rem}
+.chat-comparar .mejor{color:#3ddc84;font-weight:800}
+.chat-comparar .cmp-add{display:flex;justify-content:center}
+.chat-comparar .card-add{position:static}
+.chat-comparar .add{width:34px;height:34px;border-radius:10px;font-size:1.3rem}
+.chat-msj.con-enlace.botones{display:flex;flex-wrap:wrap;gap:6px}
+button.chat-enlace{border:0;font:inherit;font-weight:800;font-size:.86rem;cursor:pointer}
+.chat-pedidos{align-self:stretch;display:grid;gap:8px}
+.chat-pedidos .pedido-h{padding:10px 12px}
 .chat-chips[hidden]{display:none}
+@media (hover:hover) and (pointer:fine){
+  /* Con mouse no hay cómo deslizarlos de lado: van en varias filas, y las tarjetas llevan flechas. */
+  .chat-chips{flex-wrap:wrap;overflow:visible}
+  .chat-flecha:not([hidden]){display:grid}
+}
 .chat-chips button{flex:none;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface-hi);color:var(--ink);font:inherit;font-size:.78rem;font-weight:700;white-space:nowrap;cursor:pointer}
 .chat-chips button:hover{border-color:var(--brand)}
 .chat-form{display:flex;gap:6px;align-items:flex-end;padding:10px 12px;border-top:1px solid var(--line);flex:none}
@@ -1996,6 +2044,7 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
     <h3>¡Pedido listo!</h3>
     <p>Tu pedido ya está en WhatsApp. Si aún no lo hiciste, toca <b>Enviar</b> en el chat. Te respondemos para confirmar disponibilidad antes de cobrar.</p>
     <p>Código de tu pedido: <span class="cod" id="exitoCod"></span></p>
+    <p class="exito-nota">Queda guardado en <b>Menú → Mis pedidos</b>, por si quieres preguntar cómo va o volver a pedirlo.</p>
     <div class="acciones-exito">
       <button type="button" class="btn btn-brand" id="exitoVaciar">Vaciar y seguir comprando</button>
       <button type="button" class="add-btn" id="exitoMantener">Mantener mi pedido</button>
@@ -2012,6 +2061,8 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
   <nav class="menu-nav" aria-label="Menú">
     <a href="#catalogo" data-abrir-buscador>Buscar productos</a>
     <a href="#catalogo" data-abrir-favoritos>Mis favoritos<span id="menuFavN"></span></a>
+    <a href="#catalogo" data-abrir-pedidos>Mis pedidos<span id="menuPedN"></span></a>
+    <a href="#" data-instalar id="menuInstalar" hidden>Instalar la app</a>
     <a href="#catalogo" data-ir-plat="PlayStation"><svg class="marca-ico" aria-hidden="true"><use href="#l-ps"/></svg>PlayStation</a>
     <a href="#catalogo" data-ir-plat="Nintendo" aria-label="Nintendo"><svg class="marca-ico nin" aria-hidden="true"><use href="#l-nintendo"/></svg></a>
     <a href="#catalogo" data-ir-plat="Xbox"><svg class="marca-ico" aria-hidden="true"><use href="#l-xbox"/></svg>Xbox</a>
@@ -2026,6 +2077,7 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
   <div class="menu-extra">
     <a class="btn btn-brand" id="waMenu" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Escríbenos por WhatsApp</a>
     <span>Lunes a sábado 10:00 a 21:00. Domingo 10:30 a 18:30.</span>
+    <span id="instalarIOS" hidden>📲 Para tenerla como app en tu iPhone: toca <b>Compartir</b> y luego <b>Agregar a pantalla de inicio</b>.</span>
   </div>
 </dialog>
 
@@ -2044,6 +2096,18 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
     <a class="wa-btn" id="favsCompartir" data-tipo="lista" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Enviar mi lista por WhatsApp</a>
     <p class="pie"><span>Tu lista se guarda solo en este dispositivo.</span></p>
   </div>
+</dialog>
+
+<!-- Mis pedidos: los que se enviaron por WhatsApp desde este dispositivo -->
+<dialog id="pedidos" class="sheet" aria-labelledby="pedidosTitle">
+  <div class="sheet-head">
+    <h2 id="pedidosTitle">Mis pedidos</h2>
+    <button class="close" id="pedidosClose" type="button" aria-label="Cerrar">×</button>
+  </div>
+  <div class="sheet-body">
+    <div class="pedidos-lista" id="pedidosLista"></div>
+  </div>
+  <div class="sheet-foot"><p class="pie"><span>Se guardan solo en este dispositivo: los últimos 10 pedidos que enviaste por WhatsApp.</span></p></div>
 </dialog>
 
 <!-- Vitrina en pantalla completa (para una tablet en la tienda) -->
@@ -2846,7 +2910,7 @@ function resetAll(){ aplicarFiltro({cat: "all", q: "", plat: "all", local: "all"
 
 // Solo cambia el botón de los productos cuyo número en el pedido cambió (no se redibuja nada más).
 function refrescarControles(){
-  document.querySelectorAll(".card[data-code], .chat-prod[data-code]").forEach(card=>{
+  document.querySelectorAll(".card[data-code], .chat-prod[data-code], .cmp-add[data-code]").forEach(card=>{
     const p = buscar(card.dataset.code); if (!p) return;
     const box = card.querySelector(".card-add"), q = String(PEDIDO.items.get(p.code) || 0);
     if (box.dataset.q === q) return;
@@ -3171,6 +3235,92 @@ async function cargarMascota(){
 }
 cargarMascota();
 
+// ===== Mis pedidos: los que se enviaron por WhatsApp desde este dispositivo =====
+// Para volver a pedir lo mismo o preguntar por WhatsApp cómo va un pedido (con su código).
+const CLAVE_PEDIDOS = "eg_pedidos_v1";
+function leerPedidos(){
+  try { const v = JSON.parse(localStorage.getItem(CLAVE_PEDIDOS) || "[]"); return Array.isArray(v) ? v.filter(x => x && x.codigo && Array.isArray(x.items)) : []; }
+  catch(e) { return []; }
+}
+function guardarEnHistorial(){
+  const ls = lineas(); if (!ls.length || !PEDIDO.codigo) return;
+  const h = leerPedidos().filter(x => x.codigo !== PEDIDO.codigo);
+  h.unshift({codigo: PEDIDO.codigo, fecha: Date.now(), items: ls.map(({p, q}) => [p.code, q, p.name]), total: totalPedido(), retiro: PEDIDO.retiro, pago: PEDIDO.pago});
+  try { localStorage.setItem(CLAVE_PEDIDOS, JSON.stringify(h.slice(0, 10))); } catch(e) {}
+  pintarPedidosN();
+}
+const fechaCorta = t => new Intl.DateTimeFormat("es-EC", {timeZone: CONFIG.tz, day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23"}).format(t);
+const mensajeEstado = x => `Hola ${CONFIG.storeName}, quería saber cómo va mi pedido ${x.codigo} (enviado el ${fechaCorta(x.fecha)}).`;
+function pedidoHTML(x){
+  const L = CONFIG.locales[x.retiro];
+  return `<article class="pedido-h">
+    <div class="pedido-h-cab"><b>Pedido ${esc(x.codigo)}</b><span>${esc(fechaCorta(x.fecha))}${L ? " · " + esc(corto(L.nombre)) : ""}</span></div>
+    <ul>${x.items.map(([c, q, n]) => `<li>${Number(q) || 1} × ${esc(buscar(c)?.name || n || c)}</li>`).join("")}</ul>
+    <div class="pedido-h-pie"><b>${fmt(Number(x.total) || 0)}</b>
+      <a class="wa-btn" href="${esc(waLink(mensajeEstado(x)))}" target="_blank" rel="noopener" data-tipo="estado-pedido"><svg aria-hidden="true"><use href="#i-wa"/></svg>¿Cómo va?</a>
+      <button type="button" class="add-btn" data-repetir="${esc(x.codigo)}">Volver a pedir</button>
+    </div>
+  </article>`;
+}
+function pintarPedidosN(){ const n = leerPedidos().length; $("menuPedN").textContent = n ? ` (${n})` : ""; }
+function pintarPedidos(){
+  const ls = leerPedidos();
+  $("pedidosLista").innerHTML = ls.length ? ls.map(pedidoHTML).join("")
+    : `<div class="vacio"><img class="mascota-mini" src="mascota/mascota-chica.webp" alt="" width="243" height="360" loading="lazy" decoding="async">Aún no envías pedidos desde este dispositivo.<br>Cuando envíes uno por WhatsApp, lo verás aquí.</div>`;
+}
+function abrirPedidos(){
+  for (const d of ["dlg", "menu", "cart", "cmdk", "favs"]) if ($(d).open) $(d).close();
+  pintarPedidos();
+  $("pedidos").showModal();
+}
+// Vuelve a poner en el pedido lo de un pedido anterior (lo que siga disponible).
+function repetirPedido(codigo){
+  const x = leerPedidos().find(y => y.codigo === codigo);
+  if (!x) return null;
+  const puestos = [], faltan = [];
+  for (const [c, q, n] of x.items){
+    const p = buscar(c), max = p ? maxQty(p) : 0;
+    if (!max){ faltan.push(n || c); continue; }
+    setCantidad(p.code, Math.max(PEDIDO.items.get(p.code) || 0, Math.min(q, max)));
+    puestos.push(p);
+  }
+  if (CONFIG.locales[x.retiro]) PEDIDO.retiro = x.retiro;
+  guardarPedido(); actualizarPedido();
+  medir("repetir-pedido", {puestos: puestos.length, faltan: faltan.length});
+  return {puestos, faltan};
+}
+$("pedidosClose").onclick = () => $("pedidos").close();
+$("pedidos").addEventListener("click", e => { if (e.target === $("pedidos")) $("pedidos").close(); });
+pintarPedidosN();
+
+// Instalar la página como app: Chrome/Edge/Android avisan que se puede; en iPhone se explica cómo.
+let instalador = null;
+const esIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !navigator.standalone;
+addEventListener("beforeinstallprompt", e => { e.preventDefault(); instalador = e; $("menuInstalar").hidden = false; });
+addEventListener("appinstalled", () => { instalador = null; $("menuInstalar").hidden = true; medir("app-instalada"); });
+if (esIOS) $("instalarIOS").hidden = false;
+async function instalarApp(){
+  if (!instalador) return false;
+  instalador.prompt();
+  const {outcome} = await instalador.userChoice.catch(() => ({}));
+  instalador = null; $("menuInstalar").hidden = true;
+  return outcome === "accepted";
+}
+
+// En la ficha: si alguien se queda un rato mirando un producto, "Preguntar" le hace una seña.
+{
+  let t = 0;
+  new MutationObserver(() => {
+    clearTimeout(t);
+    const b = $("dChat");
+    b.classList.remove("llama"); b.querySelector("span").textContent = "Preguntar";
+    if ($("dlg").open && !b.hidden) t = setTimeout(() => {
+      if (!$("dlg").open) return;
+      b.classList.add("llama"); b.querySelector("span").textContent = "¿Dudas? Pregúntame";
+    }, 12000);
+  }).observe($("dlg"), {attributes: true, attributeFilter: ["open"]});
+}
+
 // ===== Chat con el muñequito (IA) =====
 // La página arma en cada mensaje el contexto (hora, locales, pedido, productos relacionados con
 // la pregunta) y le dice a la IA qué puede hacer aquí (HERRAMIENTAS_CHAT: agregar al pedido,
@@ -3330,6 +3480,13 @@ function pedidoTexto(){
     ls.map(({p, q}) => `- ${q} x ${p.name} | código: ${p.code} | disponibles: ${maxQty(p)}`).join("\n") +
     (sug.length ? `\nCombinan con su pedido (ofrécelos si viene al caso):\n${sug.map(p => lineaProducto(p)).join("\n")}` : "");
 }
+function pedidosTexto(){
+  const ls = leerPedidos().slice(0, 3);
+  if (!ls.length) return "";
+  return `Pedidos que el cliente ya envió por WhatsApp desde este dispositivo (el primero es el último; la tienda los confirma por WhatsApp y la página no sabe en qué estado están):\n` +
+    ls.map(x => `- ${x.codigo} | ${fechaCorta(x.fecha)} | ${fmt(Number(x.total) || 0)} | retiro: ${CONFIG.locales[x.retiro]?.nombre || "sin elegir"} | ` +
+      x.items.map(([c, q, n]) => `${q} x ${buscar(c)?.name || n || c}`).join("; ")).join("\n");
+}
 function resumenCatalogo(){
   const cats = {}, mundos = {};
   for (const p of PRODUCTS){
@@ -3350,19 +3507,21 @@ function contextoTienda(mensaje){
     `Servicio técnico: consolas y palancas/controles de PlayStation, Nintendo y Xbox, en los 3 locales; se cotiza por WhatsApp con el modelo y la falla.`,
     `El stock sale del inventario y se actualiza cada 15 minutos. Los precios incluyen IVA. La web no publica política de garantía ni de envíos: si preguntan, dilo y ofrece WhatsApp.`,
     `Cómo usar las funciones (hacen cosas de verdad en la página):
-- Si recomiendas o mencionas productos concretos, muéstralos con mostrar_productos (hasta 6 códigos) y en el texto no repitas nombres largos, precios ni códigos: basta algo como "Mira estas opciones 👇".
+- Si recomiendas o mencionas productos concretos, muéstralos con mostrar_productos (hasta 6 códigos) y en el texto no repitas nombres largos, precios ni códigos: basta algo como "Mira estas opciones 👇". Si quiere comparar 2 o 3, usa comparar=true (sale una tabla).
+- Si le haces una pregunta con pocas respuestas posibles (para qué consola, presupuesto, edad, qué local), agrega ofrecer_opciones con botones cortos. Por ejemplo, para un regalo pregunta para qué consola es y ofrece las consolas.
 - agregar_al_pedido solo cuando el cliente pida claramente agregar, comprar o llevar algo y sepas con certeza cuál es; si hay varias versiones parecidas, muéstralas y pregunta cuál. Usa solo códigos de este contexto, nunca inventes uno.
-- cambiar_cantidad para cambiar o quitar (cantidad 0) algo que ya está en el pedido.
+- cambiar_cantidad para cambiar o quitar (cantidad 0) algo que ya está en el pedido; con codigo TODO y cantidad 0 vacía todo el pedido.
 - datos_del_pedido para elegir el local de retiro, la forma de pago o el nombre.
-- ver_pedido cuando quiera terminar, pagar, enviar o revisar su pedido (lo envía él mismo por WhatsApp desde ahí).
-- abrir_producto para ver fotos y detalles de uno; ver_catalogo para ver muchos productos de una consola, categoría o búsqueda.
+- abrir_pantalla: pedido_actual cuando quiera terminar, pagar, enviar o revisar su pedido (lo envía él mismo por WhatsApp desde ahí); ficha_producto para ver fotos y detalles de uno; catalogo para ver muchos de una consola, categoría o búsqueda; favoritos; pedidos_enviados para ver los que ya mandó.
+- repetir_pedido para volver a pedir lo de un pedido ya enviado; compartir_producto si quiere mandarle un producto a alguien; instalar_app si quiere la tienda como app.
 - guardar_favorito si quiere guardarlo para después; como_llegar si pregunta la ubicación o cómo llegar a un local.
-- preparar_whatsapp para: servicio técnico (primero pregunta el equipo y la falla, luego arma el mensaje), un producto que no está en el catálogo (para que le avisen cuando llegue), garantía, envíos o cualquier cosa que no sepas.
+- preparar_whatsapp para: servicio técnico (primero pregunta el equipo y la falla, luego arma el mensaje), un producto que no está en el catálogo (para que le avisen cuando llegue), saber cómo va un pedido ya enviado (con su código), garantía, envíos o cualquier cosa que no sepas.
 - Después de usar una función la página ya le confirma al cliente: no repitas "listo, lo agregué".
 - Si dices "mira estas opciones", "te dejo el botón" o algo así, TIENES que llamar a la función en esa misma respuesta.
 Formato: de 1 a 3 frases. Puedes usar **negritas** y listas cortas con guiones. Nunca escribas códigos de producto, nombres de funciones, notas técnicas, tablas ni enlaces en el texto.`,
     pedidoTexto(),
-  ];
+    pedidosTexto(),
+  ].filter(Boolean);
   const ficha = buscar(CHAT.desdeFicha);
   if (ficha) partes.push(`El cliente viene de la ficha de «${ficha.name}» (código ${ficha.code}) y quiere saber más: cuéntale en el chat lo más útil (precio, stock por local, para qué consola es, qué incluye). No le vuelvas a abrir la ficha.\n${lineaProducto(ficha, true)}`);
   if (!PRODUCTS.length) partes.push("El catálogo todavía no cargó en esta visita: si preguntan por un producto, sugiere revisarlo en la página o preguntar por WhatsApp.");
@@ -3391,32 +3550,39 @@ Formato: de 1 a 3 frases. Puedes usar **negritas** y listas cortas con guiones. 
 }
 
 // --- Lo que puede hacer en la página ---
+// Son 12 como máximo (el Worker no manda más): varias agrupan acciones y normalizarAccion las separa.
 const HERRAMIENTAS_CHAT = [
-  {name: "mostrar_productos", description: "Muestra en el chat tarjetas con foto, precio y botón de agregar de hasta 6 productos del CONTEXTO. Úsala siempre que recomiendes o menciones productos concretos.",
-    parameters: {type: "OBJECT", properties: {codigos: {type: "ARRAY", items: {type: "STRING"}, description: "Códigos exactos del CONTEXTO, del más al menos relevante."}}, required: ["codigos"]}},
+  {name: "mostrar_productos", description: "Muestra en el chat tarjetas con foto, precio y botón de agregar de hasta 6 productos del CONTEXTO. Úsala siempre que recomiendes o menciones productos concretos. Con comparar=true y 2 o 3 códigos muestra una tabla que los compara (precios, consola, stock por local).",
+    parameters: {type: "OBJECT", properties: {codigos: {type: "ARRAY", items: {type: "STRING"}, description: "Códigos exactos del CONTEXTO, del más al menos relevante."}, comparar: {type: "BOOLEAN", description: "true si el cliente quiere compararlos."}}, required: ["codigos"]}},
   {name: "agregar_al_pedido", description: "Agrega un producto del CONTEXTO al pedido del cliente. Solo cuando lo pide claramente y sabes con certeza cuál es.",
     parameters: {type: "OBJECT", properties: {codigo: {type: "STRING", description: "Código exacto del CONTEXTO."}, cantidad: {type: "INTEGER", description: "Cuántos agregar; si no lo dice, 1."}}, required: ["codigo"]}},
-  {name: "cambiar_cantidad", description: "Cambia la cantidad de un producto que ya está en el pedido; con 0 lo quita.",
+  {name: "cambiar_cantidad", description: "Cambia la cantidad de un producto que ya está en el pedido; con 0 lo quita. Con codigo TODO y cantidad 0 vacía todo el pedido (se puede deshacer).",
     parameters: {type: "OBJECT", properties: {codigo: {type: "STRING"}, cantidad: {type: "INTEGER", description: "Cantidad final (0 = quitar)."}}, required: ["codigo", "cantidad"]}},
   {name: "datos_del_pedido", description: "Elige el local donde se retira el pedido, la forma de pago o el nombre de quien retira.",
     parameters: {type: "OBJECT", properties: {
       local: {type: "STRING", enum: Object.keys(CONFIG.locales), description: "Clave del local (la que va entre corchetes en el CONTEXTO)."},
       pago: {type: "STRING", enum: ["efectivo", "transferencia", "tarjeta"]},
       nombre: {type: "STRING", description: "Nombre de quien retira."}}}},
-  {name: "ver_pedido", description: "Abre 'Mi pedido' para que el cliente lo revise y lo envíe él mismo por WhatsApp."},
-  {name: "abrir_producto", description: "Abre la ficha completa de un producto (fotos grandes, detalles y stock por local).",
-    parameters: {type: "OBJECT", properties: {codigo: {type: "STRING"}}, required: ["codigo"]}},
-  {name: "ver_catalogo", description: "Lleva al catálogo de la página filtrado, para ver muchos productos a la vez.",
+  {name: "abrir_pantalla", description: "Abre una parte de la página: pedido_actual (para revisarlo y enviarlo él mismo por WhatsApp), ficha_producto (fotos y detalles de un producto), catalogo (muchos productos filtrados), favoritos o pedidos_enviados (los que ya mandó desde este dispositivo).",
     parameters: {type: "OBJECT", properties: {
-      busqueda: {type: "STRING", description: "Palabras a buscar, por ejemplo 'mario' o 'volante'."},
+      pantalla: {type: "STRING", enum: ["pedido_actual", "ficha_producto", "catalogo", "favoritos", "pedidos_enviados"]},
+      codigo: {type: "STRING", description: "Para ficha_producto: código del producto."},
+      busqueda: {type: "STRING", description: "Para catalogo: palabras a buscar, por ejemplo 'mario' o 'volante'."},
       categoria: {type: "STRING", enum: ["consolas", "palancas", "juegos", "accesorios"]},
-      consola: {type: "STRING", enum: [...new Set(CONFIG.plataformas.map(([n]) => n))]}}}},
+      consola: {type: "STRING", enum: [...new Set(CONFIG.plataformas.map(([n]) => n))]}}, required: ["pantalla"]}},
   {name: "guardar_favorito", description: "Guarda un producto en los favoritos del cliente.",
     parameters: {type: "OBJECT", properties: {codigo: {type: "STRING"}}, required: ["codigo"]}},
   {name: "como_llegar", description: "Muestra un botón para abrir en Google Maps la ubicación de un local.",
     parameters: {type: "OBJECT", properties: {local: {type: "STRING", enum: Object.keys(CONFIG.locales)}}, required: ["local"]}},
-  {name: "preparar_whatsapp", description: "Muestra un botón que abre WhatsApp de la tienda con un mensaje ya escrito (servicio técnico, producto que no está en el catálogo, garantía, envíos o algo que no sepas).",
+  {name: "preparar_whatsapp", description: "Muestra un botón que abre WhatsApp de la tienda con un mensaje ya escrito (servicio técnico, producto que no está en el catálogo, cómo va un pedido ya enviado, garantía, envíos o algo que no sepas).",
     parameters: {type: "OBJECT", properties: {mensaje: {type: "STRING", description: "Mensaje completo para la tienda, en primera persona del cliente."}, boton: {type: "STRING", description: "Texto corto del botón."}}, required: ["mensaje"]}},
+  {name: "ofrecer_opciones", description: "Muestra de 2 a 5 botones con respuestas cortas para que el cliente toque una en vez de escribir. Úsala cuando le hagas una pregunta con pocas respuestas posibles (consola, presupuesto, edad, local, sí o no).",
+    parameters: {type: "OBJECT", properties: {opciones: {type: "ARRAY", items: {type: "STRING"}, description: "Respuestas cortas (hasta 4 palabras), escritas como las diría el cliente."}}, required: ["opciones"]}},
+  {name: "compartir_producto", description: "Muestra botones para mandarle un producto a otra persona por WhatsApp o copiar su enlace.",
+    parameters: {type: "OBJECT", properties: {codigo: {type: "STRING"}}, required: ["codigo"]}},
+  {name: "repetir_pedido", description: "Vuelve a poner en el pedido actual lo de un pedido que ya envió (lo que siga disponible).",
+    parameters: {type: "OBJECT", properties: {codigo: {type: "STRING", description: "Código del pedido enviado (del CONTEXTO); si no lo dice, el último."}}}},
+  {name: "instalar_app", description: "Ayuda a instalar la tienda como app en el celular o la computadora (botón o pasos)."},
 ];
 const decir = texto => agregarMensaje({rol: "mascota", texto});
 function citar(ps){ CHAT.citados = [...new Set([...ps.map(p => p.code), ...CHAT.citados])].slice(0, 12); }
@@ -3493,7 +3659,78 @@ const ACCIONES_CHAT = {
     const m = String(mensaje || "").trim().slice(0, 700);
     if (m) agregarMensaje({rol: "mascota", enlace: {href: waLink(m), texto: String(boton || "Enviar por WhatsApp").slice(0, 40), tipo: "wa"}});
   },
+  comparar_productos({codigos}){
+    const ps = [...new Set(Array.isArray(codigos) ? codigos : [])].map(buscar).filter(Boolean).slice(0, 3);
+    if (ps.length < 2) return ACCIONES_CHAT.mostrar_productos({codigos});
+    citar(ps);
+    agregarMensaje({rol: "mascota", comparar: ps.map(p => p.code)});
+  },
+  vaciar_pedido(){
+    if (!unidades()) return decir("Tu pedido ya está vacío.");
+    const antes = [...PEDIDO.items];
+    PEDIDO.items.clear(); PEDIDO.codigo = ""; guardarPedido(); actualizarPedido();
+    agregarMensaje({rol: "mascota", texto: "Listo, vacié tu pedido 🧹", deshacer: antes});
+  },
+  ver_favoritos(){
+    const fs = favoritosVigentes();
+    if (!fs.length) return decir("Todavía no tienes favoritos. Toca el ❤️ de un producto para guardarlo y tenerlo a mano.");
+    ACCIONES_CHAT.mostrar_productos({codigos: fs.slice(0, 6).map(p => p.code)});
+    agregarMensaje({rol: "mascota", botones: [{texto: fs.length > 6 ? `Ver mis ${fs.length} favoritos` : "Abrir mis favoritos", accion: "abrir-favoritos"}]});
+  },
+  mis_pedidos(){
+    const ls = leerPedidos();
+    if (!ls.length) return decir("Todavía no has enviado pedidos desde este dispositivo. Cuando mandes uno por WhatsApp, te lo guardo aquí 📦");
+    agregarMensaje({rol: "mascota", pedidos: ls.slice(0, 3).map(x => x.codigo)});
+    if (ls.length > 3) agregarMensaje({rol: "mascota", botones: [{texto: `Ver mis ${ls.length} pedidos`, accion: "abrir-pedidos"}]});
+  },
+  repetir_pedido({codigo}){
+    const ls = leerPedidos(), c = String(codigo || "").trim().toUpperCase();
+    const x = ls.find(y => y.codigo.toUpperCase() === c) || (!c || ls.length === 1 ? ls[0] : null);
+    if (!x){
+      if (!ls.length) return decir("Todavía no has enviado pedidos desde este dispositivo.");
+      decir("No encontré ese pedido; estos son los que enviaste 👇");
+      return ACCIONES_CHAT.mis_pedidos();
+    }
+    contarRepetido(repetirPedido(x.codigo), x.codigo);
+  },
+  ofrecer_opciones({opciones}){
+    const ops = [...new Set((Array.isArray(opciones) ? opciones : []).map(o => String(o ?? "").trim().slice(0, 40)).filter(Boolean))].slice(0, 5);
+    if (ops.length >= 2) agregarMensaje({rol: "mascota", opciones: ops});
+  },
+  compartir_producto({codigo}){
+    const p = buscar(codigo);
+    if (!p) return;
+    citar([p]);
+    const url = paginaDe(p);
+    agregarMensaje({rol: "mascota", botones: [
+      {texto: "Mandar por WhatsApp", icono: "wa", href: `https://wa.me/?text=${encodeURIComponent(`Mira: ${p.name} a ${fmt(precio(p, "efectivo"))} en ${CONFIG.storeName} ${url}`)}`},
+      {texto: "Copiar enlace", accion: "copiar", valor: url}]});
+  },
+  instalar_app(){
+    if (matchMedia("(display-mode: standalone)").matches || navigator.standalone) return decir("¡Ya la estás usando como app! 🙌");
+    if (instalador) return agregarMensaje({rol: "mascota", botones: [{texto: "Instalar la app", accion: "instalar"}]});
+    decir(esIOS ? "En iPhone: toca **Compartir** (el cuadrito con la flecha) y luego **Agregar a pantalla de inicio** 📲"
+      : "Abre el menú del navegador (⋮) y toca **Instalar app** o **Agregar a pantalla de inicio** 📲");
+  },
 };
+function contarRepetido(r, codigo){
+  if (!r) return;
+  if (!r.puestos.length) return decir(`De tu pedido ${codigo} ya no queda nada disponible 😔`);
+  decir(`Listo, puse en tu pedido lo del ${codigo}${r.puestos.length <= 3 ? ": " + r.puestos.map(p => p.name).join(", ") : ` (${r.puestos.length} productos)`} 🛒` +
+    (r.faltan.length ? `\nYa no hay: ${r.faltan.join(", ")}.` : ""));
+  agregarMensaje({rol: "mascota", botones: [{texto: "Ver mi pedido", accion: "ver-pedido"}]});
+}
+// Algunas herramientas agrupan varias acciones (para no pasar de 12): aquí se traducen a las de la página.
+function normalizarAccion(a){
+  const x = a.args || {};
+  if (a.nombre === "mostrar_productos" && x.comparar === true && Array.isArray(x.codigos) && x.codigos.length >= 2) return {nombre: "comparar_productos", args: x};
+  if (a.nombre === "cambiar_cantidad" && /^(todos?|all|\*)$/i.test(String(x.codigo || "").trim())) return {nombre: "vaciar_pedido", args: {}};
+  if (a.nombre === "abrir_pantalla"){
+    const nombre = {pedido_actual: "ver_pedido", ficha_producto: "abrir_producto", catalogo: "ver_catalogo", favoritos: "ver_favoritos", pedidos_enviados: "mis_pedidos"}[x.pantalla || (x.codigo ? "ficha_producto" : "catalogo")];
+    return nombre ? {nombre, args: x} : a;
+  }
+  return a;
+}
 function ejecutarAccionChat(accion){
   const f = ACCIONES_CHAT[accion?.nombre];
   if (!f) return;
@@ -3503,32 +3740,47 @@ function ejecutarAccionChat(accion){
 
 // El modelo "lite" a veces escribe los códigos en vez de mostrar las tarjetas, anuncia "mira estas
 // opciones 👇" sin mostrarlas, o deja notas técnicas: la página lo corrige sola.
-const NOMBRES_HERRAMIENTAS = new RegExp(HERRAMIENTAS_CHAT.map(h => h.name).join("|"));
+const NOMBRES_HERRAMIENTAS = new RegExp(`\\b(${[...new Set([...HERRAMIENTAS_CHAT.map(h => h.name), ...Object.keys(ACCIONES_CHAT)])].join("|")})\\b`);
 const codigosEn = t => [...new Set((t.match(/[A-Za-z0-9][A-Za-z0-9.\-]{3,}/g) || []).map(c => c.replace(/\.+$/, "")).filter(c => /[\d.\-]/.test(c) && buscar(c)))];
 function limpiarTexto(t){
   for (const c of codigosEn(t)) t = t.split(c).join("");
   return t.split("\n").filter(l => !NOMBRES_HERRAMIENTAS.test(l)).join("\n")
     .replace(/[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]+/g, "")
-    .replace(/\(\s*(c[oó]digo:?)?\s*\)/gi, "").replace(/\(\s*(le|te) (mostr|dej)[^)]*\)/gi, "").replace(/^[ \t]*[-*•][ \t]*$/gm, "").replace(/\n{3,}/g, "\n\n").trim();
+    .replace(/\(\s*(c[oó]digo:?)?\s*\)/gi, "").replace(/\(\s*(le|te) (mostr|dej|di)[^)]*\)/gi, "").replace(/^[ \t]*[-*•][ \t]*$/gm, "").replace(/\n{3,}/g, "\n\n").trim();
 }
 function completarAcciones(t, acciones, pregunta){
   const hay = n => acciones.some(a => n.includes(a.nombre));
-  if (!hay(["mostrar_productos", "agregar_al_pedido", "cambiar_cantidad", "abrir_producto", "ver_catalogo", "datos_del_pedido", "ver_pedido"])){
-    const codigos = codigosEn(t);
-    if (codigos.length) acciones.unshift({nombre: "mostrar_productos", args: {codigos}});
-    else if (CHAT.ultimaBusqueda?.length) acciones.unshift({nombre: "mostrar_productos", args: {codigos: CHAT.ultimaBusqueda}});
-  }
   // Lo que pidió el cliente, aunque la IA no haya usado la función.
   const q = norm(pregunta);
   if (!hay(["ver_pedido"]) && unidades() && /\b(termin|finaliz|envi|mand|complet|cerr|revis)\w*\b.{0,20}\bpedido\b|\bver (mi )?pedido\b|\bquiero pagar( ya)?$/.test(q))
     acciones.push({nombre: "ver_pedido", args: {}});
+  if (!hay(["vaciar_pedido", "cambiar_cantidad"]) && unidades() && /\b(vaci|borr|elimin|quit|limpi)\w*( me| le)? (todo( (el|mi) (pedido|carrito))?|(el|mi) (pedido|carrito))(?=$|\s+(por favor|porfa|porfavor|ya)\b)/.test(q))
+    acciones.push({nombre: "vaciar_pedido", args: {}});
+  if (!hay(["mis_pedidos", "repetir_pedido", "preparar_whatsapp"]) && leerPedidos().length &&
+      /\b(mis pedidos|pedidos? (anterior|pasad|enviad)\w*|pedido que (hice|envie|mande)|(mi )?ultimo pedido|como va (mi|el) pedido|volver a pedir|repet\w* (mi |el )?pedido)\b/.test(q))
+    acciones.push({nombre: "mis_pedidos", args: {}});
+  if (!hay(["ver_favoritos"]) && /\bmis favoritos\b/.test(q)) acciones.push({nombre: "ver_favoritos", args: {}});
+  if (!hay(["instalar_app"]) && /\b(instal\w* (la )?(app|aplicacion|pagina|tienda)|(la|una|su|como) (app|aplicacion)|pantalla de inicio)\b/.test(q))
+    acciones.push({nombre: "instalar_app", args: {}});
+  const imitado = /\(\s*le di a elegir:\s*([^)]+)\)/i.exec(t);   // escribió los botones en vez de mostrarlos
+  if (imitado && !hay(["ofrecer_opciones"])) acciones.push({nombre: "ofrecer_opciones", args: {opciones: imitado[1].split("/")}});
+  if (!hay(["mostrar_productos", "comparar_productos", "agregar_al_pedido", "cambiar_cantidad", "vaciar_pedido", "abrir_producto", "ver_catalogo", "datos_del_pedido",
+      "ver_pedido", "ver_favoritos", "mis_pedidos", "repetir_pedido", "compartir_producto", "instalar_app"])){
+    const codigos = codigosEn(t);
+    if (codigos.length) acciones.unshift({nombre: "mostrar_productos", args: {codigos}});
+    else if (CHAT.ultimaBusqueda?.length) acciones.unshift({nombre: "mostrar_productos", args: {codigos: CHAT.ultimaBusqueda}});
+  }
+  // "¿Cuál es mejor, este o este?": con 2 o 3 productos, tabla en vez de tarjetas.
+  if (/\b(compar\w*|diferencias?|vs|versus|cual (es )?mejor|cual me conviene)\b/.test(q))
+    for (const [i, a] of acciones.entries())
+      if (a.nombre === "mostrar_productos" && a.args?.codigos?.length >= 2 && a.args.codigos.length <= 3) acciones[i] = {nombre: "comparar_productos", args: a.args};
   if (!hay(["como_llegar"]) && /\b(como (llego|llegar|voy)|ubicacion|ubicados?|donde (queda|quedan|esta|estan)|direccion|mapa)\b/.test(q)){
     const nombrados = Object.entries(CONFIG.locales).filter(([k, L]) => q.includes(k) || q.includes(norm(L.zona)) || q.includes(norm(L.nombre).split(" ")[0]));
     for (const [k] of nombrados.length ? nombrados : Object.entries(CONFIG.locales)) acciones.push({nombre: "como_llegar", args: {local: k}});
   }
   if (!hay(["preparar_whatsapp", "ver_pedido"]) && CHAT.noEncontrado)
     acciones.push({nombre: "preparar_whatsapp", args: {mensaje: `Hola ${CONFIG.storeName}, ¿tienen ${CHAT.noEncontrado}? Me gustaría que me avisen cuando llegue.`, boton: "Avísenme cuando llegue"}});
-  else if (!hay(["preparar_whatsapp", "como_llegar", "ver_pedido"]) && /whatsapp/i.test(t) && !CHAT.mensajes.slice(-6).some(m => m.enlace?.tipo === "wa"))
+  else if (!hay(["preparar_whatsapp", "como_llegar", "ver_pedido", "mis_pedidos"]) && /whatsapp/i.test(t) && !CHAT.mensajes.slice(-6).some(m => m.enlace?.tipo === "wa"))
     acciones.push({nombre: "preparar_whatsapp", args: {mensaje: `Hola ${CONFIG.storeName}, ${pregunta}`, boton: "Escribir por WhatsApp"}});
   return acciones;
 }
@@ -3550,11 +3802,55 @@ function elementoMensaje(m){
   const d = document.createElement("div");
   if (m.productos){
     const ps = m.productos.map(buscar).filter(Boolean);
-    d.className = "chat-prods";
-    d.innerHTML = ps.map(tarjetaChat).join("");
-    return ps.length ? d : null;
+    if (!ps.length) return null;
+    d.className = "chat-prods-caja";
+    d.innerHTML = `<div class="chat-prods">${ps.map(tarjetaChat).join("")}</div>` +
+      `<button type="button" class="chat-flecha izq" data-desplazar="-1" aria-label="Productos anteriores" hidden><svg aria-hidden="true"><use href="#i-left"/></svg></button>` +
+      `<button type="button" class="chat-flecha der" data-desplazar="1" aria-label="Más productos" hidden><svg aria-hidden="true"><use href="#i-right"/></svg></button>`;
+    d.firstChild.addEventListener("scroll", () => flechasChat(d), {passive: true});
+    requestAnimationFrame(() => flechasChat(d));
+    return d;
+  }
+  if (m.comparar){
+    const ps = m.comparar.map(buscar).filter(Boolean);
+    if (ps.length < 2) return null;
+    const dinero = k => { const vs = ps.map(p => precio(p, k)), min = Math.min(...vs);
+      return p => `<span${new Set(vs).size > 1 && precio(p, k) === min ? ' class="mejor"' : ""}>${fmt(precio(p, k))}</span>`; };
+    const fila = (t, f) => `<tr><th scope="row">${t}</th>${ps.map(p => `<td>${f(p)}</td>`).join("")}</tr>`;
+    d.className = "chat-comparar";
+    d.innerHTML = `<table><thead><tr><td></td>${ps.map(p => `<th scope="col"><button type="button" data-chat-abrir="${esc(p.code)}">` +
+        `<img src="${esc(fotoDe(p))}" alt="" width="64" height="64" loading="lazy" decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)">` +
+        `<span>${esc(p.name)}</span></button></th>`).join("")}</tr></thead><tbody>` +
+      fila("Efectivo", dinero("efectivo")) + fila("Tarjeta", dinero("tarjeta")) +
+      fila("Consola", p => esc(consolaDe(p).txt || "—")) + fila("Tipo", p => esc(p.cat_label)) +
+      Object.entries(CONFIG.locales).map(([k, L]) => fila(`📍 ${esc(corto(L.nombre))}`, p => p.digital ? "Digital" : p.stock?.[k] > 0 ? `${p.stock[k]} disp.` : "—")).join("") +
+      fila("", p => `<div class="cmp-add" data-code="${esc(p.code)}"><div class="card-add" data-q="${PEDIDO.items.get(p.code) || 0}">${controlTarjeta(p)}</div></div>`) +
+      `</tbody></table>`;
+    return d;
+  }
+  if (m.opciones){
+    d.className = "chat-opciones";
+    d.innerHTML = m.opciones.map((o, i) => `<button type="button" data-opcion="${i}"${m.elegida ? " disabled" : ""}${m.elegida === o ? ' class="elegida"' : ""}>${esc(o)}</button>`).join("");
+    return d;
+  }
+  if (m.pedidos){
+    const ls = leerPedidos().filter(x => m.pedidos.includes(x.codigo));
+    if (!ls.length) return null;
+    d.className = "chat-pedidos";
+    d.innerHTML = ls.map(pedidoHTML).join("");
+    return d;
   }
   d.className = `chat-msj ${m.rol === "usuario" ? "mia" : "suya"}${m.error ? " error" : ""}`;
+  if (m.botones){
+    d.classList.add("con-enlace", "botones");
+    d.innerHTML = m.botones.map(b => {
+      const svg = b.icono === "wa" ? `<svg aria-hidden="true"><use href="#i-wa"/></svg>` : "";
+      if (b.href) return /^https:\/\//.test(b.href) ? `<a class="chat-enlace${b.icono === "wa" ? " wa" : ""}" href="${esc(b.href)}" target="_blank" rel="noopener" data-tipo="compartir">${svg}${esc(b.texto)}</a>` : "";
+      const attr = BOTONES_CHAT[b.accion];
+      return attr ? `<button type="button" class="chat-enlace" ${attr}="${esc(b.valor || "")}">${svg}${esc(b.texto)}</button>` : "";
+    }).join("");
+    return d.innerHTML ? d : null;
+  }
   if (m.enlace){
     d.classList.add("con-enlace");
     d.innerHTML = `<a class="chat-enlace ${m.enlace.tipo === "wa" ? "wa" : ""}" href="${esc(m.enlace.href)}" target="_blank" rel="noopener"${m.enlace.tipo === "wa" ? ' data-tipo="chat"' : ""}>` +
@@ -3564,14 +3860,24 @@ function elementoMensaje(m){
   if (m.saludo) d.innerHTML = `<img class="chat-pose" src="mascota/poses/saludo.webp" alt="" width="390" height="560" decoding="async">`;
   if (m.error) d.innerHTML = `<img class="chat-pose" src="mascota/poses/triste.webp" alt="" width="371" height="560" decoding="async">`;
   d.insertAdjacentHTML("beforeend", `<span class="chat-cont"><span class="chat-txt">${formatoChat(m.texto || "")}</span>` +
-    (m.error && m.reintentar ? `<button type="button" class="chat-reintentar" data-reintentar>Reintentar</button>` : "") + `</span>`);
+    (m.error && m.reintentar ? `<button type="button" class="chat-reintentar" data-reintentar>Reintentar</button>` : "") +
+    (m.deshacer?.length ? `<button type="button" class="chat-reintentar" data-chat-deshacer>Deshacer</button>` : "") + `</span>`);
   return d;
+}
+// Botones que el chat puede dejar (los atiende el manejador general de la página o el del chat).
+const BOTONES_CHAT = {"abrir-favoritos": "data-abrir-favoritos", "ver-pedido": "data-ver-pedido", "abrir-pedidos": "data-abrir-pedidos", instalar: "data-instalar", copiar: "data-copiar"};
+const MSJ_DE = new WeakMap();   // elemento en pantalla -> su mensaje (para las opciones y "Deshacer")
+// Con mouse no se puede deslizar de lado: las flechas aparecen solo si hay más productos hacia ese lado.
+function flechasChat(caja){
+  const f = caja.querySelector(".chat-prods"), max = f.scrollWidth - f.clientWidth;
+  caja.querySelector(".izq").hidden = f.scrollLeft <= 4;
+  caja.querySelector(".der").hidden = f.scrollLeft >= max - 4;
 }
 function bajarChat(){ const c = $("chatCuerpo"); c.scrollTop = c.scrollHeight; }
 function agregarMensaje(m, guardar = true){
   CHAT.mensajes.push(m);
   const el = elementoMensaje(m);
-  if (el) $("chatCuerpo").append(el);
+  if (el){ MSJ_DE.set(el, m); $("chatCuerpo").append(el); }
   bajarChat();
   if (guardar && m.rol === "mascota" && m.texto && !m.saludo) leerEnVoz(m.texto);
   if (guardar) guardarChat();
@@ -3608,6 +3914,7 @@ function pintarChips(){
   const ls = [
     unidades() && ["🛒 Terminar mi pedido", "Quiero terminar mi pedido"],
     visto && ["👀 El que estaba viendo", `Cuéntame del ${visto.name}`],
+    leerPedidos().length && ["📦 Mis pedidos", "Muéstrame mis pedidos"],
     ["🆕 ¿Qué llegó nuevo?", "¿Qué productos nuevos llegaron?"],
     ["🔥 Lo más vendido", "¿Qué es lo más vendido?"],
     ["🎁 Ayúdame con un regalo", "Quiero regalar algo, ¿qué me recomiendas?"],
@@ -3678,9 +3985,14 @@ async function* leerEventos(resp){
   if (ev) yield ev;
 }
 function historialParaIA(){
+  const nombres = cs => cs.map(buscar).filter(Boolean).map(p => p.name).join("; ");
   return CHAT.mensajes.filter(m => !m.error && !m.saludo).map(m =>
-    m.productos ? {rol: "mascota", texto: `(Le mostré: ${m.productos.map(buscar).filter(Boolean).map(p => p.name).join("; ")})`}
+    m.productos ? {rol: "mascota", texto: `(Le mostré: ${nombres(m.productos)})`}
+    : m.comparar ? {rol: "mascota", texto: `(Le mostré una tabla comparando: ${nombres(m.comparar)})`}
+    : m.opciones ? {rol: "mascota", texto: `(Le di a elegir: ${m.opciones.join(" / ")})`}
+    : m.pedidos ? {rol: "mascota", texto: `(Le mostré sus pedidos enviados: ${m.pedidos.join(", ")})`}
     : m.enlace ? {rol: "mascota", texto: `(Le dejé un botón: ${m.enlace.texto})`}
+    : m.botones ? {rol: "mascota", texto: `(Le dejé botones: ${m.botones.map(b => b.texto).join(" / ")})`}
     : {rol: m.rol, texto: m.texto}).filter(m => m.texto).slice(-12);
 }
 async function enviarChat(texto, reintento = false){
@@ -3731,12 +4043,12 @@ async function enviarChat(texto, reintento = false){
       if (texto_) pintar();
     }
     pensando.remove();
-    completarAcciones(texto_, acciones, texto);
+    const hacer = completarAcciones(texto_, acciones.map(normalizarAccion), texto);
     const limpio = limpiarTexto(texto_);
     burbuja?.remove(); burbuja = null;
     if (limpio) agregarMensaje({rol: "mascota", texto: limpio});
-    for (const a of acciones) ejecutarAccionChat(a);
-    if (!limpio && !acciones.length) throw new Error("vacío");
+    for (const a of hacer) ejecutarAccionChat(a);
+    if (!limpio && !hacer.length) throw new Error("vacío");
   } catch(e) {
     pensando.remove();
     if (burbuja && limpiarTexto(texto_)){ burbuja.remove(); agregarMensaje({rol: "mascota", texto: limpiarTexto(texto_)}); }
@@ -3784,8 +4096,39 @@ function abrirChat(pregunta){
   texto.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing){ e.preventDefault(); form.requestSubmit(); } });
   $("chatChips").addEventListener("click", e => { const b = e.target.closest("[data-chip]"); if (b) enviarChat(b.dataset.chip); });
   $("chatCuerpo").addEventListener("click", e => {
+    const flecha = e.target.closest("[data-desplazar]");
+    if (flecha){ flecha.parentElement.querySelector(".chat-prods").scrollBy({left: Number(flecha.dataset.desplazar) * 290, behavior: reduceMotion() ? "auto" : "smooth"}); return; }
     const ver = e.target.closest("[data-chat-abrir]");
     if (ver){ ACCIONES_CHAT.abrir_producto({codigo: ver.dataset.chatAbrir}); return; }
+    const op = e.target.closest("[data-opcion]");
+    if (op){
+      const m = MSJ_DE.get(op.parentElement);
+      if (!m || m.elegida || CHAT.enviando) return;
+      m.elegida = m.opciones[op.dataset.opcion];
+      for (const b of op.parentElement.children) b.disabled = true;
+      op.classList.add("elegida");
+      medir("chat-opcion");
+      enviarChat(m.elegida);
+      return;
+    }
+    const des = e.target.closest("[data-chat-deshacer]");
+    if (des){
+      const m = MSJ_DE.get(des.closest(".chat-msj"));
+      if (!m?.deshacer) return;
+      for (const [c, q] of m.deshacer){ const p = buscar(c), max = p ? maxQty(p) : 0; if (max) PEDIDO.items.set(p.code, Math.min(q, max)); }
+      m.deshacer = null; des.remove();
+      guardarPedido(); actualizarPedido();
+      decir("Listo, tu pedido volvió como estaba ✅");
+      return;
+    }
+    const cop = e.target.closest("[data-copiar]");
+    if (cop){
+      navigator.clipboard?.writeText(cop.dataset.copiar).then(() => { cop.textContent = "¡Enlace copiado! ✓"; $("aviso").textContent = "Enlace copiado"; }, () => {});
+      medir("compartir", {via: "chat"});
+      return;
+    }
+    const rep = e.target.closest("[data-repetir]");
+    if (rep){ contarRepetido(repetirPedido(rep.dataset.repetir), rep.dataset.repetir); return; }
     const otra = e.target.closest("[data-reintentar]");
     if (otra && !CHAT.enviando){
       const t = CHAT.mensajes.find(x => x.error && x.reintentar)?.reintentar;
@@ -5087,6 +5430,15 @@ document.addEventListener("click", e=>{
   if (e.target.closest("[data-ver-pedido]")){ abrirCarrito(); return; }
   if (e.target.closest("[data-abrir-buscador]")){ e.preventDefault(); abrirBuscador(); return; }
   if (e.target.closest("[data-abrir-favoritos]")){ e.preventDefault(); abrirFavoritos(); return; }
+  if (e.target.closest("[data-abrir-pedidos]")){ e.preventDefault(); abrirPedidos(); return; }
+  const inst = e.target.closest("[data-instalar]");
+  if (inst){ e.preventDefault(); instalarApp().then(ok => { if (inst.closest("#chatMascota")) decir(ok ? "¡Listo! Ya la tienes como app 🎉" : "Cuando quieras, me pides instalarla otra vez 🙂"); }); return; }
+  const rep = e.target.closest("[data-repetir]");
+  if (rep && !rep.closest("#chatMascota")){
+    const r = repetirPedido(rep.dataset.repetir);
+    if (r){ $("pedidos").close(); abrirCarrito(); $("aviso").textContent = r.faltan.length ? `Ya no hay: ${r.faltan.join(", ")}` : "Pedido anterior agregado"; }
+    return;
+  }
   if (e.target.closest("[data-abrir-vitrina]")){ e.preventDefault(); abrirVitrina(); return; }
   const open = e.target.closest(".card-open, .stream-item");
   if (open){ abrirProducto(open.dataset.code, open.classList.contains("stream-item") ? open : open.querySelector(".img")); return; }
@@ -5188,6 +5540,7 @@ $("cartVaciar").onclick = ()=>{
 
 // Registro propio de pedidos (independiente del negocio), para control de comisión.
 $("cartSend").addEventListener("click", ()=>{
+  guardarEnHistorial();
   setTimeout(celebrarPedido, 0);
   registrarPedido("pedido", {
     codigo: PEDIDO.codigo,
