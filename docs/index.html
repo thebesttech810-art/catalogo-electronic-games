@@ -3136,19 +3136,35 @@ function horarioTexto(){
 function localesTexto(){
   return Object.values(CONFIG.locales).map(l => `${l.nombre} (${l.zona}${l.detalle ? ", " + l.detalle : ""})`).join("; ");
 }
-function catalogoTexto(){
-  return PRODUCTS.map(p => {
-    const precio = p.price_efectivo ?? p.price;
-    const tarjeta = p.price_tarjeta;
-    const precioTxt = tarjeta && tarjeta !== precio ? `$${precio} (tarjeta $${tarjeta})` : `$${precio}`;
-    const stockTxt = Object.entries(p.stock || {})
-      .filter(([, v]) => v > 0)
-      .map(([k, v]) => `${CONFIG.locales[k]?.nombre || k} ${v}`)
-      .join(", ") || "agotado";
-    return `- ${p.name} | ${p.cat_label} | ${precioTxt} | stock: ${stockTxt}`;
-  }).join("\n");
+function lineaProducto(p){
+  const precio = p.price_efectivo ?? p.price;
+  const tarjeta = p.price_tarjeta;
+  const precioTxt = tarjeta && tarjeta !== precio ? `$${precio} (tarjeta $${tarjeta})` : `$${precio}`;
+  const stockTxt = Object.entries(p.stock || {})
+    .filter(([, v]) => v > 0)
+    .map(([k, v]) => `${CONFIG.locales[k]?.nombre || k} ${v}`)
+    .join(", ") || "agotado";
+  return `- ${p.name} | ${p.cat_label} | ${precioTxt} | stock: ${stockTxt}`;
 }
-function contextoTienda(){
+const sinTildes = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+// Mandar los 280+ productos en cada mensaje hacía que la IA tardara mucho en
+// responder (tiene que "leer" todo ese texto antes de contestar). En vez de
+// eso, se buscan solo los productos relacionados con lo que se preguntó; si
+// la pregunta es general (o no se encuentra nada), se manda un resumen corto
+// por categoría en vez del catálogo entero.
+function catalogoTexto(mensaje){
+  const palabras = [...new Set((sinTildes(mensaje || "").match(/[a-z0-9]{3,}/g) || []))];
+  const encontrados = palabras.length
+    ? PRODUCTS.filter(p => { const n = sinTildes(p.name); return palabras.some(w => n.includes(w)); }).slice(0, 40)
+    : [];
+  if (encontrados.length) return `Productos que coinciden con la pregunta:\n${encontrados.map(lineaProducto).join("\n")}`;
+  const porCat = {};
+  for (const p of PRODUCTS) porCat[p.cat_label] = (porCat[p.cat_label] || 0) + 1;
+  return `No hubo una coincidencia puntual con el catálogo; resumen por categoría (${PRODUCTS.length} productos en total):\n` +
+    Object.entries(porCat).map(([c, n]) => `- ${c}: ${n}`).join("\n") +
+    `\nSi preguntan por un producto puntual, pide el nombre exacto para buscarlo con su precio y stock.`;
+}
+function contextoTienda(mensaje){
   return [
     `Tienda: ${CONFIG.storeName}. WhatsApp: +${CONFIG.whatsapp}. Instagram: @electronicgamesec.`,
     `Locales (ahí se retiran los pedidos y se recibe el servicio técnico): ${localesTexto()}.`,
@@ -3158,7 +3174,7 @@ function contextoTienda(){
     `El stock que se ve en la página sale del sistema de inventario y se actualiza cada 15 minutos. Los precios ya incluyen IVA.`,
     `La web no publica una política de garantía ni de envíos a domicilio: si preguntan por eso, dilo con honestidad y sugiere confirmarlo por WhatsApp.`,
     PRODUCTS.length
-      ? `Catálogo actual, uno por línea (nombre | categoría | precio | stock por local; si un local no aparece es porque no hay stock ahí):\n${catalogoTexto()}`
+      ? catalogoTexto(mensaje)
       : `El catálogo todavía no cargó en esta visita: si preguntan por un producto puntual, sugiere revisarlo en la página o preguntar por WhatsApp.`,
   ].join("\n\n");
 }
@@ -3198,7 +3214,7 @@ async function enviarChat(texto){
     const r = await fetch(CONFIG.chatMascotaUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mensaje: texto, historial: previo, contexto: contextoTienda() }),
+      body: JSON.stringify({ mensaje: texto, historial: previo, contexto: contextoTienda(texto) }),
     });
     const data = await r.json();
     pensando.remove();
