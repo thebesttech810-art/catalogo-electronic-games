@@ -10,7 +10,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 171,
+      "scala": 167,
       "condado": 205,
       "valle": 192
     },
@@ -100,26 +100,6 @@
     "vendido": true
   },
   {
-    "code": "10-10362-101.CNCF",
-    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 39.91,
-    "price_efectivo": 39.91,
-    "price_tarjeta": 42.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 3,
-      "condado": 3,
-      "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
     "code": "5485265655.EG",
     "name": "PALANCA PS4 GENERICA CON DISEÑOS SPIDER-MAN 2 - MODERN WARFARE",
     "cat": "palancas",
@@ -130,9 +110,9 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 2,
+      "scala": 1,
       "condado": 2,
-      "valle": 0
+      "valle": 1
     },
     "photos": [
       "fotos/5485265655.EG/1.jpg"
@@ -164,6 +144,26 @@
     "vendido": true
   },
   {
+    "code": "10-10362-101.CNCF",
+    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 39.91,
+    "price_efectivo": 39.91,
+    "price_tarjeta": 42.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 9,
+      "condado": 3,
+      "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
     "code": "345672755.CDCF",
     "name": "CARPETA DE TARJETAS POKEMON DIFERENTES DISEÑOS 18 BOLSILLOS DE 900 TARJETAS PARA COLECCIONISTA - 37396-C",
     "cat": "accesorios",
@@ -176,7 +176,7 @@
     "stock": {
       "scala": 3,
       "condado": 4,
-      "valle": 4
+      "valle": 3
     },
     "photos": [],
     "desc": "",
@@ -244,26 +244,6 @@
     "vendido": true
   },
   {
-    "code": "3394808.CDCF",
-    "name": "BOLA DE CRISTAL CON LUCES POKEMON",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 21.9,
-    "price_efectivo": 21.9,
-    "price_tarjeta": 22.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 5,
-      "condado": 5,
-      "valle": 8
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "156926.EG",
     "name": "CARGADOR DE IPHONE TIPO C - LIGHTNING 20W - 25W 14 PRO GENERICO",
     "cat": "accesorios",
@@ -276,7 +256,7 @@
     "stock": {
       "scala": 0,
       "condado": 0,
-      "valle": 5
+      "valle": 4
     },
     "photos": [],
     "desc": "",
@@ -319,6 +299,26 @@
       "scala": 6,
       "condado": 8,
       "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "3394808.CDCF",
+    "name": "BOLA DE CRISTAL CON LUCES POKEMON",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 21.9,
+    "price_efectivo": 21.9,
+    "price_tarjeta": 22.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 5,
+      "condado": 5,
+      "valle": 8
     },
     "photos": [],
     "desc": "",
@@ -381,26 +381,6 @@
       "scala": 1,
       "condado": 1,
       "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "77643.EG",
-    "name": "CABLE ECONOMICO DE USB A TIPO C",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 5.0,
-    "price_efectivo": 5.0,
-    "price_tarjeta": 5.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 3
     },
     "photos": [],
     "desc": "",
@@ -503,6 +483,26 @@
     "nuevo": false,
     "stock": {
       "scala": 1,
+      "condado": 0,
+      "valle": 3
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "77643.EG",
+    "name": "CABLE ECONOMICO DE USB A TIPO C",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 5.0,
+    "price_efectivo": 5.0,
+    "price_tarjeta": 5.0,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
       "condado": 0,
       "valle": 3
     },
@@ -738,6 +738,28 @@
     "vendido": true
   },
   {
+    "code": "711719596554.CGSF",
+    "name": "PALANCA PS5 DualSense Edge Wireless Controller COLOR NEGRO Y BLANCO",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 274.9,
+    "price_efectivo": 274.9,
+    "price_tarjeta": 289.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/711719596554.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "45496885861.CGSF",
     "name": "PRO CONTROL NINTENDO SWITCH 2",
     "cat": "palancas",
@@ -798,28 +820,6 @@
     },
     "photos": [
       "fotos/108765908.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "20980866.CGSF",
-    "name": "PALANCA ORIGINAL PS4 MEDIO USO",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 39.91,
-    "price_efectivo": 39.91,
-    "price_tarjeta": 39.91,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/20980866.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1022,28 +1022,6 @@
     "vendido": true
   },
   {
-    "code": "711719596554.CGSF",
-    "name": "PALANCA PS5 DualSense Edge Wireless Controller COLOR NEGRO Y BLANCO",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 274.9,
-    "price_efectivo": 274.9,
-    "price_tarjeta": 289.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/711719596554.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "710425578687.CGSF",
     "name": "JUEGO PS5 GRAND THEFT AUTO V GTA",
     "cat": "juegos",
@@ -1083,6 +1061,26 @@
     "photos": [
       "fotos/6531234.CGSF/1.jpg"
     ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "1080976.CGSF",
+    "name": "JUEGO PS5 FC 27",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 89.9,
+    "price_efectivo": 89.9,
+    "price_tarjeta": 94.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 0,
+      "condado": 2,
+      "valle": 1
+    },
+    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1408,28 +1406,6 @@
     },
     "photos": [
       "fotos/6789089.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "711719546580.EG",
-    "name": "PALANCA PS5 ROJA ORIGINAL-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 104.9,
-    "price_efectivo": 104.9,
-    "price_tarjeta": 109.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/711719546580.EG/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1784,6 +1760,25 @@
     "vendido": true
   },
   {
+    "code": "7665896.CGSF",
+    "name": "JUEGO NINTENDO SWITCH FC 27",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 79.9,
+    "price_efectivo": 79.9,
+    "price_tarjeta": 84.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 4,
+      "condado": 3,
+      "valle": 3
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "R36S.CDCF",
     "name": "CONSOLA DE JUEGO PORTATIL R36S 128GB",
     "cat": "consolas",
@@ -1868,6 +1863,25 @@
     "top": false
   },
   {
+    "code": "3450989.CGSF",
+    "name": "JUEGO PS4 FC 27",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 89.9,
+    "price_efectivo": 89.9,
+    "price_tarjeta": 94.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 2,
+      "condado": 2,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "2762028.CGSF",
     "name": "JUEGO NINTENDO SWITCH 2 FC 27",
     "cat": "juegos",
@@ -1878,9 +1892,9 @@
     "digital": false,
     "nuevo": true,
     "stock": {
-      "scala": 4,
-      "condado": 0,
-      "valle": 0
+      "scala": 2,
+      "condado": 1,
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -2322,25 +2336,6 @@
     "top": false
   },
   {
-    "code": "950002.CGSF",
-    "name": "PALANCA PS5 DUALSENSE WOLVERINE EDICION",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 159.9,
-    "price_efectivo": 159.9,
-    "price_tarjeta": 164.9,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "814290016746.CGSF",
     "name": "JUEGO NINTENDO SWITCH FIVE NIGHTS AT FREDDYS",
     "cat": "juegos",
@@ -2761,27 +2756,6 @@
     "top": false
   },
   {
-    "code": "950003.CGSF",
-    "name": "JUEGO NINTENDO SWITCH 2 FIRE EMBLEM FORTUNES WEAVE",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 114.9,
-    "price_efectivo": 114.9,
-    "price_tarjeta": 119.9,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 2,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/950003.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "89252",
     "name": "CONSOLA DJ HERO WIRELESS MEDIO USO + JUEGO DE DJ HERO",
     "cat": "consolas",
@@ -2904,6 +2878,25 @@
     "photos": [
       "fotos/CONS-OLED.CGSF/1.jpg"
     ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "100240.CGSF",
+    "name": "CONSOLA PS5 DISCO MEDIO USO",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 744.89,
+    "price_efectivo": 744.89,
+    "price_tarjeta": 789.59,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3579,6 +3572,25 @@
     "photos": [
       "fotos/2321397.CGSF/1.jpg"
     ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "950002.CGSF",
+    "name": "PALANCA PS5 DUALSENSE WOLVERINE EDICION",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 159.9,
+    "price_efectivo": 159.9,
+    "price_tarjeta": 164.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -5908,6 +5920,27 @@
     "top": false
   },
   {
+    "code": "950003.CGSF",
+    "name": "JUEGO NINTENDO SWITCH 2 FIRE EMBLEM FORTUNES WEAVE",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 114.9,
+    "price_efectivo": 114.9,
+    "price_tarjeta": 119.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/950003.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "5780980.CGSF",
     "name": "JUEGO NINTENDO SWITCH FIVE NIGHTS AT FREDDYS MEDIO USO",
     "cat": "juegos",
@@ -5915,6 +5948,44 @@
     "price": 39.91,
     "price_efectivo": 39.91,
     "price_tarjeta": 39.91,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "63421209.CGSF",
+    "name": "JUEGO PS5 HALO CAMPAIGN EVOLVED",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 94.9,
+    "price_efectivo": 94.9,
+    "price_tarjeta": 99.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "1341423.CGSF",
+    "name": "JUEGO XBOX FC 27",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 89.9,
+    "price_efectivo": 89.9,
+    "price_tarjeta": 94.9,
     "digital": false,
     "nuevo": true,
     "stock": {
