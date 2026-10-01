@@ -10,8 +10,8 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 167,
-      "condado": 205,
+      "scala": 165,
+      "condado": 201,
       "valle": 192
     },
     "photos": [],
@@ -31,7 +31,7 @@
     "nuevo": false,
     "stock": {
       "scala": 13,
-      "condado": 20,
+      "condado": 19,
       "valle": 16
     },
     "photos": [],
@@ -70,7 +70,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 10,
+      "scala": 8,
       "condado": 7,
       "valle": 4
     },
@@ -91,7 +91,7 @@
     "nuevo": false,
     "stock": {
       "scala": 5,
-      "condado": 5,
+      "condado": 4,
       "valle": 4
     },
     "photos": [],
@@ -110,13 +110,53 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 1,
+      "scala": 0,
       "condado": 2,
-      "valle": 1
+      "valle": 0
     },
     "photos": [
       "fotos/5485265655.EG/1.jpg"
     ],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
+    "code": "345672755.CDCF",
+    "name": "CARPETA DE TARJETAS POKEMON DIFERENTES DISEÑOS 18 BOLSILLOS DE 900 TARJETAS PARA COLECCIONISTA - 37396-C",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 34.89,
+    "price_efectivo": 34.89,
+    "price_tarjeta": 34.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 3,
+      "condado": 4,
+      "valle": 3
+    },
+    "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
+    "code": "HP14.CNCF",
+    "name": "CAJA DE MADERA MUSICAL ZELDA/HARRY POTTER-C",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 8.9,
+    "price_efectivo": 8.9,
+    "price_tarjeta": 8.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 3,
+      "valle": 4
+    },
+    "photos": [],
     "desc": "",
     "top": true,
     "vendido": true
@@ -140,7 +180,7 @@
       "fotos/711719039594.EG/1.jpg"
     ],
     "desc": "",
-    "top": true,
+    "top": false,
     "vendido": true
   },
   {
@@ -157,46 +197,6 @@
       "scala": 9,
       "condado": 3,
       "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
-    "code": "345672755.CDCF",
-    "name": "CARPETA DE TARJETAS POKEMON DIFERENTES DISEÑOS 18 BOLSILLOS DE 900 TARJETAS PARA COLECCIONISTA - 37396-C",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 34.89,
-    "price_efectivo": 34.89,
-    "price_tarjeta": 34.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 3,
-      "condado": 4,
-      "valle": 3
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "HP14.CNCF",
-    "name": "CAJA DE MADERA MUSICAL ZELDA/HARRY POTTER-C",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 8.9,
-    "price_efectivo": 8.9,
-    "price_tarjeta": 8.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 3,
-      "valle": 4
     },
     "photos": [],
     "desc": "",
@@ -224,19 +224,19 @@
     "vendido": true
   },
   {
-    "code": "21072026.CDCG",
-    "name": "FUNDAS DE PAPEL MARIO -HONGO -ESTRELLA PEQUEÑAS",
+    "code": "SW2023.EG",
+    "name": "MICA NINTENDO SWITCH 2",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 1.0,
-    "price_efectivo": 1.0,
-    "price_tarjeta": 1.0,
+    "price": 16.9,
+    "price_efectivo": 16.9,
+    "price_tarjeta": 16.9,
     "digital": false,
-    "nuevo": false,
+    "nuevo": true,
     "stock": {
-      "scala": 4,
-      "condado": 10,
-      "valle": 4
+      "scala": 0,
+      "condado": 2,
+      "valle": 2
     },
     "photos": [],
     "desc": "",
@@ -306,6 +306,48 @@
     "vendido": true
   },
   {
+    "code": "21072026.CDCG",
+    "name": "FUNDAS DE PAPEL MARIO -HONGO -ESTRELLA PEQUEÑAS",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 1.0,
+    "price_efectivo": 1.0,
+    "price_tarjeta": 1.0,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 4,
+      "condado": 10,
+      "valle": 4
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "543136.CDCF",
+    "name": "CONSOLA R36 PRO 128gb",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 97.9,
+    "price_efectivo": 97.9,
+    "price_tarjeta": 103.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 2,
+      "valle": 2
+    },
+    "photos": [
+      "fotos/543136.CDCF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "3394808.CDCF",
     "name": "BOLA DE CRISTAL CON LUCES POKEMON",
     "cat": "accesorios",
@@ -326,42 +368,22 @@
     "vendido": true
   },
   {
-    "code": "SW2023.EG",
-    "name": "MICA NINTENDO SWITCH 2",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 16.9,
-    "price_efectivo": 16.9,
-    "price_tarjeta": 16.9,
+    "code": "191068.CGSF",
+    "name": "JUEGO PS5 MARVEL'S WOLVERINE",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 89.9,
+    "price_efectivo": 89.9,
+    "price_tarjeta": 95.9,
     "digital": false,
     "nuevo": true,
     "stock": {
-      "scala": 1,
-      "condado": 2,
-      "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "X17-15441.CGCF",
-    "name": "PALANCA MICROSOFT PARA PC Y XBOX 360 - CAJA ROJA X17-15441-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 25.9,
-    "price_efectivo": 25.9,
-    "price_tarjeta": 27.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 2,
-      "valle": 1
+      "scala": 0,
+      "condado": 3,
+      "valle": 0
     },
     "photos": [
-      "fotos/X17-15441.CGCF/1.jpg"
+      "fotos/191068.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -408,22 +430,42 @@
     "vendido": true
   },
   {
-    "code": "543136.CDCF",
-    "name": "CONSOLA R36 PRO 128gb",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 97.9,
-    "price_efectivo": 97.9,
-    "price_tarjeta": 103.89,
+    "code": "CA-GRAB.EG",
+    "name": "CABLE DE PS4 - GRABADORA 1,80M",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 4.9,
+    "price_efectivo": 4.9,
+    "price_tarjeta": 4.9,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 2,
-      "condado": 3,
-      "valle": 3
+      "scala": 0,
+      "condado": 0,
+      "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "X17-15441.CGCF",
+    "name": "PALANCA MICROSOFT PARA PC Y XBOX 360 - CAJA ROJA X17-15441-C",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 25.9,
+    "price_efectivo": 25.9,
+    "price_tarjeta": 27.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 2,
+      "valle": 1
     },
     "photos": [
-      "fotos/543136.CDCF/1.jpg"
+      "fotos/X17-15441.CGCF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -445,28 +487,6 @@
       "valle": 2
     },
     "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "191068.CGSF",
-    "name": "JUEGO PS5 MARVEL'S WOLVERINE",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 89.9,
-    "price_efectivo": 89.9,
-    "price_tarjeta": 95.9,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 1,
-      "condado": 3,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/191068.CGSF/1.jpg"
-    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -638,6 +658,26 @@
     "vendido": true
   },
   {
+    "code": "98438.CDCF",
+    "name": "FUNDAS DE PAPEL PEQUEÑA HARRY POTTER",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 1.0,
+    "price_efectivo": 1.0,
+    "price_tarjeta": 1.0,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 4,
+      "condado": 6,
+      "valle": 6
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "215545.CDCF",
     "name": "AGENDA HARRY POTTER CON CONTRASEÑA",
     "cat": "accesorios",
@@ -698,46 +738,6 @@
     "vendido": true
   },
   {
-    "code": "PS5007.CDCF",
-    "name": "BASE HORIZONTAL PS5 4 EN 1 IPEGA",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 17.91,
-    "price_efectivo": 17.91,
-    "price_tarjeta": 18.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 2,
-      "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "6998524.EG",
-    "name": "JOY CON NINTENDO SWITCH GENERICO VARIOS MODELOS",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 49.9,
-    "price_efectivo": 49.9,
-    "price_tarjeta": 49.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 2,
-      "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "711719596554.CGSF",
     "name": "PALANCA PS5 DualSense Edge Wireless Controller COLOR NEGRO Y BLANCO",
     "cat": "palancas",
@@ -748,9 +748,9 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
+      "scala": 1,
       "condado": 1,
-      "valle": 1
+      "valle": 0
     },
     "photos": [
       "fotos/711719596554.CGSF/1.jpg"
@@ -798,28 +798,6 @@
     },
     "photos": [
       "fotos/711719546979.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "108765908.CGSF",
-    "name": "PALANCA PS5 EDICION 007 LIMITADA",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 149.9,
-    "price_efectivo": 149.9,
-    "price_tarjeta": 159.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/108765908.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -972,6 +950,28 @@
     },
     "photos": [
       "fotos/5841258.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "3080970.CDCF",
+    "name": "CONSOLA MINI GAME PLAYER VIDEOJUEGOS K10 500 JUEGOS",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 26.9,
+    "price_efectivo": 26.9,
+    "price_tarjeta": 28.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 1,
+      "valle": 2
+    },
+    "photos": [
+      "fotos/3080970.CDCF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1284,6 +1284,28 @@
     "vendido": true
   },
   {
+    "code": "CON-PS4M.CGSF",
+    "name": "CONSOLA PS4 SLIM 500GB + PALANCA PS4 GENERICA +CABLE DE CARGA + CABLE DE PODER + CABLE HDMI + 1 JUEGO USADO",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 279.9,
+    "price_efectivo": 279.9,
+    "price_tarjeta": 299.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/CON-PS4M.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "089015.CGSF",
     "name": "CONSOLA PS2  MEDIO USO",
     "cat": "consolas",
@@ -1432,6 +1454,28 @@
     "vendido": true
   },
   {
+    "code": "108765908.CGSF",
+    "name": "PALANCA PS5 EDICION 007 LIMITADA",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 149.9,
+    "price_efectivo": 149.9,
+    "price_tarjeta": 159.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/108765908.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "25874269",
     "name": "JUEGO PS5 FINAL FANTASY XVI",
     "cat": "juegos",
@@ -1470,28 +1514,6 @@
     },
     "photos": [
       "fotos/711719542285.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "47875883888.CGSF",
-    "name": "JUEGO PS4 CTR CRASH TEAM RACING NITRO FUELED-C",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 59.9,
-    "price_efectivo": 59.9,
-    "price_tarjeta": 59.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/47875883888.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1672,6 +1694,28 @@
     "vendido": true
   },
   {
+    "code": "765322.CGSF",
+    "name": "JUEGO PS5 BATTLEFIELD 6",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 79.9,
+    "price_efectivo": 79.9,
+    "price_tarjeta": 84.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/765322.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "325263.CGSF",
     "name": "JUEGO PS4 DESTINY MEDIO USO",
     "cat": "juegos",
@@ -1688,28 +1732,6 @@
     },
     "photos": [
       "fotos/325263.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "2332480.CGSF",
-    "name": "JUEGO PS5 PRAGMATA",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 91.9,
-    "price_efectivo": 91.9,
-    "price_tarjeta": 97.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/2332480.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1795,27 +1817,6 @@
     },
     "photos": [
       "fotos/R36S.CDCF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "3080970.CDCF",
-    "name": "CONSOLA MINI GAME PLAYER VIDEOJUEGOS K10 500 JUEGOS",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 26.9,
-    "price_efectivo": 26.9,
-    "price_tarjeta": 28.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 2,
-      "valle": 2
-    },
-    "photos": [
-      "fotos/3080970.CDCF/1.jpg"
     ],
     "desc": "",
     "top": false
@@ -2172,27 +2173,6 @@
     "top": false
   },
   {
-    "code": "CON-PS4M.CGSF",
-    "name": "CONSOLA PS4 SLIM 500GB + PALANCA PS4 GENERICA +CABLE DE CARGA + CABLE DE PODER + CABLE HDMI + 1 JUEGO USADO",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 279.9,
-    "price_efectivo": 279.9,
-    "price_tarjeta": 299.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/CON-PS4M.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "008009.CGSF",
     "name": "CONSOLA NINTENDO SWITCH  CON HACK MEDIO USO",
     "cat": "consolas",
@@ -2520,27 +2500,6 @@
     },
     "photos": [
       "fotos/56094.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "765322.CGSF",
-    "name": "JUEGO PS5 BATTLEFIELD 6",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 79.9,
-    "price_efectivo": 79.9,
-    "price_tarjeta": 84.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/765322.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
@@ -4349,6 +4308,27 @@
     "top": false
   },
   {
+    "code": "47875883888.CGSF",
+    "name": "JUEGO PS4 CTR CRASH TEAM RACING NITRO FUELED-C",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 59.9,
+    "price_efectivo": 59.9,
+    "price_tarjeta": 59.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/47875883888.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "711719547013.CGSF",
     "name": "JUEGO PS5 GOD OF WAR RAGNAROK-C",
     "cat": "juegos",
@@ -5583,6 +5563,27 @@
     },
     "photos": [
       "fotos/70090.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "2332480.CGSF",
+    "name": "JUEGO PS5 PRAGMATA",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 91.9,
+    "price_efectivo": 91.9,
+    "price_tarjeta": 97.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/2332480.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
