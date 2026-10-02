@@ -11,7 +11,7 @@
     "nuevo": false,
     "stock": {
       "scala": 165,
-      "condado": 201,
+      "condado": 199,
       "valle": 192
     },
     "photos": [],
@@ -51,7 +51,7 @@
     "nuevo": false,
     "stock": {
       "scala": 3,
-      "condado": 5,
+      "condado": 4,
       "valle": 2
     },
     "photos": [],
@@ -184,6 +184,26 @@
     "vendido": true
   },
   {
+    "code": "21072026.CDCG",
+    "name": "FUNDAS DE PAPEL MARIO -HONGO -ESTRELLA PEQUEÑAS",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 1.0,
+    "price_efectivo": 1.0,
+    "price_tarjeta": 1.0,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 3,
+      "condado": 10,
+      "valle": 4
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "10-10362-101.CNCF",
     "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
     "cat": "accesorios",
@@ -306,48 +326,6 @@
     "vendido": true
   },
   {
-    "code": "21072026.CDCG",
-    "name": "FUNDAS DE PAPEL MARIO -HONGO -ESTRELLA PEQUEÑAS",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 1.0,
-    "price_efectivo": 1.0,
-    "price_tarjeta": 1.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 4,
-      "condado": 10,
-      "valle": 4
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "543136.CDCF",
-    "name": "CONSOLA R36 PRO 128gb",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 97.9,
-    "price_efectivo": 97.9,
-    "price_tarjeta": 103.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 2,
-      "valle": 2
-    },
-    "photos": [
-      "fotos/543136.CDCF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "3394808.CDCF",
     "name": "BOLA DE CRISTAL CON LUCES POKEMON",
     "cat": "accesorios",
@@ -450,6 +428,28 @@
     "vendido": true
   },
   {
+    "code": "543136.CDCF",
+    "name": "CONSOLA R36 PRO 128gb",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 97.9,
+    "price_efectivo": 97.9,
+    "price_tarjeta": 103.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 2,
+      "valle": 2
+    },
+    "photos": [
+      "fotos/543136.CDCF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "X17-15441.CGCF",
     "name": "PALANCA MICROSOFT PARA PC Y XBOX 360 - CAJA ROJA X17-15441-C",
     "cat": "palancas",
@@ -492,26 +492,6 @@
     "vendido": true
   },
   {
-    "code": "194252156940.CGSF",
-    "name": "ADAPTADORES IPHONE USB-C 20W ORIGINAL",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 35.9,
-    "price_efectivo": 35.9,
-    "price_tarjeta": 38.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 3
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "77643.EG",
     "name": "CABLE ECONOMICO DE USB A TIPO C",
     "cat": "accesorios",
@@ -525,26 +505,6 @@
       "scala": 0,
       "condado": 0,
       "valle": 3
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "711719554141.EG",
-    "name": "PALANCA PS5 CAMUFLADA-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 104.9,
-    "price_efectivo": 104.9,
-    "price_tarjeta": 109.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -574,6 +534,26 @@
     "vendido": true
   },
   {
+    "code": "TAZAPRIMIUN2.CNCF",
+    "name": "TAZA HARRY HERMIONE GRANGER CON ASA DORADA 3D EDICION COLECCIONISTA",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 29.9,
+    "price_efectivo": 29.9,
+    "price_tarjeta": 29.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "56262695.CGSF",
     "name": "CONSOLA PS5 SLIM DIGITAL",
     "cat": "consolas",
@@ -596,6 +576,46 @@
     "vendido": true
   },
   {
+    "code": "N-SH0001.EG",
+    "name": "CARGADOR PARA NINTENDO SWITCH N-SH0001-C",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 29.9,
+    "price_efectivo": 29.9,
+    "price_tarjeta": 29.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "987456.EG",
+    "name": "KONTROL FREEK EN BLISTER VARIOS DISEÑOS PS4/PS5",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 12.9,
+    "price_efectivo": 12.9,
+    "price_tarjeta": 12.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 1,
+      "valle": 4
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "ESTU-PS4.CGCF",
     "name": "ESTUCHE PARA PALANCA PS4 MODELOS VARIADOS 2026",
     "cat": "accesorios",
@@ -609,6 +629,26 @@
       "scala": 10,
       "condado": 3,
       "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "SW2055.CDCF",
+    "name": "ESTUCHE GRIP NEGRO JOY CON IPEGA NINTENDO SWITCH 2",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 13.9,
+    "price_efectivo": 13.9,
+    "price_tarjeta": 14.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 1,
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -678,66 +718,6 @@
     "vendido": true
   },
   {
-    "code": "215545.CDCF",
-    "name": "AGENDA HARRY POTTER CON CONTRASEÑA",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 29.9,
-    "price_efectivo": 29.9,
-    "price_tarjeta": 29.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 4,
-      "condado": 6,
-      "valle": 6
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "LL-4028-D.CGCF",
-    "name": "LLAVEROS  FIGURA METAL NARUTO",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 4.9,
-    "price_efectivo": 4.9,
-    "price_tarjeta": 5.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 10,
-      "condado": 2,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "PMP086.CNCF",
-    "name": "LLAVERO UMBREON",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 12.9,
-    "price_efectivo": 12.9,
-    "price_tarjeta": 12.9,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 2,
-      "condado": 2,
-      "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "711719596554.CGSF",
     "name": "PALANCA PS5 DualSense Edge Wireless Controller COLOR NEGRO Y BLANCO",
     "cat": "palancas",
@@ -770,7 +750,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
+      "scala": 1,
       "condado": 0,
       "valle": 1
     },
@@ -782,8 +762,8 @@
     "vendido": true
   },
   {
-    "code": "711719546979.EG",
-    "name": "PALANCA PS5 LILA-C",
+    "code": "711719554141.EG",
+    "name": "PALANCA PS5 CAMUFLADA-C",
     "cat": "palancas",
     "cat_label": "Palancas",
     "price": 104.9,
@@ -792,12 +772,32 @@
     "digital": false,
     "nuevo": false,
     "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "710425578687.CGSF",
+    "name": "JUEGO PS5 GRAND THEFT AUTO V GTA",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 51.9,
+    "price_efectivo": 51.9,
+    "price_tarjeta": 54.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
       "scala": 1,
       "condado": 0,
-      "valle": 0
+      "valle": 1
     },
     "photos": [
-      "fotos/711719546979.EG/1.jpg"
+      "fotos/710425578687.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -862,28 +862,6 @@
     },
     "photos": [
       "fotos/45496905156.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "711719553793.CGSF",
-    "name": "JUEGO PS5 THE LAST OF US PARTE II REMASTERED",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 69.9,
-    "price_efectivo": 69.9,
-    "price_tarjeta": 73.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/711719553793.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -988,9 +966,9 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 2,
+      "scala": 0,
       "condado": 2,
-      "valle": 0
+      "valle": 2
     },
     "photos": [
       "fotos/9555246900566.CGCF/1.jpg"
@@ -1016,28 +994,6 @@
     },
     "photos": [
       "fotos/098352.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "710425578687.CGSF",
-    "name": "JUEGO PS5 GRAND THEFT AUTO V GTA",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 51.9,
-    "price_efectivo": 51.9,
-    "price_tarjeta": 54.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/710425578687.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1081,6 +1037,28 @@
       "valle": 1
     },
     "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "340998774.CDCF",
+    "name": "CONSOLA SUP",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 24.9,
+    "price_efectivo": 24.9,
+    "price_tarjeta": 24.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/340998774.CDCF/1.jpg"
+    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1328,26 +1306,6 @@
     "vendido": true
   },
   {
-    "code": "5841258.CGCF",
-    "name": "CONSOLA PS5 SLIM DISCO NORMAL",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 919.9,
-    "price_efectivo": 919.9,
-    "price_tarjeta": 974.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "522456.EG",
     "name": "CONSOLA ARCADE WIFI PANDORA 7000 JUEGOS TABLERO JUEGOS CLASIC INCLUIDO HDMI - VGA",
     "cat": "consolas",
@@ -1434,13 +1392,13 @@
     "vendido": true
   },
   {
-    "code": "210809.CGSF",
-    "name": "PALANCA SCUF OMEGA PS5",
+    "code": "711719546979.EG",
+    "name": "PALANCA PS5 LILA-C",
     "cat": "palancas",
     "cat_label": "Palancas",
-    "price": 309.9,
-    "price_efectivo": 309.9,
-    "price_tarjeta": 329.9,
+    "price": 104.9,
+    "price_efectivo": 104.9,
+    "price_tarjeta": 109.91,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -1448,7 +1406,9 @@
       "condado": 0,
       "valle": 0
     },
-    "photos": [],
+    "photos": [
+      "fotos/711719546979.EG/1.jpg"
+    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1558,6 +1518,28 @@
     },
     "photos": [
       "fotos/711719534112.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "711719553793.CGSF",
+    "name": "JUEGO PS5 THE LAST OF US PARTE II REMASTERED",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 69.9,
+    "price_efectivo": 69.9,
+    "price_tarjeta": 73.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/711719553793.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1918,27 +1900,6 @@
     },
     "photos": [
       "fotos/711719588269.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "340998774.CDCF",
-    "name": "CONSOLA SUP",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 24.9,
-    "price_efectivo": 24.9,
-    "price_tarjeta": 24.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/340998774.CDCF/1.jpg"
     ],
     "desc": "",
     "top": false
@@ -3535,25 +3496,6 @@
     "top": false
   },
   {
-    "code": "950002.CGSF",
-    "name": "PALANCA PS5 DUALSENSE WOLVERINE EDICION",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 159.9,
-    "price_efectivo": 159.9,
-    "price_tarjeta": 164.9,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "4902370518412.EG",
     "name": "PALANCA NINTENDO WII BLANCO - NEGRA",
     "cat": "palancas",
@@ -4324,27 +4266,6 @@
     },
     "photos": [
       "fotos/47875883888.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "711719547013.CGSF",
-    "name": "JUEGO PS5 GOD OF WAR RAGNAROK-C",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 69.9,
-    "price_efectivo": 69.9,
-    "price_tarjeta": 73.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/711719547013.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
