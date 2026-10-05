@@ -4,6 +4,7 @@ de productos la recalcula generar_catalogo.py una vez al día."""
 
 import concurrent.futures
 import json
+import os
 import sys
 import time
 from datetime import datetime, timezone
@@ -16,6 +17,20 @@ from generar_catalogo import (
     BASE_URL, HEADERS, SALIDA, SELECCION, fotos_de, local_de_bodega, precios_con_iva,
     stock_de_producto,
 )
+
+
+HORAS_PARA_AVISAR = 6
+
+
+def horas_sin_actualizar():
+    """Horas desde la última actualización publicada, o None si no se sabe. Se mira la página
+    en vivo: el docs/meta.json del repositorio solo cambia una vez al día."""
+    try:
+        r = requests.get(paginas_producto.SITIO + "meta.json", timeout=15, headers={"Cache-Control": "no-cache"})
+        antes = datetime.fromisoformat(r.json()["actualizado"])
+        return (datetime.now(timezone.utc) - antes).total_seconds() / 3600
+    except (requests.exceptions.RequestException, ValueError, KeyError, TypeError):
+        return None
 
 
 def ficha_de_producto(pid, intentos=3):
@@ -70,7 +85,19 @@ def main():
                 p["stock"] = stock
 
     if publicados and fallidos == len(publicados):
-        print("No se pudo consultar ningún producto en Contífico.", file=sys.stderr)
+        # Contífico no respondió. Si es un corte pasajero, la página sigue con el último stock
+        # y la próxima corrida (en ~15 minutos) lo actualiza: no se marca como error. Solo si
+        # lleva horas sin poder actualizar se da por fallida, porque ahí sí hay que revisar
+        # (por ejemplo, la clave de Contífico).
+        horas = horas_sin_actualizar()
+        if horas is not None and horas < HORAS_PARA_AVISAR:
+            print(f"::warning::Contífico no respondió; se mantiene lo publicado hace {horas:.1f} h y se reintenta en la próxima corrida.")
+            # Esta vez no se publica (lo de la página en vivo es más nuevo que lo del repositorio).
+            if os.environ.get("GITHUB_OUTPUT"):
+                with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+                    f.write("publicar=false\n")
+            return
+        print(f"No se pudo consultar ningún producto en Contífico (sin actualizar hace {'?' if horas is None else f'{horas:.1f}'} h).", file=sys.stderr)
         sys.exit(1)
 
     with open(SALIDA, "w", encoding="utf-8") as f:
