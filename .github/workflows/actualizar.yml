@@ -29,9 +29,9 @@ jobs:
     # Una corrida normal tarda 1 a 4 minutos. Si algo se cuelga, se corta a los 20 en vez de
     # bloquear la fila (el máximo de GitHub son 6 horas y mientras tanto no se actualiza nada).
     timeout-minutes: 20
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url || steps.deploy2.outputs.page_url }}
+    # Sin "environment:" a propósito: GitHub a veces deja la corrida en "waiting" esperando ese ambiente
+    # (aunque no tiene aprobaciones ni esperas configuradas) y bloquea la fila por horas; las siguientes
+    # se cancelan en cadena. La publicación igual va al sitio de GitHub Pages con su permiso propio.
     env:
       CONTIFICO_API_KEY: ${{ secrets.CONTIFICO_API_KEY }}
       CONTIFICO_BASE_URL: https://api.contifico.com/sistema/api/v1
@@ -78,6 +78,8 @@ jobs:
         if: steps.stock.outputs.publicar != 'false'
         uses: actions/deploy-pages@v4
         continue-on-error: true
+        with:
+          timeout: 300000   # si GitHub no termina de publicar en 5 minutos, se reintenta abajo
 
       - name: Esperar antes de reintentar la publicación
         if: steps.deploy.outcome == 'failure'
