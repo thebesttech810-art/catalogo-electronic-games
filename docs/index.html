@@ -2744,7 +2744,7 @@ const conFotoPrimero = l => [...l.filter(p=>p.photos.length), ...l.filter(p=>!p.
 
 // Búsqueda por palabras: "palanca ps5 roja" encuentra el producto aunque las palabras estén en otro orden.
 const SINONIMOS = {control: ["palanca"], palanca: ["control"], mando: ["palanca", "control"], joystick: ["palanca", "control"]};
-const textoBusqueda = p => p._txt || (p._txt = norm(`${p.name} ${p.code} ${p.cat_label || ""} ${plataformasDe(p).join(" ")}`));
+const textoBusqueda = p => p._txt || (p._txt = " " + norm(`${p.name} ${p.code} ${p.cat_label || ""} ${plataformasDe(p).join(" ")}`));
 function coincide(p, q){
   const texto = textoBusqueda(p);
   return norm(q).split(/\s+/).filter(Boolean).every(w => texto.includes(w) || (SINONIMOS[w] || []).some(s => texto.includes(s)));
@@ -3675,7 +3675,7 @@ const PALABRAS_VACIAS = new Set(("que para con los las una uno unos unas tienen 
   "estan esta ubicados ubicado ubicacion ubican queda quedan direccion llegar llego local locales tienda tiendas abren abierto abiertos cierran cierra " +
   "horario horarios hora abrir atienden servicio tecnico reparar reparan arreglar arreglan garantia envio envios envian domicilio pagar pago pagos tarjeta " +
   "efectivo transferencia terminar enviar whatsapp retirar retiro retiras nombre ayuda ayudame ayudar gracias ok okay listo quitar quita cambiar cambia " +
-  "cuentame cuenta saber sirve funciona original originales generico genericos usado medio uso incluye trae viene caja prende prender enciende encender " +
+  "cuentame cuenta saber sirve funciona generico genericos usado medio uso incluye trae viene caja prende prender enciende encender " +
   "falla fallas dano danado danada roto rota problema problemas producto productos articulo articulos item items opcion opciones modelo " +
   "modelos marca marcas catalogo disponible disponibles oferta ofertas promocion promociones descuento descuentos entraron ingresaron llegado " +
   "salio salieron lanzaron venta ventas vende venden mostrar ensenar quisiera gustaria interesa busca " +
@@ -3687,15 +3687,30 @@ const PALABRAS_VACIAS = new Set(("que para con los las una uno unos unas tienen 
   "nano nana pana panas mijo mija manito bro compa compadre jefe patron sale salen " +
   "primero primera segundo segunda tercero tercera ultimo ultima anterior ese esa esos esas aquel aquella mismo misma " +
   "dos tres cuatro cinco seis siete ocho nueve diez once doce " +
-  "drift deriva ruido apaga apagado calienta sobrecalienta traba lento lenta").split(" "));
+  "drift deriva ruido apaga apagado calienta sobrecalienta traba lento lenta " +
+  "caro cara caros caras costoso costosa " +
+  "mucho muchos mucha muchas varios varias bastante bastantes cantidad juegazo juegazos " +
+  "sea sean puedo podemos podria comprar compro comprarle comprarme compra alcanza alcance conviene gastar plata dinero tenga tengan " +
+  "you have has the any there for sale price how much want buy please hello what which are does").split(" "));
 // Palabras que la gente usa y el catálogo escribe distinto.
 // Juegos para compartir: lo que se busca con "mi novia", "la familia", "mi hermano"…
 const COOP = ["it takes two", "overcooked", "mario party", "switch sports", "just dance", "mario kart", "wonder", "lego"];
+const VR_CHAT = ["oculus", "quest"];
 const SINONIMOS_CHAT = {novia: COOP, novio: COOP, pareja: COOP, familia: COOP, familiar: COOP, multijugador: COOP, cooperativo: COOP, futbol: ["fifa", "fc 2", "efootball", "pes 20"], fifa: ["fc 2"], soccer: ["fifa", "fc 2"], carros: ["kart", "racing", "gran turismo", "forza", "need for speed", "crash team"],
   carreras: ["kart", "racing", "gran turismo", "forza", "need for speed"], pelea: ["mortal kombat", "street fighter", "tekken", "smash", "dragon ball"],
   peleas: ["mortal kombat", "street fighter", "tekken", "smash", "dragon ball"], terror: ["resident evil", "silent hill", "outlast"],
   disparos: ["call of duty", "battlefield", "halo", "fortnite"], guerra: ["call of duty", "battlefield"], switch: ["swicth"], switch2: ["switch 2", "swicth 2"],
-  audifonos: ["audifono", "headset", "auricular", "diadema"], pokemones: ["pokemon"], cartas: ["tcg", "carta", "booster"], tarjetas: ["tcg", "carta", "booster"]};
+  audifonos: ["audifono", "headset", "auricular", "diadema"], pokemones: ["pokemon"], cartas: ["tcg", "carta", "booster"], tarjetas: ["tcg", "carta", "booster"],
+  joycons: ["joy con", "joy-con"], joycon: ["joy con", "joy-con"],
+  virtual: VR_CHAT, vr: VR_CHAT, lentes: VR_CHAT, gafas: VR_CHAT, realidad: VR_CHAT, meta: VR_CHAT,
+  accion: ["god of war", "spiderman", "spider-man", "call of duty", "gta", "grand theft", "red dead", "assassin", "battlefield", "just cause", "farcry", "far cry",
+    "ghost of", "wolverine", "devil may cry", "the last of us", "black myth", "halo", "gears of war", "ratchet", "returnal", "robocop", "onimusha", "ronin"],
+  aventura: ["zelda", "mario", "kirby", "crash", "sackboy", "astro bot", "hollow knight", "pokemon", "sonic", "ratchet", "minecraft", "hogwarts", "metroid", "yoshi", "donkey kong", "luigi"],
+  deportes: ["fc 2", "fifa", "nba", "w2k", "madden", "pes 20", "f1 2", "tiger woods", "ufc", "sports", "mario tennis"],
+  deportivos: ["fc 2", "fifa", "nba", "w2k", "madden", "pes 20", "f1 2", "tiger woods", "ufc", "sports", "mario tennis"]};
+for (const k of ["carros", "carreras"]) SINONIMOS_CHAT[k].push("f1 2", "mario kart", "hot wheels");
+for (const k of ["pelea", "peleas"]) SINONIMOS_CHAT[k].push("tokon", "ufc", "w2k");
+SINONIMOS_CHAT.terror.push("house of ashes", "little nightmares", "five nights", "callisto", "dead space", "requiem");
 const CATEGORIAS_CHAT = [
   ["juegos", /\b(video)?juegos?\b|\btitulos?\b/],
   ["consolas", /\bconsolas?\b/],
@@ -3715,10 +3730,18 @@ const GENERICAS_CHAT = /\b(video)?juegos?\b|\btitulos?\b|\bconsolas?\b|\baccesor
 const ALIAS_CONSOLA = [[/\bplay ?station ?5\b|\bplay ?5\b|\bps ?5\b/g, " ps5 "], [/\bplay ?station ?4\b|\bplay ?4\b|\bps ?4\b/g, " ps4 "],
   [/\bplay ?station\b|\bplay\b/g, " playstation "], [/\bswitch ?2\b/g, " switch2 "]];
 const esPlataforma = w => w !== "switch" && w !== "switch2" && CONFIG.plataformas.some(([, re]) => re.test(w.toUpperCase()));
-const QUIERE_PRODUCTO = /\b(tienen|tienes|hay|venden|vendes|busco|buscando|quiero|quisiera|necesito|precio|cuesta|cuestan|vale|valen|stock|disponible|llega|llegan|consigo)\b/;
+const QUIERE_PRODUCTO = /\b(tienen|tienes|hay|venden|vendes|busco|buscando|quiero|quisiera|necesito|precios?|cuesta|cuestan|vale|valen|stock|disponible|llega|llegan|consigo|algo de|muestrame|ensename|quiero ver|a como|a cuanto)\b/;
 const LOCALES_CHAT = new Set(Object.entries(CONFIG.locales).flatMap(([k, L]) => [k, ...norm(`${L.nombre} ${L.zona}`).split(/\s+/)]));
+// Faltas y abreviaturas comunes al escribir rápido ("kiero un kontrol d xbox", "la swich 2", "maicraft").
+const ERRATAS_CHAT = [[/\bk(iero|ieres|iere|ieren)\b/g, "qu$1"], [/\bkontrol(es)?\b/g, "control$1"], [/\bkonsola(s)?\b/g, "consola$1"],
+  [/\b(swich|swith|suich|suitch|switc|swtich|swicht)\b/g, "switch"], [/\b(plei|pley|plai)\b/g, "play"], [/\b(maicraft|maincraft|mincraft|maicra)\b/g, "minecraft"],
+  [/\b(q|k)\b/g, "que"], [/\bd\b/g, "de"], [/\bpa\b/g, "para"], [/\b(xq|pq|porq)\b/g, "porque"], [/\bjuegitos?\b/g, "juegos"], [/\bxbos\b/g, "xbox"],
+  [/\bpoquemon|pokemom|pokémon\b/g, "pokemon"], [/\bfornite\b/g, "fortnite"], [/\bnintendo swicth\b/g, "nintendo switch"]];
+// Modelos puntuales de consola: además de la plataforma, se buscan en el nombre ("ps2" no es "cualquier PlayStation").
+const MODELO_CONSOLA = /^(ps[123]|psp|vita|wii|atari|nes|snes|gameboy|3ds|oculus|portal|joycons?|dualsense|dualshock|amiibo)$/;
 function analizarConsulta(texto){
   let t = norm(texto).replace(/\b(a nombre de|me llamo|mi nombre es|soy)\b.*$/, " ");
+  for (const [re, r] of ERRATAS_CHAT) t = t.replace(re, r);
   for (const [re, r] of ALIAS_CONSOLA) t = t.replace(re, r);
   const T = t.toUpperCase().replace("SWITCH2", "SWITCH 2");
   const plats = CONFIG.plataformas.filter(([, re]) => re.test(T)).map(([n]) => n);
@@ -3737,12 +3760,22 @@ function analizarConsulta(texto){
     if (/\b(mas de|desde|mayor a|minimo|arriba de)\s*\$?\s*\d/.test(t)) min = v; else max = v;
   }
   const barato = /\b(barat[oa]s?|economic[oa]s?)\b/.test(t);
+  const caro = !barato && /\b(mas caro|mas cara|mas caros|mas caras|el mejor y mas caro|de gama alta|premium)\b/.test(t);
   const nuevo = /\b(nuev[oa]s?|novedad(es)?|recien|llegaron|lanzamientos?)\b|\b(que|algo|cosas?|productos?|juegos?|consolas?)\b.{0,12}\bllego\b|\bya llego\b/.test(t);
   const top = /\b(mas vendid[oa]s?|top|popular(es)?|recomienda[s]?|recomendacion|regal[oa]r?|mejor(es)?)\b/.test(t);
   const topExplicito = /\b(mas vendid[oa]s?|top|popular(es)?)\b/.test(t);
   const oferta = /\b(ofertas?|descuentos?|promo(cion(es)?)?|rebajas?|ahorr\w*)\b/.test(t);
   const palabras = [...new Set((t.replace(GENERICAS_CHAT, " ").match(/[a-z0-9]{3,}/g) || []))]
-    .filter(w => !PALABRAS_VACIAS.has(w) && !LOCALES_CHAT.has(w) && !esPlataforma(w) && !/^\d+$/.test(w));
+    .filter(w => !PALABRAS_VACIAS.has(w) && !LOCALES_CHAT.has(w) && (!esPlataforma(w) || MODELO_CONSOLA.test(w)) && !/^\d+$/.test(w) &&
+      !/^(agreg|anad|quit|pon|dam|llev|compr|sac|elimin|borr|mand|envi|muestr|ensen|regal|separ|guard|cambi)\w*(lo|la|los|las|le|les|melo|mela|selo|sela)$/.test(w));   // "agrégalo", "quítala"
+  // "xbox 360", "xbox one": el modelo exacto.
+  for (const m of t.matchAll(/\bxbox (360|one)\b/g)) if (!palabras.includes(m[0])) palabras.push(m[0]);
+  // "pokemon za": la parte corta también es del nombre (si algún producto la tiene).
+  for (const m of t.matchAll(/\b([a-z]{3,}) ([a-z]{1,2})\b/g)){
+    const frase = `${m[1]} ${m[2]}`;
+    if (!PALABRAS_VACIAS.has(m[1]) && !/^(de|el|la|lo|en|un|al|mi|tu|su|si|no|ya|es|se|me|te|le|y|o|a|u|e)$/.test(m[2]) && !palabras.includes(frase) && PRODUCTS.some(p => textoBusqueda(p).includes(frase)))
+      palabras.push(frase);
+  }
   // "FC 26", "GTA 5": el número es parte del nombre; se busca la frase (si algún producto la tiene) además de la palabra.
   for (const m of t.matchAll(/\b([a-z]{2,})\s+(\d{1,3})\b(?!\s*(?:\$|dolares?|usd|anos?|gb|tb|jugadores|meses|dias|pulgadas|hz))/g)){
     const frase = `${m[1]} ${m[2]}`;
@@ -3751,15 +3784,19 @@ function analizarConsulta(texto){
   }
   const regalo = /\bregal\w*\b/.test(t);
   // "la play 4", "una ps5", "el nintendo switch": sin decir más, se habla de la consola.
-  if (!cat && plat && !palabras.filter(w => !/^switch2?$/.test(w)).length && /\b(la|una|mi|el|un)\s+(play ?station ?\d?|play ?\d?|ps ?\d|xbox( series [xs]| one| 360)?|nintendo switch( 2| oled| lite)?|switch( 2| oled| lite)?)\b/.test(t) && PRODUCTS.some(p => p.cat === "consolas" && plataformasDe(p).includes(plat))) cat = "consolas";
+  if (!cat && plat && !palabras.filter(w => !/^switch2?$/.test(w)).length && /\b(la|una|mi|el|un)\s+(play ?station ?\d?|play ?\d?|ps ?\d|xbox( series [xs]| one| 360)?|nintendo switch( 2| oled| lite)?|switch( 2| oled| lite)?|(nintendo )?switch2)\b/.test(t) && PRODUCTS.some(p => p.cat === "consolas" && plataformasDe(p).includes(plat))) cat = "consolas";
   const edad = t.match(/\b(\d{1,2}) anos?\b/);
   const ninos = /\b(nin[oa]s?|peque\w*|chiquit\w*|bebe|infantil\w*)\b/.test(t) || !!(edad && +edad[1] <= 12);
-  const servicio = /\b(servicio tecnico|reparar|reparacion|arregl\w*|revis\w*\s+(?:(?:un|una|mi|el|la|mis)\s+)?(?:control|palanca|consola|ps\d|xbox|switch|equipo|aparato|celular|tablet)\w*|cobran|cotiz\w*|diagnostic\w*|mantenimiento|no (prende|enciende|carga|funciona|lee|responde)|se (dano|quemo|rompio|traba|apaga)|drift|deriva|falla\w*|ruido|sobrecalient\w*|repara\w*|cambi(o|ar) (de |del |el |la )?(pantalla|lector|bateria|flex|analogos?|stick|hdmi|puerto|fuente|ventilador|disco duro)|(luz|luces) (roja|rojas|amarilla|naranja)|parpadea\w*|pantalla (negra|azul)|no da imagen|se congela|se reinicia|no lee (discos?|juegos?))\b/.test(t);
-  return {plat, cat, max, min, barato, nuevo, top, topExplicito, oferta, ninos, regalo, palabras, servicio, info: INFO_CHAT.test(t), quiere: QUIERE_PRODUCTO.test(t),
+  const servicio = /\b(servicio tecnico|reparar|reparacion|arregl\w*|revis\w*\s+(?:(?:un|una|mi|el|la|mis)\s+)?(?:control|palanca|consola|ps\d|xbox|switch|equipo|aparato|celular|tablet)\w*|cobran|cotiz\w*|diagnostic\w*|mantenimiento|no (prende|enciende|carga|funciona|lee|responde)|se (dano|quemo|rompio|traba|apaga)|drift|deriva|falla\w*|ruido|sobrecalient\w*|repara\w*|cambi\w* (de |del |el |la |los |las )?(pantalla|lector|bateria|flex|analogos?|stick|hdmi|puerto|fuente|ventilador|disco duro)|(luz|luces) (roja|rojas|amarilla|naranja)|parpadea\w*|pantalla (negra|azul)|no da imagen|se congela|se reinicia|no lee (discos?|juegos?))\b/.test(t);
+  return {plat, cat, max, min, barato, caro, nuevo, top, topExplicito, oferta, ninos, regalo, palabras, servicio, info: INFO_CHAT.test(t), quiere: QUIERE_PRODUCTO.test(t),
     filtros: !!(plat || cat || max != null || min != null || nuevo || top || oferta)};
 }
-const variantes = w => [w, w.length > 5 && w.endsWith("es") ? w.slice(0, -2) : null, w.length > 4 && w.endsWith("s") ? w.slice(0, -1) : null,
-  ...(SINONIMOS_CHAT[w] || []), ...(SINONIMOS[w] || [])].filter(Boolean);
+const variantes = w => {
+  const sing = [w, w.length > 5 && w.endsWith("es") ? w.slice(0, -2) : null, w.length > 4 && w.endsWith("s") ? w.slice(0, -1) : null].filter(Boolean);
+  // "negro" también encuentra "NEGRA" (y "blanca", "roja", "morada"…).
+  const genero = sing.filter(x => x.length >= 4 && /[oa]$/.test(x)).map(x => " " + x.slice(0, -1) + (x.endsWith("o") ? "a" : "o"));
+  return [...sing, ...genero, ...(SINONIMOS_CHAT[w] || []), ...(SINONIMOS[w] || [])];
+};
 function buscarParaChat(actual, anterior){
   const r = buscarParaChatBase(actual, anterior);
   r.lista = unicos(r.lista);
@@ -3773,23 +3810,43 @@ function buscarParaChatBase(actual, anterior){
   c.palabras = soloReales(c.palabras);
   if (c.servicio || (c.info && !c.palabras.length)) return {c, propia: c, lista: [], sinCoincidencia: false, nota: "", empates: 0};   // servicio técnico, garantía, pagos…: no es una búsqueda
   const propia = {...c};   // lo que dice este mensaje por sí solo (antes de heredar lo anterior)
-  if (anterior && !c.palabras.length){   // "¿y para PS4?" sigue hablando de lo de antes
+  const soloConsola = c.palabras.every(w => /^switch2?$/.test(w));   // "y para switch 2": la consola, no un producto
+  // Sigue hablando de lo de antes ("¿y para PS4?", "el más barato", "de acción") — no si es "hola", "gracias" o "retiro en Scala".
+  const tq = norm(actual);
+  const sigue = !datosEnMensaje(actual) && !/^\s*(hola|buen[oa]s?|gracias|muchas gracias|ok|okay|listo|chao|adios|perfecto|dale|vale|bueno|si|no)\b[\s!.?]*$/.test(tq) &&
+    (c.plat || c.cat || c.max != null || c.min != null || c.barato || c.nuevo || c.top || c.ninos || c.regalo ||
+     /^\s*(y|para|de|del|en|el|la|los|las|algo|alguno|alguna|uno|una|otr[oa]s?|mas|cual|cuales|cuanto|cuanta|cuantos|que tal|que sea|que sean|tienes|tienen|hay|precio|me (lo|la)|lo|la|ese|esa)\b/.test(tq) ||
+     /\b(cuesta|cuestan|vale|valen|precio|sale|salen|stock|disponible|incluye|trae)\b/.test(tq));
+  if (anterior && !soloConsola && sigue && /^\s*(y |de |del |para |que sea|algo de|uno de|una de|alguno de)/.test(tq)){   // "de fútbol", "y de acción"
     const a = analizarConsulta(anterior);
-    if (!c.cat || c.cat === a.cat) c.palabras = a.palabras;   // "¿y un control?" ya no busca lo de antes
+    c.plat ??= a.plat; c.cat ??= a.cat; c.max ??= a.max; c.min ??= a.min; c.ninos ||= a.ninos; c.regalo ||= a.regalo;
+    if (!c.palabras.some(w => /^switch2?$/.test(w))){ const ms = [...norm(anterior).matchAll(/\bswitch ?2\b|\bswitch\b/g)]; if (ms.length) c.palabras.push(/2/.test(ms.at(-1)[0]) ? "switch2" : "switch"); }
+  }
+  if (anterior && soloConsola && sigue){   // "¿y para PS4?" sigue hablando de lo de antes
+    const a = analizarConsulta(anterior);
+    // De "switch" o "switch 2" vale lo último que dijo (lo de ahora, o lo último de antes).
+    let sw = c.palabras.filter(w => /^switch2?$/.test(w));
+    if (!sw.length){ const ms = [...norm(anterior).matchAll(/\bswitch ?2\b|\bswitch\b/g)]; if (ms.length) sw = [/2/.test(ms.at(-1)[0]) ? "switch2" : "switch"]; }
+    if (!c.cat || c.cat === a.cat) c.palabras = [...new Set([...a.palabras.filter(w => !/^switch2?$/.test(w)), ...sw])];   // "¿y un control?" ya no busca lo de antes
     for (const k of ["plat", "cat", "max", "min"]) c[k] ??= a[k];
     c.nuevo ||= a.nuevo; c.top ||= a.top; c.barato ||= a.barato; c.oferta ||= a.oferta; c.quiere ||= a.quiere; c.ninos ||= a.ninos; c.regalo ||= a.regalo;
     c.filtros ||= a.filtros;
   }
   const efectivo = p => precio(p, "efectivo");
+  // "Qué llegó nuevo" filtra lo nuevo; "la de disco nueva" o "el fifa nuevo" solo lo prefieren (abajo, al ordenar).
+  const soloNuevos = c.nuevo && !c.palabras.filter(w => !/^switch2?$/.test(w)).length;
   const filtrar = (sinPrecio) => PRODUCTS.filter(p => (!c.plat || plataformasDe(p).includes(c.plat)) && (!c.cat || p.cat === c.cat) && !(c.cat === "juegos" && NO_ES_JUEGO.test(p.name)) &&
-    (sinPrecio || c.max == null || efectivo(p) <= c.max) && (sinPrecio || c.min == null || efectivo(p) >= c.min) && (!c.nuevo || p.nuevo));
+    (sinPrecio || c.max == null || efectivo(p) <= c.max) && (sinPrecio || c.min == null || efectivo(p) >= c.min) && (!soloNuevos || p.nuevo));
   let lista = filtrar(false), nota = "";
   // Una palabra que está en pocos productos ("iphone") pesa más que una que está en muchos ("pro").
   c.palabras = soloReales(c.palabras);
   const peso = Object.fromEntries(c.palabras.map(w => { const n = PRODUCTS.filter(p => esta(p, w)).length; return [w, n <= 10 ? 4 : n <= 30 ? 2 : 1]; }));
+  // "minecraft para switch": "switch" ya es la consola; lo que se busca es "minecraft" (tiene que estar).
+  const clave = c.palabras.filter(w => !/^switch2?$/.test(w));
   const puntuar = ls => {
     const puntos = new Map();
     for (const p of ls){
+      if (clave.length && !clave.some(w => esta(p, w))) continue;
       const s = c.palabras.reduce((s, w) => s + (esta(p, w) ? peso[w] : 0), 0);
       if (s) puntos.set(p, s);
     }
@@ -3808,6 +3865,20 @@ function buscarParaChatBase(actual, anterior){
       const libres = puntuar(PRODUCTS.filter(p => (!c.cat || p.cat === c.cat) && !plataformasDe(p).length && /COMPATIBLE|UNIVERSAL|CONSOLAS|GAMER|GAMING/i.test(p.name) && (c.max == null || efectivo(p) <= c.max) && (c.min == null || efectivo(p) >= c.min)));
       if (libres.size){ puntos = libres; lista = [...libres.keys()]; nota = "no dicen para qué consola son (pueden ser compatibles con varias): confirma la compatibilidad por WhatsApp"; }
     }
+    const todas = m => new Map([...m].filter(([p]) => clave.every(w => esta(p, w))));
+    if (!puntos.size && c.cat){   // "volante": la categoría que se adivinó no es la del producto
+      const otra = todas(puntuar(PRODUCTS.filter(p => (!c.plat || plataformasDe(p).includes(c.plat)) && (c.max == null || efectivo(p) <= c.max) && (c.min == null || efectivo(p) >= c.min))));
+      if (otra.size){ puntos = otra; lista = [...otra.keys()]; }
+    }
+    if (!puntos.size && c.plat){   // "minecraft para switch": para esa consola no hay, pero sí para otras
+      const otras = todas(puntuar(PRODUCTS.filter(p => (!c.cat || p.cat === c.cat))));
+      if (otras.size){
+        lista = [...otras.keys()]; sinCoincidencia = true;
+        nota = `para ${c.plat} no hay; estos son de otras consolas (dilo claro: no son para ${c.plat})`;
+        CHAT.otrasConsolas = true;
+        return {c, propia, lista, sinCoincidencia, nota, empates: 0, desconocidas: []};
+      }
+    }
     if (puntos.size) lista = lista.filter(p => puntos.has(p));
     else if (c.filtros || c.quiere) sinCoincidencia = true;
     else lista = [];   // no era una búsqueda ("¿dónde están?")
@@ -3816,6 +3887,37 @@ function buscarParaChatBase(actual, anterior){
     lista = filtrar(true);
     nota = `no hay por ${c.max != null ? "menos de $" + c.max : "más de $" + c.min}; estos son los más cercanos`;
     c.barato = c.max != null;
+  }
+  // "GTA 6", "Black Ops 7", "PS6": la palabra existe pero esa versión no. Se dice que no hay y lo de la lista es "lo más parecido".
+  if (!sinCoincidencia && lista.length){
+    const tn = norm(actual);
+    for (const m of tn.matchAll(/\b([a-z]{2,})\s?(\d{1,2})\b(?!\s*(?:\$|dolares?|usd|anos?|gb|tb|jugadores|meses|dias|horas|pulgadas|hz|unidades))/g)){
+      const [, w, n] = m;
+      if (w === "ps" && +n > 5){ sinCoincidencia = true; nota = `la PS${n} no existe todavía o no la tenemos`; break; }
+      if (!c.palabras.includes(w)) continue;   // "tengo 50", "dame 2": no es parte de un nombre
+      const tiene = p => { const x = " " + textoBusqueda(p).replace(/[^a-z0-9]+/g, " ") + " "; return x.includes(" " + n + " ") || (ROMANOS_CHAT[n] && x.includes(" " + ROMANOS_CHAT[n] + " ")); };
+      if (!lista.slice(0, 12).some(tiene)){
+        sinCoincidencia = true; CHAT.otrasConsolas = true;   // los parecidos sí sirven de alternativa
+        nota = `no hay «${w} ${n}»; lo más parecido que sí hay es esto (dilo claro: no es lo que pidió)`;
+        break;
+      }
+    }
+  }
+  if (!sinCoincidencia && lista.length && clave.length){
+    const tn = norm(actual);
+    // "Xbox Series S": "series" existe, "series s" no.
+    for (const m of tn.matchAll(/\b([a-z]{3,}) ([a-z])\b/g)){
+      if (!c.palabras.includes(m[1]) || /^(y|o|a|e|u)$/.test(m[2])) continue;
+      const frase = `${m[1]} ${m[2]}`;
+      if (!PRODUCTS.some(p => (" " + textoBusqueda(p).replace(/[^a-z0-9]+/g, " ") + " ").includes(" " + frase + " "))){
+        sinCoincidencia = true; CHAT.otrasConsolas = true; nota = `no hay «${frase}»; lo más parecido que sí hay es esto (dilo claro: no es lo que pidió)`; break;
+      }
+    }
+    // "¿Venden celulares?", "¿tienen Steam Deck?": solo aparece en productos "para ..." o "compatible con ...".
+    const compat = p => { const n = norm(p.name); const i = Math.max(n.search(/\b(para|compatible con|compatibles con)\b/), n.indexOf("/")); return i >= 0 && clave.every(w => variantes(w).some(v => n.slice(i).includes(v)) && !variantes(w).some(v => n.slice(0, i).includes(v))); };
+    if (!sinCoincidencia && !c.cat && lista.slice(0, 8).every(compat)){
+      sinCoincidencia = true; CHAT.otrasConsolas = true; nota = `no venden «${clave.join(" ")}»; esto es compatible con eso (dilo claro)`;
+    }
   }
   const sinPalabras = !c.palabras.filter(w => !/^switch2?$/.test(w)).length;   // "switch" cuenta como plataforma
   if (c.topExplicito && sinPalabras && lista.filter(p => p.top).length >= 3) lista = lista.filter(p => p.top);
@@ -3827,9 +3929,18 @@ function buscarParaChatBase(actual, anterior){
   const hay = p => maxQty(p) > 0 ? 1 : 0;
   lista.sort((a, b) => (puntos.get(b) || 0) - (puntos.get(a) || 0) || hay(b) - hay(a) ||
     // "Tengo $100" sin decir qué: primero lo que más aprovecha el presupuesto; "barato" o con categoría: lo más barato primero.
-    (c.barato || (c.max != null && (c.cat || !sinPalabras)) ? efectivo(a) - efectivo(b) : c.max != null ? efectivo(b) - efectivo(a) : 0) || (b.top === true) - (a.top === true));
+    (c.barato || (c.max != null && (c.cat || !sinPalabras)) ? efectivo(a) - efectivo(b) : c.max != null || c.caro ? efectivo(b) - efectivo(a) : 0) || (b.top === true) - (a.top === true));
   if (c.ninos && sinPalabras){ const f = lista.filter(p => !MADURO_CHAT.test(p.name)); if (f.length) lista = f; }
   // Regalo, niños o presupuesto sin decir qué: primero los juegos (no micas ni estuches). "una ps5" sin más: primero las consolas.
+  const t0 = norm(actual);
+  // Dijo "switch" (no "switch 2"): lo de Switch 2 no le sirve a una Switch 1 (al revés sí).
+  if (c.palabras.includes("switch") && !c.palabras.includes("switch2")){
+    const s1 = lista.filter(p => !/SWI(TC|CT)H 2\b/.test(p.name.toUpperCase()) || /SWI(TC|CT)H 1 ?(Y|-) ?2|1-2/.test(p.name.toUpperCase()));
+    if (s1.length) lista = s1;
+  }
+  if (c.nuevo && !soloNuevos) lista.sort((a, b) => !!b.nuevo - !!a.nuevo);
+  if (/\b(nuev[oa]s?|sellad[oa]s?)\b/.test(t0) && !/\b(medio uso|usad[oa]s?|segunda mano)\b/.test(t0)) lista.sort((a, b) => USADO_CHAT.test(a.name) - USADO_CHAT.test(b.name));
+  if (!c.cat && c.palabras.length && c.palabras.every(w => MODELO_CONSOLA.test(w) || /^switch2?$|^xbox (360|one)$/.test(w))) lista.sort((a, b) => (b.cat === "consolas") - (a.cat === "consolas"));
   if ((c.ninos || c.regalo || (c.max != null && !c.barato)) && !c.cat && sinPalabras)
     lista.sort((a, b) => (b.cat === "juegos") - (a.cat === "juegos"));
   else if (c.plat && !c.cat && sinPalabras && !c.nuevo && !c.top && !c.oferta && !c.barato)
@@ -3840,6 +3951,8 @@ function buscarParaChatBase(actual, anterior){
   const desconocidas = puntos.size ? c.palabras.filter(w => !PRODUCTS.some(p => esta(p, w))) : [];   // nombró algo que no está en ninguna ficha
   return {c, propia, lista, sinCoincidencia, nota, empates, desconocidas};
 }
+const USADO_CHAT = /MEDIO USO|USAD[OA]|SEGUNDA MANO/;
+const ROMANOS_CHAT = {1: "i", 2: "ii", 3: "iii", 4: "iv", 5: "v", 6: "vi", 7: "vii", 8: "viii", 9: "ix", 10: "x"};
 // En el catálogo hay productos repetidos (mismo nombre y precio con otro código): al cliente se le muestra uno solo.
 const claveDup = p => norm(p.name).replace(/\s+/g, " ").trim() + "|" + precio(p, "efectivo");
 function unicos(ps){
@@ -3855,7 +3968,9 @@ function unicos(ps){
 function buscarComparacion(mensaje){
   const t = norm(mensaje);
   if (!/\b(compar\w*|diferencias?|versus|vs|mejor|conviene|recomiend\w*|prefier\w*)\b/.test(t)) return null;
-  const resto = t.replace(/^.*?\b(?:compar\w*|diferencias?(?: entre)?|(?:que|cual) (?:es |sera |seria )?mejor(?: entre)?|cual (?:me )?conviene|entre)\b/, "");
+  let resto = t.replace(/^.*?\b(?:compar\w*|diferencias?(?: entre)?|(?:que|cual) (?:es |sera |seria )?mejor(?: entre)?|cual (?:me )?conviene|entre)\b/, "");
+  // "PS5 o Xbox Series X, ¿cuál es mejor?": lo que se compara va antes.
+  if (resto.replace(/[^a-z0-9]/g, "").length < 3) resto = t.replace(/[,¿?]*\s*\b(?:cual|que)\s+(?:es\s+|sera\s+|seria\s+|me\s+)?(?:el\s+|la\s+)?(?:mejor|conviene|recomiendas)\b.*$/, "");
   const fuerte = /\b(compar\w*|diferencias?|versus|vs)\b/.test(t);   // "mejor", "recomiendas"…: solo si dice "A o B"
   const partes = resto.split(fuerte ? /\s+(?:con|y|vs\.?|versus|contra|o)\s+/ : /\s+(?:o|vs\.?|versus)\s+/).map(x => x.replace(/[¿?¡!,.]/g, " ").trim()).filter(x => /[a-z0-9]{3,}/.test(x)).slice(0, 3);
   if (partes.length < 2) return null;
@@ -3912,11 +4027,21 @@ function resumenCatalogo(){
 // anterior ("un regalo para mi sobrino de 6 años") para no perder de qué se estaba hablando.
 function mensajeAnterior(mensaje){
   const us = CHAT.mensajes.filter(m => m.rol === "usuario" && m.texto && m.texto !== mensaje).map(m => m.texto).reverse();
-  let t = us[0];
-  for (let i = 1; t && i < us.length && i < 3; i++){
+  let t = us[0], i = 1;
+  for (; t && i < us.length && i < 3; i++){
     const a = analizarConsulta(t);
-    if (a.palabras.length || a.ninos || a.regalo || a.servicio) break;
+    if (a.palabras.filter(w => !/^switch2?$/.test(w)).length || a.ninos || a.regalo || a.servicio) break;
     t = us[i] + " " + t;
+  }
+  // "Tienen juegos de PS4" → "de acción" → "de menos de $30": la consola y el tipo de producto siguen valiendo.
+  if (t){
+    const a = analizarConsulta(t);
+    for (let j = i; j < Math.min(us.length, i + 3) && (!a.plat || !a.cat); j++){
+      const b = analizarConsulta(us[j]);
+      if (b.servicio || b.palabras.filter(w => !/^switch2?$/.test(w)).length) break;   // otro tema: ahí se corta
+      if (!a.plat && b.plat){ t += " " + b.plat.toLowerCase(); a.plat = b.plat; }
+      if (!a.cat && b.cat){ t += " " + ({palancas: "controles"}[b.cat] || b.cat); a.cat = b.cat; }
+    }
   }
   return t;
 }
@@ -3962,16 +4087,22 @@ Formato: puedes usar **negritas** y listas cortas con guiones (hasta 4 puntos si
   if (!PRODUCTS.length) partes.push("El catálogo todavía no cargó en esta visita: si preguntan por un producto, sugiere revisarlo en la página o preguntar por WhatsApp.");
   else {
     partes.push(resumenCatalogo());
+    CHAT.otrasConsolas = false;
+    CHAT.vistosAntes = [...CHAT.citados];
     const {c, propia, lista, sinCoincidencia, nota, empates, desconocidas} = buscarParaChat(mensaje, anterior);
+    CHAT.platPedida = CHAT.otrasConsolas ? null : c.plat;
+    CHAT.empates = empates;
     const tokens = (norm(mensaje).match(/[a-z0-9]+/g) || []).length || 1;
-    CHAT.ultimaBusqueda = sinCoincidencia || c.info ? [] : lista.slice(0, 6).map(p => p.code);
+    CHAT.ultimaBusqueda = (sinCoincidencia && !CHAT.otrasConsolas) || c.info ? [] : lista.slice(0, 6).map(p => p.code);
     // ¿de verdad está buscando productos? (si no, no se le muestran tarjetas por una palabra suelta)
     // (con lo que dice este mensaje, no con lo que se hereda: "gracias" después de ver juegos no pide más juegos)
-    CHAT.intencionProducto = !c.info && !c.servicio && !!(propia.quiere || propia.plat || propia.max != null || propia.min != null || propia.nuevo || propia.topExplicito || propia.oferta || propia.barato || propia.ninos || propia.regalo || propia.palabras.length / tokens >= 0.5);
+    CHAT.intencionProducto = !c.info && !c.servicio && !!(propia.quiere || propia.plat || propia.max != null || propia.min != null || propia.nuevo || propia.topExplicito || propia.oferta || propia.barato || propia.caro || propia.ninos || propia.regalo || propia.palabras.length / tokens >= 0.5 ||
+      propia.cat || (tokens <= 4 && propia.palabras.some(w => !/^switch2?$/.test(w) && PRODUCTS.some(p => variantes(w).some(v => textoBusqueda(p).includes(v))))));   // nombra algo que hay ("y el gta 5?")
+    CHAT.desconocidas = desconocidas || [];
     CHAT.candidatos = [...new Set([...lista.slice(0, 30).map(p => p.code), ...CHAT.citados])];
     CHAT.buscaEspecifico = !c.info && !c.oferta && !c.servicio && c.palabras.length > 0;
     CHAT.esOferta = !c.info && !!c.oferta;
-    CHAT.noEncontrado = sinCoincidencia && c.quiere && CHAT.buscaEspecifico && !QUIERE_COMPARAR.test(norm(mensaje)) ? nombreBuscado(mensaje) : "";
+    CHAT.noEncontrado = sinCoincidencia && c.quiere && CHAT.buscaEspecifico && (propia.palabras.length || propia.plat) && !QUIERE_COMPARAR.test(norm(mensaje)) ? nombreBuscado(mensaje) : "";
     CHAT.esReferencia = REFERENCIA_CHAT.test(norm(mensaje));
     if (CHAT.esReferencia){
       const ult = [...CHAT.mensajes].reverse().find(m => m.productos || m.comparar), ps = ult ? (ult.productos || ult.comparar).map(buscar).filter(Boolean) : [];
@@ -3980,8 +4111,9 @@ Formato: puedes usar **negritas** y listas cortas con guiones (hasta 4 puntos si
     if (desconocidas?.length && lista.length && !c.info)
       partes.push(`OJO: ninguna ficha menciona «${desconocidas.join(" ")}». Si el cliente busca justo eso, probablemente no lo tenemos: dilo y ofrece avisarle, y muestra solo lo parecido que sí hay.`);
     const comp = buscarComparacion(mensaje);
+    CHAT.comparacion = comp ? unicos(comp.porParte.map(l => l[0])).map(p => p.code) : null;
     if (comp){
-      CHAT.ultimaBusqueda = unicos(comp.porParte.map(l => l[0])).map(p => p.code);
+      CHAT.ultimaBusqueda = CHAT.comparacion;
       partes.push("El cliente quiere comparar. Esto es lo que hay de cada cosa que nombró (usa mostrar_productos con comparar=true y un código de cada una; si algo no aparece aquí, no lo tenemos):\n" +
         comp.porParte.map((l, i) => `(${i + 1}) «${comp.partes[i]}»:\n${l.map(p => lineaProducto(p)).join("\n")}`).join("\n"));
     }
@@ -3995,6 +4127,12 @@ Formato: puedes usar **negritas** y listas cortas con guiones (hasta 4 puntos si
         mult.porParte.map((l, i) => `(${i + 1}) «${mult.partes[i]}»:\n${l.map(p => lineaProducto(p)).join("\n")}`).join("\n") +
         `\nTotales YA CALCULADOS (efectivo o transferencia; no hagas cuentas tú): llevando lo más económico de cada cosa suma ${fmt(mult.totalMin)}; con el primero de cada lista suma ${fmt(mult.totalPrimeros)}.`);
     }
+    // "Agrega el Spider-Man 2" → "y un control negro original": sigue agregando.
+    const usuarios = CHAT.mensajes.filter(m => m.rol === "usuario" && m.texto && m.texto !== mensaje);
+    const previo = norm(usuarios.at(-1)?.texto || "");
+    CHAT.agregarImplicito = /\b(agreg\w*|anad\w*|pon|ponme|llevo|me llevo)\b/.test(previo) && /^\s*(y|tambien|ademas)\b|\b(tambien|ademas)\b/.test(norm(mensaje)) &&
+      !/\b(cuanto|precio|cuesta|vale|hay|tienen|tienes|que|cual|como|donde)\b/.test(norm(mensaje)) && !c.servicio && !c.info;
+    if (CHAT.agregarImplicito) partes.push("El cliente sigue agregando cosas a su pedido: si lo que pide ahora es un solo producto claro, agrégalo con agregar_al_pedido; si hay varios parecidos, muéstralos y pregunta cuál.");
     // ¿Pidió agregar algo sin decir cuál? Si describió varios parecidos, primero se le pregunta cuál (la página lo hace cumplir).
     const propio = analizarConsulta(mensaje);
     CHAT.ambiguo = null;
@@ -4005,7 +4143,9 @@ Formato: puedes usar **negritas** y listas cortas con guiones (hasta 4 puntos si
     const vistos = new Set(lista.slice(0, 30).map(p => p.code));
     if (sinCoincidencia && !c.info && !mult && !comp){
       medir("chat-sin-resultados", {q: c.palabras.join(" ").slice(0, 60)});
-      partes.push(`No hay ningún producto que coincida con «${c.palabras.join(" ")}» en el catálogo. Dilo con honestidad y ofrece preguntar por WhatsApp (preparar_whatsapp) para que le avisen si llega.` +
+      partes.push(CHAT.otrasConsolas
+        ? `Para ${c.plat} no hay «${c.palabras.join(" ")}». Dilo claro y ofrece avisarle cuando llegue; si le sirve, sí hay para otras consolas (muéstralos aclarando para cuál es cada uno):\n${lista.slice(0, 12).map(p => lineaProducto(p)).join("\n")}`
+        : `No hay ningún producto que coincida con lo que pidió en el catálogo. Dilo con honestidad y ofrece preguntar por WhatsApp (preparar_whatsapp) para que le avisen si llega.` +
         (lista.length ? ` Parecidos que sí hay (${lista.length}):\n${lista.slice(0, 12).map(p => lineaProducto(p)).join("\n")}` : ""));
     } else if (lista.length && !mult){
       partes.push(`Productos relacionados con la pregunta (${lista.length} en total${lista.length > 30 ? ", aquí los 30 más relevantes" : ""}${nota ? "; ojo: " + nota : ""}):\n` +
@@ -4095,12 +4235,21 @@ const ACCIONES_CHAT = {
   },
   datos_del_pedido({local, pago, nombre}){
     const hecho = [];
-    if (local && CONFIG.locales[local]){ PEDIDO.retiro = local; hecho.push(`retiras en ${CONFIG.locales[local].nombre}`); }
+    let ojo = "";
+    if (local && CONFIG.locales[local]){
+      PEDIDO.retiro = local; hecho.push(`retiras en ${CONFIG.locales[local].nombre}`);
+      // Lo que no hay en ese local (para que no vaya a retirarlo y no esté).
+      const faltan = lineas().filter(({p}) => p.stock && !(p.stock[local] > 0));
+      if (faltan.length) ojo = " Ojo: " + faltan.map(({p}) => {
+        const donde = Object.keys(p.stock).filter(k => p.stock[k] > 0 && CONFIG.locales[k]).map(k => CONFIG.locales[k].nombre);
+        return `${p.name} no hay en ${CONFIG.locales[local].nombre}` + (donde.length ? ` (sí hay en ${donde.join(" y ")})` : "");
+      }).join("; ") + ". Al confirmar por WhatsApp te dicen si lo pueden traer o si te conviene retirar en otro local.";
+    }
     if (pago){ PEDIDO.pago = pago === "tarjeta" ? "tarjeta" : "efectivo"; hecho.push(pago === "tarjeta" ? "pagas con tarjeta" : `pagas ${pago === "transferencia" ? "por transferencia" : "en efectivo"}`); }
     if (typeof nombre === "string" && nombre.trim()){ PEDIDO.nombre = nombre.trim().slice(0, 60); $("nombre").value = PEDIDO.nombre; hecho.push(`a nombre de ${PEDIDO.nombre}`); }
     if (!hecho.length) return;
     guardarPedido(); actualizarPedido();
-    decir(`Anotado: ${hecho.join(", ")} ✅`);
+    decir(`Anotado: ${hecho.join(", ")} ✅` + ojo);
   },
   ver_pedido(){
     if (!unidades()) return decir("Tu pedido todavía está vacío. ¿Te ayudo a encontrar algo?");
@@ -4266,6 +4415,7 @@ const POLITICAS = [
   ["devolucion", /\b(devol\w*|reembols\w*|reclamo\w*)\b/, "Las devoluciones y reclamos los atienden por WhatsApp."],
   ["feriados", /\b(feriado\w*|festivo\w*|navidad|fin de ano|carnaval|semana santa)\b/, () => `Normalmente atendemos: ${horarioTexto()} El horario en feriados no está publicado: confírmalo por WhatsApp.`],
   ["medio-uso", /\b(medio uso|usad\w*|segunda mano)\b.{0,30}\b(funcion\w*|probad\w*|garant\w*|sirven|andan|estado)\b|\b(funcion\w*|sirven|andan)\b.{0,20}\b(medio uso|usad\w*)\b/, "Los productos de medio uso están marcados así en su ficha. Su estado, si funcionan bien y su garantía te los confirman por WhatsApp."],
+  ["envios", /\b(envios?|envian|enviarian|delivery|a domicilio|domicilio|despach\w*|courier|servientrega|mandan (a|hasta|para))\b/, () => `Los pedidos se retiran en nuestros locales (${Object.values(CONFIG.locales).map(L => L.nombre).join(", ")}). Si necesitas que te lo envíen, pregúntalo por WhatsApp y te confirman si se puede.`],
   ["originales", /\b(son|es)\b.{0,12}\b(original\w*|autentic\w*|pirat\w*|sellad\w*|probad\w*)\b/, "En cada producto se indica si es de medio uso y, en controles y accesorios, si es original o genérico. De uno en concreto, pregúntalo por WhatsApp.", "sin-producto"],
 ];
 function respuestaPolitica(texto){
@@ -4274,6 +4424,106 @@ function respuestaPolitica(texto){
   const p = POLITICAS.find(([, re, , solo]) => re.test(t) && (solo !== "sin-producto" || !c.plat));
   return p ? {tema: p[0], texto: typeof p[2] === "function" ? p[2]() : p[2]} : null;
 }
+// "¿Cuánto es todo?": el total lo calcula la página (la IA a veces suma mal o suma cosas que no están en el pedido).
+function respuestaTotal(texto){
+  const q = norm(texto), c = analizarConsulta(texto);
+  const deProducto = c.palabras.filter(w => !/^(total|suma|junto|juntos)$/.test(w) && PRODUCTS.some(p => variantes(w).some(v => textoBusqueda(p).includes(v))));
+  if (c.plat || c.cat || deProducto.length) return null;
+  const trasPedido = /\bpedido\b/.test(norm([...CHAT.mensajes].reverse().find(m => m.rol === "mascota" && m.texto)?.texto || "")) &&
+    /^\s*(y )?(cuanto (es|seria|sale|queda|me sale|pago|debo|te debo)|y cuanto)\b[^a-z]*$/.test(q);   // "¿cuánto es?" justo después de agregar
+  if (!trasPedido && (!/\b(cuanto|total|suma|sumame)\b/.test(q) || !/\b(todo|total|pedido|carrito|suma|cuenta)\b/.test(q))) return null;
+  if (!unidades()) return {tema: "total", texto: "Tu pedido todavía está vacío 🛒 Cuéntame qué buscas y lo agregamos.", sinBoton: true};
+  const ls = lineas(), ef = totalPedido("efectivo"), tj = totalPedido("tarjeta");
+  const detalle = ls.map(({p, q}) => `- ${q > 1 ? q + " x " : ""}${p.name}: ${fmt(precio(p, "efectivo") * q)}`).join("\n");
+  return {tema: "total", texto: `Tu pedido suma **${fmt(ef)}** en efectivo o transferencia` + (tj > ef ? ` (${fmt(tj)} con tarjeta)` : "") + `:\n${detalle}`,
+    botones: [{texto: "Ver mi pedido", accion: "ver-pedido"}]};
+}
+// Servicio técnico: siempre se hace (consolas y palancas de PlayStation, Nintendo y Xbox, en los 3 locales); el precio y
+// el tiempo dependen de la revisión, así que se cotiza por WhatsApp. Respuesta fija para que la IA no invente "no hacemos eso".
+const EQUIPO_CHAT = /\b(ps[1-5]|playstation|play|xbox|switch\d?|nintendo|control\w*|palanca\w*|joy ?cons?|dualsense|dualshock|consolas?|psp|wii|portatil|r36\w*|oculus|portal)\b/;
+function respuestaServicio(texto){
+  const c = analizarConsulta(texto), q = norm(texto);
+  // Justo antes se habló de servicio técnico: "es la OLED", "cuánto demoran", "cuánto me cobran" siguen siendo de eso.
+  const siguiendo = CHAT.ultimoTema === "servicio" && !c.quiere && !c.max && /\b(cuanto|demora\w*|tarda\w*|tiempo|cobra\w*|precio|costo|es (la|el|una|un)|es de|modelo|version|oled|lite|slim|pro|normal|original|generic\w*)\b|^\s*(es|son|la|el|una|un|mi)\b/.test(q);
+  if ((!c.servicio && !siguiendo) || /\b(venden|vendes|comprar|repuestos?)\b/.test(q)) return null;
+  // Lo que ya contó antes (equipo y falla) también va en el mensaje de WhatsApp.
+  const antes = CHAT.mensajes.filter(m => m.rol === "usuario" && m.texto && m.texto !== texto).slice(-3).map(m => m.texto)
+    .filter(t => analizarConsulta(t).servicio || EQUIPO_CHAT.test(norm(t)));
+  const todo = [...antes, texto].join(". ");
+  const conDetalle = EQUIPO_CHAT.test(norm(todo)) && (antes.length || !/^\s*(necesito|quiero|busco|hacen|tienen|dan|ofrecen)?\s*(el |un )?(servicio tecnico|mantenimiento|reparacion\w*)\s*\??\s*$/.test(norm(texto)));
+  const wa = `Hola ${CONFIG.storeName}, quisiera cotizar un servicio técnico: ${todo}`.slice(0, 600);
+  return conDetalle
+    ? {tema: "servicio", texto: "Sí, eso lo revisamos en nuestro servicio técnico 🔧 Recibimos consolas y palancas de PlayStation, Nintendo y Xbox en los 3 locales. El precio y el tiempo dependen de la revisión, así que te lo cotizan por WhatsApp. Te dejo el mensaje listo 👇", wa, boton: "Cotizar por WhatsApp"}
+    : {tema: "servicio", texto: "¡Claro! Hacemos servicio técnico de consolas y palancas (PlayStation, Nintendo y Xbox) y lo recibimos en los 3 locales 🔧 ¿Qué equipo es y qué le pasa? También puedes escribirnos directo 👇", wa, boton: "Cotizar por WhatsApp"};
+}
+const nombreBonito = p => p.name.toLowerCase().replace(/\s+/g, " ").replace(/-c$/, "").trim().split(" ").map((w, i) =>
+  /\d/.test(w) || /^(fc|gta|nba|ufc|tcg|vr|hd|rgb|usb|pc|ii|iii|iv|vi|vii|xvi|dj|ea|nes|snes|psp|oled|sup|tv|x|z|ps)$/.test(w) ? w.toUpperCase()
+    : i && /^(de|del|con|para|y|o|of|the|la|el|los|las|por|en|a)$/.test(w) ? w : w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+// "¿La tienen en Scala?", "¿en qué local está el Mario Kart?": el stock por local sale del inventario, sin IA.
+function respuestaStock(texto){
+  const q = norm(texto);
+  const Ls = Object.entries(CONFIG.locales);
+  const local = Ls.find(([k, L]) => q.includes(k) || q.includes(norm(L.nombre)) || (k === "valle" && /\bel valle\b/.test(q)));
+  const preguntaLocal = /\b(en (que|cual|cuales) (local|locales|tienda|tiendas|centro comercial|isla)|donde (hay|esta|estan|lo|la|los|las|tienen|encuentro|consigo|queda)|que locales? (tiene|tienen|hay))\b/.test(q);
+  const preguntaHay = /\b(hay|tienen|tienes|stock|disponible|queda|quedan|esta|estan|lo tienen|la tienen|habra)\b/.test(q);
+  if (!(preguntaLocal || (local && preguntaHay)) || datosEnMensaje(texto) || /\b(retir|recoj|recog|pag)\w*\b/.test(q)) return null;
+  // ¿De qué producto? El que nombra (si es uno solo) o, si dice "la/lo", el último que se le mostró.
+  const c = analizarConsulta(texto);
+  let p = null;
+  if (c.palabras.filter(w => !/^switch2?$/.test(w)).length || c.plat || c.cat){
+    const r = buscarParaChat(texto, null);
+    if (r.sinCoincidencia || !r.lista.length || r.empates !== 1) return null;
+    p = r.lista[0];
+  } else if (/\b(la|lo|las|los) (tienen|tienes|hay|encuentro|consigo|venden)\b|\b(esa|ese|esas|esos|esta|este)\b|^\s*(y )?en (el |la )?(scala|condado|valle|plaza)/.test(q)) p = productoEnFoco();
+  if (!p || p.digital) return null;
+  const hayEn = Ls.filter(([k]) => p.stock?.[k] > 0);
+  const n = k => `${p.stock[k]} ${p.stock[k] === 1 ? "unidad" : "unidades"}`;
+  let txt;
+  if (!hayEn.length) txt = `${nombreBonito(p)} está agotado por ahora en los 3 locales 😕`;
+  else if (local) txt = p.stock?.[local[0]] > 0 ? `Sí ✅ En **${local[1].nombre}** hay ${n(local[0])} de ${nombreBonito(p)}.`
+    : `En **${local[1].nombre}** no hay ${nombreBonito(p)} ahora 😕 Sí hay en ${hayEn.map(([k, L]) => `**${L.nombre}** (${n(k)})`).join(" y ")}.`;
+  else txt = `${nombreBonito(p)} hay en ${hayEn.map(([k, L]) => `**${L.nombre}** (${n(k)})`).join(", ").replace(/, ([^,]*)$/, " y $1")}.`;
+  return {tema: "stock-local", texto: txt + " El stock se actualiza cada 15 minutos 👇", acciones: [{nombre: "mostrar_productos", args: {codigos: [p.code]}}]};
+}
+// "¿Cuánto cuesta esa?", "¿y con tarjeta?": el precio del producto del que se está hablando.
+function respuestaFoco(texto){
+  const q = norm(texto), c = analizarConsulta(texto);
+  const deProducto = c.palabras.filter(w => PRODUCTS.some(p => variantes(w).some(v => textoBusqueda(p).includes(v))));
+  if (deProducto.length || c.plat || c.cat || c.servicio) return null;
+  const pidePrecio = /\b(cuanto (cuesta|vale|sale|esta)|que precio|precio|a como|a cuanto)\b/.test(q) && /\b(esa|ese|eso|esta|este|la|lo|el|ella|ellos|ese juego|esa consola|ese control)\b|^\s*(y )?(cuanto( cuesta| vale| sale| esta| es)?|que precio( tiene)?|precio|a como|a cuanto)\b[^a-z]*$/.test(q);
+  const modo = /^\s*(y )?(con|en|pagando con|si pago con|y si pago con|por) (tarjeta|efectivo|transferencia)\b[\s?¿!.]*$/.exec(q);
+  if (!pidePrecio && !modo) return null;
+  const p = productoEnFoco();
+  if (!p) return null;
+  const ef = precio(p, "efectivo"), tj = precio(p, "tarjeta");
+  const txt = modo && modo[3] === "tarjeta" ? `Con tarjeta, ${nombreBonito(p)} cuesta **${fmt(tj)}**` + (tj > ef ? ` (en efectivo o transferencia: ${fmt(ef)}).` : ".")
+    : `${nombreBonito(p)} cuesta **${fmt(ef)}** en efectivo o transferencia` + (tj > ef ? ` (${fmt(tj)} con tarjeta).` : ".");
+  return {tema: "precio", texto: txt + " 👇", acciones: [{nombre: "mostrar_productos", args: {codigos: [p.code]}}]};
+}
+// Ubicación, horario y contacto de la tienda: datos fijos, sin IA (así nunca se equivoca de dirección u hora).
+function respuestaTienda(texto){
+  const q = norm(texto), c = analizarConsulta(texto);
+  const deProducto = c.palabras.filter(w => PRODUCTS.some(p => variantes(w).some(v => textoBusqueda(p).includes(v))));
+  if (c.servicio || c.plat || c.cat || deProducto.length || c.max != null) return null;
+  const ubic = /\b(donde (estan|queda|quedan|esta|los encuentro|ubico|puedo retirar|retiro)|ubicad\w*|ubicacion\w*|direccion\w*|como (llego|llegar|voy|ir)|sucursal\w*|mapa|en que (centro comercial|mall|parte))\b|\b(sus|los|cuales son los) locales\b/.test(q);
+  const hora = /\b(a que hora|horarios?|hora de (atencion|apertura|cierre)|abren|abierto\w*|cierran|cierra|atienden|atencion)\b/.test(q);
+  const contacto = /\b(whatsapp|wasap|wsp|numero|telefono|contacto|llamar|instagram|redes|facebook|tiktok)\b/.test(q) && !/\b(pedido|envi\w*|mand\w*)\b/.test(q);
+  if (!ubic && !hora && !contacto) return null;
+  const Ls = Object.entries(CONFIG.locales), nombrado = Ls.filter(([k, L]) => q.includes(k) || q.includes(norm(L.nombre)) || q.includes(norm(L.zona)));
+  const partes = [], acciones = [];
+  if (ubic){
+    const cuales = nombrado.length ? nombrado : Ls;
+    partes.push(cuales.length === 1 ? `Estamos en **${cuales[0][1].nombre}** (${cuales[0][1].zona}${cuales[0][1].detalle ? ", " + cuales[0][1].detalle : ""}). Te dejo cómo llegar 👇`
+      : `Tenemos ${cuales.length} locales:\n` + cuales.map(([, L]) => `- **${L.nombre}** (${L.zona}${L.detalle ? ", " + L.detalle : ""})`).join("\n"));
+    for (const [k] of cuales) acciones.push({nombre: "como_llegar", args: {local: k}});
+  }
+  if (hora || ubic) partes.push(`Atendemos de ${horarioTexto().replace(/^Lunes/, "lunes").replace(/\.$/, "")} (los 3 locales). Ahora: ${estadoTienda().txt.toLowerCase()}.`);
+  if (contacto){
+    const w = CONFIG.whatsapp.replace(/^593(\d{2})(\d{3})(\d{4})$/, "+593 $1 $2 $3");
+    partes.push(`Nuestro WhatsApp es **${w}** y en Instagram somos **@electronicgamesec**.`);
+  }
+  return {tema: ubic ? "ubicacion" : hora ? "horario" : "contacto", texto: partes.join("\n\n"), acciones: acciones.length ? acciones : null, sinBoton: !contacto && !acciones.length};
+}
 function nombreBuscado(p){
   return String(p || "").replace(/[¿?¡!]/g, " ").replace(/^\s*(hola|buen[oa]s?( tardes| dias| noches)?|disculpa|oye)[\s,.:]*/i, "")
     .replace(/^\s*(me (pueden|podrian|puedes)\s+)?(tienen|tienes|tendran|hay|venden|vendes|busco|buscando|quiero|quisiera|necesito|consigo|conseguir)\s+(el|la|los|las|un|una|unos|unas|de|del)?\s*/i, "")
@@ -4281,6 +4531,7 @@ function nombreBuscado(p){
 }
 // Nombre sin las palabras que se repiten en todos ("JUEGO NINTENDO SWITCH SUPER MARIO RPG" → "super mario rpg").
 const NOMBRE_COMUN = /\b(juego|consola|palanca|control|nintendo|switch|swicth|ps[1-5]|playstation|xbox|pc|medio uso|usado|original|generico|c)\b/g;
+const NOMBRE_GENERICO = /^(normal|edicion|edition|version|color|caja|con|para|the|and|del|las|los|varios|variados|disenos|modelos|pack|incluido|unidad|por|day|one|nuevo|nueva|gb|tb|128gb|500gb|1tb|512gb)$/;
 const nombreCorto = p => norm(p.name).replace(NOMBRE_COMUN, " ").replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
 // Productos que el texto de la IA menciona por su nombre, en el orden en que los menciona.
 function productosNombrados(t, codigos){
@@ -4290,22 +4541,148 @@ function productosNombrados(t, codigos){
     const p = buscar(c); if (!p) continue;
     const n = nombreCorto(p), nn = n.replace(/ /g, ""), pal = n.split(" ");
     if (nn.length >= 6 && Tn.includes(nn)){ hits.push({p, i: Tn.indexOf(nn)}); continue; }
+    if (n.length >= 4 && /\d/.test(n) && (" " + T + " ").includes(" " + n + " ")){ hits.push({p, i: T.indexOf(n)}); continue; }   // "FC 27", "F1 25"
     // "Crash Bandicoot 4" por "Crash Bandicoot 4 It's About Time": al menos las 3 primeras palabras
+    let ya = false;
     for (let k = pal.length - 1; k >= 3; k--){
       const pre = " " + pal.slice(0, k).join(" ") + " ";
-      if (pre.length >= 12 && (" " + T + " ").includes(pre)){ hits.push({p, i: (" " + T + " ").indexOf(pre)}); break; }
+      if (pre.length >= 12 && (" " + T + " ").includes(pre)){ hits.push({p, i: (" " + T + " ").indexOf(pre)}); ya = true; break; }
+    }
+    if (ya) continue;
+    // "Mario Kart 8 Deluxe" o "PS5 Slim con disco": todas sus palabras propias (2 o más) están en el texto.
+    const propias = pal.filter(w => w.length >= 3 && !NOMBRE_GENERICO.test(w));
+    if (propias.length >= 2 && propias.every(w => (" " + T + " ").includes(" " + w + " "))){ hits.push({p, i: T.indexOf(propias[0])}); continue; }
+    // Consolas que se nombran casi solo con la marca: "Nintendo Switch 2", "Xbox Series X".
+    if (p.cat === "consolas"){
+      const ws = norm(p.name).replace(/^consola\s+/, "").replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim().split(" ");
+      for (let k = ws.length; k >= 3; k--){
+        const pre = " " + ws.slice(0, k).join(" ") + " ";
+        if (pre.length >= 9 && (" " + T + " ").includes(pre)){ hits.push({p, i: (" " + T + " ").indexOf(pre)}); break; }
+      }
     }
   }
   return unicos(hits.sort((a, b) => a.i - b.i).map(h => h.p));
 }
+// El producto del que se está hablando: el de la última tarjeta (si era una sola) o el único que nombró la mascota al mostrarlas.
+function productoEnFoco(){
+  const ms = CHAT.mensajes;
+  for (let i = ms.length - 1; i >= 0; i--){
+    const m = ms[i];
+    if (m.rol !== "mascota" || !(m.productos || m.comparar)) continue;
+    const ls = unicos((m.productos || m.comparar).map(buscar).filter(Boolean));
+    if (ls.length === 1) return ls[0];
+    for (let j = i - 1; j >= 0 && ms[j].rol === "mascota"; j--)
+      if (ms[j].texto){
+        let n = productosNombrados(ms[j].texto, ls.map(p => p.code));
+        if (n.length > 1){ const conPrecio = n.filter(p => ms[j].texto.includes(fmt(precio(p, "efectivo")))); if (conPrecio.length) n = conPrecio; }
+        return n.length === 1 ? n[0] : null;
+      }
+    return null;
+  }
+  return null;
+}
+// El producto del que se habla va primero en las tarjetas.
+function mostrarPrimero(hacer, code){
+  const m = hacer.find(a => a.nombre === "mostrar_productos");
+  if (m && Array.isArray(m.args?.codigos)) m.args.codigos = [code, ...m.args.codigos.filter(c => c !== code)];
+}
+// Si pidió una consola ("para PS5"), las tarjetas son de esa consola: se quitan las de otra (si quedan otras).
+function deLaConsola(codigos){
+  const plat = CHAT.platPedida;
+  if (!plat || !Array.isArray(codigos)) return codigos;
+  const ok = codigos.filter(c => { const p = buscar(c); return p && (!plataformasDe(p).length || plataformasDe(p).includes(plat)); });
+  return ok.length ? ok : codigos;
+}
+// Qué producto del pedido nombra el mensaje ("quita el mario kart"); con "quítalo" o si hay uno solo, el último agregado.
+function productoDelPedido(pregunta){
+  const enPedido = lineas().map(l => l.p);
+  if (!enPedido.length) return null;
+  // Solo cuentan las palabras que están en algún producto ("ponle", "sean"… no).
+  const pal = analizarConsulta(pregunta).palabras.filter(w => w.length >= 3 && !/^(otr[oa]s?|igual|mas|uno|una|dos|tres|todo|todos)$/.test(w) &&
+    PRODUCTS.some(p => variantes(w).some(v => textoBusqueda(p).includes(v))));
+  const puntos = enPedido.map(p => ({p, n: pal.filter(w => variantes(w).some(v => textoBusqueda(p).includes(v))).length}));
+  const mejor = Math.max(0, ...puntos.map(x => x.n));
+  if (mejor > 0){ const top = puntos.filter(x => x.n === mejor); return top.length === 1 ? top[0].p : null; }
+  // "que sean dos del control": por la categoría o la consola que nombra.
+  const c = analizarConsulta(pregunta);
+  if (c.cat || c.plat){
+    const f = enPedido.filter(p => (!c.cat || p.cat === c.cat) && (!c.plat || plataformasDe(p).includes(c.plat)));
+    if (f.length === 1) return f[0];
+    if (f.length > 1) return null;
+  }
+  const q = norm(pregunta);
+  if (pal.length && !/\b\w+(lo|la|los|las)\b/.test(q)) return null;   // nombró algo que no está en el pedido
+  return enPedido.length === 1 || /\b\w+(lo|la)\b|\b(ese|esa|eso|el ultimo|la ultima)\b/.test(q) ? buscar([...PEDIDO.items.keys()].pop()) : null;
+}
+const NUMEROS_CHAT = {un: 1, uno: 1, una: 1, dos: 2, tres: 3, cuatro: 4, cinco: 5, seis: 6, siete: 7, ocho: 8, nueve: 9, diez: 10};
+function cantidadPedida(q){
+  const m = /\b(\d{1,2}|un|uno|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez)\b(?!\s*(dolares|usd|anos|horas|\$))/.exec(q.replace(/\bps ?\d\b|\bswitch ?2\b|\bfc ?\d+\b|\b(play|xbox) ?\w*\b/g, " "));
+  return m ? (NUMEROS_CHAT[m[1]] ?? parseInt(m[1], 10)) : null;
+}
+// "Retiro en Scala", "pago con tarjeta", "a nombre de Ana Torres".
+function datosEnMensaje(texto){
+  const q = norm(texto), d = {};
+  if (/\b(retir\w*|recoj\w*|recog\w*|paso|pasare|pasar|voy|ire|ir|buscar|busco)\b/.test(q))
+    for (const [k, L] of Object.entries(CONFIG.locales))
+      if (q.includes(k) || q.includes(norm(L.nombre)) || (k === "valle" && /\b(el valle|plaza del valle|san rafael)\b/.test(q))){ d.local = k; break; }
+  const pago = /\b(pag\w*|cancel\w*|abon\w*)\b.{0,30}\b(tarjeta|efectivo|transferencia|deposito)\b/.exec(q);
+  if (pago && !/\?|\b(se puede|puedo|aceptan|reciben|hay|tienen|cuanto|precio|sale|cuesta|vale|seria)\b/.test(norm(texto).replace(/[¿]/g, "")) && !/\?/.test(texto)) d.pago = pago[2] === "deposito" ? "transferencia" : pago[2];
+  const nom = /\ba nombre de\s+([A-Za-zÁÉÍÓÚÑáéíóúñü][A-Za-zÁÉÍÓÚÑáéíóúñü' ]{1,50})/.exec(texto);
+  if (nom) d.nombre = nom[1].replace(/\s+(y|para|que|por favor|porfa)\b.*$/i, "").trim();
+  return Object.keys(d).length ? d : null;
+}
 function completarAcciones(t, acciones, pregunta){
   const hay = n => acciones.some(a => n.includes(a.nombre));
+  let quitarNada = false;
   // Lo que pidió el cliente, aunque la IA no haya usado la función.
   const q = norm(pregunta);
   if (!hay(["ver_pedido"]) && unidades() && /\b(termin|finaliz|envi|mand|complet|cerr|revis)\w*\b.{0,20}\bpedido\b|\bver (mi )?pedido\b|\bquiero pagar( ya)?$/.test(q))
     acciones.push({nombre: "ver_pedido", args: {}});
-  if (!hay(["vaciar_pedido", "cambiar_cantidad"]) && unidades() && /\b(vaci|borr|elimin|quit|limpi)\w*( me| le)? (todo( (el|mi) (pedido|carrito))?|(el|mi) (pedido|carrito))(?=$|\s+(por favor|porfa|porfavor|ya)\b)/.test(q))
+  if (!hay(["vaciar_pedido", "cambiar_cantidad"]) && unidades() && /\b(vaci|borr|elimin|quit|limpi|cancel)\w*( me| le)? (todo( (el|mi) (pedido|carrito))?|(el|mi) (pedido|carrito))(?=$|\s+(por favor|porfa|porfavor|ya)\b)/.test(q))
     acciones.push({nombre: "vaciar_pedido", args: {}});
+  // Quitar algo o cambiar cuántos lleva: la IA a veces contesta "ya lo quité" sin hacerlo, así que la página lo hace.
+  if (unidades() && !hay(["vaciar_pedido", "cambiar_cantidad"])){
+    const cual = productoDelPedido(pregunta);
+    const quitar = /\b(quit\w*|sac(a|ame|alo|ala|alos|ar)|elimin\w*|borr\w*|cancel\w*|ya no (lo |la )?(quiero|necesito|me interesa))\b/.test(q);
+    const n = cantidadPedida(q);
+    if (cual && quitar) acciones.push({nombre: "cambiar_cantidad", args: {codigo: cual.code, cantidad: 0}});
+    else if (quitar && !cual && analizarConsulta(pregunta).palabras.some(w => PRODUCTS.some(p => variantes(w).some(v => textoBusqueda(p).includes(v))))) quitarNada = true;   // "quita el zelda" y no está
+    else if (hay(["agregar_al_pedido"])) {}
+    else if (cual && n != null && /\b(ponle|ponme|pon|que sean|cambi\w*|dej\w*|sub\w*|baj\w*|mejor|solo|nada mas)\b/.test(q) && !/\b(dolares|usd|\$)\b/.test(q))
+      acciones.push({nombre: "cambiar_cantidad", args: {codigo: cual.code, cantidad: n}});
+    else if (/\b(otr[oa]|uno mas|una mas|otro igual|otra igual)\b/.test(q) && /\b(agreg\w*|anad\w*|pon\w*|quiero|dame|mete\w*)\b/.test(q) && !analizarConsulta(pregunta).palabras.filter(w => !/^(otr[oa]s?|igual|mas|uno|una)$/.test(w)).length){
+      const ult = [...PEDIDO.items.keys()].pop();
+      if (ult) acciones.push({nombre: "agregar_al_pedido", args: {codigo: ult, cantidad: 1}});
+    }
+  }
+  // "Agrégalo" / "quiero el segundo": se agrega lo que se le acaba de mostrar (si es uno solo, o el que dice por su orden).
+  if (!hay(["agregar_al_pedido", "cambiar_cantidad", "vaciar_pedido"])){
+    const pronombre = /\b(agreg(a|ame|ale)?(lo|la|los|las)|agregamel[oa]|anade(lo|la)|anademel[oa]|pon(lo|la|melo|mela)|me (lo|la) llevo|(lo|la) (quiero|llevo|compro))\b/.test(q) ||
+      /^\s*(agrega|agregame|anade|pon|ponme|dame|quiero)\s+(\d+|dos|tres|cuatro|cinco)\s*$/.test(q);   // "agrega dos"
+    const orden = /\b(el|la) (primer[oa]?|segund[oa]|tercer[oa]?|cuart[oa]|ultim[oa])\b/.exec(q);
+    if (pronombre || (orden && /\b(agreg|anad|pon|quiero|llevo|compr|dame)\w*/.test(q))){
+      const ult = [...CHAT.mensajes].reverse().find(m => m.rol === "mascota" && (m.productos || m.comparar));
+      const ls = unicos(ult ? (ult.productos || ult.comparar).map(buscar).filter(Boolean) : []);
+      const pos = orden ? {primer: 0, primero: 0, primera: 0, segundo: 1, segunda: 1, tercer: 2, tercero: 2, tercera: 2, cuarto: 3, cuarta: 3, ultimo: ls.length - 1, ultima: ls.length - 1}[orden[2]] : (ls.length === 1 ? 0 : -1);
+      const p = pos >= 0 ? ls[pos] : (!orden ? productoEnFoco() : null);
+      if (p && maxQty(p)) acciones.push({nombre: "agregar_al_pedido", args: {codigo: p.code, cantidad: cantidadPedida(q.replace(orden?.[0] || "", "")) || 1}});
+    }
+  }
+  // Dice "lo agregué" pero no llamó a la función: si pidió agregar y el texto nombra un solo producto, se agrega ese.
+  if (!hay(["agregar_al_pedido", "cambiar_cantidad"]) && !CHAT.ambiguo && /\b(agregu[eé]|añad[ií]|agregad[oa]|añadid[oa]|lo puse|la puse)\b/i.test(t) && /\b(agreg|anad|pon|ponme|ponle|quiero|llevo|dame|mete|compr)\w*\b/.test(q)){
+    const ns = productosNombrados(t, CHAT.candidatos || []);
+    if (ns.length === 1 && maxQty(ns[0])) acciones.push({nombre: "agregar_al_pedido", args: {codigo: ns[0].code, cantidad: cantidadPedida(q) || 1}});
+  }
+  const pideAgregar = /^\s*(ok |si |bueno |dale |listo |entonces )?(agreg\w*|anad\w*|pon(me|le)?|mete(me)?|quiero comprar|me llevo|lo llevo|la llevo|separame|carga(me)?|quiero (\d+|dos|tres|cuatro|cinco))\b/.test(q) && !/\b(agreg|anad|pon|met)\w*(lo|la|los|las)\b/.test(q);
+  if ((CHAT.agregarImplicito || (pideAgregar && CHAT.buscaEspecifico)) && !hay(["agregar_al_pedido", "cambiar_cantidad"]) && !CHAT.ambiguo && CHAT.empates === 1 && CHAT.ultimaBusqueda?.length && !CHAT.noEncontrado){
+    const p = buscar(CHAT.ultimaBusqueda[0]);
+    if (p && maxQty(p) && !PEDIDO.items.has(p.code)) acciones = [{nombre: "agregar_al_pedido", args: {codigo: p.code, cantidad: cantidadPedida(q) || 1}}, ...acciones.filter(a => a.nombre !== "mostrar_productos")];
+  }
+  // Dónde retira, cómo paga y a nombre de quién: si lo dijo y la IA no lo anotó, se anota.
+  if (!hay(["datos_del_pedido"])){
+    const d = datosEnMensaje(pregunta);
+    if (d) acciones.push({nombre: "datos_del_pedido", args: d});
+  }
   if (!hay(["mis_pedidos", "repetir_pedido", "preparar_whatsapp"]) && leerPedidos().length &&
       /\b(mis pedidos|pedidos? (anterior|pasad|enviad)\w*|pedido que (hice|envie|mande)|(mi )?ultimo pedido|como va (mi|el) pedido|volver a pedir|repet\w* (mi |el )?pedido)\b/.test(q))
     acciones.push({nombre: "mis_pedidos", args: {}});
@@ -4329,7 +4706,8 @@ function completarAcciones(t, acciones, pregunta){
     const nombrados = productosNombrados(t, CHAT.candidatos || []);
     const promete = PROMETE_MOSTRAR.test(norm(t).split("\n").filter(l => !/\b(boton|whatsapp|mapa|enlace)\b/.test(l)).join("\n"));
     if (codigos.length) acciones.unshift({nombre: "mostrar_productos", args: {codigos}});
-    else if (nombrados.length) acciones.unshift({nombre: "mostrar_productos", args: {codigos: nombrados.slice(0, 6).map(p => p.code)}});
+    else if (CHAT.comparacion?.length >= 2) acciones.unshift({nombre: "comparar_productos", args: {codigos: CHAT.comparacion}});   // "¿PS5 o Xbox?": la tabla con las dos
+    else if (nombrados.length) acciones.unshift({nombre: "mostrar_productos", args: {codigos: deLaConsola(nombrados.map(p => p.code)).slice(0, 6)}});
     else if (CHAT.ultimaBusqueda?.length && (promete || (CHAT.intencionProducto && !CHAT.esReferencia && (!diceQueNoHay || CHAT.esOferta)))) acciones.unshift({nombre: "mostrar_productos", args: {codigos: CHAT.ultimaBusqueda}});
   }
   // "¿Cuál es mejor, este o este?": con 2 o 3 productos, tabla en vez de tarjetas.
@@ -4340,6 +4718,10 @@ function completarAcciones(t, acciones, pregunta){
   if (!hay(["preparar_whatsapp"]) && analizarConsulta(pregunta).servicio && /escrib\w*|cotiz\w*|whatsapp/i.test(t) && !/\?\s*$/.test(t.trim()))
     acciones.push({nombre: "preparar_whatsapp", args: {mensaje: `Hola ${CONFIG.storeName}, ${pregunta}`, boton: "Cotizar por WhatsApp"}});
   CHAT.textoForzado = "";
+  if (quitarNada){
+    CHAT.textoForzado = `Eso no está en tu pedido 🤔 Ahora tienes: ${lineas().map(({p, q}) => (q > 1 ? q + " x " : "") + nombreBonito(p)).join(", ")}.`;
+    return acciones.filter(a => !["mostrar_productos", "comparar_productos", "agregar_al_pedido"].includes(a.nombre));
+  }
   // Quiere terminar/enviar su pedido pero no tiene nada: no se abre un pedido vacío ni se manda a WhatsApp.
   if (!unidades() && !hay(["agregar_al_pedido", "mostrar_productos", "comparar_productos"]) && /\b(termin\w*|finaliz\w*|enviar\w*|envia\w*|cerrar|confirm\w*|pagar)\b.*\b(pedido|compra|carrito|orden)\b/.test(q) && !/\b(mis pedidos|pedidos? (anterior|pasad|enviad)\w*|como va)\b/.test(q)){
     CHAT.textoForzado = "Tu pedido todavía está vacío 🛒 Cuéntame qué buscas (consola, juego o accesorio) y lo agregamos.";
@@ -4695,11 +5077,14 @@ async function enviarChat(texto, reintento = false){
   if (reintento){ const u = historial[historial.length - 1]; if (u?.rol === "usuario" && u.texto === texto) historial.pop(); }
   else agregarMensaje({rol: "usuario", texto});
   medir("chat-mensaje");
-  const pol = !reintento && respuestaPolitica(texto);
+  const pol = !reintento && (respuestaPolitica(texto) || respuestaTotal(texto) || respuestaServicio(texto) || respuestaStock(texto) || respuestaFoco(texto) || respuestaTienda(texto));
+  CHAT.ultimoTema = pol ? pol.tema : (analizarConsulta(texto).servicio ? "servicio" : "");
   if (pol){   // respuesta fija, al instante y sin IA
     medir("chat-politica", {tema: pol.tema});
     agregarMensaje({rol: "mascota", texto: pol.texto});
-    agregarMensaje({rol: "mascota", enlace: {href: waLink(`Hola ${CONFIG.storeName}, ${texto}`), texto: "Preguntar por WhatsApp", tipo: "wa"}});
+    if (pol.acciones) for (const a of pol.acciones) ejecutarAccionChat(a);
+    else if (pol.botones) agregarMensaje({rol: "mascota", botones: pol.botones});
+    else if (!pol.sinBoton) agregarMensaje({rol: "mascota", enlace: {href: waLink(pol.wa || `Hola ${CONFIG.storeName}, ${texto}`), texto: pol.boton || "Preguntar por WhatsApp", tipo: "wa"}});
     CHAT.enviando = false; CHAT.desdeFicha = "";
     $("chatEnviar").disabled = false;
     estadoChat(); guardarChat();
@@ -4711,18 +5096,101 @@ async function enviarChat(texto, reintento = false){
   $("chatCuerpo").append(pensando);
   bajarChat();
   estadoChat("Pensando…");
-  const corte = new AbortController(), reloj = setTimeout(() => corte.abort(), 45000);
+  let corte = null, reloj = 0;
   let texto_ = "", burbuja = null;
   const acciones = [];
-  try {
-    const r = await fetch(CONFIG.chatMascotaUrl, {
-      method: "POST", headers: {"Content-Type": "application/json"}, signal: corte.signal,
-      body: JSON.stringify({mensaje: texto, historial, contexto: contextoTienda(texto), herramientas: HERRAMIENTAS_CHAT, stream: true}),
-    });
+  const cuerpo = JSON.stringify({mensaje: texto, historial, contexto: contextoTienda(texto), herramientas: HERRAMIENTAS_CHAT, stream: true});
+  // Gemini a veces se satura y tarda: si no empezó a contestar a tiempo (o respondió "saturado"), se reintenta
+  // una vez sola antes de mostrarle un error al cliente.
+  const pedir = async ms => {
+    corte = new AbortController(); clearTimeout(reloj);
+    const c = corte; reloj = setTimeout(() => c.abort(), ms);
+    const r = await fetch(CONFIG.chatMascotaUrl, {method: "POST", headers: {"Content-Type": "application/json"}, signal: c.signal, body: cuerpo});
     if (!r.ok){
       let d = {}; try { d = await r.json(); } catch(e) {}
       throw Object.assign(new Error(d.error || "error"), {estado: d.estado || r.status, aviso: r.status === 429 ? d.error : ""});
     }
+    return r;
+  };
+  // Arma lo que ve el cliente: el texto de la IA (o nada, si la IA no respondió) más lo que la página hace.
+  const presentar = (textoIA, accs) => {
+    let hacer = completarAcciones(textoIA, accs.map(a => normalizarAccion(a, texto)), texto);
+    let limpio = sinSaludo(limpiarTexto(textoIA), texto);
+    if (CHAT.textoForzado) limpio = CHAT.textoForzado;
+    // Pidió "un control de PS4" y hay varios: no se agrega uno al azar, se le muestran para que elija.
+    const yaVistos = new Set(CHAT.vistosAntes || []);
+    if (CHAT.ambiguo && hacer.some(a => a.nombre === "agregar_al_pedido") && !hacer.filter(a => a.nombre === "agregar_al_pedido").every(a => yaVistos.has(a.args?.codigo))){
+      hacer = [{nombre: "mostrar_productos", args: {codigos: CHAT.ambiguo}}, ...hacer.filter(a => a.nombre !== "agregar_al_pedido" && a.nombre !== "mostrar_productos")];
+      limpio = "Hay varias opciones parecidas, ¿cuál quieres agregar? 👇";
+    }
+    // Dice que hizo algo en el pedido que no se hizo ("ya lo quité"): esa frase se quita. Lo que sí se hace,
+    // lo confirma la página con su propio mensaje.
+    {
+      const hizo = ns => hacer.some(a => ns.includes(a.nombre));
+      const falsas = [
+        [/\b(agregu[eé]|añad[ií]|(he|ya) (agregado|añadido|puesto)|agregad[oa]s? (a|al) tu|añadid[oa]s? (a|al) tu|lo puse|la puse|los puse)\b/i, ["agregar_al_pedido", "cambiar_cantidad"]],
+        [/\b(quit[eé]|elimin[eé]|borr[eé]|saqu[eé]|vaci[eé]|(he|ya) (quitado|eliminado|borrado|sacado|vaciado)|quitad[oa] (de|del) tu)\b/i, ["cambiar_cantidad", "vaciar_pedido"]],
+        [/\b(anot[eé]|registr[eé]|(he|ya) (anotado|registrado|cambiado))\b/i, ["datos_del_pedido"]],
+      ];
+      const frases = limpio.match(/[^.!?\n]+[.!?]*[ \t]*|\n/g) || [];
+      const sin = frases.filter(f => !falsas.some(([re, ns]) => re.test(f) && !hizo(ns))).join("").trim();
+      if (sin !== limpio.trim()) limpio = sin || (hacer.length ? "" : "Perdona, no alcancé a hacerlo 😅 ¿Me dices otra vez qué producto es?");
+    }
+    // Dice "mira estas opciones 👇" pero no hay nada que mostrar: se quita esa frase.
+    if (!hacer.some(a => VISUALES.includes(a.nombre) || ["preparar_whatsapp", "guardar_favorito", "ofrecer_opciones", "avisar_llegada", "como_llegar", "mis_pedidos", "ver_favoritos", "instalar_app"].includes(a.nombre))){
+      const sin = limpio.split("\n").filter(l => !(l.includes("👇") && l.length < 70)).join("\n").trim();
+      if (sin) limpio = sin;
+      limpio = limpio.replace(/\s*👇/g, "");   // y la flecha sola, sin nada abajo, tampoco
+    }
+    // Las tarjetas incluyen también los productos que el texto nombra (dice "la digital y la de disco" y mostraba una sola).
+    const nombrados = productosNombrados(limpio, CHAT.candidatos || []), mostrar = hacer.find(a => a.nombre === "mostrar_productos");
+    if (mostrar && Array.isArray(mostrar.args?.codigos) && nombrados.length)
+      for (const p of nombrados) if (!mostrar.args.codigos.includes(p.code) && mostrar.args.codigos.length < 6) mostrar.args.codigos.push(p.code);
+    if (mostrar && Array.isArray(mostrar.args?.codigos)) mostrar.args.codigos = deLaConsola(mostrar.args.codigos);
+    if (!limpio){   // mostró algo pero no dijo nada: una frase corta
+      const ps = unicos(((hacer.find(a => a.nombre === "mostrar_productos") || {}).args?.codigos || []).map(buscar).filter(Boolean));
+      const bonito = n => n.toLowerCase().split(/\s+/).map(w => /\d/.test(w) ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+      const q = norm(texto);
+      if (CHAT.noEncontrado && !hacer.some(a => a.nombre === "agregar_al_pedido"))
+        limpio = `Por ahora no tenemos «${CHAT.noEncontrado}» 😕` + (ps.length ? " Esto es lo más parecido que sí hay 👇" : " Si quieres, te aviso cuando llegue 👇");
+      else if (ps.length && /\b(mas barat[oa]s?|mas economic[oa]s?|mas car[oa]s?)\b/.test(q)){
+        const caro = /\bmas car[oa]s?\b/.test(q), p = ps.reduce((a, b) => (precio(b, "efectivo") < precio(a, "efectivo")) !== caro ? b : a);
+        limpio = `${caro ? "El más caro" : "El más barato"} es **${nombreBonito(p)}**: ${fmt(precio(p, "efectivo"))} en efectivo o transferencia` + (precio(p, "tarjeta") > precio(p, "efectivo") ? ` (${fmt(precio(p, "tarjeta"))} con tarjeta)` : "") + " 👇";
+        mostrarPrimero(hacer, p.code);
+      }
+      else if (ps.length && ps.length <= 3 && /\b(cuesta|cuestan|precios?|cuanto|vale|valen|sale|salen|a como|a cuanto)\b/.test(q))
+        limpio = ps.map(p => `${bonito(p.name)} cuesta ${fmt(precio(p, "efectivo"))} en efectivo o transferencia` + (precio(p, "tarjeta") > precio(p, "efectivo") ? ` (${fmt(precio(p, "tarjeta"))} con tarjeta)` : "") + ".").join(" ") + " 👇";
+      else if (ps.length === 1 && ps[0].incluye?.length && /\b(incluye|trae|viene|contiene)\b/.test(q))
+        limpio = `${bonito(ps[0].name)} incluye ${ps[0].incluye.length > 1 ? ps[0].incluye.slice(0, -1).join(", ") + " y " + ps[0].incluye.at(-1) : ps[0].incluye[0]}. 👇`;
+      else if (CHAT.ambiguo && hacer.some(a => a.nombre === "mostrar_productos")) limpio = "Hay varias opciones parecidas, ¿cuál quieres agregar? 👇";
+      else if (hacer.some(a => a.nombre === "comparar_productos")) limpio = "Te los comparo 👇";
+      else if (hacer.some(a => a.nombre === "mostrar_productos")) limpio = /\b(hay|tienen|tienes|venden|consigo)\b/.test(q) && !CHAT.desconocidas?.length ? "¡Sí! Mira lo que tenemos 👇" : "Mira lo que encontré 👇";
+      else if (hacer.some(a => a.nombre === "como_llegar")) limpio = "Te dejo cómo llegar 👇";
+      else if (hacer.some(a => a.nombre === "avisar_llegada")) limpio = "Si quieres, te aviso cuando llegue 👇";
+      else if (hacer.some(a => a.nombre === "preparar_whatsapp")) limpio = analizarConsulta(texto).servicio ? "Sí, lo revisamos en el servicio técnico. Te dejo el botón para cotizar por WhatsApp 👇" : "Te dejo el botón para escribirnos 👇";
+      else if (hacer.some(a => a.nombre === "ofrecer_opciones")) limpio = "¿Cuál prefieres? 👇";
+    }
+    // Preguntó cuánto cuesta y el texto no trae ningún precio: se agrega.
+    const pcards = unicos(((hacer.find(a => a.nombre === "mostrar_productos") || {}).args?.codigos || []).map(buscar).filter(Boolean));
+    if (pcards.length && /\b(cuesta|cuestan|precios?|cuanto|vale|valen|sale|salen|a como|a cuanto)\b/.test(norm(texto)) && limpio && !/\$\s*\d/.test(limpio)){
+      const ef = pcards.map(p => precio(p, "efectivo"));
+      limpio = limpio.replace(/\s*👇\s*$/, "") + (pcards.length === 1 ? ` Cuesta ${fmt(ef[0])} en efectivo o transferencia.` : ` Los precios van desde ${fmt(Math.min(...ef))} hasta ${fmt(Math.max(...ef))} en efectivo o transferencia.`) + " 👇";
+    }
+    limpio = corregirPrecios(limpio);
+    burbuja?.remove(); burbuja = null;
+    if (limpio) agregarMensaje({rol: "mascota", texto: limpio});
+    for (const a of hacer) ejecutarAccionChat(a);
+    return !!(limpio || hacer.length);
+  };
+  try {
+    let r;
+    try { r = await pedir(22000); }
+    catch(e1){
+      if (e1.aviso || [400, 403, 413].includes(e1.estado)) throw e1;
+      estadoChat("Pensando un poquito más…");
+      r = await pedir(35000);
+    }
+    clearTimeout(reloj); reloj = setTimeout(() => corte.abort(), 40000);   // ya empezó a contestar: tiempo para terminar
     const pintar = () => {
       if (!burbuja){ pensando.remove(); estadoChat("Escribiendo…"); burbuja = document.createElement("div"); burbuja.className = "chat-msj suya"; $("chatCuerpo").append(burbuja); }
       burbuja.innerHTML = `<span class="chat-txt">${formatoChat(sinSaludo(limpiarTexto(texto_), texto))}</span>`;
@@ -4743,56 +5211,19 @@ async function enviarChat(texto, reintento = false){
       if (texto_) pintar();
     }
     pensando.remove();
-    let hacer = completarAcciones(texto_, acciones.map(a => normalizarAccion(a, texto)), texto);
-    let limpio = sinSaludo(limpiarTexto(texto_), texto);
-    if (CHAT.textoForzado) limpio = CHAT.textoForzado;
-    // Pidió "un control de PS4" y hay varios: no se agrega uno al azar, se le muestran para que elija.
-    if (CHAT.ambiguo && hacer.some(a => a.nombre === "agregar_al_pedido")){
-      hacer = [{nombre: "mostrar_productos", args: {codigos: CHAT.ambiguo}}, ...hacer.filter(a => a.nombre !== "agregar_al_pedido" && a.nombre !== "mostrar_productos")];
-      limpio = "Hay varias opciones parecidas, ¿cuál quieres agregar? 👇";
-    }
-    // Dice "mira estas opciones 👇" pero no hay nada que mostrar: se quita esa frase.
-    if (!hacer.some(a => VISUALES.includes(a.nombre) || a.nombre === "preparar_whatsapp" || a.nombre === "guardar_favorito")){
-      const sin = limpio.split("\n").filter(l => !(l.includes("👇") && l.length < 70)).join("\n").trim();
-      if (sin) limpio = sin;
-    }
-    // Las tarjetas incluyen también los productos que el texto nombra (dice "la digital y la de disco" y mostraba una sola).
-    const nombrados = productosNombrados(limpio, CHAT.candidatos || []), mostrar = hacer.find(a => a.nombre === "mostrar_productos");
-    if (mostrar && Array.isArray(mostrar.args?.codigos) && nombrados.length)
-      for (const p of nombrados) if (!mostrar.args.codigos.includes(p.code) && mostrar.args.codigos.length < 6) mostrar.args.codigos.push(p.code);
-    if (!limpio){   // mostró algo pero no dijo nada: una frase corta
-      const ps = unicos(((hacer.find(a => a.nombre === "mostrar_productos") || {}).args?.codigos || []).map(buscar).filter(Boolean));
-      const bonito = n => n.toLowerCase().split(/\s+/).map(w => /\d/.test(w) ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-      const q = norm(texto);
-      if (ps.length && ps.length <= 3 && /\b(cuesta|cuestan|precio|cuanto|vale|valen|sale|salen)\b/.test(q))
-        limpio = ps.map(p => `${bonito(p.name)} cuesta ${fmt(precio(p, "efectivo"))} en efectivo o transferencia` + (precio(p, "tarjeta") > precio(p, "efectivo") ? ` (${fmt(precio(p, "tarjeta"))} con tarjeta)` : "") + ".").join(" ") + " 👇";
-      else if (ps.length === 1 && ps[0].incluye?.length && /\b(incluye|trae|viene|contiene)\b/.test(q))
-        limpio = `${bonito(ps[0].name)} incluye ${ps[0].incluye.length > 1 ? ps[0].incluye.slice(0, -1).join(", ") + " y " + ps[0].incluye.at(-1) : ps[0].incluye[0]}. 👇`;
-      else if (CHAT.ambiguo && hacer.some(a => a.nombre === "mostrar_productos")) limpio = "Hay varias opciones parecidas, ¿cuál quieres agregar? 👇";
-      else if (hacer.some(a => a.nombre === "comparar_productos")) limpio = "Te los comparo 👇";
-      else if (hacer.some(a => a.nombre === "mostrar_productos")) limpio = /\b(hay|tienen|tienes|venden|consigo)\b/.test(q) ? "¡Sí! Mira lo que tenemos 👇" : "Mira lo que encontré 👇";
-      else if (hacer.some(a => a.nombre === "como_llegar")) limpio = "Te dejo cómo llegar 👇";
-      else if (hacer.some(a => a.nombre === "avisar_llegada")) limpio = "Si quieres, te aviso cuando llegue 👇";
-      else if (hacer.some(a => a.nombre === "preparar_whatsapp")) limpio = analizarConsulta(texto).servicio ? "Sí, lo revisamos en el servicio técnico. Te dejo el botón para cotizar por WhatsApp 👇" : "Te dejo el botón para escribirnos 👇";
-      else if (hacer.some(a => a.nombre === "ofrecer_opciones")) limpio = "¿Cuál prefieres? 👇";
-    }
-    // Preguntó cuánto cuesta y el texto no trae ningún precio: se agrega.
-    const pcards = unicos(((hacer.find(a => a.nombre === "mostrar_productos") || {}).args?.codigos || []).map(buscar).filter(Boolean));
-    if (pcards.length && /\b(cuesta|cuestan|precio|cuanto|vale|valen|sale|salen)\b/.test(norm(texto)) && limpio && !/\$\s*\d/.test(limpio)){
-      const ef = pcards.map(p => precio(p, "efectivo"));
-      limpio = limpio.replace(/\s*👇\s*$/, "") + (pcards.length === 1 ? ` Cuesta ${fmt(ef[0])} en efectivo o transferencia.` : ` Los precios van desde ${fmt(Math.min(...ef))} hasta ${fmt(Math.max(...ef))} en efectivo o transferencia.`) + " 👇";
-    }
-    limpio = corregirPrecios(limpio);
-    burbuja?.remove(); burbuja = null;
-    if (limpio) agregarMensaje({rol: "mascota", texto: limpio});
-    for (const a of hacer) ejecutarAccionChat(a);
-    if (!limpio && !hacer.length) throw new Error("vacío");
+    if (!presentar(texto_, acciones)) throw new Error("vacío");
   } catch(e) {
     pensando.remove();
     if (burbuja && limpiarTexto(texto_)){ burbuja.remove(); agregarMensaje({rol: "mascota", texto: sinSaludo(limpiarTexto(texto_), texto)}); }
     else {
-      burbuja?.remove();
-      agregarMensaje({rol: "mascota", error: true, reintentar: texto,
+      burbuja?.remove(); burbuja = null;
+      // La IA no respondió (caída o saturada): la página contesta sola con lo que sabe (productos, precios, pedido, avísame).
+      let solo = false;
+      if (!e.aviso && e.message !== "vacío" && !limpiarTexto(texto_)) try { solo = presentar("", []); } catch(e2) {}
+      const charla = !solo && !e.aviso && /^\s*(hola|buen[oa]s?( (dias|tardes|noches))?|gracias|muchas gracias|ok|okay|chao|adios|hasta luego)\b/.test(norm(texto));
+      if (charla) agregarMensaje({rol: "mascota", texto: /^\s*(gracias|muchas|ok|okay|chao|adios|hasta)/.test(norm(texto)) ? "¡Con gusto! Aquí estoy si necesitas algo más 😊" : "¡Hola! ¿Qué estás buscando? Puedo mostrarte consolas, juegos y controles 🎮"});
+      if (solo || charla) medir("chat-sin-ia");
+      else agregarMensaje({rol: "mascota", error: true, reintentar: texto,
         texto: e.aviso || (e.name === "AbortError" ? "Me tardé demasiado 😅 ¿Lo intentamos otra vez?" : "No pude responder justo ahora 😅 Toca «Reintentar» o escríbenos por WhatsApp.")}, false);
     }
   } finally {
