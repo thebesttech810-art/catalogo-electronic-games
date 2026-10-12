@@ -10,9 +10,9 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 151,
+      "scala": 149,
       "condado": 169,
-      "valle": 225
+      "valle": 219
     },
     "photos": [],
     "desc": "",
@@ -31,7 +31,7 @@
     "nuevo": false,
     "stock": {
       "scala": 12,
-      "condado": 16,
+      "condado": 14,
       "valle": 16
     },
     "photos": [],
@@ -51,7 +51,7 @@
     "nuevo": false,
     "stock": {
       "scala": 5,
-      "condado": 6,
+      "condado": 5,
       "valle": 2
     },
     "photos": [],
@@ -90,7 +90,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 4,
+      "scala": 3,
       "condado": 3,
       "valle": 3
     },
@@ -120,28 +120,6 @@
     "vendido": true
   },
   {
-    "code": "711719039594.EG",
-    "name": "PALANCA PS4 GENERICA DE COLORES VARIADOS",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 27.9,
-    "price_efectivo": 27.9,
-    "price_tarjeta": 27.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 4,
-      "condado": 2,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/711719039594.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
     "code": "5485265655.EG",
     "name": "PALANCA PS4 GENERICA CON DISEÑOS SPIDER-MAN 2 - MODERN WARFARE",
     "cat": "palancas",
@@ -161,6 +139,48 @@
     ],
     "desc": "",
     "top": true,
+    "vendido": true
+  },
+  {
+    "code": "165390.CGSF",
+    "name": "PROTECTORES  DE PIKACHU PARA CARTAS",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 0.49,
+    "price_efectivo": 0.49,
+    "price_tarjeta": 0.49,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 7,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
+    "code": "711719039594.EG",
+    "name": "PALANCA PS4 GENERICA DE COLORES VARIADOS",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 27.9,
+    "price_efectivo": 27.9,
+    "price_tarjeta": 27.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 4,
+      "condado": 2,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/711719039594.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
     "vendido": true
   },
   {
@@ -184,26 +204,6 @@
     "vendido": true
   },
   {
-    "code": "165390.CGSF",
-    "name": "PROTECTORES  DE PIKACHU PARA CARTAS",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 0.49,
-    "price_efectivo": 0.49,
-    "price_tarjeta": 0.49,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 7,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "SW2023.EG",
     "name": "MICA NINTENDO SWITCH 2",
     "cat": "accesorios",
@@ -214,29 +214,9 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 5,
+      "scala": 4,
       "condado": 2,
       "valle": 4
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "156926.EG",
-    "name": "CARGADOR DE IPHONE TIPO C - LIGHTNING 20W - 25W 14 PRO GENERICO",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 14.9,
-    "price_efectivo": 14.9,
-    "price_tarjeta": 14.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 7
     },
     "photos": [],
     "desc": "",
@@ -306,6 +286,26 @@
     "vendido": true
   },
   {
+    "code": "156926.EG",
+    "name": "CARGADOR DE IPHONE TIPO C - LIGHTNING 20W - 25W 14 PRO GENERICO",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 14.9,
+    "price_efectivo": 14.9,
+    "price_tarjeta": 14.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 7
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "8265893.EG",
     "name": "PALANCA PS3 GENERICA CON DISEÑOS",
     "cat": "palancas",
@@ -319,26 +319,6 @@
       "scala": 1,
       "condado": 1,
       "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "10-10362-101.CNCF",
-    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 39.91,
-    "price_efectivo": 39.91,
-    "price_tarjeta": 42.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 9,
-      "condado": 3,
-      "valle": 2
     },
     "photos": [],
     "desc": "",
@@ -468,6 +448,48 @@
     "vendido": true
   },
   {
+    "code": "231109.EG",
+    "name": "PALANCA PS5 TECNO RED",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 119.9,
+    "price_efectivo": 119.9,
+    "price_tarjeta": 126.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/231109.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "10-10362-101.CNCF",
+    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 39.91,
+    "price_efectivo": 39.91,
+    "price_tarjeta": 42.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 9,
+      "condado": 3,
+      "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "SW2055.CDCF",
     "name": "ESTUCHE GRIP NEGRO JOY CON IPEGA NINTENDO SWITCH 2",
     "cat": "accesorios",
@@ -590,18 +612,18 @@
     "vendido": true
   },
   {
-    "code": "N-SH0001.EG",
-    "name": "CARGADOR PARA NINTENDO SWITCH N-SH0001-C",
+    "code": "PK044.CNCF",
+    "name": "LLAVERO PSYDUCK",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 29.9,
-    "price_efectivo": 29.9,
-    "price_tarjeta": 29.9,
+    "price": 12.9,
+    "price_efectivo": 12.9,
+    "price_tarjeta": 12.9,
     "digital": false,
-    "nuevo": false,
+    "nuevo": true,
     "stock": {
-      "scala": 2,
-      "condado": 1,
+      "scala": 1,
+      "condado": 2,
       "valle": 1
     },
     "photos": [],
@@ -630,6 +652,26 @@
     "vendido": true
   },
   {
+    "code": "PS5007.CDCF",
+    "name": "BASE HORIZONTAL PS5 4 EN 1 IPEGA",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 17.91,
+    "price_efectivo": 17.91,
+    "price_tarjeta": 18.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "R11.CGCF",
     "name": "GATILLOS PARA CELULAR CAJA R11",
     "cat": "accesorios",
@@ -643,26 +685,6 @@
       "scala": 0,
       "condado": 0,
       "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "TAZAPRIMIUN2.CNCF",
-    "name": "TAZA HARRY HERMIONE GRANGER CON ASA DORADA 3D EDICION COLECCIONISTA",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 29.9,
-    "price_efectivo": 29.9,
-    "price_tarjeta": 29.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -729,50 +751,6 @@
       "valle": 1
     },
     "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "231109.EG",
-    "name": "PALANCA PS5 TECNO RED",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 119.9,
-    "price_efectivo": 119.9,
-    "price_tarjeta": 126.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/231109.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "543136.CDCF",
-    "name": "CONSOLA R36 PRO 128gb",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 97.9,
-    "price_efectivo": 97.9,
-    "price_tarjeta": 103.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 2,
-      "valle": 2
-    },
-    "photos": [
-      "fotos/543136.CDCF/1.jpg"
-    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1058,6 +1036,28 @@
     "vendido": true
   },
   {
+    "code": "543136.CDCF",
+    "name": "CONSOLA R36 PRO 128gb",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 97.9,
+    "price_efectivo": 97.9,
+    "price_tarjeta": 103.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 2,
+      "valle": 2
+    },
+    "photos": [
+      "fotos/543136.CDCF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "R36S.CDCF",
     "name": "CONSOLA DE JUEGO PORTATIL R36S 128GB",
     "cat": "consolas",
@@ -1118,6 +1118,28 @@
     },
     "photos": [
       "fotos/409890.CDCF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "9555246900566.CGCF",
+    "name": "PALANCA PS2 GENERICA CON CABLE CAJA AMARILLA",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 12.9,
+    "price_efectivo": 12.9,
+    "price_tarjeta": 12.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 2,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/9555246900566.CGCF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1430,28 +1452,6 @@
     "vendido": true
   },
   {
-    "code": "711719534112.CGSF",
-    "name": "JUEGO PS4 GOD OF WAR 4",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 40.91,
-    "price_efectivo": 40.91,
-    "price_tarjeta": 42.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/711719534112.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "710425570360.CGSF",
     "name": "JUEGO PS4 GTA V PREMIUM EDITION",
     "cat": "juegos",
@@ -1692,27 +1692,6 @@
     "desc": "",
     "top": false,
     "vendido": true
-  },
-  {
-    "code": "9555246900566.CGCF",
-    "name": "PALANCA PS2 GENERICA CON CABLE CAJA AMARILLA",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 12.9,
-    "price_efectivo": 12.9,
-    "price_tarjeta": 12.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 2,
-      "valle": 2
-    },
-    "photos": [
-      "fotos/9555246900566.CGCF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
   },
   {
     "code": "711719588269.CGSF",
@@ -4032,6 +4011,27 @@
     },
     "photos": [
       "fotos/8436607943921/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "711719534112.CGSF",
+    "name": "JUEGO PS4 GOD OF WAR 4",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 40.91,
+    "price_efectivo": 40.91,
+    "price_tarjeta": 42.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/711719534112.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
