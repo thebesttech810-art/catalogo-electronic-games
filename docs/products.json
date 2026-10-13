@@ -10,9 +10,9 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 149,
+      "scala": 147,
       "condado": 169,
-      "valle": 219
+      "valle": 211
     },
     "photos": [],
     "desc": "",
@@ -31,7 +31,7 @@
     "nuevo": false,
     "stock": {
       "scala": 12,
-      "condado": 14,
+      "condado": 13,
       "valle": 16
     },
     "photos": [],
@@ -50,7 +50,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 5,
+      "scala": 4,
       "condado": 5,
       "valle": 2
     },
@@ -70,8 +70,8 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 8,
-      "condado": 0,
+      "scala": 7,
+      "condado": 10,
       "valle": 3
     },
     "photos": [],
@@ -90,9 +90,9 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 3,
-      "condado": 3,
-      "valle": 3
+      "scala": 6,
+      "condado": 6,
+      "valle": 6
     },
     "photos": [],
     "desc": "",
@@ -111,8 +111,28 @@
     "nuevo": false,
     "stock": {
       "scala": 5,
-      "condado": 3,
-      "valle": 3
+      "condado": 5,
+      "valle": 5
+    },
+    "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
+    "code": "165390.CGSF",
+    "name": "PROTECTORES  DE PIKACHU PARA CARTAS",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 0.49,
+    "price_efectivo": 0.49,
+    "price_tarjeta": 0.49,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 6,
+      "condado": 0,
+      "valle": 0
     },
     "photos": [],
     "desc": "",
@@ -130,33 +150,13 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 1,
+      "scala": 0,
       "condado": 3,
       "valle": 1
     },
     "photos": [
       "fotos/5485265655.EG/1.jpg"
     ],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
-    "code": "165390.CGSF",
-    "name": "PROTECTORES  DE PIKACHU PARA CARTAS",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 0.49,
-    "price_efectivo": 0.49,
-    "price_tarjeta": 0.49,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 7,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [],
     "desc": "",
     "top": true,
     "vendido": true
@@ -258,47 +258,7 @@
     "stock": {
       "scala": 6,
       "condado": 3,
-      "valle": 8
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "HP14.CNCF",
-    "name": "CAJA DE MADERA MUSICAL ZELDA/HARRY POTTER-C",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 8.9,
-    "price_efectivo": 8.9,
-    "price_tarjeta": 8.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 3,
-      "valle": 4
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "156926.EG",
-    "name": "CARGADOR DE IPHONE TIPO C - LIGHTNING 20W - 25W 14 PRO GENERICO",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 14.9,
-    "price_efectivo": 14.9,
-    "price_tarjeta": 14.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 7
+      "valle": 6
     },
     "photos": [],
     "desc": "",
@@ -326,6 +286,46 @@
     "vendido": true
   },
   {
+    "code": "10-10362-101.CNCF",
+    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 34.89,
+    "price_efectivo": 34.89,
+    "price_tarjeta": 34.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 8,
+      "condado": 3,
+      "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "HP14.CNCF",
+    "name": "CAJA DE MADERA MUSICAL ZELDA/HARRY POTTER-C",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 8.9,
+    "price_efectivo": 8.9,
+    "price_tarjeta": 8.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 4
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "1080976.CGSF",
     "name": "JUEGO PS5 FC 27",
     "cat": "juegos",
@@ -336,7 +336,7 @@
     "digital": false,
     "nuevo": true,
     "stock": {
-      "scala": 3,
+      "scala": 2,
       "condado": 0,
       "valle": 2
     },
@@ -379,6 +379,26 @@
       "scala": 5,
       "condado": 5,
       "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "156926.EG",
+    "name": "CARGADOR DE IPHONE TIPO C - LIGHTNING 20W - 25W 14 PRO GENERICO",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 14.9,
+    "price_efectivo": 14.9,
+    "price_tarjeta": 14.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 6
     },
     "photos": [],
     "desc": "",
@@ -439,7 +459,7 @@
     "nuevo": false,
     "stock": {
       "scala": 1,
-      "condado": 0,
+      "condado": 1,
       "valle": 1
     },
     "photos": [],
@@ -458,33 +478,13 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
+      "scala": 1,
       "condado": 0,
-      "valle": 1
+      "valle": 0
     },
     "photos": [
       "fotos/231109.EG/1.jpg"
     ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "10-10362-101.CNCF",
-    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 39.91,
-    "price_efectivo": 39.91,
-    "price_tarjeta": 42.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 9,
-      "condado": 3,
-      "valle": 2
-    },
-    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -592,19 +592,19 @@
     "vendido": true
   },
   {
-    "code": "3450989.CGSF",
-    "name": "JUEGO PS4 FC 27",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 89.9,
-    "price_efectivo": 89.9,
-    "price_tarjeta": 94.9,
+    "code": "PS5007.CDCF",
+    "name": "BASE HORIZONTAL PS5 4 EN 1 IPEGA",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 17.91,
+    "price_efectivo": 17.91,
+    "price_tarjeta": 18.89,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
       "scala": 1,
-      "condado": 2,
-      "valle": 1
+      "condado": 1,
+      "valle": 2
     },
     "photos": [],
     "desc": "",
@@ -632,6 +632,26 @@
     "vendido": true
   },
   {
+    "code": "3450989.CGSF",
+    "name": "JUEGO PS4 FC 27",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 89.9,
+    "price_efectivo": 89.9,
+    "price_tarjeta": 94.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "3423190.CNCF",
     "name": "ESTUCHES NINTENDO SWICTH 2 SILICONE COMPLETO CON GRIP NEGRO/CELESTE",
     "cat": "accesorios",
@@ -645,26 +665,6 @@
       "scala": 1,
       "condado": 1,
       "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "PS5007.CDCF",
-    "name": "BASE HORIZONTAL PS5 4 EN 1 IPEGA",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 17.91,
-    "price_efectivo": 17.91,
-    "price_tarjeta": 18.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 2
     },
     "photos": [],
     "desc": "",
@@ -778,6 +778,28 @@
     "vendido": true
   },
   {
+    "code": "3080970.CDCF",
+    "name": "CONSOLA MINI GAME PLAYER VIDEOJUEGOS K10 500 JUEGOS",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 26.9,
+    "price_efectivo": 26.9,
+    "price_tarjeta": 28.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 2,
+      "valle": 2
+    },
+    "photos": [
+      "fotos/3080970.CDCF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "HS-P11191.EG",
     "name": "PALANCA PS2 INALAMBRICA TRANSPARENTE",
     "cat": "palancas",
@@ -810,34 +832,12 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 2,
+      "scala": 1,
       "condado": 1,
       "valle": 1
     },
     "photos": [
       "fotos/550504.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "3080970.CDCF",
-    "name": "CONSOLA MINI GAME PLAYER VIDEOJUEGOS K10 500 JUEGOS",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 26.9,
-    "price_efectivo": 26.9,
-    "price_tarjeta": 28.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/3080970.CDCF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -908,6 +908,28 @@
     "vendido": true
   },
   {
+    "code": "45496885892.CGSF",
+    "name": "JOY CON NINTENDO SWITCH 2 BLUE RED",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 129.9,
+    "price_efectivo": 129.9,
+    "price_tarjeta": 137.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/45496885892.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "711719554141.EG",
     "name": "PALANCA PS5 CAMUFLADA-C",
     "cat": "palancas",
@@ -948,28 +970,6 @@
     "vendido": true
   },
   {
-    "code": "45496905156.CGSF",
-    "name": "JUEGO NINTENDO SWITCH SUPER MARIO PARTY JAMBOREE",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 72.9,
-    "price_efectivo": 72.9,
-    "price_tarjeta": 77.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/45496905156.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "45496592691.CGSF",
     "name": "JUEGO NINTENDO SWITCH SUPER MARIO BROS U DELUXE",
     "cat": "juegos",
@@ -980,9 +980,9 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
+      "scala": 1,
       "condado": 0,
-      "valle": 1
+      "valle": 0
     },
     "photos": [
       "fotos/45496592691.CGSF/1.jpg"
@@ -1002,9 +1002,9 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
+      "scala": 1,
       "condado": 0,
-      "valle": 1
+      "valle": 0
     },
     "photos": [
       "fotos/810136672695.CGSF/1.jpg"
@@ -1300,28 +1300,6 @@
     "vendido": true
   },
   {
-    "code": "CON-PS4M.CGSF",
-    "name": "CONSOLA PS4 SLIM 500GB + PALANCA PS4 GENERICA +CABLE DE CARGA + CABLE DE PODER + CABLE HDMI + 1 JUEGO USADO",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 279.9,
-    "price_efectivo": 279.9,
-    "price_tarjeta": 299.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/CON-PS4M.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "711719039594.CGCF",
     "name": "PALANCA PS4 GENERICA DE COLORES VARIADOS",
     "cat": "palancas",
@@ -1338,28 +1316,6 @@
     },
     "photos": [
       "fotos/711719039594.CGCF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "6789089.EG",
-    "name": "PALANCA WII+NUNCHUCK",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 39.91,
-    "price_efectivo": 39.91,
-    "price_tarjeta": 39.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/6789089.EG/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1446,6 +1402,28 @@
     },
     "photos": [
       "fotos/45496597955.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "45496905156.CGSF",
+    "name": "JUEGO NINTENDO SWITCH SUPER MARIO PARTY JAMBOREE",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 72.9,
+    "price_efectivo": 72.9,
+    "price_tarjeta": 77.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/45496905156.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1875,6 +1853,25 @@
     "photos": [
       "fotos/870987674.CGSF/1.jpg"
     ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "100240.CGSF",
+    "name": "CONSOLA PS5 DISCO + HACK MEDIO USO",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 799.91,
+    "price_efectivo": 799.91,
+    "price_tarjeta": 839.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 2
+    },
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2463,6 +2460,25 @@
     "top": false
   },
   {
+    "code": "098765.CGSF",
+    "name": "CONSOLA PS4 SLIM 1TB MEDIO USO + PALANCA PS4 ORIGINAL +CABLE DE CARGA + CABLE DE PODER + CABLE HDMI+HACK",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 299.9,
+    "price_efectivo": 299.9,
+    "price_tarjeta": 317.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "9087534.CNCF",
     "name": "CONSOLA X9",
     "cat": "consolas",
@@ -2480,25 +2496,6 @@
     "photos": [
       "fotos/9087534.CNCF/1.jpg"
     ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "100240.CGSF",
-    "name": "CONSOLA PS5 DISCO MEDIO USO",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 744.89,
-    "price_efectivo": 744.89,
-    "price_tarjeta": 789.59,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2951,6 +2948,27 @@
     "top": false
   },
   {
+    "code": "6789089.EG",
+    "name": "PALANCA WII+NUNCHUCK",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 39.91,
+    "price_efectivo": 39.91,
+    "price_tarjeta": 39.91,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/6789089.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "8000790.EG",
     "name": "PALANCA PS5 VERDE REMIX",
     "cat": "palancas",
@@ -3089,27 +3107,6 @@
     },
     "photos": [
       "fotos/36790876570.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "2321397.CGSF",
-    "name": "PALANCA PS5 MEDIO USO COLOR MORADO",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 69.9,
-    "price_efectivo": 69.9,
-    "price_tarjeta": 72.9,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/2321397.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
@@ -4121,6 +4118,25 @@
     "top": false
   },
   {
+    "code": "45496597559.CGSF",
+    "name": "JUEGO NINTENDO SWITCH THE LEGEND OF ZELDA SKYWARD SWORD",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 69.9,
+    "price_efectivo": 69.9,
+    "price_tarjeta": 72.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "3760415190112.CGSF",
     "name": "JUEGO PS5 METAL SLUG TACTICS",
     "cat": "juegos",
@@ -4600,6 +4616,25 @@
     "photos": [
       "fotos/711719526353.CGSF/1.jpg"
     ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "09697587.CGSF",
+    "name": "JUEGO PS4 DAYS GONE MEDIO USO",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 22.9,
+    "price_efectivo": 22.9,
+    "price_tarjeta": 22.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 1
+    },
+    "photos": [],
     "desc": "",
     "top": false
   },
