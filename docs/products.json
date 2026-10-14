@@ -11,7 +11,7 @@
     "nuevo": false,
     "stock": {
       "scala": 147,
-      "condado": 169,
+      "condado": 167,
       "valle": 211
     },
     "photos": [],
@@ -70,7 +70,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 7,
+      "scala": 13,
       "condado": 10,
       "valle": 3
     },
@@ -266,6 +266,26 @@
     "vendido": true
   },
   {
+    "code": "HP14.CNCF",
+    "name": "CAJA DE MADERA MUSICAL ZELDA/HARRY POTTER-C",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 8.9,
+    "price_efectivo": 8.9,
+    "price_tarjeta": 8.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 3
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "8265893.EG",
     "name": "PALANCA PS3 GENERICA CON DISEÑOS",
     "cat": "palancas",
@@ -277,48 +297,8 @@
     "nuevo": false,
     "stock": {
       "scala": 1,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "10-10362-101.CNCF",
-    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 34.89,
-    "price_efectivo": 34.89,
-    "price_tarjeta": 34.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 8,
-      "condado": 3,
-      "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "HP14.CNCF",
-    "name": "CAJA DE MADERA MUSICAL ZELDA/HARRY POTTER-C",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 8.9,
-    "price_efectivo": 8.9,
-    "price_tarjeta": 8.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 4
+      "condado": 2,
+      "valle": 3
     },
     "photos": [],
     "desc": "",
@@ -337,8 +317,8 @@
     "nuevo": true,
     "stock": {
       "scala": 2,
-      "condado": 0,
-      "valle": 2
+      "condado": 1,
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -428,26 +408,6 @@
     "vendido": true
   },
   {
-    "code": "P5016.CDCF",
-    "name": "ESTACION DE CARGA IPEGA PS5 CON DISPLAY CAJA NEGRA",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 25.9,
-    "price_efectivo": 25.9,
-    "price_tarjeta": 27.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "67800908.CDCF",
     "name": "AGENDA HARRY POTTER CAJA NEGRA PORTADA DE CARA DE CALABAZA",
     "cat": "accesorios",
@@ -485,6 +445,26 @@
     "photos": [
       "fotos/231109.EG/1.jpg"
     ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "10-10362-101.CNCF",
+    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 34.89,
+    "price_efectivo": 34.89,
+    "price_tarjeta": 34.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 8,
+      "condado": 3,
+      "valle": 2
+    },
+    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -592,6 +572,26 @@
     "vendido": true
   },
   {
+    "code": "77643.EG",
+    "name": "CABLE ECONOMICO DE USB A TIPO C",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 5.0,
+    "price_efectivo": 5.0,
+    "price_tarjeta": 5.0,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 6
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "PS5007.CDCF",
     "name": "BASE HORIZONTAL PS5 4 EN 1 IPEGA",
     "cat": "accesorios",
@@ -672,19 +672,39 @@
     "vendido": true
   },
   {
-    "code": "R11.CGCF",
-    "name": "GATILLOS PARA CELULAR CAJA R11",
+    "code": "P5016.CDCF",
+    "name": "ESTACION DE CARGA IPEGA PS5 CON DISPLAY CAJA NEGRA",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 6.0,
-    "price_efectivo": 6.0,
-    "price_tarjeta": 6.0,
+    "price": 25.9,
+    "price_efectivo": 25.9,
+    "price_tarjeta": 27.9,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
+      "scala": 1,
       "condado": 0,
       "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "4948872415064.EG",
+    "name": "BASE DE CARGA PARA PALANCA PS5 SONY GENERICO",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 42.89,
+    "price_efectivo": 42.89,
+    "price_tarjeta": 42.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -731,26 +751,6 @@
     "photos": [
       "fotos/711719596554.CGSF/1.jpg"
     ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "77643.EG",
-    "name": "CABLE ECONOMICO DE USB A TIPO C",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 5.0,
-    "price_efectivo": 5.0,
-    "price_tarjeta": 5.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1322,28 +1322,6 @@
     "vendido": true
   },
   {
-    "code": "711719587576.EG",
-    "name": "PALANCA PS5 CHROMA INDIGO",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 104.9,
-    "price_efectivo": 104.9,
-    "price_tarjeta": 109.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/711719587576.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "711719546979.EG",
     "name": "PALANCA PS5 LILA-C",
     "cat": "palancas",
@@ -1490,28 +1468,6 @@
     },
     "photos": [
       "fotos/45596598075.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "34555.CGSF",
-    "name": "JUEGO PS5 GRAN TURISMO 7",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 59.9,
-    "price_efectivo": 59.9,
-    "price_tarjeta": 63.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/34555.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1853,25 +1809,6 @@
     "photos": [
       "fotos/870987674.CGSF/1.jpg"
     ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "100240.CGSF",
-    "name": "CONSOLA PS5 DISCO + HACK MEDIO USO",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 799.91,
-    "price_efectivo": 799.91,
-    "price_tarjeta": 839.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 2
-    },
-    "photos": [],
     "desc": "",
     "top": false
   },
@@ -2496,6 +2433,25 @@
     "photos": [
       "fotos/9087534.CNCF/1.jpg"
     ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "100240.CGSF",
+    "name": "CONSOLA PS5 DISCO + HACK MEDIO USO",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 799.91,
+    "price_efectivo": 799.91,
+    "price_tarjeta": 839.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 1
+    },
+    "photos": [],
     "desc": "",
     "top": false
   },
