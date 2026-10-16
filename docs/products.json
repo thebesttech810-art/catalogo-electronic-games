@@ -20,26 +20,6 @@
     "vendido": true
   },
   {
-    "code": "12542325.CDCF",
-    "name": "FUNDAS DE PAPEL POKEMON - PIKACHU  PEQUEÑAS",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 1.0,
-    "price_efectivo": 1.0,
-    "price_tarjeta": 1.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 12,
-      "condado": 13,
-      "valle": 16
-    },
-    "photos": [],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
     "code": "ESTU-PS5.EG",
     "name": "ESTUCHES PARA PALANCA PS5 MODELOS VARIADOS-C",
     "cat": "accesorios",
@@ -51,7 +31,7 @@
     "nuevo": false,
     "stock": {
       "scala": 4,
-      "condado": 5,
+      "condado": 4,
       "valle": 2
     },
     "photos": [],
@@ -70,9 +50,29 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 13,
+      "scala": 12,
       "condado": 10,
       "valle": 3
+    },
+    "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
+    "code": "12542325.CDCF",
+    "name": "FUNDAS DE PAPEL POKEMON - PIKACHU  PEQUEÑAS",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 1.0,
+    "price_efectivo": 1.0,
+    "price_tarjeta": 1.0,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 12,
+      "condado": 13,
+      "valle": 16
     },
     "photos": [],
     "desc": "",
@@ -120,23 +120,21 @@
     "vendido": true
   },
   {
-    "code": "5485265655.EG",
-    "name": "PALANCA PS4 GENERICA CON DISEÑOS SPIDER-MAN 2 - MODERN WARFARE",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 32.9,
-    "price_efectivo": 32.9,
-    "price_tarjeta": 32.9,
+    "code": "DEDAL.EG",
+    "name": "DEDALES POR UNIDAD",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 2.5,
+    "price_efectivo": 2.5,
+    "price_tarjeta": 2.5,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
+      "scala": 6,
       "condado": 3,
-      "valle": 1
+      "valle": 4
     },
-    "photos": [
-      "fotos/5485265655.EG/1.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": true,
     "vendido": true
@@ -184,6 +182,28 @@
     "vendido": true
   },
   {
+    "code": "5485265655.EG",
+    "name": "PALANCA PS4 GENERICA CON DISEÑOS SPIDER-MAN 2 - MODERN WARFARE",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 32.9,
+    "price_efectivo": 32.9,
+    "price_tarjeta": 32.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 3,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/5485265655.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "3394808.CDCF",
     "name": "BOLA DE CRISTAL CON LUCES POKEMON",
     "cat": "accesorios",
@@ -224,19 +244,19 @@
     "vendido": true
   },
   {
-    "code": "DEDAL.EG",
-    "name": "DEDALES POR UNIDAD",
+    "code": "156926.EG",
+    "name": "CARGADOR DE IPHONE TIPO C - LIGHTNING 20W - 25W 14 PRO GENERICO",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 2.5,
-    "price_efectivo": 2.5,
-    "price_tarjeta": 2.5,
+    "price": 14.9,
+    "price_efectivo": 14.9,
+    "price_tarjeta": 14.9,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 6,
-      "condado": 3,
-      "valle": 6
+      "scala": 0,
+      "condado": 0,
+      "valle": 5
     },
     "photos": [],
     "desc": "",
@@ -366,26 +386,6 @@
     "vendido": true
   },
   {
-    "code": "156926.EG",
-    "name": "CARGADOR DE IPHONE TIPO C - LIGHTNING 20W - 25W 14 PRO GENERICO",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 14.9,
-    "price_efectivo": 14.9,
-    "price_tarjeta": 14.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 6
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "191068.CGSF",
     "name": "JUEGO PS5 MARVEL'S WOLVERINE",
     "cat": "juegos",
@@ -428,6 +428,26 @@
     "vendido": true
   },
   {
+    "code": "10-10362-101.CNCF",
+    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 34.89,
+    "price_efectivo": 34.89,
+    "price_tarjeta": 34.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 4,
+      "condado": 3,
+      "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "231109.EG",
     "name": "PALANCA PS5 TECNO RED",
     "cat": "palancas",
@@ -445,26 +465,6 @@
     "photos": [
       "fotos/231109.EG/1.jpg"
     ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "10-10362-101.CNCF",
-    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 34.89,
-    "price_efectivo": 34.89,
-    "price_tarjeta": 34.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 7,
-      "condado": 3,
-      "valle": 2
-    },
-    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -612,6 +612,26 @@
     "vendido": true
   },
   {
+    "code": "CALI-01.CNCF",
+    "name": "SET DE CALIGRAFIA HARRY POTER  CON SELLO DE LACRE Y ACCESORIOS + 18 PLUMILLAS +KIT DE CERA",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 32.9,
+    "price_efectivo": 32.9,
+    "price_tarjeta": 34.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "PK044.CNCF",
     "name": "LLAVERO PSYDUCK",
     "cat": "accesorios",
@@ -620,7 +640,7 @@
     "price_efectivo": 12.9,
     "price_tarjeta": 12.9,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 2,
@@ -652,26 +672,6 @@
     "vendido": true
   },
   {
-    "code": "3423190.CNCF",
-    "name": "ESTUCHES NINTENDO SWICTH 2 SILICONE COMPLETO CON GRIP NEGRO/CELESTE",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 15.9,
-    "price_efectivo": 15.9,
-    "price_tarjeta": 15.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "P5016.CDCF",
     "name": "ESTACION DE CARGA IPEGA PS5 CON DISPLAY CAJA NEGRA",
     "cat": "accesorios",
@@ -692,19 +692,19 @@
     "vendido": true
   },
   {
-    "code": "CALI-01.CNCF",
-    "name": "SET DE CALIGRAFIA HARRY POTER  CON SELLO DE LACRE Y ACCESORIOS + 18 PLUMILLAS +KIT DE CERA",
+    "code": "4948872415064.EG",
+    "name": "BASE DE CARGA PARA PALANCA PS5 SONY GENERICO",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 32.9,
-    "price_efectivo": 32.9,
-    "price_tarjeta": 34.9,
+    "price": 42.89,
+    "price_efectivo": 42.89,
+    "price_tarjeta": 42.89,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 2,
+      "scala": 1,
       "condado": 1,
-      "valle": 0
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -852,7 +852,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
+      "scala": 1,
       "condado": 2,
       "valle": 1
     },
