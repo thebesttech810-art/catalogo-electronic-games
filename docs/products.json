@@ -11,8 +11,28 @@
     "nuevo": false,
     "stock": {
       "scala": 147,
-      "condado": 167,
+      "condado": 219,
       "valle": 211
+    },
+    "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
+    "code": "2548596.CDCF",
+    "name": "FUNDAS DE PAPEL POKEMON - PIKACHU MEDIANAS",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 1.0,
+    "price_efectivo": 1.0,
+    "price_tarjeta": 1.0,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 22,
+      "condado": 10,
+      "valle": 3
     },
     "photos": [],
     "desc": "",
@@ -33,26 +53,6 @@
       "scala": 4,
       "condado": 4,
       "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
-    "code": "2548596.CDCF",
-    "name": "FUNDAS DE PAPEL POKEMON - PIKACHU MEDIANAS",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 1.0,
-    "price_efectivo": 1.0,
-    "price_tarjeta": 1.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 12,
-      "condado": 10,
-      "valle": 3
     },
     "photos": [],
     "desc": "",
@@ -110,7 +110,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 5,
+      "scala": 3,
       "condado": 5,
       "valle": 5
     },
@@ -337,28 +337,8 @@
     "nuevo": true,
     "stock": {
       "scala": 2,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "21072026.CDCG",
-    "name": "FUNDAS DE PAPEL MARIO -HONGO -ESTRELLA PEQUEÑAS",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 1.0,
-    "price_efectivo": 1.0,
-    "price_tarjeta": 1.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 3,
-      "condado": 10,
-      "valle": 4
+      "condado": 2,
+      "valle": 2
     },
     "photos": [],
     "desc": "",
@@ -394,7 +374,7 @@
     "price_efectivo": 89.9,
     "price_tarjeta": 95.9,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 3,
@@ -438,7 +418,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 4,
+      "scala": 8,
       "condado": 3,
       "valle": 2
     },
@@ -465,6 +445,26 @@
     "photos": [
       "fotos/231109.EG/1.jpg"
     ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "215545.CDCF",
+    "name": "AGENDA HARRY POTTER CON CONTRASEÑA",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 29.9,
+    "price_efectivo": 29.9,
+    "price_tarjeta": 29.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 3,
+      "condado": 5,
+      "valle": 6
+    },
+    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -552,6 +552,26 @@
     "vendido": true
   },
   {
+    "code": "21072026.CDCG",
+    "name": "FUNDAS DE PAPEL MARIO -HONGO -ESTRELLA PEQUEÑAS",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 1.0,
+    "price_efectivo": 1.0,
+    "price_tarjeta": 1.0,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 3,
+      "condado": 10,
+      "valle": 4
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "7665896.CGSF",
     "name": "JUEGO NINTENDO SWITCH FC 27",
     "cat": "juegos",
@@ -572,6 +592,28 @@
     "vendido": true
   },
   {
+    "code": "711719546573.EG",
+    "name": "PALANCA PS5 NEGRA ORIGINAL-C",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 99.9,
+    "price_efectivo": 99.9,
+    "price_tarjeta": 104.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 2,
+      "valle": 2
+    },
+    "photos": [
+      "fotos/711719546573.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "77643.EG",
     "name": "CABLE ECONOMICO DE USB A TIPO C",
     "cat": "accesorios",
@@ -585,6 +627,26 @@
       "scala": 0,
       "condado": 0,
       "valle": 6
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "3450989.CGSF",
+    "name": "JUEGO PS4 FC 27",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 89.9,
+    "price_efectivo": 89.9,
+    "price_tarjeta": 94.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 2,
+      "condado": 1,
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -632,41 +694,23 @@
     "vendido": true
   },
   {
-    "code": "PK044.CNCF",
-    "name": "LLAVERO PSYDUCK",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 12.9,
-    "price_efectivo": 12.9,
-    "price_tarjeta": 12.9,
+    "code": "X17-15441.CGCF",
+    "name": "PALANCA MICROSOFT PARA PC Y XBOX 360 - CAJA ROJA X17-15441-C",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 25.9,
+    "price_efectivo": 25.9,
+    "price_tarjeta": 27.9,
     "digital": false,
     "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 2,
-      "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "3450989.CGSF",
-    "name": "JUEGO PS4 FC 27",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 89.9,
-    "price_efectivo": 89.9,
-    "price_tarjeta": 94.9,
-    "digital": false,
-    "nuevo": true,
     "stock": {
       "scala": 1,
       "condado": 1,
       "valle": 1
     },
-    "photos": [],
+    "photos": [
+      "fotos/X17-15441.CGCF/1.jpg"
+    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -707,6 +751,28 @@
       "valle": 1
     },
     "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "550504.EG",
+    "name": "PRO CONTROLLER NINTENDO SWITCH GENERICO VARIOS DISENOS",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 55.9,
+    "price_efectivo": 55.9,
+    "price_tarjeta": 55.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/550504.EG/1.jpg"
+    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -756,28 +822,6 @@
     "vendido": true
   },
   {
-    "code": "711719546573.EG",
-    "name": "PALANCA PS5 NEGRA ORIGINAL-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 99.9,
-    "price_efectivo": 99.9,
-    "price_tarjeta": 104.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 3,
-      "valle": 2
-    },
-    "photos": [
-      "fotos/711719546573.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "3080970.CDCF",
     "name": "CONSOLA MINI GAME PLAYER VIDEOJUEGOS K10 500 JUEGOS",
     "cat": "consolas",
@@ -820,6 +864,28 @@
     "vendido": true
   },
   {
+    "code": "R36S.CDCF",
+    "name": "CONSOLA DE JUEGO PORTATIL R36S 128GB",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 94.9,
+    "price_efectivo": 94.9,
+    "price_tarjeta": 99.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 2,
+      "valle": 2
+    },
+    "photos": [
+      "fotos/R36S.CDCF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "HS-P11191.EG",
     "name": "PALANCA PS2 INALAMBRICA TRANSPARENTE",
     "cat": "palancas",
@@ -836,50 +902,6 @@
     },
     "photos": [
       "fotos/HS-P11191.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "X17-15441.CGCF",
-    "name": "PALANCA MICROSOFT PARA PC Y XBOX 360 - CAJA ROJA X17-15441-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 25.9,
-    "price_efectivo": 25.9,
-    "price_tarjeta": 27.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 2,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/X17-15441.CGCF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "550504.EG",
-    "name": "PRO CONTROLLER NINTENDO SWITCH GENERICO VARIOS DISENOS",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 55.9,
-    "price_efectivo": 55.9,
-    "price_tarjeta": 55.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/550504.EG/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -923,6 +945,28 @@
       "valle": 0
     },
     "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "56262695.CGSF",
+    "name": "CONSOLA PS5 SLIM DIGITAL",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 899.9,
+    "price_efectivo": 899.9,
+    "price_tarjeta": 949.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/56262695.CGSF/1.jpg"
+    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1074,28 +1118,6 @@
     },
     "photos": [
       "fotos/543136.CDCF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "R36S.CDCF",
-    "name": "CONSOLA DE JUEGO PORTATIL R36S 128GB",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 94.9,
-    "price_efectivo": 94.9,
-    "price_tarjeta": 99.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 2,
-      "valle": 2
-    },
-    "photos": [
-      "fotos/R36S.CDCF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1468,6 +1490,28 @@
     "vendido": true
   },
   {
+    "code": "HSPS3115.EG",
+    "name": "PALANCA PS3 GENERICA DE COLORES/ TRANSPARENTE",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 14.9,
+    "price_efectivo": 14.9,
+    "price_tarjeta": 14.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/HSPS3115.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "711719546979.EG",
     "name": "PALANCA PS5 LILA-C",
     "cat": "palancas",
@@ -1550,28 +1594,6 @@
     },
     "photos": [
       "fotos/45496905156.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "711719553793.CGSF",
-    "name": "JUEGO PS5 THE LAST OF US PARTE II REMASTERED",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 69.9,
-    "price_efectivo": 69.9,
-    "price_tarjeta": 73.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/711719553793.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -2060,25 +2082,6 @@
     "top": false
   },
   {
-    "code": "588475.EG",
-    "name": "CONSOLA PS5 PRO",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 1549.89,
-    "price_efectivo": 1549.89,
-    "price_tarjeta": 1639.9,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "6974073211004",
     "name": "PALANCA PS4/NINTENDO/PC/STEAM DECK  GENERICA HS-PS5",
     "cat": "palancas",
@@ -2135,27 +2138,6 @@
     },
     "photos": [
       "fotos/HS-P11191.CGCF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "HSPS3115.EG",
-    "name": "PALANCA PS3 GENERICA DE COLORES/ TRANSPARENTE",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 14.9,
-    "price_efectivo": 14.9,
-    "price_tarjeta": 14.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/HSPS3115.EG/1.jpg"
     ],
     "desc": "",
     "top": false
@@ -2606,7 +2588,7 @@
     "price_efectivo": 89.9,
     "price_tarjeta": 94.9,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -2962,6 +2944,44 @@
     "photos": [
       "fotos/7509871.CGSF/1.jpg"
     ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "588475.EG",
+    "name": "CONSOLA PS5 PRO",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 1549.89,
+    "price_efectivo": 1549.89,
+    "price_tarjeta": 1639.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "9670145.CGSF",
+    "name": "CONSOLA XBOX SERIES S 1TB MEDIO USO",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 579.9,
+    "price_efectivo": 579.9,
+    "price_tarjeta": 614.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3353,27 +3373,6 @@
     "top": false
   },
   {
-    "code": "6543239.CGSF",
-    "name": "PRO CONTROL NINTENDO SWITCH- LITE MODEL HD-6500 MEDIO USO",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 39.91,
-    "price_efectivo": 39.91,
-    "price_tarjeta": 39.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/6543239.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "2098878.CGSF",
     "name": "CONTROL NINTENDO SWITCH-LITE GENERICO MEDIO USO",
     "cat": "palancas",
@@ -3410,6 +3409,25 @@
     "photos": [
       "fotos/36790876570.EG/1.jpg"
     ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "4969491.CGSF",
+    "name": "PALANCA XBOX SERIES S MEDIO USO + CARGADOR",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 68.9,
+    "price_efectivo": 68.9,
+    "price_tarjeta": 72.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4267,6 +4285,27 @@
       "valle": 0
     },
     "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "711719553793.CGSF",
+    "name": "JUEGO PS5 THE LAST OF US PARTE II REMASTERED",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 69.9,
+    "price_efectivo": 69.9,
+    "price_tarjeta": 73.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/711719553793.CGSF/1.jpg"
+    ],
     "desc": "",
     "top": false
   },
