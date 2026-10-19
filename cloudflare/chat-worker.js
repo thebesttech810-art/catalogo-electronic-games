@@ -7,7 +7,7 @@
 // Si cambia algo de la tienda o se agrega una herramienta, NO hay que tocar
 // este archivo: todo eso vive en la página.
 
-const ORIGENES = ["https://thebesttech810-art.github.io"];
+const ORIGENES = ["https://electronicgamesec.com", "https://www.electronicgamesec.com", "https://thebesttech810-art.github.io"];
 // Modelos gratis que compiten (ver la carrera más abajo). Cada uno tiene su propia cuota y su
 // propia fila en Google: cuando uno está saturado (503), sin cuota (429) o ya no existe (404),
 // casi siempre otro sí responde.
