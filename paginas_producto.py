@@ -23,7 +23,7 @@ SITIO = "https://thebesttech810-art.github.io/catalogo-electronic-games/"
 PRODUCTOS = "docs/products.json"
 CARPETA = "docs/p"
 SITEMAP = "docs/sitemap.xml"
-WHATSAPP = "593980807721"
+WHATSAPP = "593969678365"
 TIENDA = "Electronic Games"
 ANALITICA_ID = "1f84c623-7a7b-4d1f-90cd-ef1e1a646852"  # id del sitio en Umami (el mismo de CONFIG.analitica en index.html); vacío = sin medir
 LOCALES = [
