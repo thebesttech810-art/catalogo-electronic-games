@@ -19,7 +19,7 @@ from urllib.parse import quote
 
 from descripciones import detalles
 
-SITIO = "https://thebesttech810-art.github.io/catalogo-electronic-games/"
+SITIO = "https://electronicgamesec.com/"
 PRODUCTOS = "docs/products.json"
 CARPETA = "docs/p"
 SITEMAP = "docs/sitemap.xml"
@@ -91,7 +91,7 @@ def pagina(p, cuando):
         datos["description"] = desc
     if info["estado"]:
         datos["offers"]["itemCondition"] = "https://schema.org/UsedCondition"
-    analitica = (f'<script defer src="https://cloud.umami.is/script.js" data-website-id="{e(ANALITICA_ID)}" data-domains="thebesttech810-art.github.io"></script>'
+    analitica = (f'<script defer src="https://cloud.umami.is/script.js" data-website-id="{e(ANALITICA_ID)}" data-domains="electronicgamesec.com,www.electronicgamesec.com,thebesttech810-art.github.io"></script>'
                  if ANALITICA_ID else "")
     img = (f'<img src="../{e(foto)}" alt="{e(p["name"])}" width="600" height="600">' if foto else
            '<svg viewBox="0 0 500 500" role="img" aria-label="Foto próximamente">'
