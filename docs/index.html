@@ -56,10 +56,10 @@
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
- {"@type":"Organization","@id":"#org","name":"Electronic Games","url":"https://thebesttech810-art.github.io/catalogo-electronic-games/","logo":"https://thebesttech810-art.github.io/catalogo-electronic-games/icon-512.png","sameAs":["https://www.instagram.com/electronicgamesec/"],"contactPoint":{"@type":"ContactPoint","telephone":"+593980807721","contactType":"sales","availableLanguage":"es"}},
- {"@type":"Store","name":"Electronic Games Condado Shopping","parentOrganization":{"@id":"#org"},"telephone":"+593980807721","address":{"@type":"PostalAddress","streetAddress":"Condado Shopping, Isla 21","addressLocality":"Quito","addressCountry":"EC"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"21:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"10:30","closes":"18:30"}]},
- {"@type":"Store","name":"Electronic Games Scala Shopping","parentOrganization":{"@id":"#org"},"telephone":"+593980807721","address":{"@type":"PostalAddress","streetAddress":"Scala Shopping, Isla 5","addressLocality":"Cumbayá","addressCountry":"EC"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"21:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"10:30","closes":"18:30"}]},
- {"@type":"Store","name":"Electronic Games Plaza del Valle","parentOrganization":{"@id":"#org"},"telephone":"+593980807721","address":{"@type":"PostalAddress","streetAddress":"Centro Comercial Plaza del Valle, Local B17","addressLocality":"Sangolquí","addressCountry":"EC"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"21:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"10:30","closes":"18:30"}]}
+ {"@type":"Organization","@id":"#org","name":"Electronic Games","url":"https://thebesttech810-art.github.io/catalogo-electronic-games/","logo":"https://thebesttech810-art.github.io/catalogo-electronic-games/icon-512.png","sameAs":["https://www.instagram.com/electronicgamesec/"],"contactPoint":{"@type":"ContactPoint","telephone":"+593969678365","contactType":"sales","availableLanguage":"es"}},
+ {"@type":"Store","name":"Electronic Games Condado Shopping","parentOrganization":{"@id":"#org"},"telephone":"+593969678365","address":{"@type":"PostalAddress","streetAddress":"Condado Shopping, Isla 21","addressLocality":"Quito","addressCountry":"EC"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"21:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"10:30","closes":"18:30"}]},
+ {"@type":"Store","name":"Electronic Games Scala Shopping","parentOrganization":{"@id":"#org"},"telephone":"+593969678365","address":{"@type":"PostalAddress","streetAddress":"Scala Shopping, Isla 5","addressLocality":"Cumbayá","addressCountry":"EC"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"21:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"10:30","closes":"18:30"}]},
+ {"@type":"Store","name":"Electronic Games Plaza del Valle","parentOrganization":{"@id":"#org"},"telephone":"+593969678365","address":{"@type":"PostalAddress","streetAddress":"Centro Comercial Plaza del Valle, Local B17","addressLocality":"Sangolquí","addressCountry":"EC"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"10:00","closes":"21:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"10:30","closes":"18:30"}]}
 ]}
 </script>
 
@@ -2062,7 +2062,7 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
       <li><a href="#locales">Locales y horarios</a></li>
     </ul></div>
     <div><h3>Contacto</h3><ul>
-      <li><a id="waFoot" target="_blank" rel="noopener">WhatsApp 098 080 7721</a></li>
+      <li><a id="waFoot" target="_blank" rel="noopener">WhatsApp 096 967 8365</a></li>
       <li><a href="https://www.instagram.com/electronicgamesec/" target="_blank" rel="noopener">Instagram @electronicgamesec</a></li>
     </ul></div>
   </div>
@@ -2270,7 +2270,7 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
   <div class="k-slide" id="kSlide" aria-live="off"></div>
   <div class="k-pie">
     <span class="k-marca"><svg class="logo" aria-hidden="true"><use href="#i-logo"/></svg>Electronic <b>Games</b></span>
-    <span class="k-wa"><svg aria-hidden="true"><use href="#i-wa"/></svg>098 080 7721</span>
+    <span class="k-wa"><svg aria-hidden="true"><use href="#i-wa"/></svg>096 967 8365</span>
   </div>
   <div class="k-barra" id="kBarra"></div>
   <div class="k-inicio" id="kInicio" hidden>
@@ -2363,7 +2363,7 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
    CONFIGURACIÓN: número, locales y textos.
    ============================================================ */
 const CONFIG = {
-  whatsapp: "593980807721",   // con código de país, SIN "+"
+  whatsapp: "593969678365",   // con código de país, SIN "+"
   // Id del sitio en Umami (medición de visitas gratis y sin cookies). Vacío = no se mide nada.
   // Va también en ANALITICA_ID de paginas_producto.py.
   analitica: "1f84c623-7a7b-4d1f-90cd-ef1e1a646852",
@@ -5934,7 +5934,7 @@ function pintarQR(p){
   const caja = $("kQr"); if (!caja) return;
   const hayQR = typeof window.qrcode === "function";
   caja.hidden = !hayQR;
-  $("kQrTxt").innerHTML = hayQR ? "Escanéalo para pedirlo<small>desde tu celular, por WhatsApp</small>" : "Pídelo por WhatsApp<small>098 080 7721</small>";
+  $("kQrTxt").innerHTML = hayQR ? "Escanéalo para pedirlo<small>desde tu celular, por WhatsApp</small>" : "Pídelo por WhatsApp<small>096 967 8365</small>";
   if (!hayQR) return;
   let svg = QR_CACHE.get(p.code);
   if (!svg){
