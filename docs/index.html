@@ -53,6 +53,44 @@
   }
 } catch (e) {} })();
 </script>
+<script>
+/* Celulares y navegadores antiguos (iPhone con iOS 15.3 o anterior, Android sin actualizar,
+   navegadores dentro de otras apps). Sin esto, ahí la página carga pero no se abren la ficha,
+   el pedido, el menú ni el chat. Va en JavaScript antiguo a propósito: tiene que correr en todos. */
+(function(){
+  var html = document.documentElement;
+  // lista.at(-1) (el último de la lista): llegó con iOS 15.4.
+  [Array.prototype, String.prototype].forEach(function(p){
+    if (!p.at) Object.defineProperty(p, "at", {configurable: true, writable: true, value: function(i){
+      var n = this.length;
+      i = Math.trunc(i) || 0;
+      if (i < 0) i += n;
+      return i < 0 || i >= n ? undefined : this[i];
+    }});
+  });
+  // Ventanas (<dialog>): llegaron con iOS 15.4. Antes, las arma dialog-polyfill; el código de la
+  // tienda registra cada ventana al empezar y el CSS de .dlg-poly hace de "fondo oscuro".
+  if (!window.HTMLDialogElement || !HTMLDialogElement.prototype.showModal){
+    html.className += " dlg-poly";
+    document.write('<script src="vendor/dialog-polyfill.js"><\/script>');
+  }
+  // El código de la tienda usa JavaScript de 2021 (iOS 14, Chrome 85 o más nuevos). En un navegador
+  // más viejo, en vez de una página que no responde, un aviso con el WhatsApp de la tienda.
+  try { new Function("var a = {}; a.b ??= a?.c ?? 1; a.d ||= 2; var b = {...a}; try {} catch {} return /\\p{L}/u"); }
+  catch (e) {
+    if (!(e instanceof SyntaxError)) return;
+    document.addEventListener("DOMContentLoaded", function(){
+      var d = document.createElement("div");
+      d.className = "aviso-viejo";
+      d.setAttribute("role", "alert");
+      // El mismo número de CONFIG.whatsapp.
+      d.innerHTML = "<b>Tu navegador es muy antiguo</b> y esta tienda no funciona bien en él. Actualiza el teléfono o abre la página en Google Chrome. Mientras tanto, pídenos por WhatsApp: "
+        + '<a href="https://wa.me/593969678365?text=' + encodeURIComponent("Hola, quiero ver qué tienen disponible") + '" target="_blank" rel="noopener">Escribir al 096 967 8365</a>';
+      document.body.appendChild(d);
+    });
+  }
+})();
+</script>
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -380,7 +418,7 @@ button.chat-enlace{border:0;font:inherit;font-weight:800;font-size:.86rem;cursor
 .chat-wa svg{width:15px;height:15px}
 @media (min-width:701px){
   /* Con la barra "Ver mi pedido" abajo, el chat se sube para no taparla. */
-  body.con-pedido .chat-mascota{bottom:calc(96px + env(safe-area-inset-bottom,0px));height:min(600px,calc(100dvh - 176px))}
+  body.con-pedido .chat-mascota{bottom:calc(96px + env(safe-area-inset-bottom,0px));height:min(600px,calc(100vh - 176px));height:min(600px,calc(100dvh - 176px))}
 }
 @media (max-width:700px){
   .chat-mascota{right:10px;left:10px;width:auto;bottom:calc(10px + env(safe-area-inset-bottom,0px));height:min(78vh,620px);height:min(78dvh,620px)}
@@ -669,8 +707,20 @@ footer{margin-top:72px;border-top:1px solid var(--line);background:#0d0d0f}
 .foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-block:18px 28px;border-top:1px solid var(--line);color:var(--muted);font-size:.84rem}
 
 /* ---------- Ficha de producto ---------- */
-dialog{border:0;padding:0;border-radius:18px;width:min(900px,calc(100% - 24px));max-width:100%;max-height:92dvh;background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line),0 24px 70px rgba(0,0,0,.7)}
+dialog{border:0;padding:0;border-radius:18px;width:min(900px,calc(100% - 24px));max-width:100%;max-height:92%;max-height:92dvh;background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line),0 24px 70px rgba(0,0,0,.7)}
 dialog::backdrop{background:rgba(0,0,0,.72)}
+/* Navegador sin <dialog> (clase .dlg-poly, ver el <head>): lo que el navegador pondría solo, y el
+   fondo oscuro, que dialog-polyfill pone como un <div class="backdrop"> después de la ventana.
+   :where() deja estas reglas tan débiles como las de fábrica: las de arriba y abajo mandan igual. */
+:where(.dlg-poly) dialog{position:fixed;top:0;right:0;bottom:0;left:0;margin:auto;width:-webkit-fit-content;width:fit-content;height:-webkit-fit-content;height:fit-content;max-width:calc(100% - 6px - 2em);max-height:calc(100% - 6px - 2em);overflow:auto}
+:where(.dlg-poly) dialog:not([open]){display:none}
+:where(.dlg-poly) dialog[open]{display:block}
+:where(.dlg-poly) dialog + .backdrop{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.72)}
+.dlg-poly dialog.kiosco + .backdrop{background:#050506}
+.dlg-poly dialog.visor + .backdrop{background:rgba(0,0,0,.85)}
+/* Aviso para navegadores demasiado antiguos (ver el <head>) */
+.aviso-viejo{position:fixed;left:0;right:0;bottom:0;z-index:2147483000;padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px));background:#FF7A00;color:#140900;font-size:15px;line-height:1.4;text-align:center}
+.aviso-viejo a{display:inline-block;margin-top:8px;padding:8px 14px;border-radius:999px;background:#25D366;color:#052912;font-weight:700;text-decoration:none}
 /* minmax(0,…): la columna nunca crece por el carrusel de relacionados; el carrusel se desplaza por dentro. */
 .dlg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .dlg > *{min-width:0}
@@ -726,7 +776,7 @@ dialog::backdrop{background:rgba(0,0,0,.72)}
 body.con-pedido footer{padding-bottom:96px}
 @starting-style{.cart-bar{translate:0 calc(100% + 24px);opacity:0}}
 
-dialog.sheet{margin:0 0 0 auto;width:min(460px,100%);max-width:100%;height:100dvh;max-height:100dvh;border-radius:18px 0 0 18px;overflow:hidden}
+dialog.sheet{margin:0 0 0 auto;width:min(460px,100%);max-width:100%;height:100%;height:100dvh;max-height:100%;max-height:100dvh;border-radius:18px 0 0 18px;overflow:hidden}
 dialog.sheet[open]{display:flex;flex-direction:column}
 dialog.sheet.izq{margin:0 auto 0 0;border-radius:0 18px 18px 0}
 .sheet-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line)}
@@ -804,7 +854,7 @@ dialog.sheet.izq{margin:0 auto 0 0;border-radius:0 18px 18px 0}
 .wa-float{display:none}
 
 /* ---------- Buscador rápido (patrón "Command Palette", Ctrl+K) ---------- */
-dialog.cmdk{width:min(640px,calc(100% - 24px));margin:10vh auto auto;max-height:78dvh;overflow:hidden}
+dialog.cmdk{width:min(640px,calc(100% - 24px));margin:10vh auto auto;max-height:78%;max-height:78dvh;overflow:hidden}
 dialog.cmdk[open]{display:flex;flex-direction:column}
 .cmdk-in{display:flex;align-items:center;gap:12px;padding:0 12px 0 18px;border-bottom:1px solid var(--line)}
 .cmdk-in > svg{color:var(--brand)}
@@ -952,7 +1002,7 @@ dialog.cmdk,dialog.cmdk:not([open]),dialog.cmdk::backdrop{transition:none!import
 
 /* ---------- Vitrina en pantalla completa (tablet en la tienda) ---------- */
 @property --kc{syntax:"<color>";inherits:true;initial-value:#FF7A00}
-dialog.kiosco{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;border-radius:0;padding:0;background:#050506;color:#fff;box-shadow:none;overflow:hidden;--kc:#FF7A00;transition:--kc 900ms ease,opacity 220ms var(--ease-out),transform 220ms var(--ease-out),overlay 220ms allow-discrete,display 220ms allow-discrete}
+dialog.kiosco{width:100vw;height:100%;height:100dvh;max-width:none;max-height:none;margin:0;border-radius:0;padding:0;background:#050506;color:#fff;box-shadow:none;overflow:hidden;--kc:#FF7A00;transition:--kc 900ms ease,opacity 220ms var(--ease-out),transform 220ms var(--ease-out),overlay 220ms allow-discrete,display 220ms allow-discrete}
 dialog.kiosco[open]{display:block}
 .k-marco{position:relative;display:grid;width:100%;height:100%;background:#050506;overflow:hidden}
 dialog.kiosco::backdrop{background:#050506}
@@ -1110,7 +1160,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   .tile{padding:16px;gap:12px}
   .tile .ir{width:36px;height:36px}
   .tile-ico{width:52px;height:52px}
-  dialog.cmdk{width:100%;max-height:100dvh;height:100dvh;margin:0;border-radius:0}
+  dialog.cmdk{width:100%;max-height:100%;max-height:100dvh;height:100%;height:100dvh;margin:0;border-radius:0}
   .cmdk-pie .teclas{display:none}
   .fav-top{display:none}
   .fav{width:36px;height:36px;top:8px;right:8px}
@@ -1161,7 +1211,7 @@ dialog.sheet.izq:not([open]){transform:translateX(-100%)}
   footer{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
   body.con-pedido footer{padding-bottom:calc(160px + env(safe-area-inset-bottom,0px))}
   /* Hojas de abajo: tan altas como su contenido (sin fit-content se estiraban al 92% aunque tuvieran un producto). */
-  dialog.sheet:not(.izq){margin:auto 0 0;width:100%;height:auto;height:fit-content;max-height:92dvh;border-radius:18px 18px 0 0}
+  dialog.sheet:not(.izq){margin:auto 0 0;width:100%;height:auto;height:fit-content;max-height:92%;max-height:92dvh;border-radius:18px 18px 0 0}
   /* Ficha: el botón de cerrar arriba a la derecha, sobre la foto (antes quedaba a mitad de pantalla). */
   .info{position:static}
   dialog.sheet:not(.izq):not([open]){transform:translateY(100%)}
@@ -1500,7 +1550,7 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 @property --pc2{syntax:"<color>";inherits:true;initial-value:#00225A}
 .portal{position:relative;height:calc(100vh + var(--pasos,3) * 78vh)}
 .portal-escena{position:sticky;top:var(--header);height:calc(100vh - var(--header));height:calc(100svh - var(--header));overflow:hidden;isolation:isolate;color:#fff;
-  background:radial-gradient(60% 70% at 70% 45%,var(--pc),var(--pc2));transition:--pc 700ms ease,--pc2 700ms ease}
+  background:radial-gradient(60% 70% at 70% 45%,var(--pc,#0070D1),var(--pc2,#00225A));transition:--pc 700ms ease,--pc2 700ms ease}
 .portal-escena canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 900ms ease;cursor:pointer}
 .portal-escena.listo canvas{opacity:1}
 .portal-escena::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.42),transparent 55%)}
@@ -1545,7 +1595,7 @@ body.con-portal #secMundos{display:none}
 @keyframes fan-entra{from{opacity:0;transform:perspective(600px) rotateY(-75deg) translateX(-50px) scale(.8)}}
 
 /* ---------- Visor de fotos ---------- */
-dialog.visor{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;border-radius:0;background:#fff;color:#1F1B18;overflow:hidden;box-shadow:none}
+dialog.visor{width:100vw;height:100%;height:100dvh;max-width:none;max-height:none;margin:0;border-radius:0;background:#fff;color:#1F1B18;overflow:hidden;box-shadow:none}
 dialog.visor[open]{display:block}
 dialog.visor::backdrop{background:rgba(0,0,0,.85)}
 dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
@@ -1600,9 +1650,10 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
   #streamPausa{display:none}
   ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
   .gallery .main img{transition:none}
-  .faq details::details-content,.undo,.chip-ind,.stream{transition:none}
+  .undo,.chip-ind,.stream{transition:none}
+  .faq details::details-content{transition:none}
   .anillo-sec{height:auto}
-  .anillo-escena{position:relative;top:auto;height:min(760px,88svh)}
+  .anillo-escena{position:relative;top:auto;height:min(760px,88vh);height:min(760px,88svh)}
   .pasos li{scale:1}
   .pasos li::after{display:none}
   .cursor{display:none}
@@ -1625,7 +1676,7 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
 /* Los más vendidos son "cartas raras": borde de colores que gira. */
 @property --giro{syntax:"<angle>";inherits:false;initial-value:0deg}
 .card.rara{border-color:transparent}
-.card.rara::after{opacity:1;padding:2px;background:conic-gradient(from var(--giro),#FF7A00,#ff4fd8,#4de8ff,#FFC61A,#FF7A00);animation:giro 5s linear infinite}
+.card.rara::after{opacity:1;padding:2px;background:conic-gradient(from var(--giro,0deg),#FF7A00,#ff4fd8,#4de8ff,#FFC61A,#FF7A00);animation:giro 5s linear infinite}
 @keyframes giro{to{--giro:360deg}}
 /* Etiquetas con destello y "Últimas unidades" que late */
 .sticker{position:relative;overflow:hidden}
@@ -1721,6 +1772,35 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
 .empty > button.avisame,.cmdk-vacio .avisame{display:inline-flex;margin:12px 0 0 8px;padding:11px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface-hi);color:var(--ink);font:inherit;font-weight:800;cursor:pointer}
 .avisame:disabled{opacity:.7;cursor:default}
 .ayudante.llego .ayudante-globo span{color:#b35400}
+
+/* ---------- Navegadores sin lo más nuevo (iPhone con iOS 15 o 16, Android sin actualizar) ---------- */
+/* Sin "popover" (iOS 16 o anterior): el código les pone la clase .ver a estos avisos */
+.pop-mascota.ver,.logro[popover].ver{display:flex;position:fixed;z-index:2147482000}
+/* Sin overflow:clip (iOS 15 o anterior): sin esto la página se puede mover de lado con el dedo */
+@supports not (overflow:clip){
+  body{overflow-x:hidden}
+  .cintas{overflow:hidden}
+}
+/* Sin svh (iOS 15.3 o anterior): con var() en la cuenta, el respaldo en vh de arriba no alcanza
+   (la declaración queda vacía y la escena 3D, sin alto). */
+@supports not (height:1svh){
+  .anillo-escena,.portal-escena{height:calc(100vh - var(--header))}
+  @media (prefers-reduced-motion:reduce){ .anillo-escena{height:min(760px,88vh)} }
+}
+/* Sin color-mix() (iOS 16.1 o anterior): los mismos fondos con colores fijos. Va aparte, con
+   @supports, porque una declaración con var() que el navegador no entiende no cae a la anterior:
+   queda vacía (y el fondo de los mundos, transparente). */
+@supports not (color:color-mix(in srgb,red,blue)){
+  .mundo{background:radial-gradient(120% 110% at 100% 0%,rgba(255,255,255,.18),rgba(255,255,255,0) 38%),radial-gradient(120% 110% at 100% 0%,var(--c) 38%,var(--c2) 100%)}
+  .mundo-banner{background:linear-gradient(110deg,rgba(255,255,255,0) 70%,rgba(255,255,255,.2)),linear-gradient(110deg,var(--c2),var(--c) 70%)}
+  .k-fondo{background:radial-gradient(60rem 42rem at 22% 45%,rgba(255,122,0,.42),transparent 70%),radial-gradient(40rem 30rem at 100% 100%,rgba(255,122,0,.2),transparent 70%)}
+  .emblema svg{color:rgba(255,255,255,.8)}
+  .card::before{background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(255,122,0,.22),transparent 60%)}
+  .card::after{background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),#FF9A2E,transparent 70%)}
+  @media (hover:hover) and (pointer:fine){
+    .card:hover{border-color:var(--c,#FF7A00);box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 40px -8px rgba(255,122,0,.75)}
+  }
+}
 </style>
 </head>
 <body>
@@ -2359,6 +2439,9 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
 </button>
 
 <script>
+// Navegadores sin <dialog> (ver el <head>): cada ventana pasa a usar dialog-polyfill antes que nada.
+if (window.dialogPolyfill) document.querySelectorAll("dialog").forEach(d => dialogPolyfill.registerDialog(d));
+
 /* ============================================================
    CONFIGURACIÓN: número, locales y textos.
    ============================================================ */
@@ -3575,11 +3658,13 @@ function mostrarLogro(){
   if (!l) return;
   el.innerHTML = `<span class="logro-ico" aria-hidden="true">${l.ico}</span><span><small>🏆 Logro desbloqueado</small><b>${esc(l.t)}</b><span class="d">${esc(l.d)}</span></span>`;
   try { el.hidePopover(); } catch(e) {}
-  try { el.showPopover(); } catch(e) {}
+  if (el.showPopover){ try { el.showPopover(); } catch(e) {} }
+  else el.classList.add("ver");   // sin "popover" (iOS 16 o anterior)
   $("aviso").textContent = `Logro desbloqueado: ${l.t}`;
   try { navigator.vibrate?.([12, 60, 12]); } catch(e) {}
   setTimeout(() => {
     try { el.hidePopover(); } catch(e) {}
+    el.classList.remove("ver");
     COLA_LOGROS.shift();
     if (COLA_LOGROS.length) setTimeout(mostrarLogro, 450);
   }, 4200);
@@ -6170,11 +6255,12 @@ function confirmarAgregado(p, n, retraso = 0){
 // El muñequito levanta el pulgar: "¡Agregado!" (en la capa de arriba, visible también sobre la ficha).
 function popAgregado(){
   const pop = $("popMascota");
-  if (!pop.showPopover) return;
   clearTimeout(popAgregado.t);
-  try { if (pop.matches(":popover-open")) pop.hidePopover(); pop.showPopover(); } catch(e) { return; }
+  // Sin "popover" (iOS 16 o anterior) se muestra con la clase .ver, igual por encima de todo.
+  if (pop.showPopover){ try { if (pop.matches(":popover-open")) pop.hidePopover(); pop.showPopover(); } catch(e) { return; } }
+  else pop.classList.add("ver");
   pop.classList.remove("anima"); void pop.offsetWidth; pop.classList.add("anima");
-  popAgregado.t = setTimeout(()=>{ try { pop.hidePopover(); } catch(e) {} }, reduceMotion() ? 1400 : 1750);
+  popAgregado.t = setTimeout(()=>{ try { pop.hidePopover(); } catch(e) {} pop.classList.remove("ver"); }, reduceMotion() ? 1400 : 1750);
 }
 
 // Quitar y vaciar se pueden deshacer, en vez de pedir confirmación.
