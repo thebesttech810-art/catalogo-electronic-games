@@ -10,7 +10,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 131,
+      "scala": 129,
       "condado": 215,
       "valle": 204
     },
@@ -40,6 +40,26 @@
     "vendido": true
   },
   {
+    "code": "12542325.CDCF",
+    "name": "FUNDAS DE PAPEL POKEMON - PIKACHU  PEQUEÑAS",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 1.0,
+    "price_efectivo": 1.0,
+    "price_tarjeta": 1.0,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 12,
+      "condado": 12,
+      "valle": 15
+    },
+    "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
     "code": "ESTU-PS5.EG",
     "name": "ESTUCHES PARA PALANCA PS5 MODELOS VARIADOS-C",
     "cat": "accesorios",
@@ -53,26 +73,6 @@
       "scala": 2,
       "condado": 4,
       "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
-    "code": "12542325.CDCF",
-    "name": "FUNDAS DE PAPEL POKEMON - PIKACHU  PEQUEÑAS",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 1.0,
-    "price_efectivo": 1.0,
-    "price_tarjeta": 1.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 12,
-      "condado": 12,
-      "valle": 16
     },
     "photos": [],
     "desc": "",
@@ -304,6 +304,28 @@
     "vendido": true
   },
   {
+    "code": "711719546573.EG",
+    "name": "PALANCA PS5 NEGRA ORIGINAL-C",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 99.9,
+    "price_efectivo": 99.9,
+    "price_tarjeta": 104.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 2,
+      "valle": 2
+    },
+    "photos": [
+      "fotos/711719546573.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "156926.EG",
     "name": "CARGADOR DE IPHONE TIPO C - LIGHTNING 20W - 25W 14 PRO GENERICO",
     "cat": "accesorios",
@@ -444,48 +466,6 @@
     "vendido": true
   },
   {
-    "code": "711719546573.EG",
-    "name": "PALANCA PS5 NEGRA ORIGINAL-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 99.9,
-    "price_efectivo": 99.9,
-    "price_tarjeta": 104.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 2,
-      "valle": 2
-    },
-    "photos": [
-      "fotos/711719546573.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "110980.CGSF",
-    "name": "CABLE ECONOMICO V8",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 3.9,
-    "price_efectivo": 3.9,
-    "price_tarjeta": 3.9,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 5
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "231109.EG",
     "name": "PALANCA PS5 TECNO RED",
     "cat": "palancas",
@@ -605,6 +585,28 @@
       "valle": 15
     },
     "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "550504.EG",
+    "name": "PRO CONTROLLER NINTENDO SWITCH GENERICO VARIOS DISENOS",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 55.9,
+    "price_efectivo": 55.9,
+    "price_tarjeta": 55.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/550504.EG/1.jpg"
+    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -734,23 +736,21 @@
     "vendido": true
   },
   {
-    "code": "550504.EG",
-    "name": "PRO CONTROLLER NINTENDO SWITCH GENERICO VARIOS DISENOS",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 55.9,
-    "price_efectivo": 55.9,
-    "price_tarjeta": 55.9,
+    "code": "TAZAPRIMIUN1.CNCF",
+    "name": "TAZA HARRY POTTER NEGRA TAPA AMARILLA DOMO 3D EDICION COLECCIONISTA",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 29.9,
+    "price_efectivo": 29.9,
+    "price_tarjeta": 29.9,
     "digital": false,
     "nuevo": false,
     "stock": {
       "scala": 1,
-      "condado": 0,
+      "condado": 1,
       "valle": 1
     },
-    "photos": [
-      "fotos/550504.EG/1.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1080,6 +1080,28 @@
     "vendido": true
   },
   {
+    "code": "HSPS3115.EG",
+    "name": "PALANCA PS3 GENERICA DE COLORES/ TRANSPARENTE",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 14.9,
+    "price_efectivo": 14.9,
+    "price_tarjeta": 14.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 2,
+      "valle": 3
+    },
+    "photos": [
+      "fotos/HSPS3115.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "409890.CDCF",
     "name": "PALANCA P48 PS3-PS4-WINDOWS GAMINJA",
     "cat": "palancas",
@@ -1396,28 +1418,6 @@
     },
     "photos": [
       "fotos/711719039594.CGCF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "HSPS3115.EG",
-    "name": "PALANCA PS3 GENERICA DE COLORES/ TRANSPARENTE",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 14.9,
-    "price_efectivo": 14.9,
-    "price_tarjeta": 14.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/HSPS3115.EG/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -2822,7 +2822,7 @@
     "price_efectivo": 399.9,
     "price_tarjeta": 419.9,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
