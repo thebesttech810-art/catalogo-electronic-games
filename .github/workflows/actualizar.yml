@@ -42,7 +42,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install requests python-dotenv
+      - run: pip install requests python-dotenv pillow
 
       - name: Selección de productos y precios (una vez al día)
         if: github.event.schedule == '0 11 * * *' || inputs.completo
@@ -64,6 +64,13 @@ jobs:
 
       # Si Contífico no respondió (un corte pasajero), esta vez no se publica: la página
       # sigue con lo último y la próxima corrida la actualiza.
+      # Fotos mini en WebP y index.html achicado (solo en la copia que se publica; el repositorio no cambia).
+      # Si algo falla aquí, se publica igual con lo de siempre.
+      - name: Preparar la página para publicar (más rápida)
+        if: steps.stock.outputs.publicar != 'false'
+        continue-on-error: true
+        run: python preparar_publicacion.py --minificar
+
       - if: steps.stock.outputs.publicar != 'false'
         uses: actions/configure-pages@v5
 
