@@ -28,7 +28,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400..900;1,700..900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<!-- Las fuentes se cargan sin frenar el primer dibujo de la página (mientras tanto, la del sistema). -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400..900;1,700..900&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400..900;1,700..900&family=JetBrains+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400..900;1,700..900&family=JetBrains+Mono:wght@500&display=swap"></noscript>
 <script>
 /* Intro de marca: solo la primera vez que se abre la tienda en esta pestaña. Nunca al llegar por un
    enlace a un producto o a un filtro (esa persona viene a algo puntual) ni con "reducir movimiento".
@@ -1319,7 +1322,7 @@ body.con-pedido .anillo-pie{padding-bottom:calc(92px + env(safe-area-inset-botto
 .mani{margin:0;max-width:21ch;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(2rem,5.6vw,4.7rem);line-height:.98;letter-spacing:-.025em;text-wrap:balance}
 .mani em{font-style:inherit;color:var(--brand)}
 .mani em.wa{color:var(--wa)}
-.mani.activo .pal{opacity:var(--o,.14);transition:opacity 140ms linear}
+.mani.activo .pal{opacity:var(--o,.6);transition:opacity 140ms linear}
 
 /* ---------- Cómo comprar: tarjetas que se apilan al bajar ---------- */
 .pasos{list-style:none;margin:0;padding:0 0 12px;display:grid;gap:22px}
@@ -1898,11 +1901,13 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
     <div class="vitrina" id="vitrina">
       <div class="stream" id="stream" role="group" aria-label="Productos con foto"></div>
       <!-- El muñequito de la tienda: en 3D (mascota3d.js) o, sin WebGL, el dibujo. En celular va arriba del titular. -->
-      <div class="mascota" id="mascota">
+      <div class="mascota plana" id="mascota">
         <canvas id="mascotaCanvas" aria-hidden="true"></canvas>
-        <img class="mascota-plana" id="mascotaPlana" src="mascota/mascota.webp" alt="" width="608" height="900" decoding="async" hidden>
+        <img class="mascota-plana" id="mascotaPlana" src="mascota/mascota.webp" srcset="mascota/mascota-chica.webp 243w, mascota/mascota.webp 608w" sizes="(max-width: 960px) 140px, 300px" alt="" width="608" height="900" fetchpriority="high">
         <p class="mascota-globo" id="mascotaGlobo" role="status"></p>
       </div>
+      <!-- En celular el muñequito se pasa a su franja ya mismo (y no al final de la carga): así se ve desde el primer momento. -->
+      <script>if (matchMedia("(max-width: 960px)").matches) document.getElementById("mascotaMovil").appendChild(document.getElementById("mascota"));</script>
       <div class="vitrina-acc">
         <button class="stream-pausa" type="button" data-abrir-vitrina><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg><span>Ver en grande</span></button>
         <button class="stream-pausa" id="streamPausa" type="button" aria-pressed="false"><svg class="ico" aria-hidden="true"><use href="#i-pause"/></svg><span>Pausar</span></button>
@@ -2076,10 +2081,10 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
     <div class="wrap">
       <div class="sec-head reveal"><div><h2 class="sec-h" id="comprarTit">Cómo comprar</h2><p class="sec-sub">Pides desde aquí y pagas cuando confirmamos que tu pedido está listo.</p></div></div>
       <ol class="pasos" id="pasos">
-        <li style="--i:0"><span class="paso-n" aria-hidden="true">01</span><div><h3>Arma tu pedido</h3><p>Toca el botón + en cada producto o elige la cantidad en su ficha.</p></div><img class="paso-mascota" src="mascota/poses/funda.webp" alt="" width="497" height="560" loading="lazy" decoding="async"></li>
-        <li style="--i:1"><span class="paso-n" aria-hidden="true">02</span><div><h3>Elige local y pago</h3><p>Abre “Mi pedido”, escoge dónde retiras y si pagas en efectivo, transferencia o tarjeta.</p></div><img class="paso-mascota" src="mascota/poses/tarjeta.webp" alt="" width="485" height="560" loading="lazy" decoding="async"></li>
-        <li style="--i:2"><span class="paso-n" aria-hidden="true">03</span><div><h3>Envíalo por WhatsApp</h3><p>El mensaje sale listo con productos, cantidades y total. Te confirmamos disponibilidad.</p></div><img class="paso-mascota" src="mascota/poses/celular.webp" alt="" width="497" height="560" loading="lazy" decoding="async"></li>
-        <li style="--i:3"><span class="paso-n" aria-hidden="true">04</span><div><h3>Retira en el local</h3><p>Pasa por la tienda que elegiste, en el horario de atención.</p></div><img class="paso-mascota" src="mascota/poses/retira.webp" alt="" width="432" height="560" loading="lazy" decoding="async"></li>
+        <li style="--i:0"><span class="paso-n" aria-hidden="true">01</span><div><h3>Arma tu pedido</h3><p>Toca el botón + en cada producto o elige la cantidad en su ficha.</p></div><img class="paso-mascota" src="mascota/poses/funda.webp" alt="" width="452" height="560" loading="lazy" decoding="async"></li>
+        <li style="--i:1"><span class="paso-n" aria-hidden="true">02</span><div><h3>Elige local y pago</h3><p>Abre “Mi pedido”, escoge dónde retiras y si pagas en efectivo, transferencia o tarjeta.</p></div><img class="paso-mascota" src="mascota/poses/tarjeta.webp" alt="" width="491" height="560" loading="lazy" decoding="async"></li>
+        <li style="--i:2"><span class="paso-n" aria-hidden="true">03</span><div><h3>Envíalo por WhatsApp</h3><p>El mensaje sale listo con productos, cantidades y total. Te confirmamos disponibilidad.</p></div><img class="paso-mascota" src="mascota/poses/celular.webp" alt="" width="469" height="560" loading="lazy" decoding="async"></li>
+        <li style="--i:3"><span class="paso-n" aria-hidden="true">04</span><div><h3>Retira en el local</h3><p>Pasa por la tienda que elegiste, en el horario de atención.</p></div><img class="paso-mascota" src="mascota/poses/retira.webp" alt="" width="387" height="560" loading="lazy" decoding="async"></li>
       </ol>
     </div>
   </section>
@@ -2365,9 +2370,9 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
 
 <a class="wa-float" id="waFloat" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
 <!-- "¡Agregado!": el muñequito levanta el pulgar al sumar algo al pedido (popover: se ve sobre la ficha) -->
-<div class="pop-mascota" id="popMascota" popover="manual" aria-hidden="true"><img src="mascota/poses/pulgar.webp" alt="" width="424" height="560" decoding="async"><span>¡Agregado!</span></div>
+<div class="pop-mascota" id="popMascota" popover="manual" aria-hidden="true"><img src="mascota/poses/pulgar.webp" alt="" width="434" height="560" loading="lazy" decoding="async"><span>¡Agregado!</span></div>
 <!-- Aviso de conexión (sin internet / volvió) -->
-<div class="aviso-red" id="avisoRed" role="status" hidden><img src="mascota/poses/triste.webp" alt="" width="371" height="560" decoding="async"><span id="avisoRedTxt"></span></div>
+<div class="aviso-red" id="avisoRed" role="status" hidden><img src="mascota/poses/triste.webp" alt="" width="371" height="560" loading="lazy" decoding="async"><span id="avisoRedTxt"></span></div>
 <!-- El muñequito se asoma una vez por visita para ofrecer ayuda por WhatsApp -->
 <div class="ayudante" id="ayudante" hidden>
   <button class="ayudante-globo" id="ayudanteLink" type="button"><b>¿Te ayudo a encontrar algo?</b><span><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>Pregúntale al muñequito</span></button>
@@ -2388,7 +2393,7 @@ dialog.visor.oscuro{background:#0A0A0B;color:var(--ink)}
 <!-- Chat con el muñequito (IA) -->
 <dialog id="chatMascota" class="chat-mascota" aria-label="Chat con el muñequito">
   <header class="chat-cab">
-    <img src="mascota/mascota-cara.webp" alt="" width="200" height="200" decoding="async">
+    <img src="mascota/mascota-cara.webp" alt="" width="200" height="200" loading="lazy" decoding="async">
     <div><b>Electronic Games</b><span id="chatEstado">Te responde el muñequito</span></div>
     <button id="chatVoz" type="button" aria-pressed="false" aria-label="Leer las respuestas en voz alta" hidden><svg aria-hidden="true"><use href="#i-voz"/></svg></button>
     <button id="chatNuevo" type="button" aria-label="Empezar una conversación nueva" title="Conversación nueva"><svg aria-hidden="true"><use href="#i-refresh"/></svg></button>
@@ -2546,6 +2551,20 @@ const pideloHTML = q => `<a class="wa-btn pidelo" data-tipo="pidelo" target="_bl
 const avisameHTML = q => `<button type="button" class="avisame" data-avisame="${esc(q)}">🔔 Avísame aquí cuando llegue</button>`;
 const nLocales = Object.keys(CONFIG.locales).length;
 const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Lo pesado en 3D (three.js: el muñequito, el portal y la vitrina 360°) se arma recién cuando la persona
+// toca, mueve el mouse, baja o usa el teclado. Así la página aparece y responde al instante (sobre todo
+// en celulares) y el 3D llega un momento después, cuando ya se está mirando.
+const alInteractuar = (()=>{
+  const pendientes = [], eventos = ["pointerdown", "pointermove", "touchstart", "wheel", "scroll", "keydown"];
+  let ya = false;
+  const soltar = () => {
+    if (ya) return; ya = true;
+    eventos.forEach(ev=>removeEventListener(ev, soltar, true));
+    for (const fn of pendientes.splice(0)) setTimeout(fn, 0);
+  };
+  eventos.forEach(ev=>addEventListener(ev, soltar, {capture: true, passive: true}));
+  return fn => ya ? setTimeout(fn, 0) : pendientes.push(fn);
+})();
 // ===== Entradas: cada sección, título, paso y producto aparece una sola vez al llegar a él =====
 // (con .visto; la animación es de CSS, en la GPU). Lo que ya se ve al volver a pintar el catálogo
 // (buscar, filtrar) queda quieto: no se repite la entrada en cada letra que se escribe.
@@ -2627,11 +2646,11 @@ function pintarTiendas(){
     const fotos = L.fotos || [];
     const pila = fotos.length
       ? `<button class="tienda-pila" type="button" data-local="${esc(k)}" aria-label="Ver las ${fotos.length} fotos de la isla en ${esc(L.nombre)}">${
-          fotos.map((src, i)=>`<img src="${esc(fotoMini(src))}" srcset="${esc(fotoMini(src))} 720w, ${esc(src)} 1400w" sizes="(max-width: 700px) 90vw, 400px" alt="" width="720" height="540" loading="lazy" decoding="async" data-pos="${Math.min(i, 3)}" onerror="this.removeAttribute('srcset')">`).join("")
+          fotos.map((src, i)=>`<img src="${esc(fotoMini(src))}" srcset="${esc(fotoMini(src))} 400w, ${esc(src)} 1400w" sizes="(max-width: 700px) 90vw, 400px" alt="" width="720" height="540" loading="lazy" decoding="async" data-pos="${Math.min(i, 3)}" onerror="this.removeAttribute('srcset')">`).join("")
         }</button>
         <span class="tienda-cuenta" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg>${fotos.length} fotos</span>`
       : `<div class="tienda-poster" aria-hidden="true"><svg class="tienda-poster-logo"><use href="#i-logo"/></svg>
-          <img src="mascota/poses/retira.webp" alt="" width="432" height="560" loading="lazy" decoding="async"><b>¡Te esperamos!</b></div>`;
+          <img src="mascota/poses/retira.webp" alt="" width="387" height="560" loading="lazy" decoding="async"><b>¡Te esperamos!</b></div>`;
     return `
     <article class="tienda">
       <div class="tienda-fotos">
@@ -2745,6 +2764,7 @@ function placeholder(p, i){
 function onPhotoError(img){
   // Si falló la copia grande (zoom/) o la liviana (mini/), se usa la foto normal; si falló la normal, la portada.
   if (img.srcset){ img.removeAttribute("srcset"); img.src = img.src; return; }
+  if (/\/mini\/[^/]+\.webp$/.test(img.src)){ img.src = img.src.replace(/\.webp$/, ".jpg"); return; }
   if (img.src.includes("/mini/")){ img.src = img.src.replace("/mini/", "/"); return; }
   img.onerror = null;
   const p = buscar(img.dataset.code);
@@ -2752,8 +2772,8 @@ function onPhotoError(img){
 }
 // fotos/<código>/1.jpg -> fotos/<código>/zoom/1.jpg (2000 px: la crean mejorar_fotos.py y subir_fotos.py)
 function fotoZoom(src){ return src.replace(/\/([^/]+\.jpg)$/, "/zoom/$1"); }
-// fotos/<código>/1.jpg -> fotos/<código>/mini/1.jpg (600 px: la de tarjetas y listas; pesa y se dibuja mucho menos)
-function fotoMini(src){ return src.replace(/\/([^/]+\.jpg)$/, "/mini/$1"); }   // declarada como función: la usan también los locales, que se pintan antes
+// fotos/<código>/1.jpg -> fotos/<código>/mini/1.webp (600 px; el WebP lo crea preparar_publicacion.py al publicar, si falta se usa mini/1.jpg: la de tarjetas y listas; pesa y se dibuja mucho menos)
+function fotoMini(src){ return src.replace(/\/([^/]+)\.jpg$/, "/mini/$1.webp"); }   // declarada como función: la usan también los locales, que se pintan antes
 const plataformasDe = p => p._plat || (p._plat = CONFIG.plataformas.filter(([, re])=>re.test(p.name.toUpperCase())).map(([n])=>n));
 // Etiqueta de color con la consola exacta ("PS5", "Switch 2", "Xbox"…); si sirve para varias marcas, "Multi".
 const colorMundo = m => CONFIG.mundos[m]?.c || "#3a373d";
@@ -2868,18 +2888,18 @@ function pintarPodio(){
   $("podioTabs").hidden = cats.length < 2;
   $("podioTabs").innerHTML = cats.map(c => `<button type="button" role="tab" aria-selected="${c === podioCat}" data-podio-cat="${esc(c)}">${EMOJI_CAT[c] || "⭐"} ${esc(vendidos.find(p => p.cat === c).cat_label)}</button>`).join("");
   const [a, b, c] = vendidos.filter(p => p.cat === podioCat);
-  $("podio").innerHTML = [[b, 2], [a, 1], [c, 3]].map(([p, n]) => `<button type="button" class="podio-lugar l${n}" data-podio="${esc(p.code)}" aria-label="Puesto ${n}: ${esc(p.name)}">
+  $("podio").innerHTML = [[b, 2], [a, 1], [c, 3]].map(([p, n]) => `<button type="button" class="podio-lugar l${n}" data-podio="${esc(p.code)}">
       ${n === 1 ? `<span class="podio-corona" aria-hidden="true">👑</span>` : ""}
       <span class="podio-foto"><img src="${esc(fotoDe(p))}" alt="" width="220" height="220" loading="lazy" decoding="async" data-code="${esc(p.code)}" data-i="0" onerror="onPhotoError(this)"><span class="podio-medalla" aria-hidden="true">${["🥇", "🥈", "🥉"][n - 1]}</span></span>
       <span class="podio-nombre">${esc(p.name)}</span>
       <span class="podio-precio">${fmt(precio(p, "efectivo"))}</span>
-      <span class="podio-base" aria-hidden="true">${n}</span>
+      <span class="podio-base"><span class="sr">Puesto </span>${n}</span>
     </button>`).join("");
 }
 
 // ===== Carga =====
 async function loadProducts(){
-  $("grid").innerHTML = `<div class="cargando-mascota" role="status"><img src="mascota/poses/baila.webp" alt="" width="442" height="560" decoding="async">Cargando productos…</div>` + skeletons(8);
+  $("grid").innerHTML = `<div class="cargando-mascota" role="status"><img src="mascota/poses/baila.webp" alt="" width="447" height="560" decoding="async">Cargando productos…</div>` + skeletons(8);
   $("railTop").innerHTML = skeletons(6);
   // La vitrina guarda su lugar desde el inicio para que nada salte cuando llegan las fotos.
   $("stream").innerHTML = [0, 1, 2].map(()=>`<div class="stream-col"><div class="stream-track">${'<div class="stream-item" aria-hidden="true"></div>'.repeat(4)}</div></div>`).join("");
@@ -3468,8 +3488,10 @@ function mascotaPlana(){
     if (toques.length >= 5){ toques = []; decirMascota("¡Modo fiesta activado!", 3400); fiestaMascota(); return; }
     if (MASCOTA.frases.length) decirMascota(MASCOTA.frases[i++ % MASCOTA.frases.length], 3000);
   };
+  // La entrada (cae de arriba) solo va tapada por la intro de marca; si no hay intro, ya está a la vista desde el inicio.
+  const conIntro = document.documentElement.classList.contains("con-intro");
   trasLaIntro(()=>{
-    img.classList.add("entra");
+    if (conIntro) img.classList.add("entra");
     setTimeout(()=>decirMascota("¡Hola! Bienvenidos a Electronic Games", 3600), reduceMotion() ? 0 : 800);
   });
 }
@@ -3477,21 +3499,28 @@ async function cargarMascota(){
   // En el modo vitrina de las pantallas de los locales la portada queda tapada todo el día: ahí no se carga.
   if (new URLSearchParams(location.search).has("vitrina")) return;
   const puede = "WebGL2RenderingContext" in window && "ResizeObserver" in window && "IntersectionObserver" in window && !navigator.connection?.saveData && !reduceMotion();
-  if (!puede) return mascotaPlana();
-  try {
-    const {iniciar} = await import(`./mascota3d.js?v=${VERSION}`);
-    MASCOTA.api = iniciar({
-      contenedor: $("mascota"), lienzo: $("mascotaCanvas"), frases: MASCOTA.frases,
-      alDecir: decirMascota, alTocar: ()=>medir("mascota"), alFiesta: fiestaMascota
-    });
-    trasLaIntro(()=>MASCOTA.api.empezar());
-    new MutationObserver(()=>MASCOTA.api.pausar(!!document.querySelector("dialog[open]")))
-      .observe(document.body, {subtree: true, attributes: true, attributeFilter: ["open"]});
-  } catch (e){
-    console.warn("Mascota 3D no disponible:", e);
-    $("mascotaCanvas").hidden = true;
-    mascotaPlana();
-  }
+  // Primero el dibujo (saluda igual); con la primera interacción se cambia por el 3D, que sigue bailando.
+  mascotaPlana();
+  if (!puede){ $("mascotaCanvas").hidden = true; return; }
+  alInteractuar(async ()=>{
+    try {
+      const {iniciar} = await import(`./mascota3d.js?v=${VERSION}`);
+      const caja = $("mascota");
+      // Cuando el 3D ya está dibujado (clase "listo") se quita el dibujo plano: el cambio no se nota.
+      const mo = new MutationObserver(()=>{ if (caja.classList.contains("listo")){ mo.disconnect(); $("mascotaPlana").hidden = true; caja.classList.remove("plana"); } });
+      mo.observe(caja, {attributes: true, attributeFilter: ["class"]});
+      MASCOTA.api = iniciar({
+        contenedor: caja, lienzo: $("mascotaCanvas"), frases: MASCOTA.frases, bienvenida: false,
+        alDecir: decirMascota, alTocar: ()=>medir("mascota"), alFiesta: fiestaMascota
+      });
+      trasLaIntro(()=>MASCOTA.api.empezar());
+      new MutationObserver(()=>MASCOTA.api.pausar(!!document.querySelector("dialog[open]")))
+        .observe(document.body, {subtree: true, attributes: true, attributeFilter: ["open"]});
+    } catch (e){
+      console.warn("Mascota 3D no disponible:", e);
+      $("mascotaCanvas").hidden = true;
+    }
+  });
 }
 cargarMascota();
 
@@ -4990,7 +5019,7 @@ function elementoMensaje(m){
     return d;
   }
   if (m.saludo) d.innerHTML = `<img class="chat-pose" src="mascota/poses/saludo.webp" alt="" width="390" height="560" decoding="async">`;
-  if (m.festejo){ d.classList.add("festejo"); d.innerHTML = `<img class="chat-pose" src="mascota/poses/baila.webp" alt="" width="442" height="560" decoding="async">`; }
+  if (m.festejo){ d.classList.add("festejo"); d.innerHTML = `<img class="chat-pose" src="mascota/poses/baila.webp" alt="" width="447" height="560" decoding="async">`; }
   if (m.error) d.innerHTML = `<img class="chat-pose" src="mascota/poses/triste.webp" alt="" width="371" height="560" decoding="async">`;
   d.insertAdjacentHTML("beforeend", `<span class="chat-cont"><span class="chat-txt">${formatoChat(m.texto || "")}</span>` +
     (m.error && m.reintentar ? `<button type="button" class="chat-reintentar" data-reintentar>Reintentar</button>` : "") +
@@ -5545,7 +5574,7 @@ function prepararPortal(){
     <svg class="${w.m === "Nintendo" ? "ancho" : ""}" aria-hidden="true"><use href="#${w.cfg.logo}"/></svg></button>`).join("");
   pintarPortal(0);
   const io = new IntersectionObserver(([e])=>{ if (e.isIntersecting){ io.disconnect(); cargarPortal(); } }, {rootMargin: "900px 0px"});
-  io.observe($("portal"));
+  alInteractuar(()=>io.observe($("portal")));
 }
 async function cargarPortal(){
   try {
@@ -5739,10 +5768,12 @@ function prepararAnillo(){
   let pedido = false;
   const cargar = () => { if (pedido) return; pedido = true; io.disconnect(); cargarAnillo(); };
   const io = new IntersectionObserver(([e])=>{ if (e.isIntersecting) cargar(); }, {rootMargin: "900px 0px"});
-  io.observe($("secAnillo"));
   // Se arma en un momento libre (mientras se mira la portada) y no justo al llegar a ella con el scroll,
-  // que es cuando más se nota una pausa.
-  if ("requestIdleCallback" in window) setTimeout(()=>requestIdleCallback(cargar), 2500);
+  // que es cuando más se nota una pausa; siempre después de la primera interacción.
+  alInteractuar(()=>{
+    io.observe($("secAnillo"));
+    if ("requestIdleCallback" in window) setTimeout(()=>requestIdleCallback(cargar), 2500);
+  });
 }
 async function cargarAnillo(){
   try {
@@ -5852,7 +5883,7 @@ function alPasar(el, pintar){
       const n = k * (pals.length + 1);
       // Solo se tocan las palabras que cambian (en cada cuadro son una o dos): así no se recalcula todo el texto.
       pals.forEach((w, i)=>{
-        const o = (0.14 + 0.86 * Math.min(1, Math.max(0, n - i))).toFixed(2);
+        const o = (0.6 + 0.4 * Math.min(1, Math.max(0, n - i))).toFixed(2);
         if (o !== antes[i]){ antes[i] = o; w.style.setProperty("--o", o); }
       });
     });
