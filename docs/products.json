@@ -12,7 +12,7 @@
     "stock": {
       "scala": 129,
       "condado": 215,
-      "valle": 204
+      "valle": 198
     },
     "photos": [],
     "desc": "",
@@ -366,19 +366,19 @@
     "vendido": true
   },
   {
-    "code": "HP14.CNCF",
-    "name": "CAJA DE MADERA MUSICAL ZELDA/HARRY POTTER-C",
+    "code": "080970.CGSF",
+    "name": "LLAVERO SUPERHEROE DISTINTOS MODELOS",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 8.9,
-    "price_efectivo": 8.9,
-    "price_tarjeta": 8.9,
+    "price": 3.9,
+    "price_efectivo": 3.9,
+    "price_tarjeta": 3.9,
     "digital": false,
-    "nuevo": false,
+    "nuevo": true,
     "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 3
+      "scala": 2,
+      "condado": 2,
+      "valle": 0
     },
     "photos": [],
     "desc": "",
@@ -466,6 +466,48 @@
     "vendido": true
   },
   {
+    "code": "X17-15441.CGCF",
+    "name": "PALANCA MICROSOFT PARA PC Y XBOX 360 - CAJA ROJA X17-15441-C",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 25.9,
+    "price_efectivo": 25.9,
+    "price_tarjeta": 27.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/X17-15441.CGCF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "HP14.CNCF",
+    "name": "CAJA DE MADERA MUSICAL ZELDA/HARRY POTTER-C",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 8.9,
+    "price_efectivo": 8.9,
+    "price_tarjeta": 8.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 3
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "231109.EG",
     "name": "PALANCA PS5 TECNO RED",
     "cat": "palancas",
@@ -521,26 +563,6 @@
       "scala": 3,
       "condado": 5,
       "valle": 6
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "080970.CGSF",
-    "name": "LLAVERO SUPERHEROE DISTINTOS MODELOS",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 3.9,
-    "price_efectivo": 3.9,
-    "price_tarjeta": 3.9,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 2,
-      "condado": 3,
-      "valle": 0
     },
     "photos": [],
     "desc": "",
@@ -694,28 +716,6 @@
     "vendido": true
   },
   {
-    "code": "X17-15441.CGCF",
-    "name": "PALANCA MICROSOFT PARA PC Y XBOX 360 - CAJA ROJA X17-15441-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 25.9,
-    "price_efectivo": 25.9,
-    "price_tarjeta": 27.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/X17-15441.CGCF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "456321.CDCF",
     "name": "GAMEPAD D11 CAJA ROJA CON BLANCO",
     "cat": "accesorios",
@@ -751,28 +751,6 @@
       "valle": 1
     },
     "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "711719596554.CGSF",
-    "name": "PALANCA PS5 DualSense Edge Wireless Controller COLOR NEGRO Y BLANCO",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 274.9,
-    "price_efectivo": 274.9,
-    "price_tarjeta": 289.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/711719596554.CGSF/1.jpg"
-    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -908,26 +886,6 @@
     "vendido": true
   },
   {
-    "code": "2762028.CGSF",
-    "name": "JUEGO NINTENDO SWITCH 2 FC 27",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 97.9,
-    "price_efectivo": 97.9,
-    "price_tarjeta": 103.9,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "098352.CGSF",
     "name": "CONSOLA NINTENDO SWITCH 2",
     "cat": "consolas",
@@ -944,6 +902,28 @@
     },
     "photos": [
       "fotos/098352.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "711719596554.CGSF",
+    "name": "PALANCA PS5 DualSense Edge Wireless Controller COLOR NEGRO Y BLANCO",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 274.9,
+    "price_efectivo": 274.9,
+    "price_tarjeta": 289.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/711719596554.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1036,23 +1016,21 @@
     "vendido": true
   },
   {
-    "code": "93412E.CGSF",
-    "name": "JUEGO PS5 RESIDENT EVIL REQUIEM",
+    "code": "2762028.CGSF",
+    "name": "JUEGO NINTENDO SWITCH 2 FC 27",
     "cat": "juegos",
     "cat_label": "Juegos",
-    "price": 96.9,
-    "price_efectivo": 96.9,
-    "price_tarjeta": 99.9,
+    "price": 97.9,
+    "price_efectivo": 97.9,
+    "price_tarjeta": 103.9,
     "digital": false,
-    "nuevo": false,
+    "nuevo": true,
     "stock": {
-      "scala": 0,
-      "condado": 1,
+      "scala": 1,
+      "condado": 0,
       "valle": 0
     },
-    "photos": [
-      "fotos/93412E.CGSF/1.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1260,7 +1238,7 @@
     "price_efectivo": 159.9,
     "price_tarjeta": 164.9,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1287,28 +1265,6 @@
       "valle": 0
     },
     "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "710425478949.CGSF",
-    "name": "JUEGO PS4 RED DEAD REDEMPTION II-C",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 49.9,
-    "price_efectivo": 49.9,
-    "price_tarjeta": 53.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/710425478949.CGSF/1.jpg"
-    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1358,28 +1314,6 @@
     "vendido": true
   },
   {
-    "code": "950001.CGSF",
-    "name": "JUEGO PS5 SILENT HILL TOWNFALL",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 74.9,
-    "price_efectivo": 74.9,
-    "price_tarjeta": 79.9,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/950001.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "56262695.CGSF",
     "name": "CONSOLA PS5 SLIM DIGITAL",
     "cat": "consolas",
@@ -1396,28 +1330,6 @@
     },
     "photos": [
       "fotos/56262695.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "711719039594.CGCF",
-    "name": "PALANCA PS4 GENERICA DE COLORES VARIADOS",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 26.9,
-    "price_efectivo": 26.9,
-    "price_tarjeta": 26.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/711719039594.CGCF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1614,6 +1526,50 @@
     },
     "photos": [
       "fotos/325263.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "93412E.CGSF",
+    "name": "JUEGO PS5 RESIDENT EVIL REQUIEM",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 96.9,
+    "price_efectivo": 96.9,
+    "price_tarjeta": 99.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/93412E.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "950001.CGSF",
+    "name": "JUEGO PS5 SILENT HILL TOWNFALL",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 74.9,
+    "price_efectivo": 74.9,
+    "price_tarjeta": 79.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/950001.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1990,6 +1946,27 @@
     "top": false
   },
   {
+    "code": "710425478949.CGSF",
+    "name": "JUEGO PS4 RED DEAD REDEMPTION II-C",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 49.9,
+    "price_efectivo": 49.9,
+    "price_tarjeta": 53.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/710425478949.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "711719589051.CGSF",
     "name": "JUEGO PS5 ASTRO BOT-C",
     "cat": "juegos",
@@ -2069,27 +2046,6 @@
     },
     "photos": [
       "fotos/5030917236662.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "47037.CGSF",
-    "name": "JUEGO PS4 GOD OF WAR RAGNAROK",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 59.9,
-    "price_efectivo": 59.9,
-    "price_tarjeta": 63.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/47037.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
@@ -3754,27 +3710,6 @@
     "top": false
   },
   {
-    "code": "711719506027",
-    "name": "JUEGO PS4 DEATH STRANDING",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 45.9,
-    "price_efectivo": 45.9,
-    "price_tarjeta": 45.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/711719506027/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "14633742671",
     "name": "JUEGO XBOX MADDEN22",
     "cat": "juegos",
@@ -4211,6 +4146,27 @@
     },
     "photos": [
       "fotos/47875785489.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "47037.CGSF",
+    "name": "JUEGO PS4 GOD OF WAR RAGNAROK",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 59.9,
+    "price_efectivo": 59.9,
+    "price_tarjeta": 63.91,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/47037.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
@@ -4924,6 +4880,25 @@
     "top": false
   },
   {
+    "code": "135135135.CGSF",
+    "name": "JUEGO PS4 SPIDERMAN MEDIO USO",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 19.89,
+    "price_efectivo": 19.89,
+    "price_tarjeta": 19.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "211425.CGSF",
     "name": "JUEGO PS4 MORTAL KOMBAT 11 ULTIMATE MEDIO USO",
     "cat": "juegos",
@@ -5556,7 +5531,7 @@
     "price_efectivo": 114.9,
     "price_tarjeta": 119.9,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 0,
