@@ -11,7 +11,7 @@
     "nuevo": false,
     "stock": {
       "scala": 129,
-      "condado": 215,
+      "condado": 209,
       "valle": 198
     },
     "photos": [],
@@ -31,7 +31,7 @@
     "nuevo": false,
     "stock": {
       "scala": 16,
-      "condado": 3,
+      "condado": 2,
       "valle": 3
     },
     "photos": [],
@@ -51,7 +51,7 @@
     "nuevo": false,
     "stock": {
       "scala": 12,
-      "condado": 12,
+      "condado": 10,
       "valle": 15
     },
     "photos": [],
@@ -91,8 +91,8 @@
     "nuevo": false,
     "stock": {
       "scala": 2,
-      "condado": 2,
-      "valle": 1
+      "condado": 0,
+      "valle": 0
     },
     "photos": [
       "fotos/711719039594.EG/1.jpg"
@@ -162,26 +162,6 @@
     "vendido": true
   },
   {
-    "code": "3394808.CDCF",
-    "name": "BOLA DE CRISTAL CON LUCES POKEMON",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 21.9,
-    "price_efectivo": 21.9,
-    "price_tarjeta": 22.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 4,
-      "condado": 6,
-      "valle": 8
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "SW2023.EG",
     "name": "MICA NINTENDO SWITCH 2",
     "cat": "accesorios",
@@ -195,6 +175,26 @@
       "scala": 3,
       "condado": 2,
       "valle": 4
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "67800908.CDCF",
+    "name": "AGENDA HARRY POTTER CAJA NEGRA PORTADA DE CARA DE CALABAZA",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 34.9,
+    "price_efectivo": 34.9,
+    "price_tarjeta": 34.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -242,26 +242,6 @@
     "vendido": true
   },
   {
-    "code": "8265893.EG",
-    "name": "PALANCA PS3 GENERICA CON DISEÑOS",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 16.9,
-    "price_efectivo": 16.9,
-    "price_tarjeta": 16.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 2,
-      "valle": 3
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "345672755.CDCF",
     "name": "CARPETA DE TARJETAS POKEMON DIFERENTES DISEÑOS 18 BOLSILLOS DE 900 TARJETAS PARA COLECCIONISTA - 37396-C",
     "cat": "accesorios",
@@ -282,23 +262,21 @@
     "vendido": true
   },
   {
-    "code": "5485265655.EG",
-    "name": "PALANCA PS4 GENERICA CON DISEÑOS SPIDER-MAN 2 - MODERN WARFARE",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 32.9,
-    "price_efectivo": 32.9,
-    "price_tarjeta": 32.9,
+    "code": "3394808.CDCF",
+    "name": "BOLA DE CRISTAL CON LUCES POKEMON",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 21.9,
+    "price_efectivo": 21.9,
+    "price_tarjeta": 22.9,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
-      "condado": 3,
-      "valle": 1
+      "scala": 4,
+      "condado": 6,
+      "valle": 8
     },
-    "photos": [
-      "fotos/5485265655.EG/1.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -326,7 +304,7 @@
     "vendido": true
   },
   {
-    "code": "156926.EG",
+    "code": "87094321.EG",
     "name": "CARGADOR DE IPHONE TIPO C - LIGHTNING 20W - 25W 14 PRO GENERICO",
     "cat": "accesorios",
     "cat_label": "Accesorios",
@@ -346,21 +324,43 @@
     "vendido": true
   },
   {
-    "code": "67800908.CDCF",
-    "name": "AGENDA HARRY POTTER CAJA NEGRA PORTADA DE CARA DE CALABAZA",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 34.9,
-    "price_efectivo": 34.9,
-    "price_tarjeta": 34.9,
+    "code": "8265893.EG",
+    "name": "PALANCA PS3 GENERICA CON DISEÑOS",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 16.9,
+    "price_efectivo": 16.9,
+    "price_tarjeta": 16.9,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 1
+      "scala": 0,
+      "condado": 2,
+      "valle": 3
     },
     "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "5485265655.EG",
+    "name": "PALANCA PS4 GENERICA CON DISEÑOS SPIDER-MAN 2 - MODERN WARFARE",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 32.9,
+    "price_efectivo": 32.9,
+    "price_tarjeta": 32.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 3,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/5485265655.EG/1.jpg"
+    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -634,28 +634,6 @@
     "vendido": true
   },
   {
-    "code": "711719572701.EG",
-    "name": "PALANCA PS5 PLATEADO SILVER-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 104.9,
-    "price_efectivo": 104.9,
-    "price_tarjeta": 109.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/711719572701.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "PS5007.CDCF",
     "name": "BASE HORIZONTAL PS5 4 EN 1 IPEGA",
     "cat": "accesorios",
@@ -736,13 +714,13 @@
     "vendido": true
   },
   {
-    "code": "TAZAPRIMIUN1.CNCF",
-    "name": "TAZA HARRY POTTER NEGRA TAPA AMARILLA DOMO 3D EDICION COLECCIONISTA",
+    "code": "4948872415064.EG",
+    "name": "BASE DE CARGA PARA PALANCA PS5 SONY GENERICO",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 29.9,
-    "price_efectivo": 29.9,
-    "price_tarjeta": 29.9,
+    "price": 42.89,
+    "price_efectivo": 42.89,
+    "price_tarjeta": 42.89,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -864,6 +842,28 @@
     "vendido": true
   },
   {
+    "code": "711719572701.EG",
+    "name": "PALANCA PS5 PLATEADO SILVER-C",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 104.9,
+    "price_efectivo": 104.9,
+    "price_tarjeta": 109.91,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/711719572701.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "6531234.CGSF",
     "name": "JUEGO NINTENDO SWITCH POKEMON ZA",
     "cat": "juegos",
@@ -960,7 +960,7 @@
     "price_efectivo": 104.9,
     "price_tarjeta": 109.91,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 1,
@@ -1258,7 +1258,7 @@
     "price_efectivo": 104.9,
     "price_tarjeta": 109.91,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
       "scala": 1,
       "condado": 1,
@@ -1372,28 +1372,6 @@
     },
     "photos": [
       "fotos/45496591779.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "45496597955.CGSF",
-    "name": "JUEGO NINTENDO SWITCH KIRBY Y LA TIERRA OLVIDADA",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 74.9,
-    "price_efectivo": 74.9,
-    "price_tarjeta": 75.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/45496597955.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
