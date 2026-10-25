@@ -10,7 +10,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 129,
+      "scala": 126,
       "condado": 209,
       "valle": 198
     },
@@ -30,29 +30,9 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 16,
+      "scala": 14,
       "condado": 2,
       "valle": 3
-    },
-    "photos": [],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
-    "code": "12542325.CDCF",
-    "name": "FUNDAS DE PAPEL POKEMON - PIKACHU  PEQUEÑAS",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 1.0,
-    "price_efectivo": 1.0,
-    "price_tarjeta": 1.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 12,
-      "condado": 10,
-      "valle": 15
     },
     "photos": [],
     "desc": "",
@@ -71,8 +51,28 @@
     "nuevo": false,
     "stock": {
       "scala": 2,
-      "condado": 4,
+      "condado": 3,
       "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
+    "code": "12542325.CDCF",
+    "name": "FUNDAS DE PAPEL POKEMON - PIKACHU  PEQUEÑAS",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 1.0,
+    "price_efectivo": 1.0,
+    "price_tarjeta": 1.0,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 12,
+      "condado": 9,
+      "valle": 15
     },
     "photos": [],
     "desc": "",
@@ -122,6 +122,26 @@
     "vendido": true
   },
   {
+    "code": "1080976.CGSF",
+    "name": "JUEGO PS5 FC 27",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 89.9,
+    "price_efectivo": 89.9,
+    "price_tarjeta": 94.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
     "code": "DEDAL.EG",
     "name": "DEDALES POR UNIDAD",
     "cat": "accesorios",
@@ -142,23 +162,23 @@
     "vendido": true
   },
   {
-    "code": "1080976.CGSF",
-    "name": "JUEGO PS5 FC 27",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 89.9,
-    "price_efectivo": 89.9,
-    "price_tarjeta": 94.9,
+    "code": "10-10362-101.CNCF",
+    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 34.89,
+    "price_efectivo": 34.89,
+    "price_tarjeta": 34.89,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
-      "scala": 1,
-      "condado": 1,
+      "scala": 4,
+      "condado": 3,
       "valle": 2
     },
     "photos": [],
     "desc": "",
-    "top": true,
+    "top": false,
     "vendido": true
   },
   {
@@ -177,6 +197,28 @@
       "valle": 4
     },
     "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "711719546573.EG",
+    "name": "PALANCA PS5 NEGRA ORIGINAL-C",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 99.9,
+    "price_efectivo": 99.9,
+    "price_tarjeta": 104.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 2,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/711719546573.EG/1.jpg"
+    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -222,26 +264,6 @@
     "vendido": true
   },
   {
-    "code": "10-10362-101.CNCF",
-    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 34.89,
-    "price_efectivo": 34.89,
-    "price_tarjeta": 34.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 5,
-      "condado": 3,
-      "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "345672755.CDCF",
     "name": "CARPETA DE TARJETAS POKEMON DIFERENTES DISEÑOS 18 BOLSILLOS DE 900 TARJETAS PARA COLECCIONISTA - 37396-C",
     "cat": "accesorios",
@@ -262,6 +284,26 @@
     "vendido": true
   },
   {
+    "code": "1790998.CDCF",
+    "name": "ESFEROS DE HARRY POTTER",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 5.9,
+    "price_efectivo": 5.9,
+    "price_tarjeta": 5.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 9,
+      "condado": 10,
+      "valle": 11
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "3394808.CDCF",
     "name": "BOLA DE CRISTAL CON LUCES POKEMON",
     "cat": "accesorios",
@@ -272,7 +314,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 4,
+      "scala": 9,
       "condado": 6,
       "valle": 8
     },
@@ -282,23 +324,21 @@
     "vendido": true
   },
   {
-    "code": "711719546573.EG",
-    "name": "PALANCA PS5 NEGRA ORIGINAL-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 99.9,
-    "price_efectivo": 99.9,
-    "price_tarjeta": 104.9,
+    "code": "LL-2669-E.CGCF",
+    "name": "LLAVEROS PERSONAJES VARIOS SNOOPY, PIKACHU, HELLOW KITTY.  ONE PIECE, NARUTO,STICH",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 4.5,
+    "price_efectivo": 4.5,
+    "price_tarjeta": 4.9,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 1,
-      "condado": 2,
-      "valle": 2
+      "scala": 4,
+      "condado": 4,
+      "valle": 0
     },
-    "photos": [
-      "fotos/711719546573.EG/1.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -337,6 +377,26 @@
       "scala": 0,
       "condado": 2,
       "valle": 3
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "409876009.CGSF",
+    "name": "LLAVERO DE VARIOS PERSONAJES",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 3.9,
+    "price_efectivo": 3.9,
+    "price_tarjeta": 3.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 15,
+      "condado": 16,
+      "valle": 0
     },
     "photos": [],
     "desc": "",
@@ -386,26 +446,6 @@
     "vendido": true
   },
   {
-    "code": "1790998.CDCF",
-    "name": "ESFEROS DE HARRY POTTER",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 5.9,
-    "price_efectivo": 5.9,
-    "price_tarjeta": 5.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 10,
-      "condado": 10,
-      "valle": 11
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "7665896.CGSF",
     "name": "JUEGO NINTENDO SWITCH FC 27",
     "cat": "juegos",
@@ -426,26 +466,6 @@
     "vendido": true
   },
   {
-    "code": "LL-2669-E.CGCF",
-    "name": "LLAVEROS PERSONAJES VARIOS SNOOPY, PIKACHU, HELLOW KITTY.  ONE PIECE, NARUTO,STICH",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 4.5,
-    "price_efectivo": 4.5,
-    "price_tarjeta": 4.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 4,
-      "condado": 5,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "3450989.CGSF",
     "name": "JUEGO PS4 FC 27",
     "cat": "juegos",
@@ -459,6 +479,26 @@
       "scala": 2,
       "condado": 2,
       "valle": 3
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "PS5007.CDCF",
+    "name": "BASE HORIZONTAL PS5 4 EN 1 IPEGA",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 17.91,
+    "price_efectivo": 17.91,
+    "price_tarjeta": 18.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -530,26 +570,6 @@
     "vendido": true
   },
   {
-    "code": "409876009.CGSF",
-    "name": "LLAVERO DE VARIOS PERSONAJES",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 3.9,
-    "price_efectivo": 3.9,
-    "price_tarjeta": 3.9,
-    "digital": false,
-    "nuevo": true,
-    "stock": {
-      "scala": 16,
-      "condado": 16,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "215545.CDCF",
     "name": "AGENDA HARRY POTTER CON CONTRASEÑA",
     "cat": "accesorios",
@@ -592,6 +612,26 @@
     "vendido": true
   },
   {
+    "code": "213587.EG",
+    "name": "ESTUCHES DE CONTROL DE PS5 GTA 6",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 12.9,
+    "price_efectivo": 12.9,
+    "price_tarjeta": 12.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 14,
+      "condado": 13,
+      "valle": 10
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "1695217.CDCF",
     "name": "CAJA PARA REGALO TEMATICA POKEMON VARIOS PERSONAJES",
     "cat": "accesorios",
@@ -605,6 +645,26 @@
       "scala": 9,
       "condado": 9,
       "valle": 15
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "711719554141.EG",
+    "name": "PALANCA PS5 CAMUFLADA-C",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 104.9,
+    "price_efectivo": 104.9,
+    "price_tarjeta": 109.91,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 2,
+      "valle": 2
     },
     "photos": [],
     "desc": "",
@@ -629,46 +689,6 @@
     "photos": [
       "fotos/550504.EG/1.jpg"
     ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "PS5007.CDCF",
-    "name": "BASE HORIZONTAL PS5 4 EN 1 IPEGA",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 17.91,
-    "price_efectivo": 17.91,
-    "price_tarjeta": 18.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "CALI-01.CNCF",
-    "name": "SET DE CALIGRAFIA HARRY POTER  CON SELLO DE LACRE Y ACCESORIOS + 18 PLUMILLAS +KIT DE CERA",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 32.9,
-    "price_efectivo": 32.9,
-    "price_tarjeta": 34.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -756,26 +776,6 @@
     "vendido": true
   },
   {
-    "code": "711719554141.EG",
-    "name": "PALANCA PS5 CAMUFLADA-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 104.9,
-    "price_efectivo": 104.9,
-    "price_tarjeta": 109.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 2,
-      "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "R36S.CDCF",
     "name": "CONSOLA DE JUEGO PORTATIL R36S 128GB",
     "cat": "consolas",
@@ -814,28 +814,6 @@
     },
     "photos": [
       "fotos/HS-P11191.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "191068.CGSF",
-    "name": "JUEGO PS5 MARVEL'S WOLVERINE",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 89.9,
-    "price_efectivo": 89.9,
-    "price_tarjeta": 95.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 3,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/191068.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -947,6 +925,26 @@
     "photos": [
       "fotos/711719587576.EG/1.jpg"
     ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "210809.CGSF",
+    "name": "PALANCA SCUF OMEGA PS5",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 309.9,
+    "price_efectivo": 309.9,
+    "price_tarjeta": 329.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1080,6 +1078,50 @@
     "vendido": true
   },
   {
+    "code": "191068.CGSF",
+    "name": "JUEGO PS5 MARVEL'S WOLVERINE",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 89.9,
+    "price_efectivo": 89.9,
+    "price_tarjeta": 95.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 3,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/191068.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "340998774.CDCF",
+    "name": "CONSOLA SUP",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 24.9,
+    "price_efectivo": 24.9,
+    "price_tarjeta": 24.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 3,
+      "valle": 1
+    },
+    "photos": [
+      "fotos/340998774.CDCF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "409890.CDCF",
     "name": "PALANCA P48 PS3-PS4-WINDOWS GAMINJA",
     "cat": "palancas",
@@ -1183,28 +1225,6 @@
       "valle": 1
     },
     "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "340998774.CDCF",
-    "name": "CONSOLA SUP",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 24.9,
-    "price_efectivo": 24.9,
-    "price_tarjeta": 24.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/340998774.CDCF/1.jpg"
-    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1336,26 +1356,6 @@
     "vendido": true
   },
   {
-    "code": "210809.CGSF",
-    "name": "PALANCA SCUF OMEGA PS5",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 309.9,
-    "price_efectivo": 309.9,
-    "price_tarjeta": 329.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "45496591779.CGSF",
     "name": "JUEGO NINTENDO SWITCH MINECRAFT-C",
     "cat": "juegos",
@@ -1372,28 +1372,6 @@
     },
     "photos": [
       "fotos/45496591779.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "45496905156.CGSF",
-    "name": "JUEGO NINTENDO SWITCH SUPER MARIO PARTY JAMBOREE",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 72.9,
-    "price_efectivo": 72.9,
-    "price_tarjeta": 77.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/45496905156.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1571,6 +1549,25 @@
     "photos": [
       "fotos/711719588269.CGSF/1.jpg"
     ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "588475.CGSF",
+    "name": "CONSOLA PS5 PRO",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 1549.9,
+    "price_efectivo": 1549.9,
+    "price_tarjeta": 1639.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1777,25 +1774,6 @@
     "photos": [
       "fotos/870987674.CGSF/1.jpg"
     ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "588475.CGSF",
-    "name": "CONSOLA PS5 PRO",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 1549.9,
-    "price_efectivo": 1549.9,
-    "price_tarjeta": 1639.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3089,27 +3067,6 @@
     "top": false
   },
   {
-    "code": "6789089.EG",
-    "name": "PALANCA WII+NUNCHUCK",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 39.91,
-    "price_efectivo": 39.91,
-    "price_tarjeta": 39.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/6789089.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "711719546979.EG",
     "name": "PALANCA PS5 LILA-C",
     "cat": "palancas",
@@ -4066,6 +4023,27 @@
     "top": false
   },
   {
+    "code": "45496905156.CGSF",
+    "name": "JUEGO NINTENDO SWITCH SUPER MARIO PARTY JAMBOREE",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 72.9,
+    "price_efectivo": 72.9,
+    "price_tarjeta": 77.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/45496905156.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "711719553793.CGSF",
     "name": "JUEGO PS5 THE LAST OF US PARTE II REMASTERED",
     "cat": "juegos",
@@ -4561,27 +4539,6 @@
     },
     "photos": [
       "fotos/87642098.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "5432123.CGSF",
-    "name": "JUEGO PS5  SPIDERMAN 2",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 77.9,
-    "price_efectivo": 77.9,
-    "price_tarjeta": 79.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/5432123.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
