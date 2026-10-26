@@ -1,11 +1,11 @@
 /* Service worker del catálogo.
-   - Páginas y datos (products.json, meta.json): siempre se pide la versión nueva a
+   - Páginas, datos (products.json, meta.json) y el código de la tienda (app.js): siempre se pide la versión nueva a
      internet y se guarda una copia; sin conexión se usa esa copia. Así cada cambio se
      ve al instante en la app instalada, sin esperar los 10 minutos de caché de GitHub.
    - Fotos y dibujos del muñequito: se muestra la copia guardada al tiro y se actualiza por detrás.
    - Sin internet y sin copia de la página: offline.html (el muñequito avisa que no hay conexión).
    Todo lo demás (fuentes, WhatsApp, etc.) pasa directo, sin tocarlo. */
-const CACHE = "eg-v1";
+const CACHE = "eg-v2";
 
 const SIN_CONEXION = ["offline.html", "mascota/poses/triste.webp"];
 self.addEventListener("install", e => {
@@ -22,7 +22,7 @@ self.addEventListener("activate", e => {
 async function primeroInternet(req) {
   const cache = await caches.open(CACHE);
   // Las páginas se guardan sin lo que va después del "?" (filtros, producto abierto): una copia por página.
-  const url = new URL(req.url), clave = req.mode === "navigate" ? url.origin + url.pathname : req.url;
+  const url = new URL(req.url), clave = req.mode === "navigate" || url.pathname.endsWith("/app.js") ? url.origin + url.pathname : req.url;
   try {
     // "no-cache" pregunta al servidor si hay versión nueva en vez de usar la guardada por 10 minutos.
     let res = await fetch(req.url, {cache: "no-cache", credentials: "same-origin"});
@@ -57,6 +57,6 @@ self.addEventListener("fetch", e => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
-  if (req.mode === "navigate" || url.pathname.endsWith(".json")) { e.respondWith(primeroInternet(req)); return; }
+  if (req.mode === "navigate" || url.pathname.endsWith(".json") || url.pathname.endsWith("/app.js")) { e.respondWith(primeroInternet(req)); return; }
   if (url.pathname.includes("/fotos/") || url.pathname.includes("/mascota/")) e.respondWith(copiaYActualiza(e));
 });
