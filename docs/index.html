@@ -2950,7 +2950,7 @@ async function loadProducts(){
 
   // Portada como vitrina: lo más vendido que ya tiene foto (si todavía hay pocas fotos, todo).
   const masVendidos = PRODUCTS.filter(p=>p.photos.length).length >= 6 ? PRODUCTS.filter(p=>p.photos.length) : PRODUCTS;
-  $("railTop").innerHTML = masVendidos.slice(0, 12).map(p=>cardHTML(p, false)).join("");
+  $("railTop").innerHTML = masVendidos.slice(0, 12).map((p, i)=>cardHTML(p, i > 3)).join("");   // solo las primeras sin "lazy": el carrusel queda más abajo y el resto se baja al acercarse
   pintarPodio();
   const nuevos = conFotoPrimero(PRODUCTS.filter(p=>p.nuevo)).slice(0, 12);
   $("secNuevos").hidden = !nuevos.length;
