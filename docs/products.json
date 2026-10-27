@@ -30,7 +30,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 14,
+      "scala": 12,
       "condado": 2,
       "valle": 3
     },
@@ -80,23 +80,21 @@
     "vendido": true
   },
   {
-    "code": "711719039594.EG",
-    "name": "PALANCA PS4 GENERICA DE COLORES VARIADOS",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 27.9,
-    "price_efectivo": 27.9,
-    "price_tarjeta": 27.9,
+    "code": "10-10362-101.CNCF",
+    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 34.89,
+    "price_efectivo": 34.89,
+    "price_tarjeta": 34.89,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 2,
-      "condado": 0,
-      "valle": 0
+      "scala": 3,
+      "condado": 3,
+      "valle": 2
     },
-    "photos": [
-      "fotos/711719039594.EG/1.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": true,
     "vendido": true
@@ -142,6 +140,28 @@
     "vendido": true
   },
   {
+    "code": "711719546573.EG",
+    "name": "PALANCA PS5 NEGRA ORIGINAL-C",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 99.9,
+    "price_efectivo": 99.9,
+    "price_tarjeta": 104.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 2,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/711719546573.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
     "code": "DEDAL.EG",
     "name": "DEDALES POR UNIDAD",
     "cat": "accesorios",
@@ -158,7 +178,29 @@
     },
     "photos": [],
     "desc": "",
-    "top": true,
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "711719039594.EG",
+    "name": "PALANCA PS4 GENERICA DE COLORES VARIADOS",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 27.9,
+    "price_efectivo": 27.9,
+    "price_tarjeta": 27.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/711719039594.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
     "vendido": true
   },
   {
@@ -182,26 +224,6 @@
     "vendido": true
   },
   {
-    "code": "10-10362-101.CNCF",
-    "name": "Pokemon TCG: 2025 World Championships Deck Master Case 48ct",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 34.89,
-    "price_efectivo": 34.89,
-    "price_tarjeta": 34.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 4,
-      "condado": 3,
-      "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "1790998.CDCF",
     "name": "ESFEROS DE HARRY POTTER",
     "cat": "accesorios",
@@ -213,7 +235,7 @@
     "nuevo": false,
     "stock": {
       "scala": 9,
-      "condado": 9,
+      "condado": 6,
       "valle": 11
     },
     "photos": [],
@@ -237,28 +259,6 @@
       "valle": 4
     },
     "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "711719546573.EG",
-    "name": "PALANCA PS5 NEGRA ORIGINAL-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 99.9,
-    "price_efectivo": 99.9,
-    "price_tarjeta": 104.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 2,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/711719546573.EG/1.jpg"
-    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -304,6 +304,26 @@
     "vendido": true
   },
   {
+    "code": "409876009.CGSF",
+    "name": "LLAVERO DE VARIOS PERSONAJES",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 3.9,
+    "price_efectivo": 3.9,
+    "price_tarjeta": 3.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 15,
+      "condado": 15,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "345672755.CDCF",
     "name": "CARPETA DE TARJETAS POKEMON DIFERENTES DISEÑOS 18 BOLSILLOS DE 900 TARJETAS PARA COLECCIONISTA - 37396-C",
     "cat": "accesorios",
@@ -339,28 +359,6 @@
       "valle": 0
     },
     "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "5485265655.EG",
-    "name": "PALANCA PS4 GENERICA CON DISEÑOS SPIDER-MAN 2 - MODERN WARFARE",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 32.9,
-    "price_efectivo": 32.9,
-    "price_tarjeta": 32.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/5485265655.EG/1.jpg"
-    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -426,21 +424,23 @@
     "vendido": true
   },
   {
-    "code": "409876009.CGSF",
-    "name": "LLAVERO DE VARIOS PERSONAJES",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 3.9,
-    "price_efectivo": 3.9,
-    "price_tarjeta": 3.9,
+    "code": "5485265655.EG",
+    "name": "PALANCA PS4 GENERICA CON DISEÑOS SPIDER-MAN 2 - MODERN WARFARE",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 32.9,
+    "price_efectivo": 32.9,
+    "price_tarjeta": 32.9,
     "digital": false,
-    "nuevo": true,
+    "nuevo": false,
     "stock": {
-      "scala": 15,
-      "condado": 16,
-      "valle": 0
+      "scala": 0,
+      "condado": 1,
+      "valle": 1
     },
-    "photos": [],
+    "photos": [
+      "fotos/5485265655.EG/1.jpg"
+    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -457,7 +457,7 @@
     "nuevo": false,
     "stock": {
       "scala": 1,
-      "condado": 1,
+      "condado": 0,
       "valle": 1
     },
     "photos": [],
@@ -546,26 +546,6 @@
     "vendido": true
   },
   {
-    "code": "PS5007.CDCF",
-    "name": "BASE HORIZONTAL PS5 4 EN 1 IPEGA",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 17.91,
-    "price_efectivo": 17.91,
-    "price_tarjeta": 18.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "231109.EG",
     "name": "PALANCA PS5 TECNO RED",
     "cat": "palancas",
@@ -630,19 +610,19 @@
     "vendido": true
   },
   {
-    "code": "711719554141.EG",
-    "name": "PALANCA PS5 CAMUFLADA-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 104.9,
-    "price_efectivo": 104.9,
-    "price_tarjeta": 109.91,
+    "code": "20987609.CG",
+    "name": "CHIP TIGO",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 3.99,
+    "price_efectivo": 3.99,
+    "price_tarjeta": 3.99,
     "digital": false,
-    "nuevo": false,
+    "nuevo": true,
     "stock": {
-      "scala": 1,
-      "condado": 2,
-      "valle": 2
+      "scala": 0,
+      "condado": 0,
+      "valle": 7
     },
     "photos": [],
     "desc": "",
@@ -663,6 +643,26 @@
       "scala": 0,
       "condado": 0,
       "valle": 4
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "PS5007.CDCF",
+    "name": "BASE HORIZONTAL PS5 4 EN 1 IPEGA",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 17.91,
+    "price_efectivo": 17.91,
+    "price_tarjeta": 18.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -707,26 +707,6 @@
     "photos": [
       "fotos/X17-15441.CGCF/1.jpg"
     ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "CA-GRAB.EG",
-    "name": "CABLE DE PS4 - GRABADORA 1,80M",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 4.9,
-    "price_efectivo": 4.9,
-    "price_tarjeta": 4.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 0,
-      "valle": 4
-    },
-    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -793,6 +773,26 @@
     "photos": [
       "fotos/HS-P11191.EG/1.jpg"
     ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "711719554141.EG",
+    "name": "PALANCA PS5 CAMUFLADA-C",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 104.9,
+    "price_efectivo": 104.9,
+    "price_tarjeta": 109.91,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 2,
+      "valle": 2
+    },
+    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -886,13 +886,13 @@
     "vendido": true
   },
   {
-    "code": "6531234.CGSF",
-    "name": "JUEGO NINTENDO SWITCH POKEMON ZA",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 72.9,
-    "price_efectivo": 72.9,
-    "price_tarjeta": 77.9,
+    "code": "210809.CGSF",
+    "name": "PALANCA SCUF OMEGA PS5",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 309.9,
+    "price_efectivo": 309.9,
+    "price_tarjeta": 329.9,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -900,9 +900,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/6531234.CGSF/1.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -947,26 +945,6 @@
     "photos": [
       "fotos/711719596554.CGSF/1.jpg"
     ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "210809.CGSF",
-    "name": "PALANCA SCUF OMEGA PS5",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 309.9,
-    "price_efectivo": 309.9,
-    "price_tarjeta": 329.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1272,6 +1250,28 @@
     "vendido": true
   },
   {
+    "code": "6531234.CGSF",
+    "name": "JUEGO NINTENDO SWITCH POKEMON ZA",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 72.9,
+    "price_efectivo": 72.9,
+    "price_tarjeta": 77.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/6531234.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "56262695.CGSF",
     "name": "CONSOLA PS5 SLIM DIGITAL",
     "cat": "consolas",
@@ -1331,26 +1331,6 @@
     "photos": [
       "fotos/089015.CGSF/1.jpg"
     ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "354231.EG",
-    "name": "CONTROL Cobalt Blue PS5",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 104.9,
-    "price_efectivo": 104.9,
-    "price_tarjeta": 109.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1482,28 +1462,6 @@
     },
     "photos": [
       "fotos/231443.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "325263.CGSF",
-    "name": "JUEGO PS4 DESTINY MEDIO USO",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 19.89,
-    "price_efectivo": 19.89,
-    "price_tarjeta": 19.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/325263.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -3144,6 +3102,25 @@
     "photos": [
       "fotos/36790876570.EG/1.jpg"
     ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "354231.EG",
+    "name": "CONTROL Cobalt Blue PS5",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 104.9,
+    "price_efectivo": 104.9,
+    "price_tarjeta": 109.91,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -4912,6 +4889,27 @@
     },
     "photos": [
       "fotos/20266450.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "325263.CGSF",
+    "name": "JUEGO PS4 DESTINY MEDIO USO",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 19.89,
+    "price_efectivo": 19.89,
+    "price_tarjeta": 19.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/325263.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
