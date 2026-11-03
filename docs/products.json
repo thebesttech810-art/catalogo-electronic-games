@@ -60,6 +60,28 @@
     "vendido": true
   },
   {
+    "code": "711719039594.EG",
+    "name": "PALANCA PS4 GENERICA DE COLORES VARIADOS",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 27.9,
+    "price_efectivo": 27.9,
+    "price_tarjeta": 27.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 2
+    },
+    "photos": [
+      "fotos/711719039594.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
     "code": "711719546573.EG",
     "name": "PALANCA PS5 NEGRA ORIGINAL-C",
     "cat": "palancas",
@@ -76,28 +98,6 @@
     },
     "photos": [
       "fotos/711719546573.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
-    "code": "711719039594.EG",
-    "name": "PALANCA PS4 GENERICA DE COLORES VARIADOS",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 27.9,
-    "price_efectivo": 27.9,
-    "price_tarjeta": 27.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 2,
-      "valle": 2
-    },
-    "photos": [
-      "fotos/711719039594.EG/1.jpg"
     ],
     "desc": "",
     "top": true,
@@ -134,11 +134,33 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 4,
+      "scala": 2,
       "condado": 0,
       "valle": 4
     },
     "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
+    "code": "5485265655.EG",
+    "name": "PALANCA PS4 GENERICA CON DISEÑOS SPIDER-MAN 2 - MODERN WARFARE",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 32.9,
+    "price_efectivo": 32.9,
+    "price_tarjeta": 32.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 2
+    },
+    "photos": [
+      "fotos/5485265655.EG/1.jpg"
+    ],
     "desc": "",
     "top": true,
     "vendido": true
@@ -159,28 +181,6 @@
       "valle": 1
     },
     "photos": [],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
-    "code": "5485265655.EG",
-    "name": "PALANCA PS4 GENERICA CON DISEÑOS SPIDER-MAN 2 - MODERN WARFARE",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 32.9,
-    "price_efectivo": 32.9,
-    "price_tarjeta": 32.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 2,
-      "valle": 2
-    },
-    "photos": [
-      "fotos/5485265655.EG/1.jpg"
-    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -310,19 +310,41 @@
     "vendido": true
   },
   {
-    "code": "7665896.CGSF",
-    "name": "JUEGO NINTENDO SWITCH FC 27",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 79.9,
-    "price_efectivo": 79.9,
-    "price_tarjeta": 84.9,
+    "code": "711719572701.EG",
+    "name": "PALANCA PS5 PLATEADO SILVER-C",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 104.9,
+    "price_efectivo": 104.9,
+    "price_tarjeta": 109.91,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/711719572701.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "LL-4028-A.CGCF",
+    "name": "LLAVERO HARRY POTTER",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 3.0,
+    "price_efectivo": 3.0,
+    "price_tarjeta": 3.0,
     "digital": false,
     "nuevo": false,
     "stock": {
       "scala": 3,
-      "condado": 3,
-      "valle": 4
+      "condado": 6,
+      "valle": 0
     },
     "photos": [],
     "desc": "",
@@ -350,6 +372,26 @@
     "vendido": true
   },
   {
+    "code": "TAZAPRIMIUN1.CNCF",
+    "name": "TAZA HARRY POTTER NEGRA TAPA AMARILLA DOMO 3D EDICION COLECCIONISTA",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 29.9,
+    "price_efectivo": 29.9,
+    "price_tarjeta": 29.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "77643.EG",
     "name": "CABLE ECONOMICO DE USB A TIPO C",
     "cat": "accesorios",
@@ -370,28 +412,6 @@
     "vendido": true
   },
   {
-    "code": "711719572701.EG",
-    "name": "PALANCA PS5 PLATEADO SILVER-C",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 104.9,
-    "price_efectivo": 104.9,
-    "price_tarjeta": 109.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 2,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/711719572701.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "JG-8683-A-C",
     "name": "LLAVERO KUROMI-POKEMON DISEÑOS VARIADOS",
     "cat": "accesorios",
@@ -407,48 +427,6 @@
       "valle": 0
     },
     "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "LL-4028-A.CGCF",
-    "name": "LLAVERO HARRY POTTER",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 3.0,
-    "price_efectivo": 3.0,
-    "price_tarjeta": 3.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 3,
-      "condado": 7,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "HS-P11191.EG",
-    "name": "PALANCA PS2 INALAMBRICA TRANSPARENTE",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 14.9,
-    "price_efectivo": 14.9,
-    "price_tarjeta": 14.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 3
-    },
-    "photos": [
-      "fotos/HS-P11191.EG/1.jpg"
-    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -589,28 +567,6 @@
       "valle": 1
     },
     "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "098352.CGSF",
-    "name": "CONSOLA NINTENDO SWITCH 2",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 754.89,
-    "price_efectivo": 754.89,
-    "price_tarjeta": 799.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/098352.CGSF/1.jpg"
-    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -758,21 +714,23 @@
     "vendido": true
   },
   {
-    "code": "ESTU-PS4.CGCF",
-    "name": "ESTUCHE PARA PALANCA PS4 MODELOS VARIADOS 2026",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 6.0,
-    "price_efectivo": 6.0,
-    "price_tarjeta": 6.0,
+    "code": "HS-P11191.EG",
+    "name": "PALANCA PS2 INALAMBRICA TRANSPARENTE",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 14.9,
+    "price_efectivo": 14.9,
+    "price_tarjeta": 14.9,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 9,
-      "condado": 3,
-      "valle": 0
+      "scala": 1,
+      "condado": 1,
+      "valle": 3
     },
-    "photos": [],
+    "photos": [
+      "fotos/HS-P11191.EG/1.jpg"
+    ],
     "desc": "",
     "top": false,
     "vendido": true
@@ -794,6 +752,28 @@
     },
     "photos": [
       "fotos/550504.EG/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "098352.CGSF",
+    "name": "CONSOLA NINTENDO SWITCH 2",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 754.89,
+    "price_efectivo": 754.89,
+    "price_tarjeta": 799.91,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/098352.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -905,26 +885,6 @@
     "photos": [
       "fotos/93412E.CGSF/1.jpg"
     ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "2762028.CGSF",
-    "name": "JUEGO NINTENDO SWITCH 2 FC 27",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 97.9,
-    "price_efectivo": 97.9,
-    "price_tarjeta": 103.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1073,25 +1033,6 @@
     "top": false
   },
   {
-    "code": "6974073211004",
-    "name": "PALANCA PS4/NINTENDO/PC/STEAM DECK  GENERICA HS-PS5",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 28.9,
-    "price_efectivo": 28.9,
-    "price_tarjeta": 28.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 2
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "885370114867.CGCF",
     "name": "CONTROL XBOX 360 INALAMBRICO",
     "cat": "palancas",
@@ -1232,6 +1173,27 @@
     },
     "photos": [
       "fotos/5457534.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "47875884007.CGSF",
+    "name": "JUEGO NINTENDO SWITCH CTR CRASH TEAM RACING NITRO FUELED",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 51.9,
+    "price_efectivo": 51.9,
+    "price_tarjeta": 55.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/47875884007.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
@@ -1740,48 +1702,6 @@
       "valle": 0
     },
     "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "12098709.CGSF",
-    "name": "CONTROL 8BITDO PRO 3 GAMEPAD NARANJA SWITCH 1-2 WINDOWS ANDROID APPLE",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 129.9,
-    "price_efectivo": 129.9,
-    "price_tarjeta": 137.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/12098709.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "1090987.CGSF",
-    "name": "PRO CONTROL NINTENDO SWITCH 1 Y 2 MOBAPAD CHITU2",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 92.9,
-    "price_efectivo": 92.9,
-    "price_tarjeta": 92.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/1090987.CGSF/1.jpg"
-    ],
     "desc": "",
     "top": false
   },
@@ -2952,6 +2872,67 @@
     "top": false
   },
   {
+    "code": "986012.CGSF",
+    "name": "JUEGO PS5 DRAGONBALL Z KAKAROT",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 54.9,
+    "price_efectivo": 54.9,
+    "price_tarjeta": 59.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/986012.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "097532.CGSF",
+    "name": "JUEGO NINTENDO SWITCH 2 MORTAL KOMBAT LEGACY KOLLECTION",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 94.9,
+    "price_efectivo": 94.9,
+    "price_tarjeta": 99.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/097532.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "135135135.CGSF",
+    "name": "JUEGO PS4 SPIDERMAN MEDIO USO",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 19.89,
+    "price_efectivo": 19.89,
+    "price_tarjeta": 19.89,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "54459.CGSF",
     "name": "JUEGO PS4 SONIC SHADOW GENERATION",
     "cat": "juegos",
@@ -3265,13 +3246,13 @@
     "top": false
   },
   {
-    "code": "2332480.CGSF",
-    "name": "JUEGO PS5 PRAGMATA",
+    "code": "03082026.CGSF",
+    "name": "ESTUCHE DE ALMACENAMIENTO PARA PATIENTAS TECH DECH ULTRA CON PISTA MAS ACCESORIOS",
     "cat": "juegos",
     "cat_label": "Juegos",
-    "price": 91.9,
-    "price_efectivo": 91.9,
-    "price_tarjeta": 97.9,
+    "price": 19.89,
+    "price_efectivo": 19.89,
+    "price_tarjeta": 19.89,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -3279,51 +3260,7 @@
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/2332480.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "6908790.CGSF",
-    "name": "JUEGO NINTENDO SWITCH 2 TAMAGOCHI PLAZA",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 72.9,
-    "price_efectivo": 72.9,
-    "price_tarjeta": 77.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/6908790.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "690639.CGSF",
-    "name": "JUEGO NINTENDO SWITCH 2 YOSHI AND THE MYSTERIOUS BOOK",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 109.91,
-    "price_efectivo": 109.91,
-    "price_tarjeta": 112.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/690639.CGSF/1.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3428,27 +3365,6 @@
     },
     "photos": [
       "fotos/4352423.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "950001.CGSF",
-    "name": "JUEGO PS5 SILENT HILL TOWNFALL",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 74.9,
-    "price_efectivo": 74.9,
-    "price_tarjeta": 79.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/950001.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
