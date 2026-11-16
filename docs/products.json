@@ -10,9 +10,9 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 220,
-      "condado": 169,
-      "valle": 166
+      "scala": 206,
+      "condado": 267,
+      "valle": 164
     },
     "photos": [],
     "desc": "",
@@ -31,8 +31,28 @@
     "nuevo": false,
     "stock": {
       "scala": 7,
-      "condado": 7,
+      "condado": 6,
       "valle": 3
+    },
+    "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
+    "code": "ESTU-PS5.EG",
+    "name": "ESTUCHES PARA PALANCA PS5 MODELOS VARIADOS-C",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 6.9,
+    "price_efectivo": 6.9,
+    "price_tarjeta": 6.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 3,
+      "condado": 6,
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -60,26 +80,6 @@
     "vendido": true
   },
   {
-    "code": "ESTU-PS5.EG",
-    "name": "ESTUCHES PARA PALANCA PS5 MODELOS VARIADOS-C",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 6.9,
-    "price_efectivo": 6.9,
-    "price_tarjeta": 6.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 4,
-      "condado": 6,
-      "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
     "code": "5654653.CDCF",
     "name": "CARPETA DE TARJETAS POKEMON DIFERENTES DISEÑOS 8 BOLSILLOS DE 400 TARJETAS PARA COLECCIONISTA",
     "cat": "accesorios",
@@ -95,6 +95,28 @@
       "valle": 2
     },
     "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
+    "code": "5485265655.EG",
+    "name": "PALANCA PS4 GENERICA CON DISEÑOS SPIDER-MAN 2 - MODERN WARFARE",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 32.9,
+    "price_efectivo": 32.9,
+    "price_tarjeta": 32.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 1,
+      "valle": 4
+    },
+    "photos": [
+      "fotos/5485265655.EG/1.jpg"
+    ],
     "desc": "",
     "top": true,
     "vendido": true
@@ -142,28 +164,6 @@
     "vendido": true
   },
   {
-    "code": "5485265655.EG",
-    "name": "PALANCA PS4 GENERICA CON DISEÑOS SPIDER-MAN 2 - MODERN WARFARE",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 32.9,
-    "price_efectivo": 32.9,
-    "price_tarjeta": 32.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 3,
-      "condado": 2,
-      "valle": 4
-    },
-    "photos": [
-      "fotos/5485265655.EG/1.jpg"
-    ],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
     "code": "87094321.EG",
     "name": "CARGADOR DE IPHONE TIPO C - LIGHTNING 20W - 25W 14 PRO GENERICO",
     "cat": "accesorios",
@@ -204,39 +204,19 @@
     "vendido": true
   },
   {
-    "code": "DEDAL.EG",
-    "name": "DEDALES POR UNIDAD",
+    "code": "CALI-01.CNCF",
+    "name": "SET DE CALIGRAFIA HARRY POTER  CON SELLO DE LACRE Y ACCESORIOS + 18 PLUMILLAS +KIT DE CERA",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 2.5,
-    "price_efectivo": 2.5,
-    "price_tarjeta": 2.5,
+    "price": 32.9,
+    "price_efectivo": 32.9,
+    "price_tarjeta": 34.9,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 4,
-      "condado": 4,
-      "valle": 6
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "LL-4028-A.CGCF",
-    "name": "LLAVERO HARRY POTTER",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 3.0,
-    "price_efectivo": 3.0,
-    "price_tarjeta": 3.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 3,
-      "condado": 5,
-      "valle": 0
+      "scala": 1,
+      "condado": 1,
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -254,7 +234,7 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
+      "scala": 1,
       "condado": 1,
       "valle": 1
     },
@@ -264,19 +244,39 @@
     "vendido": true
   },
   {
-    "code": "CALI-01.CNCF",
-    "name": "SET DE CALIGRAFIA HARRY POTER  CON SELLO DE LACRE Y ACCESORIOS + 18 PLUMILLAS +KIT DE CERA",
+    "code": "080970.CGSF",
+    "name": "LLAVERO SUPERHEROE DISTINTOS MODELOS",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 32.9,
-    "price_efectivo": 32.9,
-    "price_tarjeta": 34.9,
+    "price": 3.9,
+    "price_efectivo": 3.9,
+    "price_tarjeta": 3.9,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
+      "scala": 2,
       "condado": 1,
-      "valle": 1
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "DEDAL.EG",
+    "name": "DEDALES POR UNIDAD",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 2.5,
+    "price_efectivo": 2.5,
+    "price_tarjeta": 2.5,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 4,
+      "condado": 4,
+      "valle": 6
     },
     "photos": [],
     "desc": "",
@@ -304,6 +304,46 @@
     "vendido": true
   },
   {
+    "code": "V3-1.EG",
+    "name": "CABLE USB V3 EN FUNDA 1.5M",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 5.9,
+    "price_efectivo": 5.9,
+    "price_tarjeta": 5.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "LL-4028-A.CGCF",
+    "name": "LLAVERO HARRY POTTER",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 3.0,
+    "price_efectivo": 3.0,
+    "price_tarjeta": 3.0,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 3,
+      "condado": 5,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "77643.EG",
     "name": "CABLE ECONOMICO DE USB A TIPO C",
     "cat": "accesorios",
@@ -317,26 +357,6 @@
       "scala": 0,
       "condado": 0,
       "valle": 4
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "TAZAPRIMIUN1.CNCF",
-    "name": "TAZA HARRY POTTER NEGRA TAPA AMARILLA DOMO 3D EDICION COLECCIONISTA",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 29.9,
-    "price_efectivo": 29.9,
-    "price_tarjeta": 29.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -386,26 +406,6 @@
     "vendido": true
   },
   {
-    "code": "V3-1.EG",
-    "name": "CABLE USB V3 EN FUNDA 1.5M",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 5.9,
-    "price_efectivo": 5.9,
-    "price_tarjeta": 5.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 0,
-      "valle": 3
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
     "code": "1695217.CDCF",
     "name": "CAJA PARA REGALO TEMATICA POKEMON VARIOS PERSONAJES",
     "cat": "accesorios",
@@ -426,39 +426,19 @@
     "vendido": true
   },
   {
-    "code": "ESTU-PS4.CGCF",
-    "name": "ESTUCHE PARA PALANCA PS4 MODELOS VARIADOS 2026",
+    "code": "98438.CNCF",
+    "name": "FUNDAS DE PAPEL PEQUEÑA HARRY POTTER",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 6.0,
-    "price_efectivo": 6.0,
-    "price_tarjeta": 6.0,
+    "price": 1.0,
+    "price_efectivo": 1.0,
+    "price_tarjeta": 1.0,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 9,
-      "condado": 2,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "LL-2669-E.CGCF",
-    "name": "LLAVEROS PERSONAJES VARIOS SNOOPY, PIKACHU, HELLOW KITTY.  ONE PIECE, NARUTO,STICH",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 4.5,
-    "price_efectivo": 4.5,
-    "price_tarjeta": 4.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 4,
-      "condado": 3,
-      "valle": 0
+      "scala": 8,
+      "condado": 5,
+      "valle": 3
     },
     "photos": [],
     "desc": "",
@@ -578,6 +558,46 @@
     "stock": {
       "scala": 2,
       "condado": 1,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "842588",
+    "name": "PATINETAS PRO SKATER ONLY  VARIOS MODELOS",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 4.9,
+    "price_efectivo": 4.9,
+    "price_tarjeta": 4.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 2,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "39764270.CGSF",
+    "name": "CONSOLA PS5 DIGITAL EDICION WOLVERINE",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 1259.91,
+    "price_efectivo": 1259.91,
+    "price_tarjeta": 1334.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
       "valle": 1
     },
     "photos": [],
@@ -838,6 +858,28 @@
     },
     "photos": [
       "fotos/4902370552171.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "257245135.CGSF",
+    "name": "JUEGO NINTENDO SWITCH METROID PRIME 4 BEYOND",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 69.9,
+    "price_efectivo": 69.9,
+    "price_tarjeta": 73.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/257245135.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -1156,6 +1198,25 @@
     "top": false
   },
   {
+    "code": "908987870.CGSF",
+    "name": "PRO CONTROL NINTENDO SWITCH 1 SONIC REALMZ PDP",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 79.9,
+    "price_efectivo": 79.9,
+    "price_tarjeta": 84.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "711719542285.CGSF",
     "name": "JUEGO PS5 SPIDERMAN MILES MORALES EDICION LIMITADA",
     "cat": "juegos",
@@ -1214,27 +1275,6 @@
     },
     "photos": [
       "fotos/905736.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "257245135.CGSF",
-    "name": "JUEGO NINTENDO SWITCH METROID PRIME 4 BEYOND",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 69.9,
-    "price_efectivo": 69.9,
-    "price_tarjeta": 73.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/257245135.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
@@ -1299,25 +1339,6 @@
     "photos": [
       "fotos/20266439.CGSF/1.jpg"
     ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "690660.CGSF",
-    "name": "JUEGO NINTENDO SWITCH RHYTHM HEAVEN GROOVE",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 82.9,
-    "price_efectivo": 82.9,
-    "price_tarjeta": 82.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1402,25 +1423,6 @@
     "photos": [
       "fotos/087532.CGSF/1.jpg"
     ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "0089090.CGSF",
-    "name": "CONSOLA NINTENDO SWITCH OLED BLANCA MEDIO USO + ACCESORIOS+HACK",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 329.9,
-    "price_efectivo": 329.9,
-    "price_tarjeta": 349.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [],
     "desc": "",
     "top": false
   },
@@ -1627,25 +1629,6 @@
     "top": false
   },
   {
-    "code": "711719587583.CGSF",
-    "name": "PALANCA PS5 CHROMA PEARL",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 104.9,
-    "price_efectivo": 104.9,
-    "price_tarjeta": 109.91,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "NSX-005U.CGSF",
     "name": "PALANCA NINTENDO SWITCH 2 HORIPAD TURBO NEGRO",
     "cat": "palancas",
@@ -1701,25 +1684,6 @@
       "scala": 0,
       "condado": 0,
       "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "908987870.CGSF",
-    "name": "PRO CONTROL NINTENDO SWITCH 1 SONIC REALMZ PDP",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 79.9,
-    "price_efectivo": 79.9,
-    "price_tarjeta": 84.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
     },
     "photos": [],
     "desc": "",
@@ -2642,6 +2606,27 @@
     "top": false
   },
   {
+    "code": "44324354.CGSF",
+    "name": "JUEGO PS5 RETURNAL",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 49.9,
+    "price_efectivo": 49.9,
+    "price_tarjeta": 49.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/44324354.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "09097.CGSF",
     "name": "JUEGO PS4 HOLLOW KNIGHT",
     "cat": "juegos",
@@ -3285,6 +3270,25 @@
     "photos": [
       "fotos/950003.CGSF/1.jpg"
     ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "2762028.CGSF",
+    "name": "JUEGO NINTENDO SWITCH 2 FC 27",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 97.9,
+    "price_efectivo": 97.9,
+    "price_tarjeta": 103.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
     "desc": "",
     "top": false
   }
