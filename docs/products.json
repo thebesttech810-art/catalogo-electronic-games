@@ -1,25 +1,5 @@
 [
   {
-    "code": "CONTROL-FREE.CNCF",
-    "name": "CONTROL FREE PARA PS4 /SWITCH/ XBOX COVERTORES POR UNIDAD",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 2.5,
-    "price_efectivo": 2.5,
-    "price_tarjeta": 2.5,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 206,
-      "condado": 267,
-      "valle": 164
-    },
-    "photos": [],
-    "desc": "",
-    "top": true,
-    "vendido": true
-  },
-  {
     "code": "2548596.CDCF",
     "name": "FUNDAS DE PAPEL POKEMON - PIKACHU MEDIANAS",
     "cat": "accesorios",
@@ -30,8 +10,8 @@
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 7,
-      "condado": 6,
+      "scala": 6,
+      "condado": 4,
       "valle": 3
     },
     "photos": [],
@@ -53,6 +33,26 @@
       "scala": 3,
       "condado": 6,
       "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
+    "code": "213587.EG",
+    "name": "ESTUCHES DE CONTROL DE PS5 GTA 6",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 12.9,
+    "price_efectivo": 12.9,
+    "price_tarjeta": 12.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 5,
+      "condado": 12,
+      "valle": 3
     },
     "photos": [],
     "desc": "",
@@ -122,6 +122,26 @@
     "vendido": true
   },
   {
+    "code": "87094321.EG",
+    "name": "CARGADOR DE IPHONE TIPO C - LIGHTNING 20W - 25W 14 PRO GENERICO",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 14.9,
+    "price_efectivo": 14.9,
+    "price_tarjeta": 14.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 0,
+      "valle": 3
+    },
+    "photos": [],
+    "desc": "",
+    "top": true,
+    "vendido": true
+  },
+  {
     "code": "711719039594.EG",
     "name": "PALANCA PS4 GENERICA DE COLORES VARIADOS",
     "cat": "palancas",
@@ -144,39 +164,59 @@
     "vendido": true
   },
   {
-    "code": "12542325.CDCF",
-    "name": "FUNDAS DE PAPEL POKEMON - PIKACHU  PEQUEÑAS",
+    "code": "409876009.CGSF",
+    "name": "LLAVERO DE VARIOS PERSONAJES",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 1.0,
-    "price_efectivo": 1.0,
-    "price_tarjeta": 1.0,
+    "price": 3.9,
+    "price_efectivo": 3.9,
+    "price_tarjeta": 3.9,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 11,
-      "condado": 5,
-      "valle": 15
+      "scala": 12,
+      "condado": 11,
+      "valle": 0
     },
     "photos": [],
     "desc": "",
-    "top": true,
+    "top": false,
     "vendido": true
   },
   {
-    "code": "87094321.EG",
-    "name": "CARGADOR DE IPHONE TIPO C - LIGHTNING 20W - 25W 14 PRO GENERICO",
+    "code": "20987609.CG",
+    "name": "CHIP TIGO",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 14.9,
-    "price_efectivo": 14.9,
-    "price_tarjeta": 14.9,
+    "price": 3.99,
+    "price_efectivo": 3.99,
+    "price_tarjeta": 3.99,
     "digital": false,
     "nuevo": false,
     "stock": {
       "scala": 0,
       "condado": 0,
-      "valle": 4
+      "valle": 3
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "DEDAL.EG",
+    "name": "DEDALES POR UNIDAD",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 2.5,
+    "price_efectivo": 2.5,
+    "price_tarjeta": 2.5,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 4,
+      "condado": 4,
+      "valle": 2
     },
     "photos": [],
     "desc": "",
@@ -196,26 +236,6 @@
     "stock": {
       "scala": 2,
       "condado": 2,
-      "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "CALI-01.CNCF",
-    "name": "SET DE CALIGRAFIA HARRY POTER  CON SELLO DE LACRE Y ACCESORIOS + 18 PLUMILLAS +KIT DE CERA",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 32.9,
-    "price_efectivo": 32.9,
-    "price_tarjeta": 34.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
       "valle": 1
     },
     "photos": [],
@@ -244,59 +264,19 @@
     "vendido": true
   },
   {
-    "code": "080970.CGSF",
-    "name": "LLAVERO SUPERHEROE DISTINTOS MODELOS",
+    "code": "1795906.EG",
+    "name": "BASE MULTIFUNCIONAL VENTILADOR PS5 804",
     "cat": "accesorios",
     "cat_label": "Accesorios",
-    "price": 3.9,
-    "price_efectivo": 3.9,
-    "price_tarjeta": 3.9,
+    "price": 42.89,
+    "price_efectivo": 42.89,
+    "price_tarjeta": 42.89,
     "digital": false,
-    "nuevo": false,
+    "nuevo": true,
     "stock": {
-      "scala": 2,
+      "scala": 0,
       "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "DEDAL.EG",
-    "name": "DEDALES POR UNIDAD",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 2.5,
-    "price_efectivo": 2.5,
-    "price_tarjeta": 2.5,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 4,
-      "condado": 4,
-      "valle": 6
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "21072026.CDCG",
-    "name": "FUNDAS DE PAPEL MARIO -HONGO -ESTRELLA PEQUEÑAS",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 1.0,
-    "price_efectivo": 1.0,
-    "price_tarjeta": 1.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 4,
-      "condado": 5,
-      "valle": 4
+      "valle": 1
     },
     "photos": [],
     "desc": "",
@@ -317,6 +297,46 @@
       "scala": 0,
       "condado": 0,
       "valle": 2
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "3450989.CGSF",
+    "name": "JUEGO PS4 FC 27",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 89.9,
+    "price_efectivo": 89.9,
+    "price_tarjeta": 94.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 2,
+      "valle": 3
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "2100989.CGSF",
+    "name": "LLAVERO DE ESCUDO DE SUPERHEROES VARIOS MODELOS",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 2.9,
+    "price_efectivo": 2.9,
+    "price_tarjeta": 2.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 6,
+      "condado": 4,
+      "valle": 0
     },
     "photos": [],
     "desc": "",
@@ -364,6 +384,26 @@
     "vendido": true
   },
   {
+    "code": "080970.CGSF",
+    "name": "LLAVERO SUPERHEROE DISTINTOS MODELOS",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 3.9,
+    "price_efectivo": 3.9,
+    "price_tarjeta": 3.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "HSPS3115.EG",
     "name": "PALANCA PS3 GENERICA DE COLORES/ TRANSPARENTE",
     "cat": "palancas",
@@ -386,39 +426,19 @@
     "vendido": true
   },
   {
-    "code": "PK007.CNCF",
-    "name": "PELUCHE GENGAR 25CM",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 24.9,
-    "price_efectivo": 24.9,
-    "price_tarjeta": 24.9,
+    "code": "7665896.CGSF",
+    "name": "JUEGO NINTENDO SWITCH FC 27",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 79.9,
+    "price_efectivo": 79.9,
+    "price_tarjeta": 84.9,
     "digital": false,
     "nuevo": false,
     "stock": {
       "scala": 1,
-      "condado": 0,
-      "valle": 1
-    },
-    "photos": [],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "1695217.CDCF",
-    "name": "CAJA PARA REGALO TEMATICA POKEMON VARIOS PERSONAJES",
-    "cat": "accesorios",
-    "cat_label": "Accesorios",
-    "price": 2.0,
-    "price_efectivo": 2.0,
-    "price_tarjeta": 2.0,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 8,
-      "condado": 8,
-      "valle": 15
+      "condado": 3,
+      "valle": 4
     },
     "photos": [],
     "desc": "",
@@ -566,6 +586,26 @@
     "vendido": true
   },
   {
+    "code": "39764270.CGSF",
+    "name": "CONSOLA PS5 DIGITAL EDICION WOLVERINE",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 1259.91,
+    "price_efectivo": 1259.91,
+    "price_tarjeta": 1334.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "842588",
     "name": "PATINETAS PRO SKATER ONLY  VARIOS MODELOS",
     "cat": "accesorios",
@@ -586,13 +626,33 @@
     "vendido": true
   },
   {
-    "code": "39764270.CGSF",
-    "name": "CONSOLA PS5 DIGITAL EDICION WOLVERINE",
-    "cat": "consolas",
-    "cat_label": "Consolas",
-    "price": 1259.91,
-    "price_efectivo": 1259.91,
-    "price_tarjeta": 1334.9,
+    "code": "PMP086.CNCF",
+    "name": "LLAVERO UMBREON",
+    "cat": "accesorios",
+    "cat_label": "Accesorios",
+    "price": 12.9,
+    "price_efectivo": 12.9,
+    "price_tarjeta": 12.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 2,
+      "condado": 0,
+      "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
+    "code": "1080976.CGSF",
+    "name": "JUEGO PS5 FC 27",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 89.9,
+    "price_efectivo": 89.9,
+    "price_tarjeta": 94.9,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -714,6 +774,28 @@
     "vendido": true
   },
   {
+    "code": "45496885861.CGSF",
+    "name": "PRO CONTROL NINTENDO SWITCH 2",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 129.9,
+    "price_efectivo": 129.9,
+    "price_tarjeta": 137.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/45496885861.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false,
+    "vendido": true
+  },
+  {
     "code": "700989.CGSF",
     "name": "JUEGO NINTENDO SWITCH 2 RESIDENT EVIL REQUIEM",
     "cat": "juegos",
@@ -772,28 +854,6 @@
     },
     "photos": [
       "fotos/089015.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "45496885861.CGSF",
-    "name": "PRO CONTROL NINTENDO SWITCH 2",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 129.9,
-    "price_efectivo": 129.9,
-    "price_tarjeta": 137.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/45496885861.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false,
@@ -864,45 +924,21 @@
     "vendido": true
   },
   {
-    "code": "257245135.CGSF",
-    "name": "JUEGO NINTENDO SWITCH METROID PRIME 4 BEYOND",
+    "code": "3721685.CGSF",
+    "name": "JUEGO NINTENDO SWITCH 2 CALL OF DUTY MODERN WARFARE 4",
     "cat": "juegos",
     "cat_label": "Juegos",
-    "price": 69.9,
-    "price_efectivo": 69.9,
-    "price_tarjeta": 73.9,
+    "price": 89.9,
+    "price_efectivo": 89.9,
+    "price_tarjeta": 94.9,
     "digital": false,
-    "nuevo": false,
+    "nuevo": true,
     "stock": {
       "scala": 0,
       "condado": 1,
       "valle": 0
     },
-    "photos": [
-      "fotos/257245135.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false,
-    "vendido": true
-  },
-  {
-    "code": "47875884007.CGSF",
-    "name": "JUEGO NINTENDO SWITCH CTR CRASH TEAM RACING NITRO FUELED",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 51.9,
-    "price_efectivo": 51.9,
-    "price_tarjeta": 55.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/47875884007.CGSF/1.jpg"
-    ],
+    "photos": [],
     "desc": "",
     "top": false,
     "vendido": true
@@ -1034,27 +1070,6 @@
     "top": false
   },
   {
-    "code": "45496590475.CGSF",
-    "name": "JUEGO NINTENDO SWITCH MARIO KART DELUXE 8",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 69.9,
-    "price_efectivo": 69.9,
-    "price_tarjeta": 74.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 1
-    },
-    "photos": [
-      "fotos/45496590475.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "810060.CGSF",
     "name": "JUEGO NINTENDO SWITCH 2 POKEMON POKOPIA",
     "cat": "juegos",
@@ -1131,6 +1146,25 @@
       "scala": 1,
       "condado": 0,
       "valle": 1
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "354311309.CGSF",
+    "name": "CONSOLA XBOX SERIES S 512GB",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 699.9,
+    "price_efectivo": 699.9,
+    "price_tarjeta": 749.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 1,
+      "condado": 1,
+      "valle": 0
     },
     "photos": [],
     "desc": "",
@@ -1238,27 +1272,6 @@
     "top": false
   },
   {
-    "code": "883929803606.CGSF",
-    "name": "JUEGO PS4 PORTKEY GAMES HOGWARTS LEGACY",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 64.89,
-    "price_efectivo": 64.89,
-    "price_tarjeta": 69.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/883929803606.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "905736.CGSF",
     "name": "JUEGO NINTENDO SWITCH 2 ZELDA TEARS OF THE KINGDOM",
     "cat": "juegos",
@@ -1280,13 +1293,13 @@
     "top": false
   },
   {
-    "code": "86090.CGSF",
-    "name": "JUEGO NINTENDO SWITCH 2 METROID PRIME 4 BEYOND",
+    "code": "5457534.CGSF",
+    "name": "JUEGO NINTENDO SWITCH 2 POKEMON ZA",
     "cat": "juegos",
     "cat_label": "Juegos",
-    "price": 99.9,
-    "price_efectivo": 99.9,
-    "price_tarjeta": 106.9,
+    "price": 84.9,
+    "price_efectivo": 84.9,
+    "price_tarjeta": 89.9,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -1295,7 +1308,7 @@
       "valle": 0
     },
     "photos": [
-      "fotos/86090.CGSF/1.jpg"
+      "fotos/5457534.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
@@ -1467,6 +1480,25 @@
     "top": false
   },
   {
+    "code": "9670145.CGSF",
+    "name": "CONSOLA XBOX SERIES S 1TB MEDIO USO",
+    "cat": "consolas",
+    "cat_label": "Consolas",
+    "price": 579.9,
+    "price_efectivo": 579.9,
+    "price_tarjeta": 614.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
     "code": "611888267012",
     "name": "PALANCA HYDRA COMPATIBLE CON XBOX 360 CLASICO",
     "cat": "palancas",
@@ -1546,27 +1578,6 @@
     },
     "photos": [
       "fotos/889842611557.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "711719596554.CGSF",
-    "name": "PALANCA PS5 DualSense Edge Wireless Controller COLOR NEGRO Y BLANCO",
-    "cat": "palancas",
-    "cat_label": "Palancas",
-    "price": 274.9,
-    "price_efectivo": 274.9,
-    "price_tarjeta": 289.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/711719596554.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
@@ -1686,6 +1697,27 @@
       "valle": 1
     },
     "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "458753.CGSF",
+    "name": "PALANCA NINTENDO SWITCH MARIO BROSS POWER AA COLOR ROJA",
+    "cat": "palancas",
+    "cat_label": "Palancas",
+    "price": 44.9,
+    "price_efectivo": 44.9,
+    "price_tarjeta": 49.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/458753.CGSF/1.jpg"
+    ],
     "desc": "",
     "top": false
   },
@@ -2127,111 +2159,6 @@
     "top": false
   },
   {
-    "code": "810023036630",
-    "name": "JUEGO NINTENDO SWITCH DISGAEA 6 DEFIANCE OF DESTINY",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 29.05,
-    "price_efectivo": 29.05,
-    "price_tarjeta": 29.05,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/810023036630/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "263553362.CGSF",
-    "name": "JUEGO PS5 BLACK MYTH WUKONG",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 84.9,
-    "price_efectivo": 84.9,
-    "price_tarjeta": 89.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/263553362.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "47875101838.CGSF",
-    "name": "JUEGO NINTENDO SWITCH CRASH BANDICOOT 4 ITS ABOUT TIME",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 59.89,
-    "price_efectivo": 59.89,
-    "price_tarjeta": 59.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/47875101838.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "3760415190112.CGSF",
-    "name": "JUEGO PS5 METAL SLUG TACTICS",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 69.9,
-    "price_efectivo": 69.9,
-    "price_tarjeta": 74.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/3760415190112.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "710425672927.CGSF",
-    "name": "JUEGO PS5 W2K25",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 85.91,
-    "price_efectivo": 85.91,
-    "price_tarjeta": 89.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/710425672927.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
     "code": "45496598167.CGSF",
     "name": "JUEGO NINTENDO SWITCH SPLATOON 3",
     "cat": "juegos",
@@ -2627,13 +2554,13 @@
     "top": false
   },
   {
-    "code": "09097.CGSF",
-    "name": "JUEGO PS4 HOLLOW KNIGHT",
+    "code": "045496906153.CGSF",
+    "name": "JUEGO NINTENDO SWITCH 2 LEYENDA POKEMON.Z.A",
     "cat": "juegos",
     "cat_label": "Juegos",
-    "price": 58.9,
-    "price_efectivo": 58.9,
-    "price_tarjeta": 61.9,
+    "price": 84.9,
+    "price_efectivo": 84.9,
+    "price_tarjeta": 89.9,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -2642,19 +2569,19 @@
       "valle": 0
     },
     "photos": [
-      "fotos/09097.CGSF/1.jpg"
+      "fotos/045496906153.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
   },
   {
-    "code": "986012.CGSF",
-    "name": "JUEGO PS5 DRAGONBALL Z KAKAROT",
+    "code": "711719526353.CGSF",
+    "name": "JUEGO PS4 THE LAST OF US REMASTERED",
     "cat": "juegos",
     "cat_label": "Juegos",
-    "price": 54.9,
-    "price_efectivo": 54.9,
-    "price_tarjeta": 59.9,
+    "price": 43.9,
+    "price_efectivo": 43.9,
+    "price_tarjeta": 45.9,
     "digital": false,
     "nuevo": false,
     "stock": {
@@ -2663,49 +2590,7 @@
       "valle": 0
     },
     "photos": [
-      "fotos/986012.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "097532.CGSF",
-    "name": "JUEGO NINTENDO SWITCH 2 MORTAL KOMBAT LEGACY KOLLECTION",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 94.9,
-    "price_efectivo": 94.9,
-    "price_tarjeta": 99.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 1,
-      "condado": 0,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/097532.CGSF/1.jpg"
-    ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "54459.CGSF",
-    "name": "JUEGO PS4 SONIC SHADOW GENERATION",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 69.9,
-    "price_efectivo": 69.9,
-    "price_tarjeta": 74.9,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [
-      "fotos/54459.CGSF/1.jpg"
+      "fotos/711719526353.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
@@ -3024,63 +2909,65 @@
     "top": false
   },
   {
-    "code": "088909876.CGSF",
-    "name": "JUEGO PS3 FIFA 13 MEDIO USO",
+    "code": "2332480.CGSF",
+    "name": "JUEGO PS5 PRAGMATA",
     "cat": "juegos",
     "cat_label": "Juegos",
-    "price": 14.9,
-    "price_efectivo": 14.9,
-    "price_tarjeta": 14.9,
+    "price": 91.9,
+    "price_efectivo": 91.9,
+    "price_tarjeta": 97.9,
     "digital": false,
     "nuevo": false,
     "stock": {
       "scala": 0,
+      "condado": 1,
+      "valle": 0
+    },
+    "photos": [
+      "fotos/2332480.CGSF/1.jpg"
+    ],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "6908790.CGSF",
+    "name": "JUEGO NINTENDO SWITCH 2 TAMAGOCHI PLAZA",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 72.9,
+    "price_efectivo": 72.9,
+    "price_tarjeta": 77.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
       "condado": 0,
-      "valle": 1
+      "valle": 0
     },
     "photos": [
-      "fotos/088909876.CGSF/1.jpg"
+      "fotos/6908790.CGSF/1.jpg"
     ],
     "desc": "",
     "top": false
   },
   {
-    "code": "5467909.CGSF",
-    "name": "JUEGO PS4  BATTLEFIELD HARDLINE MEDIO USO",
+    "code": "690639.CGSF",
+    "name": "JUEGO NINTENDO SWITCH 2 YOSHI AND THE MYSTERIOUS BOOK",
     "cat": "juegos",
     "cat_label": "Juegos",
-    "price": 19.89,
-    "price_efectivo": 19.89,
-    "price_tarjeta": 19.89,
+    "price": 109.91,
+    "price_efectivo": 109.91,
+    "price_tarjeta": 112.9,
     "digital": false,
     "nuevo": false,
     "stock": {
-      "scala": 0,
-      "condado": 1,
+      "scala": 1,
+      "condado": 0,
       "valle": 0
     },
     "photos": [
-      "fotos/5467909.CGSF/1.jpg"
+      "fotos/690639.CGSF/1.jpg"
     ],
-    "desc": "",
-    "top": false
-  },
-  {
-    "code": "03082026.CGSF",
-    "name": "ESTUCHE DE ALMACENAMIENTO PARA PATIENTAS TECH DECH ULTRA CON PISTA MAS ACCESORIOS",
-    "cat": "juegos",
-    "cat_label": "Juegos",
-    "price": 19.89,
-    "price_efectivo": 19.89,
-    "price_tarjeta": 19.89,
-    "digital": false,
-    "nuevo": false,
-    "stock": {
-      "scala": 0,
-      "condado": 1,
-      "valle": 0
-    },
-    "photos": [],
     "desc": "",
     "top": false
   },
@@ -3286,6 +3173,82 @@
     "stock": {
       "scala": 1,
       "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "1341423.CGSF",
+    "name": "JUEGO XBOX FC 27",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 89.9,
+    "price_efectivo": 89.9,
+    "price_tarjeta": 94.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "8663200.CGSF",
+    "name": "JUEGO PS5 METAL GEAR SOLID MASTER COLLECTION",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 64.89,
+    "price_efectivo": 64.89,
+    "price_tarjeta": 69.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "2095103.CGSF",
+    "name": "JUEGO NINTENDO SWITCH 2 ELDEN RING TARNISHED EDITION",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 99.9,
+    "price_efectivo": 99.9,
+    "price_tarjeta": 104.9,
+    "digital": false,
+    "nuevo": false,
+    "stock": {
+      "scala": 1,
+      "condado": 0,
+      "valle": 0
+    },
+    "photos": [],
+    "desc": "",
+    "top": false
+  },
+  {
+    "code": "9806424.CGSF",
+    "name": "JUEGO NINTENDO SWITCH 2 SPORTS RESORT",
+    "cat": "juegos",
+    "cat_label": "Juegos",
+    "price": 99.9,
+    "price_efectivo": 99.9,
+    "price_tarjeta": 104.9,
+    "digital": false,
+    "nuevo": true,
+    "stock": {
+      "scala": 0,
+      "condado": 1,
       "valle": 0
     },
     "photos": [],
