@@ -106,7 +106,7 @@ footer{text-align:center;color:#ffd9ad;font-size:12px;margin-top:26px;position:r
   <h2>2 · <span>Sortear</span></h2>
   <div class="stage" id="stage">
     <div class="wanted" id="wanted"></div>
-    <div class="reel" id="reel">PRESIONA SORTEAR</div>
+    <div class="reel" id="reel">CARGA LA LISTA</div>
     <div id="result"></div>
   </div>
   <div class="row" style="justify-content:center" id="ctl">
@@ -186,9 +186,16 @@ $("fileIn").onchange = async e => {
 };
 $("clearAll").onclick = () => { if (confirm("¿Borrar lista e historial?")) { S.list = []; S.used = []; S.hist = []; save(); render(); resetStage(); } };
 
-let drawing = false, current = null;
+let drawing = false, current = null, idleOn = true;
+// animación de espera: el marcador va mostrando nombres al azar hasta que se pulse sortear
+setInterval(() => {
+  if (!idleOn || drawing) return;
+  const p = S.list.length ? S.list : null;
+  $("reel").textContent = p ? "@" + p[rnd(p.length)] : "CARGA LA LISTA";
+  $("reel").style.opacity = ".75";
+}, 110);
 function setWanted(n){ $("wanted").innerHTML = Array.from({length:5},(_,i)=>`<i class="${i<n?"on":""}">★</i>`).join(""); }
-function resetStage(){ $("result").innerHTML = ""; $("reel").textContent = "PRESIONA SORTEAR"; $("wanted").innerHTML = ""; $("verify").style.display = "none"; $("ctl").style.display = "flex"; $("checks").innerHTML = ""; }
+function resetStage(){ $("result").innerHTML = ""; idleOn = true; $("wanted").innerHTML = ""; $("verify").style.display = "none"; $("ctl").style.display = "flex"; $("checks").innerHTML = ""; }
 function confetti(){
   const st = $("stage"), cols = ["#ff3ea5","#ffd23f","#19e3d1","#ff9f43","#7b2ff7"];
   for (let i=0;i<70;i++){ const c = document.createElement("div"); c.className = "confetti";
@@ -198,11 +205,15 @@ function confetti(){
 $("go").onclick = async () => {
   if (drawing || !unlocked()) return;
   const p = pool(); if (!p.length){ toast(S.list.length ? "Ya no quedan usuarios disponibles" : "Primero carga la lista"); return; }
-  drawing = true; $("go").disabled = true; $("result").innerHTML = ""; $("checks").innerHTML = ""; $("stage").classList.add("siren");
-  for (let s=1; s<=5; s++){ setWanted(s); $("reel").textContent = ["Buscando…","Escaneando Vice City…","Cruzando datos…","Refuerzos en camino…","¡NIVEL MÁXIMO!"][s-1]; await sleep(500); }
+  idleOn = false; $("reel").style.opacity = "1"; drawing = true; $("go").disabled = true; $("result").innerHTML = ""; $("checks").innerHTML = ""; $("stage").classList.add("siren");
+  for (let s=1; s<=5; s++){ setWanted(s); $("reel").textContent = ["Buscando…","Escaneando Vice City…","Cruzando datos…","Refuerzos en camino…","¡NIVEL MÁXIMO!"][s-1]; await sleep(600); }
   current = p[rnd(p.length)];
-  let d = 50;
-  while (d < 420){ $("reel").textContent = "@" + p[rnd(p.length)]; await sleep(d); d *= 1.13; }
+  // fase rápida (~4 s) y luego desaceleración larga (~7 s) hasta frenar
+  const t0 = Date.now();
+  while (Date.now() - t0 < 4000){ $("reel").textContent = "@" + p[rnd(p.length)]; await sleep(60); }
+  let d = 60;
+  while (d < 650){ $("reel").textContent = "@" + p[rnd(p.length)]; await sleep(d); d *= 1.08; }
+  $("reel").textContent = "@" + current; await sleep(400);
   $("stage").classList.remove("siren"); $("wanted").innerHTML = ""; $("reel").textContent = "";
   $("result").innerHTML = `<div class="pass" style="font-size:clamp(24px,6vw,44px)">USUARIO SELECCIONADO</div><div class="winner">@${esc(current)}</div>`;
   $("checks").innerHTML = "Verifica en Instagram: ⭐ lo sigue · ⭐ comentó la publicación fijada · ⭐ mencionó a 3+ personas · ⭐ la compartió";
@@ -218,7 +229,7 @@ function finish(ok){
   } else {
     $("verify").style.display = "none"; $("ctl").style.display = "flex";
     $("result").innerHTML = `<div class="subs">@${esc(current)} no cumple · descartado</div>`;
-    $("checks").innerHTML = ""; $("reel").textContent = "SORTEA OTRO";
+    $("checks").innerHTML = "";
     if (pool().length) $("go").click();
   }
 }
