@@ -92,6 +92,8 @@ footer{text-align:center;color:#ffd9ad;font-size:12px;margin-top:26px;position:r
   <h2>1 · <span>Lista de participantes</span></h2>
   <div class="grid">
     <div><label>Premio (opcional)</label><input id="cfgPrize" placeholder="Ej: GTA VI para PS5"></div>
+    <div><label>Hora del sorteo (hoy)</label><input id="cfgTime" type="time" value="18:00"></div>
+    <div style="display:flex;align-items:end"><label style="display:flex;gap:8px;align-items:center;text-transform:none;letter-spacing:0;font-size:13px"><input type="checkbox" id="cfgTest" style="width:18px"> Modo prueba (desbloquear antes de la hora)</label></div>
   </div>
   <label style="margin-top:12px">Pega los usuarios (uno por línea, o separados por coma)</label>
   <textarea id="txtList" placeholder="juan_gamer&#10;@maria.v&#10;luis_ps5"></textarea>
@@ -128,7 +130,7 @@ footer{text-align:center;color:#ffd9ad;font-size:12px;margin-top:26px;position:r
 (() => {
 const $ = id => document.getElementById(id);
 const KEY = "sorteo_gta6_live_v1";
-let S = { prize:"", list:[], used:[], hist:[] };
+let S = { prize:"", time:"18:00", test:false, list:[], used:[], hist:[] };
 try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch(e){}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} };
 const norm = u => (u||"").trim().replace(/^@/,"").toLowerCase().replace(/[^a-z0-9._]/g,"");
@@ -137,13 +139,16 @@ const rnd = n => { const a = new Uint32Array(1); const lim = Math.floor(42949672
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const pool = () => S.list.filter(u => !S.used.includes(u));
 
-const RELEASE = new Date("2026-11-19T00:00:00");
+const target = () => { const [h,m] = (S.time||"18:00").split(":").map(Number); const d = new Date(); d.setHours(h, m, 0, 0); return d; };
+const fmt12 = t => { const [h,m] = t.split(":").map(Number); return `${(h%12)||12}:${String(m).padStart(2,"0")} ${h<12?"AM":"PM"}`; };
+const unlocked = () => S.test || Date.now() >= target();
 function tick(){
-  let d = RELEASE - Date.now();
-  if (d <= 0){ $("count").innerHTML = '<div><b>¡YA ESTÁ AQUÍ!</b><small>Bienvenido a Vice City</small></div>'; return; }
-  $("count").innerHTML = [["Días",86400000],["Horas",3600000],["Min",60000],["Seg",1000]].map(([l,m]) => { const v = Math.floor(d/m); d -= v*m; return `<div><b>${String(v).padStart(2,"0")}</b><small>${l}</small></div>`; }).join("");
+  let d = target() - Date.now();
+  if (d <= 0){ $("count").innerHTML = '<div><b>¡EN VIVO!</b><small>Es hora del sorteo</small></div>'; }
+  else $("count").innerHTML = '<div style="min-width:100%"><small>Sorteo hoy a las '+fmt12(S.time)+'</small></div>' + [["Horas",3600000],["Min",60000],["Seg",1000]].map(([l,m]) => { const v = Math.floor(d/m); d -= v*m; return `<div><b>${String(v).padStart(2,"0")}</b><small>${l}</small></div>`; }).join("");
+  if (!drawing){ $("go").disabled = !unlocked(); if (!unlocked()) $("go").textContent = "🔒 Se abre a las " + fmt12(S.time); else if ($("go").textContent.startsWith("🔒")) $("go").textContent = "🎰 Sortear usuario"; }
 }
-tick(); setInterval(tick, 1000);
+setInterval(tick, 1000);
 
 function render(){
   $("nTotal").textContent = S.list.length; $("nLeft").textContent = pool().length;
@@ -151,7 +156,9 @@ function render(){
   $("tagline").textContent = S.prize ? `Premio: ${S.prize}` : "Misión: gana el sorteo";
   $("hist").innerHTML = S.hist.slice().reverse().map(h => `<li>${h.ok ? "🏆" : "🚫"} <b>@${esc(h.user)}</b> — ${h.ok ? "GANADOR/A" : "no cumplió"}</li>`).join("") || `<li class="hint">Aún no hay sorteos.</li>`;
 }
-$("cfgPrize").value = S.prize;
+$("cfgPrize").value = S.prize; $("cfgTime").value = S.time; $("cfgTest").checked = S.test;
+$("cfgTime").oninput = () => { S.time = $("cfgTime").value || "18:00"; save(); tick(); };
+$("cfgTest").onchange = () => { S.test = $("cfgTest").checked; save(); tick(); };
 $("cfgPrize").oninput = () => { S.prize = $("cfgPrize").value; save(); render(); };
 $("addList").onclick = () => {
   const n = addUsers($("txtList").value.split(/[\r\n,;\s]+/));
@@ -189,7 +196,7 @@ function confetti(){
     st.appendChild(c); setTimeout(()=>c.remove(), 4500); }
 }
 $("go").onclick = async () => {
-  if (drawing) return;
+  if (drawing || !unlocked()) return;
   const p = pool(); if (!p.length){ toast(S.list.length ? "Ya no quedan usuarios disponibles" : "Primero carga la lista"); return; }
   drawing = true; $("go").disabled = true; $("result").innerHTML = ""; $("checks").innerHTML = ""; $("stage").classList.add("siren");
   for (let s=1; s<=5; s++){ setWanted(s); $("reel").textContent = ["Buscando…","Escaneando Vice City…","Cruzando datos…","Refuerzos en camino…","¡NIVEL MÁXIMO!"][s-1]; await sleep(500); }
@@ -200,7 +207,7 @@ $("go").onclick = async () => {
   $("result").innerHTML = `<div class="pass" style="font-size:clamp(24px,6vw,44px)">USUARIO SELECCIONADO</div><div class="winner">@${esc(current)}</div>`;
   $("checks").innerHTML = "Verifica en Instagram: ⭐ lo sigue · ⭐ comentó la publicación fijada · ⭐ mencionó a 3+ personas · ⭐ la compartió";
   $("ctl").style.display = "none"; $("verify").style.display = "flex";
-  drawing = false; $("go").disabled = false;
+  drawing = false; tick();
 };
 function finish(ok){
   S.used.push(current); S.hist.push({ user:current, ok, at:Date.now() }); save(); render();
@@ -223,7 +230,7 @@ function toast(msg){
   Object.assign(t.style,{position:"fixed",bottom:"20px",left:"50%",transform:"translateX(-50%)",background:"#ff3ea5",color:"#fff",padding:"10px 18px",borderRadius:"99px",zIndex:99,fontWeight:"bold",boxShadow:"0 6px 24px #0008"});
   document.body.appendChild(t); setTimeout(()=>t.remove(), 2400);
 }
-render();
+render(); tick();
 })();
 </script>
 </body>
