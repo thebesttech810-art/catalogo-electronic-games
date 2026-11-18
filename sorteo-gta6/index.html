@@ -95,7 +95,7 @@ footer{text-align:center;color:#ffd9ad;font-size:12px;margin-top:26px;position:r
   </div>
   <label style="margin-top:12px">Pega los usuarios (uno por línea, o separados por coma)</label>
   <textarea id="txtList" placeholder="juan_gamer&#10;@maria.v&#10;luis_ps5"></textarea>
-  <div class="row"><button id="addList">Cargar lista</button><button class="danger" id="clearAll">Borrar todo</button></div>
+  <div class="row"><button id="addList">Cargar lista</button><button class="ghost" id="importBtn">📂 Importar archivo (.txt / .csv)</button><input type="file" id="fileIn" accept=".txt,.csv,text/plain,text/csv" multiple hidden><button class="danger" id="clearAll">Borrar todo</button></div>
   <div class="stats" style="margin-top:12px"><div class="stat"><b id="nTotal">0</b><small>En la lista</small></div><div class="stat"><b id="nLeft">0</b><small>Disponibles</small></div><div class="stat"><b id="nOut">0</b><small>Descartados</small></div></div>
   <div class="hint">Se eliminan duplicados y los @. Quien sale sorteado no vuelve a entrar. Tú verificas en vivo en Instagram que cumpla: sigue la cuenta, comentó la publicación fijada, mencionó a 3+ personas y la compartió.</div>
 </section>
@@ -154,9 +154,28 @@ function render(){
 $("cfgPrize").value = S.prize;
 $("cfgPrize").oninput = () => { S.prize = $("cfgPrize").value; save(); render(); };
 $("addList").onclick = () => {
-  const add = $("txtList").value.split(/[\r\n,;\s]+/).map(norm).filter(Boolean);
-  const set = new Set(S.list); add.forEach(u => set.add(u)); S.list = [...set];
-  $("txtList").value = ""; save(); render(); toast(`${add.length} usuarios cargados`);
+  const n = addUsers($("txtList").value.split(/[\r\n,;\s]+/));
+  $("txtList").value = ""; toast(`${n} usuarios nuevos cargados`);
+};
+function addUsers(arr){
+  const set = new Set(S.list), before = set.size; arr.map(norm).filter(Boolean).forEach(u => set.add(u));
+  S.list = [...set]; save(); render(); return set.size - before;
+}
+function parseFile(text){
+  const lines = text.replace(/^\uFEFF/, "").split(/\r?\n/).filter(l => l.trim());
+  if (lines.length < 2) return lines.join(",").split(/[,;\t\s]+/);
+  const rows = lines.map(l => l.split(/[,;\t]/).map(c => c.trim().replace(/^"|"$/g, "")));
+  let col = 0, start = 0;
+  const h = rows[0].findIndex(c => /^(user(name)?|usuario|username|cuenta|account|instagram|ig)$/i.test(c));
+  if (h >= 0){ col = h; start = 1; }
+  else if (rows[0].length > 1 && rows[0].every(c => /^[a-z\u00f1 _]+$/i.test(c) && c.length > 2) && rows[1].length === rows[0].length && rows.length > 2) start = 1;
+  return rows.slice(start).map(r => r[col] || "");
+}
+$("importBtn").onclick = () => $("fileIn").click();
+$("fileIn").onchange = async e => {
+  let total = 0, added = 0;
+  for (const f of e.target.files){ const list = parseFile(await f.text()); total += list.length; added += addUsers(list); }
+  e.target.value = ""; toast(`${added} usuarios nuevos importados (${total} leídos)`);
 };
 $("clearAll").onclick = () => { if (confirm("¿Borrar lista e historial?")) { S.list = []; S.used = []; S.hist = []; save(); render(); resetStage(); } };
 
