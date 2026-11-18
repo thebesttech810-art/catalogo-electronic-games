@@ -162,6 +162,16 @@ function render(){
   renderList();
   $("hist").innerHTML = S.hist.slice().reverse().map(h => `<li>${h.ok ? "🏆" : "🚫"} <b>@${esc(h.user)}</b> — ${h.ok ? "GANADOR/A" : "no cumplió"}</li>`).join("") || `<li class="hint">Aún no hay sorteos.</li>`;
 }
+// confirmación propia (el visor bloquea confirm())
+function ask(msg){
+  return new Promise(res => {
+    const o = document.createElement("div");
+    o.style.cssText = "position:fixed;inset:0;background:#000a;z-index:999;display:flex;align-items:center;justify-content:center;padding:16px";
+    o.innerHTML = `<div style="background:#1a0630;border:2px solid #ff3ea5;border-radius:14px;padding:20px;max-width:380px;text-align:center"><p style="margin-bottom:16px;line-height:1.4">${msg.replace(/[<>&]/g,"")}</p><div class="row" style="justify-content:center;margin:0"><button data-r="1" class="danger">Sí, borrar</button><button data-r="0" class="ghost">Cancelar</button></div></div>`;
+    o.onclick = e => { const r = e.target.dataset.r; if (r === undefined && e.target !== o) return; o.remove(); res(r === "1"); };
+    document.body.appendChild(o);
+  });
+}
 function renderList(){
   const q = $("listFilter").value.trim().toLowerCase();
   const st = u => { const h = S.hist.find(x => x.user === u); return h ? (h.ok ? '<span class="tag ok">🏆 Ganador/a</span>' : '<span class="tag no">🚫 Descartado</span>') : '<span class="tag">Disponible</span>'; };
@@ -172,7 +182,7 @@ function renderList(){
 }
 $("toggleList").onclick = () => { const p = $("listPanel"); p.style.display = p.style.display === "none" ? "block" : "none"; renderList(); };
 $("listFilter").oninput = renderList;
-$("listBody").onclick = e => { const u = e.target.dataset.del; if (u && confirm("¿Quitar @" + u + " de la lista?")) { S.list = S.list.filter(x => x !== u); S.used = S.used.filter(x => x !== u); save(); render(); } };
+$("listBody").onclick = async e => { const u = e.target.dataset.del; if (u && await ask("¿Quitar @" + u + " de la lista?")) { S.list = S.list.filter(x => x !== u); S.used = S.used.filter(x => x !== u); save(); render(); } };
 $("cfgPrize").value = S.prize; $("cfgTime").value = S.time;
 $("cfgTime").oninput = () => { S.time = $("cfgTime").value || "18:00"; save(); tick(); };
 
@@ -203,8 +213,8 @@ $("fileIn").onchange = async e => {
   for (const f of e.target.files){ const list = parseFile(await f.text()); total += list.length; added += addUsers(list, first && $("replace").checked); first = false; }
   e.target.value = ""; toast(`${added} usuarios nuevos importados (${total} leídos)`);
 };
-$("clearList").onclick = () => { if (S.list.length && confirm("¿Borrar la lista de participantes? (el historial de ganadores se conserva)")) { S.list = []; S.used = []; save(); render(); resetStage(); toast("Lista borrada, ya puedes cargar una nueva"); } };
-$("clearAll").onclick = () => { if (confirm("¿Borrar lista e historial?")) { S.list = []; S.used = []; S.hist = []; save(); render(); resetStage(); } };
+$("clearList").onclick = async () => { if (S.list.length && await ask("¿Borrar la lista de participantes? (el historial de ganadores se conserva)")) { S.list = []; S.used = []; save(); render(); resetStage(); toast("Lista borrada, ya puedes cargar una nueva"); } };
+$("clearAll").onclick = async () => { if (await ask("¿Borrar lista e historial?")) { S.list = []; S.used = []; S.hist = []; save(); render(); resetStage(); } };
 
 let drawing = false, current = null, idleOn = true;
 // animación de espera: el marcador va mostrando nombres al azar hasta que se pulse sortear
