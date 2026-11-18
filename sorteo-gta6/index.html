@@ -82,199 +82,87 @@ footer{text-align:center;color:#ffd9ad;font-size:12px;margin-top:26px;position:r
 <div class="sun"></div><div class="palms"></div>
 <main>
 <header>
-  <div class="sub">Sorteo oficial · Instagram</div>
+  <div class="sub">Sorteo en vivo · Instagram</div>
   <div class="logo">GTA VI</div>
   <div class="sub" id="tagline">Misión: gana el sorteo</div>
   <div class="count" id="count"></div>
 </header>
 
 <section>
-  <h2>1 · <span>Configuración</span></h2>
+  <h2>1 · <span>Lista de participantes</span></h2>
   <div class="grid">
-    <div><label>Tu cuenta de Instagram</label><input id="cfgAccount" placeholder="@tu_cuenta"></div>
-    <div><label>Premio</label><input id="cfgPrize" placeholder="Ej: GTA VI para PS5"></div>
-    <div><label>Menciones mínimas</label><input id="cfgMin" type="number" min="1" value="3"></div>
-    <div><label>Suplentes</label><input id="cfgSubs" type="number" min="0" max="5" value="2"></div>
+    <div><label>Premio (opcional)</label><input id="cfgPrize" placeholder="Ej: GTA VI para PS5"></div>
   </div>
-  <div class="hint">Requisitos: ⭐ Sigue la cuenta · ⭐ Comentó la publicación fijada · ⭐ Mencionó a 3+ personas distintas · ⭐ Compartió la publicación. Con los 4 cumplidos obtiene <b>5 estrellas</b> (¡nivel de búsqueda máximo!) y entra al sorteo.</div>
+  <label style="margin-top:12px">Pega los usuarios (uno por línea, o separados por coma)</label>
+  <textarea id="txtList" placeholder="juan_gamer&#10;@maria.v&#10;luis_ps5"></textarea>
+  <div class="row"><button id="addList">Cargar lista</button><button class="danger" id="clearAll">Borrar todo</button></div>
+  <div class="stats" style="margin-top:12px"><div class="stat"><b id="nTotal">0</b><small>En la lista</small></div><div class="stat"><b id="nLeft">0</b><small>Disponibles</small></div><div class="stat"><b id="nOut">0</b><small>Descartados</small></div></div>
+  <div class="hint">Se eliminan duplicados y los @. Quien sale sorteado no vuelve a entrar. Tú verificas en vivo en Instagram que cumpla: sigue la cuenta, comentó la publicación fijada, mencionó a 3+ personas y la compartió.</div>
 </section>
 
 <section>
-  <h2>2 · <span>Cargar participantes</span></h2>
-  <div class="tabs" id="tabs">
-    <button class="on" data-p="p1">💬 Comentarios</button>
-    <button data-p="p2">👥 Seguidores</button>
-    <button data-p="p3">🔁 Compartidos</button>
-    <button data-p="p4">➕ Manual</button>
-  </div>
-  <div class="pane on" id="p1">
-    <label>Pega los comentarios (uno por línea: <code>usuario: texto del comentario</code>)</label>
-    <textarea id="txtComments" placeholder="juan_gamer: Quiero ganar! @ana @luis @pedro&#10;maria.v: GTA VI es todo @carlos @sofi @beto @luz"></textarea>
-    <div class="row"><button id="addComments">Procesar comentarios</button><button class="ghost" id="fileComments">Importar CSV/TXT…</button><input type="file" id="fileIn" accept=".csv,.txt" hidden></div>
-    <div class="hint">Puedes copiar los comentarios desde Instagram (web) o exportarlos con la herramienta que uses. Formatos aceptados: <code>usuario: texto</code>, <code>usuario,texto</code> o <code>usuario[TAB]texto</code>. Las menciones se cuentan solas: únicas, sin contar tu cuenta ni la del propio participante.</div>
-  </div>
-  <div class="pane" id="p2">
-    <label>Pega la lista de seguidores (un @usuario por línea)</label>
-    <textarea id="txtFollowers" placeholder="juan_gamer&#10;@maria.v"></textarea>
-    <div class="row"><button id="addFollowers">Marcar como seguidores</button></div>
-    <div class="hint">Instagram → Tu perfil → Seguidores. Los usuarios de la lista que hayan comentado quedarán marcados como “sigue la cuenta”. Si no cargas lista, márcalo manualmente en la tabla.</div>
-  </div>
-  <div class="pane" id="p3">
-    <label>Pega quiénes compartieron la publicación (un @usuario por línea)</label>
-    <textarea id="txtShares" placeholder="juan_gamer&#10;maria.v"></textarea>
-    <div class="row"><button id="addShares">Marcar como compartieron</button></div>
-    <div class="hint">Revisa en la publicación → Compartidos / Recompartidos, o las menciones en historias. Instagram no expone este dato públicamente, por eso se confirma aquí o a mano.</div>
-  </div>
-  <div class="pane" id="p4">
-    <div class="grid">
-      <div><label>Usuario</label><input id="mUser" placeholder="@usuario"></div>
-      <div><label>Comentario</label><input id="mText" placeholder="@a @b @c ..."></div>
-    </div>
-    <div class="row"><button id="addManual">Agregar participante</button></div>
-  </div>
-</section>
-
-<section>
-  <h2>3 · <span>Verificación</span></h2>
-  <div class="stats" id="stats"></div>
-  <div class="row" style="margin:0 0 10px">
-    <input id="filter" placeholder="Buscar usuario…" style="max-width:240px">
-    <select id="show" style="max-width:200px"><option value="all">Todos</option><option value="ok">Solo elegibles</option><option value="no">No elegibles</option></select>
-    <button class="ghost" id="csvAll">Exportar CSV</button>
-    <button class="danger" id="clearAll">Borrar todo</button>
-  </div>
-  <div class="tw"><table><thead><tr><th>Usuario</th><th>Sigue</th><th>Comentó</th><th>Menciones</th><th>Compartió</th><th>Estrellas</th><th></th></tr></thead><tbody id="tbody"></tbody></table></div>
-</section>
-
-<section>
-  <h2>4 · <span>El sorteo</span></h2>
+  <h2>2 · <span>Sortear</span></h2>
   <div class="stage" id="stage">
     <div class="wanted" id="wanted"></div>
-    <div class="reel" id="reel">PRESIONA INICIAR</div>
+    <div class="reel" id="reel">PRESIONA SORTEAR</div>
     <div id="result"></div>
   </div>
-  <div class="row" style="justify-content:center">
-    <button id="go" style="font-size:18px;padding:14px 30px">🎰 Iniciar sorteo</button>
+  <div class="row" style="justify-content:center" id="ctl">
+    <button id="go" style="font-size:18px;padding:14px 30px">🎰 Sortear usuario</button>
   </div>
-  <div class="hint" style="text-align:center">Selección con aleatoriedad criptográfica (<code>crypto.getRandomValues</code>). Solo participan quienes tienen las 5 estrellas.</div>
-  <h2 style="margin-top:18px;font-size:16px">Historial</h2>
-  <ul class="hist" id="hist"></ul>
+  <div class="row" style="justify-content:center;display:none" id="verify">
+    <button id="yes" style="background:linear-gradient(90deg,#19e3d1,#2bbd7e)">✔ Cumple los requisitos</button>
+    <button id="no" class="danger">✘ No cumple · sortear otro</button>
+  </div>
+  <div class="checks hint" id="checks" style="text-align:center"></div>
 </section>
 
-<section class="warn">
-  ⚠️ <b>Importante:</b> Instagram no permite a ninguna app web verificar de forma automática quién comparte una publicación ni leer seguidores de terceros sin aprobación de Meta. Esta herramienta automatiza lo que sí se puede (conteo de menciones, cruce de listas, elegibilidad y sorteo justo) y te deja confirmar el resto. Recuerda cumplir las bases del sorteo y las <a style="color:#fff" href="https://help.instagram.com/179379042645903" target="_blank" rel="noopener">normas de promociones de Instagram</a>. Este sorteo no está patrocinado ni afiliado a Instagram/Meta, Rockstar Games ni Take-Two.
+<section>
+  <h2>3 · <span>Historial</span></h2>
+  <ul class="hist" id="hist"></ul>
 </section>
-<footer>Sorteo dinámico · estilo GTA VI · fan-made</footer>
+<footer>Sorteo en vivo · estilo GTA VI · fan-made, sin afiliación con Instagram/Meta, Rockstar Games ni Take-Two</footer>
 </main>
 
 <script>
 (() => {
 const $ = id => document.getElementById(id);
-const KEY = "sorteo_gta6_v1";
-let S = { cfg:{account:"",prize:"",min:3,subs:2}, p:{}, hist:[] };
+const KEY = "sorteo_gta6_live_v1";
+let S = { prize:"", list:[], used:[], hist:[] };
 try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch(e){}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} };
 const norm = u => (u||"").trim().replace(/^@/,"").toLowerCase().replace(/[^a-z0-9._]/g,"");
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const rnd = n => { const a = new Uint32Array(1); const lim = Math.floor(4294967296/n)*n; do { crypto.getRandomValues(a); } while (a[0] >= lim); return a[0] % n; };
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const pool = () => S.list.filter(u => !S.used.includes(u));
 
-// ---- countdown (GTA VI: 19 nov 2026) ----
 const RELEASE = new Date("2026-11-19T00:00:00");
 function tick(){
   let d = RELEASE - Date.now();
   if (d <= 0){ $("count").innerHTML = '<div><b>¡YA ESTÁ AQUÍ!</b><small>Bienvenido a Vice City</small></div>'; return; }
-  const t = [["Días",86400000],["Horas",3600000],["Min",60000],["Seg",1000]];
-  $("count").innerHTML = t.map(([l,m]) => { const v = Math.floor(d/m); d -= v*m; return `<div><b>${String(v).padStart(2,"0")}</b><small>${l}</small></div>`; }).join("");
+  $("count").innerHTML = [["Días",86400000],["Horas",3600000],["Min",60000],["Seg",1000]].map(([l,m]) => { const v = Math.floor(d/m); d -= v*m; return `<div><b>${String(v).padStart(2,"0")}</b><small>${l}</small></div>`; }).join("");
 }
 tick(); setInterval(tick, 1000);
 
-// ---- config ----
-function loadCfg(){ $("cfgAccount").value = S.cfg.account; $("cfgPrize").value = S.cfg.prize; $("cfgMin").value = S.cfg.min; $("cfgSubs").value = S.cfg.subs; }
-["cfgAccount","cfgPrize","cfgMin","cfgSubs"].forEach(id => $(id).addEventListener("input", () => {
-  S.cfg = { account:$("cfgAccount").value, prize:$("cfgPrize").value, min:Math.max(1,+$("cfgMin").value||3), subs:Math.max(0,Math.min(5,+$("cfgSubs").value||0)) };
-  save(); render();
-}));
-
-// ---- model ----
-function ensure(u){ if (!u) return null; return S.p[u] || (S.p[u] = { user:u, comments:[], follows:false, shared:false }); }
-function mentionsOf(user, text){
-  const me = norm(S.cfg.account), set = new Set();
-  for (const m of text.matchAll(/@([A-Za-z0-9._]{1,30})/g)){ const n = norm(m[1]); if (n && n !== user && n !== me) set.add(n); }
-  return set;
-}
-function info(p){
-  let best = 0;
-  p.comments.forEach(c => best = Math.max(best, mentionsOf(p.user, c).size));
-  const commented = p.comments.length > 0;
-  const req = [p.follows, commented, best >= S.cfg.min, p.shared];
-  return { best, commented, req, stars: req.filter(Boolean).length + (req.every(Boolean) ? 1 : 0), ok: req.every(Boolean) };
-}
-
-// ---- parsing ----
-function parseComments(text){
-  let n = 0;
-  text.split(/\r?\n/).forEach(line => {
-    line = line.trim(); if (!line) return;
-    let m = line.match(/^@?([A-Za-z0-9._]+)\s*(?:[:\t]|,\s*)\s*(.*)$/);
-    if (!m) return;
-    const u = norm(m[1]); if (!u) return;
-    const p = ensure(u); p.comments.push(m[2].replace(/^"|"$/g,"")); n++;
-  });
-  return n;
-}
-function parseUsers(text){ return text.split(/[\r\n,;]+/).map(norm).filter(Boolean); }
-
-$("addComments").onclick = () => { const n = parseComments($("txtComments").value); $("txtComments").value = ""; save(); render(); toast(`${n} comentarios procesados`); };
-$("addFollowers").onclick = () => { const list = new Set(parseUsers($("txtFollowers").value)); let n=0;
-  Object.values(S.p).forEach(p => { if (list.has(p.user)) { p.follows = true; n++; } });
-  save(); render(); toast(`${n} participantes marcados como seguidores`); };
-$("addShares").onclick = () => { const list = parseUsers($("txtShares").value); let n=0;
-  list.forEach(u => { ensure(u).shared = true; n++; }); save(); render(); toast(`${n} compartidos marcados`); };
-$("addManual").onclick = () => { const u = norm($("mUser").value); if (!u) return; ensure(u).comments.push($("mText").value); $("mUser").value = $("mText").value = ""; save(); render(); };
-$("fileComments").onclick = () => $("fileIn").click();
-$("fileIn").onchange = e => { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { const n = parseComments(String(r.result)); save(); render(); toast(`${n} comentarios importados`); }; r.readAsText(f); e.target.value=""; };
-$("tabs").onclick = e => { const b = e.target.closest("button"); if (!b) return;
-  document.querySelectorAll("#tabs button").forEach(x => x.classList.toggle("on", x===b));
-  document.querySelectorAll(".pane").forEach(x => x.classList.toggle("on", x.id === b.dataset.p)); };
-
-// ---- table ----
-const starHtml = (n, tot=5) => `<span class="stars">${Array.from({length:tot},(_,i)=>`<i class="${i<n?"on":""}">★</i>`).join("")}</span>`;
 function render(){
-  const all = Object.values(S.p).map(p => ({p, i:info(p)}));
-  const ok = all.filter(x => x.i.ok).length;
-  $("stats").innerHTML = [["Participantes",all.length],["Sigue",all.filter(x=>x.p.follows).length],["Comentaron",all.filter(x=>x.i.commented).length],
-    [`${S.cfg.min}+ menciones`,all.filter(x=>x.i.best>=S.cfg.min).length],["Compartieron",all.filter(x=>x.p.shared).length],["Elegibles ★5",ok]]
-    .map(([l,v]) => `<div class="stat"><b>${v}</b><small>${l}</small></div>`).join("");
-  const q = $("filter").value.trim().toLowerCase(), f = $("show").value;
-  const rows = all.filter(x => (!q || x.p.user.includes(q)) && (f==="all" || (f==="ok") === x.i.ok))
-    .sort((a,b) => b.i.stars - a.i.stars || a.p.user.localeCompare(b.p.user));
-  $("tbody").innerHTML = rows.map(({p,i}) => `<tr>
-    <td><b>@${esc(p.user)}</b></td>
-    <td><input type="checkbox" data-u="${esc(p.user)}" data-k="follows" ${p.follows?"checked":""}></td>
-    <td class="${i.commented?"ok":"no"}">${i.commented?"✔":"✘"}</td>
-    <td class="${i.best>=S.cfg.min?"ok":"no"}">${i.best}${i.best>=S.cfg.min?" ✔":""}</td>
-    <td><input type="checkbox" data-u="${esc(p.user)}" data-k="shared" ${p.shared?"checked":""}></td>
-    <td>${starHtml(i.stars)}</td>
-    <td><button class="ghost" style="padding:3px 8px" data-del="${esc(p.user)}">✕</button></td></tr>`).join("")
-    || `<tr><td colspan="7" class="hint">Aún no hay participantes. Carga los comentarios en el paso 2.</td></tr>`;
-  $("hist").innerHTML = S.hist.slice().reverse().map(h => `<li>🏆 <b>@${esc(h.winner)}</b> — ${esc(h.prize||"Premio")} · suplentes: ${h.subs.map(s=>"@"+esc(s)).join(", ")||"—"} · <span class="men">${new Date(h.at).toLocaleString()}</span></li>`).join("") || `<li class="hint">Sin sorteos todavía.</li>`;
-  $("tagline").textContent = S.cfg.prize ? `Premio: ${S.cfg.prize}` : "Misión: gana el sorteo";
-  if (!drawing) $("wanted").innerHTML = starHtml(0).replace("stars","wanted");
+  $("nTotal").textContent = S.list.length; $("nLeft").textContent = pool().length;
+  $("nOut").textContent = S.hist.filter(h => h.ok === false).length;
+  $("tagline").textContent = S.prize ? `Premio: ${S.prize}` : "Misión: gana el sorteo";
+  $("hist").innerHTML = S.hist.slice().reverse().map(h => `<li>${h.ok ? "🏆" : "🚫"} <b>@${esc(h.user)}</b> — ${h.ok ? "GANADOR/A" : "no cumplió"}</li>`).join("") || `<li class="hint">Aún no hay sorteos.</li>`;
 }
-$("tbody").onchange = e => { const t = e.target; if (t.dataset.k) { S.p[t.dataset.u][t.dataset.k] = t.checked; save(); render(); } };
-$("tbody").onclick = e => { const u = e.target.dataset.del; if (u) { delete S.p[u]; save(); render(); } };
-$("filter").oninput = $("show").onchange = render;
-$("clearAll").onclick = () => { if (confirm("¿Borrar todos los participantes y el historial?")) { S.p = {}; S.hist = []; save(); render(); } };
-$("csvAll").onclick = () => {
-  const rows = [["usuario","sigue","comento","menciones","compartio","elegible"]].concat(Object.values(S.p).map(p => { const i = info(p); return [p.user,p.follows,i.commented,i.best,p.shared,i.ok]; }));
-  const blob = new Blob([rows.map(r=>r.join(",")).join("\n")], {type:"text/csv"}); const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob); a.download = "participantes-sorteo.csv"; a.click();
+$("cfgPrize").value = S.prize;
+$("cfgPrize").oninput = () => { S.prize = $("cfgPrize").value; save(); render(); };
+$("addList").onclick = () => {
+  const add = $("txtList").value.split(/[\r\n,;\s]+/).map(norm).filter(Boolean);
+  const set = new Set(S.list); add.forEach(u => set.add(u)); S.list = [...set];
+  $("txtList").value = ""; save(); render(); toast(`${add.length} usuarios cargados`);
 };
+$("clearAll").onclick = () => { if (confirm("¿Borrar lista e historial?")) { S.list = []; S.used = []; S.hist = []; save(); render(); resetStage(); } };
 
-// ---- draw ----
-let drawing = false;
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+let drawing = false, current = null;
 function setWanted(n){ $("wanted").innerHTML = Array.from({length:5},(_,i)=>`<i class="${i<n?"on":""}">★</i>`).join(""); }
+function resetStage(){ $("result").innerHTML = ""; $("reel").textContent = "PRESIONA SORTEAR"; $("wanted").innerHTML = ""; $("verify").style.display = "none"; $("ctl").style.display = "flex"; $("checks").innerHTML = ""; }
 function confetti(){
   const st = $("stage"), cols = ["#ff3ea5","#ffd23f","#19e3d1","#ff9f43","#7b2ff7"];
   for (let i=0;i<70;i++){ const c = document.createElement("div"); c.className = "confetti";
@@ -283,33 +171,40 @@ function confetti(){
 }
 $("go").onclick = async () => {
   if (drawing) return;
-  const pool = Object.values(S.p).filter(p => info(p).ok).map(p => p.user);
-  if (!pool.length){ toast("No hay participantes con las 5 estrellas todavía"); return; }
-  drawing = true; $("go").disabled = true; $("result").innerHTML = ""; $("stage").classList.add("siren");
-  for (let s=1; s<=5; s++){ setWanted(s); $("reel").textContent = ["Buscando…","Escaneando Vice City…","Cruzando datos…","Refuerzos en camino…","¡NIVEL MÁXIMO!"][s-1]; await sleep(650); }
-  // reel
-  const winner = pool[rnd(pool.length)];
-  const rest = pool.filter(u => u !== winner), subs = [];
-  while (subs.length < S.cfg.subs && rest.length) subs.push(rest.splice(rnd(rest.length),1)[0]);
+  const p = pool(); if (!p.length){ toast(S.list.length ? "Ya no quedan usuarios disponibles" : "Primero carga la lista"); return; }
+  drawing = true; $("go").disabled = true; $("result").innerHTML = ""; $("checks").innerHTML = ""; $("stage").classList.add("siren");
+  for (let s=1; s<=5; s++){ setWanted(s); $("reel").textContent = ["Buscando…","Escaneando Vice City…","Cruzando datos…","Refuerzos en camino…","¡NIVEL MÁXIMO!"][s-1]; await sleep(500); }
+  current = p[rnd(p.length)];
   let d = 50;
-  while (d < 420){ $("reel").textContent = "@" + pool[rnd(pool.length)]; await sleep(d); d *= 1.13; }
-  $("reel").textContent = "@" + winner;
-  $("stage").classList.remove("siren"); $("wanted").innerHTML = "";
-  $("result").innerHTML = `<div class="pass">MISIÓN CUMPLIDA</div><div class="winner">@${esc(winner)}</div>
-    <div class="subs">${S.cfg.prize ? "Premio: <b>"+esc(S.cfg.prize)+"</b><br>" : ""}${subs.length ? "Suplentes: " + subs.map(s=>"@"+esc(s)).join(" · ") : ""}</div>`;
-  $("reel").textContent = "";
-  confetti();
-  S.hist.push({ winner, subs, prize:S.cfg.prize, at:Date.now(), pool:pool.length }); save();
-  drawing = false; $("go").disabled = false; $("go").textContent = "🎰 Sortear de nuevo"; render();
+  while (d < 420){ $("reel").textContent = "@" + p[rnd(p.length)]; await sleep(d); d *= 1.13; }
+  $("stage").classList.remove("siren"); $("wanted").innerHTML = ""; $("reel").textContent = "";
+  $("result").innerHTML = `<div class="pass" style="font-size:clamp(24px,6vw,44px)">USUARIO SELECCIONADO</div><div class="winner">@${esc(current)}</div>`;
+  $("checks").innerHTML = "Verifica en Instagram: ⭐ lo sigue · ⭐ comentó la publicación fijada · ⭐ mencionó a 3+ personas · ⭐ la compartió";
+  $("ctl").style.display = "none"; $("verify").style.display = "flex";
+  drawing = false; $("go").disabled = false;
 };
+function finish(ok){
+  S.used.push(current); S.hist.push({ user:current, ok, at:Date.now() }); save(); render();
+  if (ok){
+    $("verify").style.display = "none";
+    $("result").innerHTML = `<div class="pass">MISIÓN CUMPLIDA</div><div class="winner">@${esc(current)}</div>${S.prize ? `<div class="subs">Premio: <b>${esc(S.prize)}</b></div>` : ""}`;
+    $("checks").innerHTML = ""; $("go").textContent = "🎰 Sortear otro ganador"; $("ctl").style.display = "flex"; confetti();
+  } else {
+    $("verify").style.display = "none"; $("ctl").style.display = "flex";
+    $("result").innerHTML = `<div class="subs">@${esc(current)} no cumple · descartado</div>`;
+    $("checks").innerHTML = ""; $("reel").textContent = "SORTEA OTRO";
+    if (pool().length) $("go").click();
+  }
+}
+$("yes").onclick = () => finish(true);
+$("no").onclick = () => finish(false);
 
 function toast(msg){
   const t = document.createElement("div"); t.textContent = msg;
   Object.assign(t.style,{position:"fixed",bottom:"20px",left:"50%",transform:"translateX(-50%)",background:"#ff3ea5",color:"#fff",padding:"10px 18px",borderRadius:"99px",zIndex:99,fontWeight:"bold",boxShadow:"0 6px 24px #0008"});
   document.body.appendChild(t); setTimeout(()=>t.remove(), 2400);
 }
-
-loadCfg(); render();
+render();
 })();
 </script>
 </body>
