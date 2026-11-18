@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sorteo GTA VI · Panel de sorteo</title>
+<style>
+:root{
+  --pink:#ff3ea5; --orange:#ff9f43; --purple:#7b2ff7; --teal:#19e3d1; --gold:#ffd23f;
+  --bg:#12041f; --card:rgba(30,8,52,.82); --line:rgba(255,62,165,.35); --txt:#fff3fb; --mut:#c9a6dd;
+}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Trebuchet MS",system-ui,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;
+  background-image:linear-gradient(180deg,#12041f 0%,#3b0a63 38%,#d6246e 72%,#ff9f43 100%);background-attachment:fixed}
+.sun{position:fixed;left:50%;bottom:-120px;width:520px;height:520px;margin-left:-260px;border-radius:50%;z-index:0;
+  background:linear-gradient(180deg,#ffe066,#ff6b6b 60%,#ff3ea5);opacity:.35;filter:blur(1px);pointer-events:none}
+.palms{position:fixed;inset:auto 0 0 0;height:160px;z-index:0;pointer-events:none;opacity:.55;
+  background:repeating-linear-gradient(90deg,transparent 0 90px,#12041f 90px 94px)}
+main{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:20px 16px 80px}
+header{text-align:center;padding:28px 0 8px}
+.logo{font-family:Impact,"Arial Black",sans-serif;font-size:clamp(56px,14vw,128px);line-height:.95;letter-spacing:2px;
+  background:linear-gradient(180deg,#ffe066 0%,#ff9f43 40%,#ff3ea5 75%,#7b2ff7 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 4px 0 #2a0a45) drop-shadow(0 0 22px rgba(255,62,165,.6))}
+.sub{letter-spacing:6px;color:var(--teal);font-weight:bold;text-transform:uppercase;font-size:13px}
+.count{display:flex;gap:10px;justify-content:center;margin:16px 0 4px;flex-wrap:wrap}
+.count div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-width:70px}
+.count b{display:block;font:bold 26px Impact,sans-serif;color:var(--gold)}
+.count small{color:var(--mut);font-size:11px;text-transform:uppercase}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px;backdrop-filter:blur(6px)}
+h2{font:22px Impact,"Arial Black",sans-serif;letter-spacing:1.5px;color:var(--pink);margin-bottom:12px;text-transform:uppercase}
+h2 span{color:var(--teal)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+label{display:block;font-size:12px;color:var(--mut);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+input,textarea,select{width:100%;background:#1a0630;color:var(--txt);border:1px solid #5a2b82;border-radius:8px;padding:9px 10px;font:inherit}
+textarea{min-height:120px;resize:vertical;font-family:ui-monospace,Menlo,monospace;font-size:13px}
+input:focus,textarea:focus{outline:2px solid var(--teal)}
+button{cursor:pointer;border:0;border-radius:8px;padding:10px 16px;font:bold 14px "Trebuchet MS",sans-serif;color:#fff;
+  background:linear-gradient(90deg,var(--pink),var(--purple));text-transform:uppercase;letter-spacing:1px}
+button:hover{filter:brightness(1.15)} button.ghost{background:transparent;border:1px solid var(--teal);color:var(--teal)}
+button.danger{background:#7a1230}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.hint{color:var(--mut);font-size:12px;margin-top:6px;line-height:1.4}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tabs button{background:#2a0a45;border:1px solid #5a2b82}
+.tabs button.on{background:linear-gradient(90deg,var(--pink),var(--orange))}
+.pane{display:none}.pane.on{display:block}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.stat{flex:1;min-width:110px;background:#1a0630;border:1px solid #5a2b82;border-radius:10px;padding:10px;text-align:center}
+.stat b{font:bold 28px Impact,sans-serif;color:var(--gold);display:block}
+.stat small{color:var(--mut);font-size:11px;text-transform:uppercase}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font-size:11px;text-transform:uppercase;color:var(--mut);text-align:left;padding:6px;letter-spacing:1px}
+td{padding:7px 6px;border-top:1px solid rgba(255,255,255,.08);vertical-align:middle}
+.tw{overflow-x:auto;max-height:420px;overflow-y:auto}
+.stars{letter-spacing:2px;white-space:nowrap}.stars i{font-style:normal;color:#3d2a55}.stars i.on{color:var(--gold);text-shadow:0 0 8px var(--gold)}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;background:#2a0a45}
+.ok{color:var(--teal)}.no{color:#ff6b81}
+.men{font-size:12px;color:var(--mut)}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--pink)}
+/* DRAW */
+.stage{position:relative;text-align:center;padding:30px 10px;border-radius:12px;background:#0b0214;border:2px solid var(--pink);overflow:hidden;min-height:260px}
+.stage.siren::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,0,60,.35),transparent 40%,transparent 60%,rgba(0,120,255,.35));animation:siren .35s infinite alternate}
+@keyframes siren{from{opacity:.2;transform:scaleX(1)}to{opacity:1;transform:scaleX(-1)}}
+.wanted{font-size:34px;letter-spacing:6px;position:relative}
+.wanted i{font-style:normal;color:#3d2a55}.wanted i.on{color:var(--gold);text-shadow:0 0 12px var(--gold);animation:blink .4s infinite alternate}
+@keyframes blink{to{opacity:.45}}
+.reel{position:relative;font:clamp(28px,7vw,60px) Impact,sans-serif;margin:18px 0;min-height:70px;color:var(--teal);text-shadow:0 0 14px var(--teal);word-break:break-all}
+.pass{position:relative;font:clamp(34px,9vw,80px) Impact,sans-serif;color:var(--gold);letter-spacing:3px;text-shadow:0 4px 0 #8a4b00,0 0 30px rgba(255,210,63,.7);
+  animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{from{transform:scale(.2);opacity:0}}
+.winner{position:relative;font:clamp(30px,8vw,70px) Impact,sans-serif;color:#fff;background:linear-gradient(90deg,var(--pink),var(--orange));
+  display:inline-block;padding:4px 22px;border-radius:8px;margin:12px 0;animation:pop .6s .2s both cubic-bezier(.2,1.6,.4,1)}
+.subs{position:relative;color:var(--mut);margin-top:8px}
+.confetti{position:absolute;top:-10px;width:10px;height:14px;opacity:.9;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(420px) rotate(720deg);opacity:0}}
+.warn{background:rgba(255,159,67,.12);border:1px solid var(--orange);border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.45;color:#ffd9ad}
+.hist li{padding:6px 0;border-top:1px solid rgba(255,255,255,.08);list-style:none;font-size:14px}
+footer{text-align:center;color:#ffd9ad;font-size:12px;margin-top:26px;position:relative;z-index:1}
+</style>
+</head>
+<body>
+<div class="sun"></div><div class="palms"></div>
+<main>
+<header>
+  <div class="sub">Sorteo oficial · Instagram</div>
+  <div class="logo">GTA VI</div>
+  <div class="sub" id="tagline">Misión: gana el sorteo</div>
+  <div class="count" id="count"></div>
+</header>
+
+<section>
+  <h2>1 · <span>Configuración</span></h2>
+  <div class="grid">
+    <div><label>Tu cuenta de Instagram</label><input id="cfgAccount" placeholder="@tu_cuenta"></div>
+    <div><label>Premio</label><input id="cfgPrize" placeholder="Ej: GTA VI para PS5"></div>
+    <div><label>Menciones mínimas</label><input id="cfgMin" type="number" min="1" value="3"></div>
+    <div><label>Suplentes</label><input id="cfgSubs" type="number" min="0" max="5" value="2"></div>
+  </div>
+  <div class="hint">Requisitos: ⭐ Sigue la cuenta · ⭐ Comentó la publicación fijada · ⭐ Mencionó a 3+ personas distintas · ⭐ Compartió la publicación. Con los 4 cumplidos obtiene <b>5 estrellas</b> (¡nivel de búsqueda máximo!) y entra al sorteo.</div>
+</section>
+
+<section>
+  <h2>2 · <span>Cargar participantes</span></h2>
+  <div class="tabs" id="tabs">
+    <button class="on" data-p="p1">💬 Comentarios</button>
+    <button data-p="p2">👥 Seguidores</button>
+    <button data-p="p3">🔁 Compartidos</button>
+    <button data-p="p4">➕ Manual</button>
+  </div>
+  <div class="pane on" id="p1">
+    <label>Pega los comentarios (uno por línea: <code>usuario: texto del comentario</code>)</label>
+    <textarea id="txtComments" placeholder="juan_gamer: Quiero ganar! @ana @luis @pedro&#10;maria.v: GTA VI es todo @carlos @sofi @beto @luz"></textarea>
+    <div class="row"><button id="addComments">Procesar comentarios</button><button class="ghost" id="fileComments">Importar CSV/TXT…</button><input type="file" id="fileIn" accept=".csv,.txt" hidden></div>
+    <div class="hint">Puedes copiar los comentarios desde Instagram (web) o exportarlos con la herramienta que uses. Formatos aceptados: <code>usuario: texto</code>, <code>usuario,texto</code> o <code>usuario[TAB]texto</code>. Las menciones se cuentan solas: únicas, sin contar tu cuenta ni la del propio participante.</div>
+  </div>
+  <div class="pane" id="p2">
+    <label>Pega la lista de seguidores (un @usuario por línea)</label>
+    <textarea id="txtFollowers" placeholder="juan_gamer&#10;@maria.v"></textarea>
+    <div class="row"><button id="addFollowers">Marcar como seguidores</button></div>
+    <div class="hint">Instagram → Tu perfil → Seguidores. Los usuarios de la lista que hayan comentado quedarán marcados como “sigue la cuenta”. Si no cargas lista, márcalo manualmente en la tabla.</div>
+  </div>
+  <div class="pane" id="p3">
+    <label>Pega quiénes compartieron la publicación (un @usuario por línea)</label>
+    <textarea id="txtShares" placeholder="juan_gamer&#10;maria.v"></textarea>
+    <div class="row"><button id="addShares">Marcar como compartieron</button></div>
+    <div class="hint">Revisa en la publicación → Compartidos / Recompartidos, o las menciones en historias. Instagram no expone este dato públicamente, por eso se confirma aquí o a mano.</div>
+  </div>
+  <div class="pane" id="p4">
+    <div class="grid">
+      <div><label>Usuario</label><input id="mUser" placeholder="@usuario"></div>
+      <div><label>Comentario</label><input id="mText" placeholder="@a @b @c ..."></div>
+    </div>
+    <div class="row"><button id="addManual">Agregar participante</button></div>
+  </div>
+</section>
+
+<section>
+  <h2>3 · <span>Verificación</span></h2>
+  <div class="stats" id="stats"></div>
+  <div class="row" style="margin:0 0 10px">
+    <input id="filter" placeholder="Buscar usuario…" style="max-width:240px">
+    <select id="show" style="max-width:200px"><option value="all">Todos</option><option value="ok">Solo elegibles</option><option value="no">No elegibles</option></select>
+    <button class="ghost" id="csvAll">Exportar CSV</button>
+    <button class="danger" id="clearAll">Borrar todo</button>
+  </div>
+  <div class="tw"><table><thead><tr><th>Usuario</th><th>Sigue</th><th>Comentó</th><th>Menciones</th><th>Compartió</th><th>Estrellas</th><th></th></tr></thead><tbody id="tbody"></tbody></table></div>
+</section>
+
+<section>
+  <h2>4 · <span>El sorteo</span></h2>
+  <div class="stage" id="stage">
+    <div class="wanted" id="wanted"></div>
+    <div class="reel" id="reel">PRESIONA INICIAR</div>
+    <div id="result"></div>
+  </div>
+  <div class="row" style="justify-content:center">
+    <button id="go" style="font-size:18px;padding:14px 30px">🎰 Iniciar sorteo</button>
+  </div>
+  <div class="hint" style="text-align:center">Selección con aleatoriedad criptográfica (<code>crypto.getRandomValues</code>). Solo participan quienes tienen las 5 estrellas.</div>
+  <h2 style="margin-top:18px;font-size:16px">Historial</h2>
+  <ul class="hist" id="hist"></ul>
+</section>
+
+<section class="warn">
+  ⚠️ <b>Importante:</b> Instagram no permite a ninguna app web verificar de forma automática quién comparte una publicación ni leer seguidores de terceros sin aprobación de Meta. Esta herramienta automatiza lo que sí se puede (conteo de menciones, cruce de listas, elegibilidad y sorteo justo) y te deja confirmar el resto. Recuerda cumplir las bases del sorteo y las <a style="color:#fff" href="https://help.instagram.com/179379042645903" target="_blank" rel="noopener">normas de promociones de Instagram</a>. Este sorteo no está patrocinado ni afiliado a Instagram/Meta, Rockstar Games ni Take-Two.
+</section>
+<footer>Sorteo dinámico · estilo GTA VI · fan-made</footer>
+</main>
+
+<script>
+(() => {
+const $ = id => document.getElementById(id);
+const KEY = "sorteo_gta6_v1";
+let S = { cfg:{account:"",prize:"",min:3,subs:2}, p:{}, hist:[] };
+try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch(e){}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} };
+const norm = u => (u||"").trim().replace(/^@/,"").toLowerCase().replace(/[^a-z0-9._]/g,"");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const rnd = n => { const a = new Uint32Array(1); const lim = Math.floor(4294967296/n)*n; do { crypto.getRandomValues(a); } while (a[0] >= lim); return a[0] % n; };
+
+// ---- countdown (GTA VI: 19 nov 2026) ----
+const RELEASE = new Date("2026-11-19T00:00:00");
+function tick(){
+  let d = RELEASE - Date.now();
+  if (d <= 0){ $("count").innerHTML = '<div><b>¡YA ESTÁ AQUÍ!</b><small>Bienvenido a Vice City</small></div>'; return; }
+  const t = [["Días",86400000],["Horas",3600000],["Min",60000],["Seg",1000]];
+  $("count").innerHTML = t.map(([l,m]) => { const v = Math.floor(d/m); d -= v*m; return `<div><b>${String(v).padStart(2,"0")}</b><small>${l}</small></div>`; }).join("");
+}
+tick(); setInterval(tick, 1000);
+
+// ---- config ----
+function loadCfg(){ $("cfgAccount").value = S.cfg.account; $("cfgPrize").value = S.cfg.prize; $("cfgMin").value = S.cfg.min; $("cfgSubs").value = S.cfg.subs; }
+["cfgAccount","cfgPrize","cfgMin","cfgSubs"].forEach(id => $(id).addEventListener("input", () => {
+  S.cfg = { account:$("cfgAccount").value, prize:$("cfgPrize").value, min:Math.max(1,+$("cfgMin").value||3), subs:Math.max(0,Math.min(5,+$("cfgSubs").value||0)) };
+  save(); render();
+}));
+
+// ---- model ----
+function ensure(u){ if (!u) return null; return S.p[u] || (S.p[u] = { user:u, comments:[], follows:false, shared:false }); }
+function mentionsOf(user, text){
+  const me = norm(S.cfg.account), set = new Set();
+  for (const m of text.matchAll(/@([A-Za-z0-9._]{1,30})/g)){ const n = norm(m[1]); if (n && n !== user && n !== me) set.add(n); }
+  return set;
+}
+function info(p){
+  let best = 0;
+  p.comments.forEach(c => best = Math.max(best, mentionsOf(p.user, c).size));
+  const commented = p.comments.length > 0;
+  const req = [p.follows, commented, best >= S.cfg.min, p.shared];
+  return { best, commented, req, stars: req.filter(Boolean).length + (req.every(Boolean) ? 1 : 0), ok: req.every(Boolean) };
+}
+
+// ---- parsing ----
+function parseComments(text){
+  let n = 0;
+  text.split(/\r?\n/).forEach(line => {
+    line = line.trim(); if (!line) return;
+    let m = line.match(/^@?([A-Za-z0-9._]+)\s*(?:[:\t]|,\s*)\s*(.*)$/);
+    if (!m) return;
+    const u = norm(m[1]); if (!u) return;
+    const p = ensure(u); p.comments.push(m[2].replace(/^"|"$/g,"")); n++;
+  });
+  return n;
+}
+function parseUsers(text){ return text.split(/[\r\n,;]+/).map(norm).filter(Boolean); }
+
+$("addComments").onclick = () => { const n = parseComments($("txtComments").value); $("txtComments").value = ""; save(); render(); toast(`${n} comentarios procesados`); };
+$("addFollowers").onclick = () => { const list = new Set(parseUsers($("txtFollowers").value)); let n=0;
+  Object.values(S.p).forEach(p => { if (list.has(p.user)) { p.follows = true; n++; } });
+  save(); render(); toast(`${n} participantes marcados como seguidores`); };
+$("addShares").onclick = () => { const list = parseUsers($("txtShares").value); let n=0;
+  list.forEach(u => { ensure(u).shared = true; n++; }); save(); render(); toast(`${n} compartidos marcados`); };
+$("addManual").onclick = () => { const u = norm($("mUser").value); if (!u) return; ensure(u).comments.push($("mText").value); $("mUser").value = $("mText").value = ""; save(); render(); };
+$("fileComments").onclick = () => $("fileIn").click();
+$("fileIn").onchange = e => { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { const n = parseComments(String(r.result)); save(); render(); toast(`${n} comentarios importados`); }; r.readAsText(f); e.target.value=""; };
+$("tabs").onclick = e => { const b = e.target.closest("button"); if (!b) return;
+  document.querySelectorAll("#tabs button").forEach(x => x.classList.toggle("on", x===b));
+  document.querySelectorAll(".pane").forEach(x => x.classList.toggle("on", x.id === b.dataset.p)); };
+
+// ---- table ----
+const starHtml = (n, tot=5) => `<span class="stars">${Array.from({length:tot},(_,i)=>`<i class="${i<n?"on":""}">★</i>`).join("")}</span>`;
+function render(){
+  const all = Object.values(S.p).map(p => ({p, i:info(p)}));
+  const ok = all.filter(x => x.i.ok).length;
+  $("stats").innerHTML = [["Participantes",all.length],["Sigue",all.filter(x=>x.p.follows).length],["Comentaron",all.filter(x=>x.i.commented).length],
+    [`${S.cfg.min}+ menciones`,all.filter(x=>x.i.best>=S.cfg.min).length],["Compartieron",all.filter(x=>x.p.shared).length],["Elegibles ★5",ok]]
+    .map(([l,v]) => `<div class="stat"><b>${v}</b><small>${l}</small></div>`).join("");
+  const q = $("filter").value.trim().toLowerCase(), f = $("show").value;
+  const rows = all.filter(x => (!q || x.p.user.includes(q)) && (f==="all" || (f==="ok") === x.i.ok))
+    .sort((a,b) => b.i.stars - a.i.stars || a.p.user.localeCompare(b.p.user));
+  $("tbody").innerHTML = rows.map(({p,i}) => `<tr>
+    <td><b>@${esc(p.user)}</b></td>
+    <td><input type="checkbox" data-u="${esc(p.user)}" data-k="follows" ${p.follows?"checked":""}></td>
+    <td class="${i.commented?"ok":"no"}">${i.commented?"✔":"✘"}</td>
+    <td class="${i.best>=S.cfg.min?"ok":"no"}">${i.best}${i.best>=S.cfg.min?" ✔":""}</td>
+    <td><input type="checkbox" data-u="${esc(p.user)}" data-k="shared" ${p.shared?"checked":""}></td>
+    <td>${starHtml(i.stars)}</td>
+    <td><button class="ghost" style="padding:3px 8px" data-del="${esc(p.user)}">✕</button></td></tr>`).join("")
+    || `<tr><td colspan="7" class="hint">Aún no hay participantes. Carga los comentarios en el paso 2.</td></tr>`;
+  $("hist").innerHTML = S.hist.slice().reverse().map(h => `<li>🏆 <b>@${esc(h.winner)}</b> — ${esc(h.prize||"Premio")} · suplentes: ${h.subs.map(s=>"@"+esc(s)).join(", ")||"—"} · <span class="men">${new Date(h.at).toLocaleString()}</span></li>`).join("") || `<li class="hint">Sin sorteos todavía.</li>`;
+  $("tagline").textContent = S.cfg.prize ? `Premio: ${S.cfg.prize}` : "Misión: gana el sorteo";
+  if (!drawing) $("wanted").innerHTML = starHtml(0).replace("stars","wanted");
+}
+$("tbody").onchange = e => { const t = e.target; if (t.dataset.k) { S.p[t.dataset.u][t.dataset.k] = t.checked; save(); render(); } };
+$("tbody").onclick = e => { const u = e.target.dataset.del; if (u) { delete S.p[u]; save(); render(); } };
+$("filter").oninput = $("show").onchange = render;
+$("clearAll").onclick = () => { if (confirm("¿Borrar todos los participantes y el historial?")) { S.p = {}; S.hist = []; save(); render(); } };
+$("csvAll").onclick = () => {
+  const rows = [["usuario","sigue","comento","menciones","compartio","elegible"]].concat(Object.values(S.p).map(p => { const i = info(p); return [p.user,p.follows,i.commented,i.best,p.shared,i.ok]; }));
+  const blob = new Blob([rows.map(r=>r.join(",")).join("\n")], {type:"text/csv"}); const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "participantes-sorteo.csv"; a.click();
+};
+
+// ---- draw ----
+let drawing = false;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function setWanted(n){ $("wanted").innerHTML = Array.from({length:5},(_,i)=>`<i class="${i<n?"on":""}">★</i>`).join(""); }
+function confetti(){
+  const st = $("stage"), cols = ["#ff3ea5","#ffd23f","#19e3d1","#ff9f43","#7b2ff7"];
+  for (let i=0;i<70;i++){ const c = document.createElement("div"); c.className = "confetti";
+    c.style.left = Math.random()*100+"%"; c.style.background = cols[i%5]; c.style.animationDuration = (1.6+Math.random()*1.8)+"s"; c.style.animationDelay = Math.random()*.6+"s";
+    st.appendChild(c); setTimeout(()=>c.remove(), 4500); }
+}
+$("go").onclick = async () => {
+  if (drawing) return;
+  const pool = Object.values(S.p).filter(p => info(p).ok).map(p => p.user);
+  if (!pool.length){ toast("No hay participantes con las 5 estrellas todavía"); return; }
+  drawing = true; $("go").disabled = true; $("result").innerHTML = ""; $("stage").classList.add("siren");
+  for (let s=1; s<=5; s++){ setWanted(s); $("reel").textContent = ["Buscando…","Escaneando Vice City…","Cruzando datos…","Refuerzos en camino…","¡NIVEL MÁXIMO!"][s-1]; await sleep(650); }
+  // reel
+  const winner = pool[rnd(pool.length)];
+  const rest = pool.filter(u => u !== winner), subs = [];
+  while (subs.length < S.cfg.subs && rest.length) subs.push(rest.splice(rnd(rest.length),1)[0]);
+  let d = 50;
+  while (d < 420){ $("reel").textContent = "@" + pool[rnd(pool.length)]; await sleep(d); d *= 1.13; }
+  $("reel").textContent = "@" + winner;
+  $("stage").classList.remove("siren"); $("wanted").innerHTML = "";
+  $("result").innerHTML = `<div class="pass">MISIÓN CUMPLIDA</div><div class="winner">@${esc(winner)}</div>
+    <div class="subs">${S.cfg.prize ? "Premio: <b>"+esc(S.cfg.prize)+"</b><br>" : ""}${subs.length ? "Suplentes: " + subs.map(s=>"@"+esc(s)).join(" · ") : ""}</div>`;
+  $("reel").textContent = "";
+  confetti();
+  S.hist.push({ winner, subs, prize:S.cfg.prize, at:Date.now(), pool:pool.length }); save();
+  drawing = false; $("go").disabled = false; $("go").textContent = "🎰 Sortear de nuevo"; render();
+};
+
+function toast(msg){
+  const t = document.createElement("div"); t.textContent = msg;
+  Object.assign(t.style,{position:"fixed",bottom:"20px",left:"50%",transform:"translateX(-50%)",background:"#ff3ea5",color:"#fff",padding:"10px 18px",borderRadius:"99px",zIndex:99,fontWeight:"bold",boxShadow:"0 6px 24px #0008"});
+  document.body.appendChild(t); setTimeout(()=>t.remove(), 2400);
+}
+
+loadCfg(); render();
+})();
+</script>
+</body>
+</html>
