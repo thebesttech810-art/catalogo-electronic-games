@@ -96,7 +96,8 @@ footer{text-align:center;color:#ffd9ad;font-size:12px;margin-top:26px;position:r
   </div>
   <label style="margin-top:12px">Pega los usuarios (uno por línea, o separados por coma)</label>
   <textarea id="txtList" placeholder="juan_gamer&#10;@maria.v&#10;luis_ps5"></textarea>
-  <div class="row"><button id="addList">Cargar lista</button><button class="ghost" id="importBtn">📂 Importar archivo (.txt / .csv)</button><input type="file" id="fileIn" accept=".txt,.csv,text/plain,text/csv" multiple hidden><button class="danger" id="clearAll">Borrar todo</button></div>
+  <div class="row"><button id="addList">Cargar lista</button><button class="ghost" id="importBtn">📂 Importar archivo (.txt / .csv)</button><input type="file" id="fileIn" accept=".txt,.csv,text/plain,text/csv" multiple hidden><button class="danger" id="clearList">🗑 Borrar lista</button><button class="danger" id="clearAll">Borrar lista + historial</button></div>
+  <label style="display:flex;gap:8px;align-items:center;text-transform:none;letter-spacing:0;font-size:13px;margin-top:10px"><input type="checkbox" id="replace" style="width:18px"> Reemplazar la lista actual al cargar o importar (en vez de sumar)</label>
   <div class="stats" style="margin-top:12px"><div class="stat"><b id="nTotal">0</b><small>En la lista</small></div><div class="stat"><b id="nLeft">0</b><small>Disponibles</small></div><div class="stat"><b id="nOut">0</b><small>Descartados</small></div></div>
   <div class="row"><button class="ghost" id="toggleList">👥 Ver lista de participantes</button></div>
   <div id="listPanel" style="display:none;margin-top:10px">
@@ -177,10 +178,11 @@ $("cfgTime").oninput = () => { S.time = $("cfgTime").value || "18:00"; save(); t
 
 $("cfgPrize").oninput = () => { S.prize = $("cfgPrize").value; save(); render(); };
 $("addList").onclick = () => {
-  const n = addUsers($("txtList").value.split(/[\r\n,;\s]+/));
+  const n = addUsers($("txtList").value.split(/[\r\n,;\s]+/), $("replace").checked);
   $("txtList").value = ""; toast(`${n} usuarios nuevos cargados`);
 };
-function addUsers(arr){
+function addUsers(arr, replace){
+  if (replace){ S.list = []; S.used = []; resetStage(); }
   const set = new Set(S.list), before = set.size; arr.map(norm).filter(Boolean).forEach(u => set.add(u));
   S.list = [...set]; save(); render(); return set.size - before;
 }
@@ -197,9 +199,11 @@ function parseFile(text){
 $("importBtn").onclick = () => $("fileIn").click();
 $("fileIn").onchange = async e => {
   let total = 0, added = 0;
-  for (const f of e.target.files){ const list = parseFile(await f.text()); total += list.length; added += addUsers(list); }
+  let first = true;
+  for (const f of e.target.files){ const list = parseFile(await f.text()); total += list.length; added += addUsers(list, first && $("replace").checked); first = false; }
   e.target.value = ""; toast(`${added} usuarios nuevos importados (${total} leídos)`);
 };
+$("clearList").onclick = () => { if (S.list.length && confirm("¿Borrar la lista de participantes? (el historial de ganadores se conserva)")) { S.list = []; S.used = []; save(); render(); resetStage(); toast("Lista borrada, ya puedes cargar una nueva"); } };
 $("clearAll").onclick = () => { if (confirm("¿Borrar lista e historial?")) { S.list = []; S.used = []; S.hist = []; save(); render(); resetStage(); } };
 
 let drawing = false, current = null, idleOn = true;
