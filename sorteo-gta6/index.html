@@ -93,7 +93,6 @@ footer{text-align:center;color:#ffd9ad;font-size:12px;margin-top:26px;position:r
   <div class="grid">
     <div><label>Premio (opcional)</label><input id="cfgPrize" placeholder="Ej: GTA VI para PS5"></div>
     <div><label>Hora del sorteo (hoy)</label><input id="cfgTime" type="time" value="18:00"></div>
-    <div style="display:flex;align-items:end"><label style="display:flex;gap:8px;align-items:center;text-transform:none;letter-spacing:0;font-size:13px"><input type="checkbox" id="cfgTest" style="width:18px"> Modo prueba (desbloquear antes de la hora)</label></div>
   </div>
   <label style="margin-top:12px">Pega los usuarios (uno por línea, o separados por coma)</label>
   <textarea id="txtList" placeholder="juan_gamer&#10;@maria.v&#10;luis_ps5"></textarea>
@@ -141,7 +140,7 @@ const pool = () => S.list.filter(u => !S.used.includes(u));
 
 const target = () => { const [h,m] = (S.time||"18:00").split(":").map(Number); const d = new Date(); d.setHours(h, m, 0, 0); return d; };
 const fmt12 = t => { const [h,m] = t.split(":").map(Number); return `${(h%12)||12}:${String(m).padStart(2,"0")} ${h<12?"AM":"PM"}`; };
-const unlocked = () => S.test || Date.now() >= target();
+const unlocked = () => true; // botón siempre habilitado
 function tick(){
   let d = target() - Date.now();
   if (d <= 0){ $("count").innerHTML = '<div><b>¡EN VIVO!</b><small>Es hora del sorteo</small></div>'; }
@@ -156,9 +155,9 @@ function render(){
   $("tagline").textContent = S.prize ? `Premio: ${S.prize}` : "Misión: gana el sorteo";
   $("hist").innerHTML = S.hist.slice().reverse().map(h => `<li>${h.ok ? "🏆" : "🚫"} <b>@${esc(h.user)}</b> — ${h.ok ? "GANADOR/A" : "no cumplió"}</li>`).join("") || `<li class="hint">Aún no hay sorteos.</li>`;
 }
-$("cfgPrize").value = S.prize; $("cfgTime").value = S.time; $("cfgTest").checked = S.test;
+$("cfgPrize").value = S.prize; $("cfgTime").value = S.time;
 $("cfgTime").oninput = () => { S.time = $("cfgTime").value || "18:00"; save(); tick(); };
-$("cfgTest").onchange = () => { S.test = $("cfgTest").checked; save(); tick(); };
+
 $("cfgPrize").oninput = () => { S.prize = $("cfgPrize").value; save(); render(); };
 $("addList").onclick = () => {
   const n = addUsers($("txtList").value.split(/[\r\n,;\s]+/));
