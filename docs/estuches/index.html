@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="es-EC">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Catálogo de estuches Samsung</title>
+<meta name="description" content="Mira todos los estuches para celulares Samsung y busca el de tu modelo: A05, A54, S24 y más. Catálogo para ver y consultar.">
+<meta name="theme-color" content="#0D0E12">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_EC">
+<meta property="og:title" content="Catálogo de estuches Samsung">
+<meta property="og:description" content="Busca el estuche de tu modelo Samsung y mira las fotos.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Concepto: sala de exhibición. La foto manda: escenario oscuro, el fondo toma el color de cada estuche y todo lo demás se aparta. Un solo color de acento (coral). */
+:root{
+  --bg:#0D0E12; --panel:#15171D; --panel2:#1C1F27; --fg:#F4F1EE; --muted:#A4A7B3; --line:#2A2D38;
+  --acento:#FF7A66; --acento-ink:#1B0A07;
+  --display:"Sora","Segoe UI",system-ui,sans-serif;
+  --cuerpo:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--cuerpo);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:max(24px,env(safe-area-inset-bottom,0px));-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin-inline:auto}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-family:var(--display);line-height:1.1;letter-spacing:-.02em;text-wrap:balance}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--acento);outline-offset:3px;border-radius:10px}
+
+/* Encabezado */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0 8px}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:700;font-size:1.1rem;letter-spacing:-.02em;text-decoration:none;color:var(--fg)}
+.logo i{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--fg);color:var(--bg)}
+.logo svg{width:22px;height:22px}
+.top .cuenta{color:var(--muted);font-size:.92rem}
+.btn-wa{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:#25D366;color:#06260F;font-weight:700;font-size:.92rem;text-decoration:none}
+
+/* Buscador */
+.cab{padding:34px 0 22px;text-align:center}
+.cab h1{font-size:clamp(2rem,5.2vw,3.6rem);font-weight:700}
+.cab p{margin:14px auto 0;max-width:34em;color:var(--muted);font-size:1.08rem}
+.buscar{position:relative;max-width:640px;margin:28px auto 0}
+.buscar svg{position:absolute;left:20px;top:50%;transform:translateY(-50%);width:22px;height:22px;color:var(--muted);pointer-events:none}
+.buscar input{width:100%;padding:18px 54px 18px 56px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);color:var(--fg);font:inherit;font-size:1.1rem;font-weight:500;box-shadow:0 20px 40px -24px rgba(0,0,0,.8)}
+.buscar input::placeholder{color:#7E8190}
+.buscar input::-webkit-search-cancel-button,.buscar input::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
+.buscar input:focus{outline:none;border-color:var(--acento);box-shadow:0 0 0 4px rgba(255,122,102,.2)}
+.buscar button{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:var(--panel2);color:var(--fg);cursor:pointer;font-size:1.2rem;line-height:1}
+.series{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:18px}
+.series button,.sugeridos button{padding:9px 18px;border-radius:999px;border:1.5px solid var(--line);background:transparent;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--muted)}
+.series button:hover,.sugeridos button:hover{border-color:var(--muted);color:var(--fg)}
+.series button[aria-pressed="true"]{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.estado{margin-top:18px;min-height:1.6em;color:var(--muted);font-size:.98rem}
+.estado b{color:var(--fg)}
+.sugeridos{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+
+/* Carrusel */
+.escenario{position:relative;border-radius:30px;overflow:hidden;background:#07080B;border:1px solid var(--line);isolation:isolate;touch-action:pan-y}
+.fondo{position:absolute;inset:-40px;z-index:-1;background-size:cover;background-position:center;filter:blur(46px) saturate(1.25) brightness(.55);transform:scale(1.15);transition:background-image .5s ease}
+.vista{display:grid;grid-template-columns:72px minmax(0,1fr) 72px;align-items:center;min-height:min(74vh,720px);padding:26px 10px}
+.foto-caja{display:flex;align-items:center;justify-content:center;height:min(66vh,640px);min-width:0}
+.foto-caja img{max-width:100%;max-height:min(66vh,640px);width:auto;height:auto;object-fit:contain;border-radius:16px;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);cursor:zoom-in;animation:entra .45s ease both;user-select:none;-webkit-user-drag:none}
+@keyframes entra{from{opacity:.0;transform:scale(.985)}to{opacity:1;transform:none}}
+.flecha{width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(255,255,255,.28);background:rgba(13,14,18,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;cursor:pointer;display:grid;place-items:center;justify-self:center;transition:background-color .15s ease,transform .15s ease}
+.flecha:hover{background:var(--acento);color:var(--acento-ink);border-color:var(--acento);transform:scale(1.06)}
+.flecha svg{width:24px;height:24px}
+.flecha[disabled]{opacity:.35;pointer-events:none}
+.pie-esc{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 24px;padding:6px 26px 24px}
+.titulo-esc{min-width:0}
+.titulo-esc h2{font-size:clamp(1.5rem,3.4vw,2.3rem);font-weight:700}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);font-size:.84rem;font-weight:600;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.chip.cod{background:transparent;border:1px dashed rgba(255,255,255,.4);font-weight:500}
+.controles{display:flex;align-items:center;gap:12px;color:#DCDDE3;font-size:.92rem;font-variant-numeric:tabular-nums}
+.btn-sec{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.3);background:rgba(13,14,18,.4);color:#fff;cursor:pointer;font-weight:600;font-size:.88rem}
+.btn-sec:hover{border-color:#fff}
+.btn-sec svg{width:16px;height:16px}
+.tira{display:flex;gap:10px;overflow-x:auto;padding:4px 26px 22px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:#3A3D49 transparent}
+.tira button{flex:none;width:78px;height:98px;padding:0;border-radius:14px;border:2px solid transparent;background:#101218;overflow:hidden;cursor:pointer;opacity:.62;transition:opacity .15s ease,border-color .15s ease,transform .15s ease;scroll-snap-align:center}
+.tira button:hover{opacity:1}
+.tira button[aria-current="true"]{opacity:1;border-color:var(--acento);transform:translateY(-3px)}
+.tira img{width:100%;height:100%;object-fit:cover;display:block}
+.vacio{display:grid;place-items:center;text-align:center;min-height:300px;padding:40px 20px;color:var(--muted)}
+.vacio h3{color:var(--fg);font-size:1.4rem;margin-bottom:8px}
+@media (max-width:760px){
+  .vista{grid-template-columns:minmax(0,1fr);padding:18px 14px 8px;min-height:0;position:relative}
+  .foto-caja{height:min(58vh,520px)}
+  .foto-caja img{max-height:min(58vh,520px)}
+  .flecha{position:absolute;top:calc(50% - 40px);width:44px;height:44px;z-index:3}
+  #ant{left:10px} #sig{right:10px}
+  .pie-esc{padding:6px 18px 18px}
+  .tira{padding:4px 18px 18px}
+  .tira button{width:64px;height:82px}
+}
+
+/* Índice de modelos */
+section{padding:72px 0 0}
+.enc{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:26px}
+.enc h2{font-size:clamp(1.6rem,3.4vw,2.3rem)}
+.enc p{color:var(--muted)}
+.modelos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.mod{display:flex;flex-direction:column;text-align:left;padding:0;border-radius:20px;border:1px solid var(--line);background:var(--panel);overflow:hidden;cursor:pointer;transition:transform .18s ease,border-color .18s ease}
+.mod:hover{transform:translateY(-4px);border-color:var(--acento)}
+.mod .im{aspect-ratio:4/5;background:#0A0B0E;overflow:hidden}
+.mod img{width:100%;height:100%;object-fit:cover;display:block}
+.mod .tx{padding:13px 16px 15px}
+.mod b{display:block;font-family:var(--display);font-weight:600;font-size:1.02rem;line-height:1.2}
+.mod span{color:var(--muted);font-size:.86rem}
+@media (max-width:520px){ .modelos{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px} .mod .tx{padding:11px 12px 13px} }
+
+/* Pantalla completa con pase automático */
+.pantalla{position:fixed;inset:0;z-index:100;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:max(14px,env(safe-area-inset-top,0px)) 14px max(14px,env(safe-area-inset-bottom,0px));overflow:hidden;touch-action:pan-y}
+.p-fondo{position:absolute;inset:-60px;z-index:0;background-size:cover;background-position:center;filter:blur(60px) saturate(1.3) brightness(.5);transform:scale(1.2)}
+.pantalla>*:not(.p-fondo){position:relative;z-index:1}
+#pFoto{height:min(calc(100vh - 160px),calc(92vw * 5 / 3));height:min(calc(100dvh - 160px),calc(92vw * 5 / 3));aspect-ratio:3/5;width:auto;object-fit:cover;border-radius:22px;box-shadow:0 40px 80px -20px rgba(0,0,0,.8);animation:entra .6s ease both;cursor:pointer;user-select:none;-webkit-user-drag:none}
+.p-pie{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;width:min(100%,880px)}
+.p-info{display:flex;flex-direction:column;min-width:0}
+.p-info b{font-family:var(--display);font-size:clamp(1.3rem,3.2vw,2rem);line-height:1.1}
+.p-info span{color:#C9CAD2;font-size:.95rem;font-variant-numeric:tabular-nums}
+.p-ctrl{display:flex;gap:8px;transition:opacity .4s ease}
+.p-barra{position:absolute!important;top:0;left:0;right:0;height:5px;background:rgba(255,255,255,.15);z-index:2}
+.p-barra i{display:block;height:100%;width:100%;background:var(--acento);transform-origin:left;animation:progreso 4.5s linear both}
+@keyframes progreso{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.pantalla.pausa .p-barra i{animation-play-state:paused}
+.pantalla.quieto{cursor:none}
+.pantalla.quieto .p-ctrl{opacity:0;pointer-events:none}
+
+footer{margin-top:80px;padding:26px 0 8px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+/* Fotos verticales 3:5 */
+.foto-caja img{width:min(100%,calc(min(66vh,640px) * .6));height:auto;aspect-ratio:3/5;max-height:none;object-fit:cover}
+.tira button{width:58px;height:96px}
+.mod .im{aspect-ratio:3/5}
+@media (max-width:760px){ .foto-caja img{width:min(100%,calc(min(58vh,520px) * .6))} .tira button{width:52px;height:86px} }
+@media (prefers-reduced-motion:reduce){ .p-barra i{animation:none} #pFoto{animation:none} }
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .foto-caja img{animation:none} .fondo{transition:none} .mod,.flecha,.tira button{transition:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><circle cx="12" cy="6.5" r="1" fill="currentColor"/></svg></i>Estuches Samsung</a>
+    <div class="cuenta" id="cuenta"></div>
+    <a class="btn-wa" id="waTop" href="#" target="_blank" rel="noopener" hidden>Consultar por WhatsApp</a>
+  </header>
+
+  <main>
+    <div class="cab">
+      <h1>Encuentra el estuche de tu Samsung</h1>
+      <p>Escribe el modelo de tu celular y mira todas las opciones que tenemos, con fotos reales.</p>
+      <div class="buscar" role="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="q" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" placeholder="Ejemplo: estuche samsung A05" aria-label="Buscar estuche por modelo de celular">
+        <button id="limpiar" type="button" aria-label="Borrar búsqueda" hidden>×</button>
+      </div>
+      <div class="series" role="group" aria-label="Filtrar por serie">
+        <button type="button" data-serie="" aria-pressed="true">Todos</button>
+        <button type="button" data-serie="A" aria-pressed="false">Serie A</button>
+        <button type="button" data-serie="S" aria-pressed="false">Serie S</button>
+        <button type="button" data-serie="N" aria-pressed="false">Note</button>
+      </div>
+      <div class="estado" id="estado" role="status" aria-live="polite"></div>
+    </div>
+
+    <div class="escenario" id="escenario" role="region" aria-roledescription="carrusel" aria-label="Fotos de estuches">
+      <div class="fondo" id="fondo" aria-hidden="true"></div>
+      <div id="contenido">
+        <div class="vista">
+          <button class="flecha" id="ant" type="button" aria-label="Foto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <div class="foto-caja"><img id="foto" alt=""></div>
+          <button class="flecha" id="sig" type="button" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+        <div class="pie-esc">
+          <div class="titulo-esc">
+            <h2 id="nombre"></h2>
+            <div class="meta" id="meta"></div>
+          </div>
+          <div class="controles">
+            <span id="contador"></span>
+            <button class="btn-sec" id="auto" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path id="autoIco" d="M8 5v14l11-7z"/></svg><span id="autoTxt">Reproducir</span></button>
+            <button class="btn-sec" id="grande" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>Pantalla completa</button>
+          </div>
+        </div>
+        <div class="tira" id="tira" aria-label="Miniaturas"></div>
+      </div>
+      <div class="vacio" id="vacio" hidden>
+        <div><h3 id="vacioTit">No encontramos ese modelo</h3><p id="vacioTxt"></p><div class="sugeridos" id="sugeridos"></div></div>
+      </div>
+    </div>
+
+    <section id="modelos">
+      <div class="enc"><div><h2>Todos los modelos</h2><p>Toca uno para ver sus estuches.</p></div></div>
+      <div class="modelos" id="rejilla"></div>
+    </section>
+  </main>
+
+  <footer><span id="nota"></span><span>Catálogo informativo · Las fotos son referenciales</span></footer>
+</div>
+
+<div class="pantalla" id="pantalla" role="dialog" aria-modal="true" aria-label="Presentación a pantalla completa" hidden>
+  <div class="p-fondo" id="pFondo" aria-hidden="true"></div>
+  <div class="p-barra" aria-hidden="true"><i id="pProgreso"></i></div>
+  <img id="pFoto" alt="">
+  <div class="p-pie">
+    <div class="p-info"><b id="pNombre"></b><span id="pCont"></span></div>
+    <div class="p-ctrl">
+      <button class="btn-sec" id="pAnt" type="button" aria-label="Foto anterior">&#8249;</button>
+      <button class="btn-sec" id="pPausa" type="button">Pausar</button>
+      <button class="btn-sec" id="pSig" type="button" aria-label="Foto siguiente">&#8250;</button>
+      <button class="btn-sec" id="pCerrar" type="button">Salir</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN
+   whatsapp: número con código de país y SIN "+" (ejemplo 593991234567). Vacío = no se muestra el botón.
+   mostrarCodigos: muestra el código interno de cada producto.
+   autoplay: el carrusel avanza solo (se detiene al buscar o al tocarlo).
+   nota: texto del pie.
+   ============================================================ */
+var CONFIG = {whatsapp: "", mostrarCodigos: true, autoplay: true, nota: "Consulta precio y disponibilidad en tienda."};
+
+/* Datos: cada modelo con sus fotos. n = nombre, a = otros nombres con los que se busca, s = serie, c = códigos, f = fotos */
+var MODELOS = [{"n":"A01 Core","a":[],"s":"A","c":["35422"],"f":[0,1]},{"n":"A03s","a":[],"s":"A","c":["A03s"],"f":[2,3]},{"n":"A02","a":[],"s":"A","c":[],"f":[4,5]},{"n":"A03 Core","a":[],"s":"A","c":["86632"],"f":[6,7]},{"n":"A17 5G / A16 4G","a":["A17 5G","A16 4G","A17","A16"],"s":"A","c":["21343"],"f":[8,9,10,11]},{"n":"A04e","a":[],"s":"A","c":["E-221"],"f":[12,13,14,15,16,17,18]},{"n":"A04s / A13 5G","a":["A04s","A13 5G"],"s":"A","c":["05564"],"f":[19,20]},{"n":"A05 / M05 / F05","a":["A05","M05","F05","A05-L"],"s":"A","c":[],"f":[21]},{"n":"A07 / M07 / F07","a":["A07","M07","F07"],"s":"A","c":["76890"],"f":[22,23]},{"n":"A10s","a":[],"s":"A","c":["Sama10s"],"f":[24,25,26,27,28,29]},{"n":"A11","a":[],"s":"A","c":["Esti-413","A11 transparente"],"f":[30,31,32]},{"n":"A06","a":[],"s":"A","c":["Estu-a06"],"f":[33]},{"n":"A13 4G","a":[],"s":"A","c":[],"f":[34]},{"n":"A20s","a":[],"s":"A","c":["A20S-or"],"f":[35,36]},{"n":"A20","a":[],"s":"A","c":["Est-535"],"f":[37,38]},{"n":"A22","a":[],"s":"A","c":["Estu-a22"],"f":[39,40]},{"n":"A22 5G","a":[],"s":"A","c":["24122"],"f":[41,42,43,44,45]},{"n":"A23","a":[],"s":"A","c":["89566"],"f":[46]},{"n":"A24","a":[],"s":"A","c":["85744"],"f":[47,48,49]},{"n":"A26","a":[],"s":"A","c":["56656"],"f":[50,51,52,53,54]},{"n":"A31","a":[],"s":"A","c":["Sam-a31"],"f":[55,56,57]},{"n":"A32","a":[],"s":"A","c":["Estu-a32"],"f":[58]},{"n":"A33","a":[],"s":"A","c":["48523"],"f":[59,60]},{"n":"A34 5G","a":[],"s":"A","c":["1235"],"f":[61]},{"n":"A54 5G","a":[],"s":"A","c":["585524"],"f":[62,63,64,65]},{"n":"A55 5G","a":["A55"],"s":"A","c":["8264"],"f":[66,67]},{"n":"A57","a":[],"s":"A","c":["21090"],"f":[68,69]},{"n":"A72","a":[],"s":"A","c":["Sama-a72"],"f":[70,71,72]},{"n":"S20","a":[],"s":"S","c":["9688"],"f":[73]},{"n":"S22 Plus","a":["S22+"],"s":"S","c":["66332"],"f":[74]},{"n":"S23 Plus","a":["S23+"],"s":"S","c":[],"f":[75,76]},{"n":"S23 Ultra","a":[],"s":"S","c":["7713"],"f":[77]},{"n":"S24","a":[],"s":"S","c":["Estu-24","70901"],"f":[78,79,80]},{"n":"S24 Ultra","a":[],"s":"S","c":["9864"],"f":[81,82]},{"n":"S26","a":[],"s":"S","c":["8654"],"f":[83,84]},{"n":"Note 20 Ultra","a":["N20 Ultra"],"s":"N","c":["N20-ul"],"f":[85]}];
+var FOTOS = [{"src":"fotos/p000.webp","mini":"fotos/p000-mini.webp","w":600,"h":1000,"m":0},{"src":"fotos/p001.webp","mini":"fotos/p001-mini.webp","w":600,"h":1000,"m":0},{"src":"fotos/p002.webp","mini":"fotos/p002-mini.webp","w":600,"h":1000,"m":1},{"src":"fotos/p003.webp","mini":"fotos/p003-mini.webp","w":600,"h":1000,"m":1},{"src":"fotos/p004.webp","mini":"fotos/p004-mini.webp","w":600,"h":1000,"m":2},{"src":"fotos/p005.webp","mini":"fotos/p005-mini.webp","w":600,"h":1000,"m":2},{"src":"fotos/p006.webp","mini":"fotos/p006-mini.webp","w":600,"h":1000,"m":3},{"src":"fotos/p007.webp","mini":"fotos/p007-mini.webp","w":600,"h":1000,"m":3},{"src":"fotos/p008.webp","mini":"fotos/p008-mini.webp","w":600,"h":1000,"m":4},{"src":"fotos/p009.webp","mini":"fotos/p009-mini.webp","w":600,"h":1000,"m":4},{"src":"fotos/p010.webp","mini":"fotos/p010-mini.webp","w":600,"h":1000,"m":4},{"src":"fotos/p011.webp","mini":"fotos/p011-mini.webp","w":600,"h":1000,"m":4},{"src":"fotos/p012.webp","mini":"fotos/p012-mini.webp","w":600,"h":1000,"m":5},{"src":"fotos/p013.webp","mini":"fotos/p013-mini.webp","w":600,"h":1000,"m":5},{"src":"fotos/p014.webp","mini":"fotos/p014-mini.webp","w":600,"h":1000,"m":5},{"src":"fotos/p015.webp","mini":"fotos/p015-mini.webp","w":600,"h":1000,"m":5},{"src":"fotos/p016.webp","mini":"fotos/p016-mini.webp","w":600,"h":1000,"m":5},{"src":"fotos/p017.webp","mini":"fotos/p017-mini.webp","w":600,"h":1000,"m":5},{"src":"fotos/p018.webp","mini":"fotos/p018-mini.webp","w":600,"h":1000,"m":5},{"src":"fotos/p019.webp","mini":"fotos/p019-mini.webp","w":600,"h":1000,"m":6},{"src":"fotos/p020.webp","mini":"fotos/p020-mini.webp","w":600,"h":1000,"m":6},{"src":"fotos/p021.webp","mini":"fotos/p021-mini.webp","w":600,"h":1000,"m":7},{"src":"fotos/p022.webp","mini":"fotos/p022-mini.webp","w":600,"h":1000,"m":8},{"src":"fotos/p023.webp","mini":"fotos/p023-mini.webp","w":600,"h":1000,"m":8},{"src":"fotos/p024.webp","mini":"fotos/p024-mini.webp","w":600,"h":1000,"m":9},{"src":"fotos/p025.webp","mini":"fotos/p025-mini.webp","w":600,"h":1000,"m":9},{"src":"fotos/p026.webp","mini":"fotos/p026-mini.webp","w":600,"h":1000,"m":9},{"src":"fotos/p027.webp","mini":"fotos/p027-mini.webp","w":600,"h":1000,"m":9},{"src":"fotos/p028.webp","mini":"fotos/p028-mini.webp","w":600,"h":1000,"m":9},{"src":"fotos/p029.webp","mini":"fotos/p029-mini.webp","w":600,"h":1000,"m":9},{"src":"fotos/p030.webp","mini":"fotos/p030-mini.webp","w":600,"h":1000,"m":10},{"src":"fotos/p031.webp","mini":"fotos/p031-mini.webp","w":600,"h":1000,"m":10},{"src":"fotos/p032.webp","mini":"fotos/p032-mini.webp","w":600,"h":1000,"m":10},{"src":"fotos/p033.webp","mini":"fotos/p033-mini.webp","w":600,"h":1000,"m":11},{"src":"fotos/p034.webp","mini":"fotos/p034-mini.webp","w":600,"h":1000,"m":12},{"src":"fotos/p035.webp","mini":"fotos/p035-mini.webp","w":600,"h":1000,"m":13},{"src":"fotos/p036.webp","mini":"fotos/p036-mini.webp","w":600,"h":1000,"m":13},{"src":"fotos/p037.webp","mini":"fotos/p037-mini.webp","w":600,"h":1000,"m":14},{"src":"fotos/p038.webp","mini":"fotos/p038-mini.webp","w":600,"h":1000,"m":14},{"src":"fotos/p039.webp","mini":"fotos/p039-mini.webp","w":600,"h":1000,"m":15},{"src":"fotos/p040.webp","mini":"fotos/p040-mini.webp","w":600,"h":1000,"m":15},{"src":"fotos/p041.webp","mini":"fotos/p041-mini.webp","w":600,"h":1000,"m":16},{"src":"fotos/p042.webp","mini":"fotos/p042-mini.webp","w":600,"h":1000,"m":16},{"src":"fotos/p043.webp","mini":"fotos/p043-mini.webp","w":600,"h":1000,"m":16},{"src":"fotos/p044.webp","mini":"fotos/p044-mini.webp","w":600,"h":1000,"m":16},{"src":"fotos/p045.webp","mini":"fotos/p045-mini.webp","w":600,"h":1000,"m":16},{"src":"fotos/p046.webp","mini":"fotos/p046-mini.webp","w":600,"h":1000,"m":17},{"src":"fotos/p047.webp","mini":"fotos/p047-mini.webp","w":600,"h":1000,"m":18},{"src":"fotos/p048.webp","mini":"fotos/p048-mini.webp","w":600,"h":1000,"m":18},{"src":"fotos/p049.webp","mini":"fotos/p049-mini.webp","w":600,"h":1000,"m":18},{"src":"fotos/p050.webp","mini":"fotos/p050-mini.webp","w":600,"h":1000,"m":19},{"src":"fotos/p051.webp","mini":"fotos/p051-mini.webp","w":600,"h":1000,"m":19},{"src":"fotos/p052.webp","mini":"fotos/p052-mini.webp","w":600,"h":1000,"m":19},{"src":"fotos/p053.webp","mini":"fotos/p053-mini.webp","w":600,"h":1000,"m":19},{"src":"fotos/p054.webp","mini":"fotos/p054-mini.webp","w":600,"h":1000,"m":19},{"src":"fotos/p056.webp","mini":"fotos/p056-mini.webp","w":600,"h":1000,"m":20},{"src":"fotos/p057.webp","mini":"fotos/p057-mini.webp","w":600,"h":1000,"m":20},{"src":"fotos/p058.webp","mini":"fotos/p058-mini.webp","w":600,"h":1000,"m":20},{"src":"fotos/p055.webp","mini":"fotos/p055-mini.webp","w":600,"h":1000,"m":21},{"src":"fotos/p059.webp","mini":"fotos/p059-mini.webp","w":600,"h":1000,"m":22},{"src":"fotos/p060.webp","mini":"fotos/p060-mini.webp","w":600,"h":1000,"m":22},{"src":"fotos/p061.webp","mini":"fotos/p061-mini.webp","w":600,"h":1000,"m":23},{"src":"fotos/p062.webp","mini":"fotos/p062-mini.webp","w":600,"h":1000,"m":24},{"src":"fotos/p063.webp","mini":"fotos/p063-mini.webp","w":600,"h":1000,"m":24},{"src":"fotos/p064.webp","mini":"fotos/p064-mini.webp","w":600,"h":1000,"m":24},{"src":"fotos/p065.webp","mini":"fotos/p065-mini.webp","w":600,"h":1000,"m":24},{"src":"fotos/p066.webp","mini":"fotos/p066-mini.webp","w":600,"h":1000,"m":25},{"src":"fotos/p067.webp","mini":"fotos/p067-mini.webp","w":600,"h":1000,"m":25},{"src":"fotos/p068.webp","mini":"fotos/p068-mini.webp","w":600,"h":1000,"m":26},{"src":"fotos/p069.webp","mini":"fotos/p069-mini.webp","w":600,"h":1000,"m":26},{"src":"fotos/p070.webp","mini":"fotos/p070-mini.webp","w":600,"h":1000,"m":27},{"src":"fotos/p071.webp","mini":"fotos/p071-mini.webp","w":600,"h":1000,"m":27},{"src":"fotos/p072.webp","mini":"fotos/p072-mini.webp","w":600,"h":1000,"m":27},{"src":"fotos/p083.webp","mini":"fotos/p083-mini.webp","w":600,"h":1000,"m":28},{"src":"fotos/p085.webp","mini":"fotos/p085-mini.webp","w":600,"h":1000,"m":29},{"src":"fotos/p080.webp","mini":"fotos/p080-mini.webp","w":600,"h":1000,"m":30},{"src":"fotos/p081.webp","mini":"fotos/p081-mini.webp","w":600,"h":1000,"m":30},{"src":"fotos/p082.webp","mini":"fotos/p082-mini.webp","w":600,"h":1000,"m":31},{"src":"fotos/p073.webp","mini":"fotos/p073-mini.webp","w":600,"h":1000,"m":32},{"src":"fotos/p078.webp","mini":"fotos/p078-mini.webp","w":600,"h":1000,"m":32},{"src":"fotos/p079.webp","mini":"fotos/p079-mini.webp","w":600,"h":1000,"m":32},{"src":"fotos/p076.webp","mini":"fotos/p076-mini.webp","w":600,"h":1000,"m":33},{"src":"fotos/p077.webp","mini":"fotos/p077-mini.webp","w":600,"h":1000,"m":33},{"src":"fotos/p074.webp","mini":"fotos/p074-mini.webp","w":600,"h":1000,"m":34},{"src":"fotos/p075.webp","mini":"fotos/p075-mini.webp","w":600,"h":1000,"m":34},{"src":"fotos/p084.webp","mini":"fotos/p084-mini.webp","w":600,"h":1000,"m":35}];
+
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var lista = [], pos = 0, serie = "", soloModelo = -1, timer = 0, pausado = !(CONFIG.autoplay && !reduce), sobre = false;
+
+  // ---- Búsqueda ----
+  var BASURA = {estuche:1, estuches:1, funda:1, fundas:1, case:1, cases:1, protector:1, carcasa:1, para:1, de:1, del:1, el:1, la:1, los:1, las:1, un:1, una:1, samsung:1, galaxy:1, sm:1, celular:1, telefono:1, modelo:1, quiero:1, busco:1, necesito:1, tienen:1, hay:1, y:1, con:1, mi:1};
+  function norm(t){
+    t = String(t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    t = t.replace(/\+/g, " plus ").replace(/[^a-z0-9]+/g, " ");
+    t = t.replace(/\b([a-z]{1,4}) (\d{1,3}[a-z]?)\b/g, "$1$2");   // "a 05" -> "a05", "s 23" -> "s23"
+    return t.trim();
+  }
+  function tokens(t){ return norm(t).split(" ").filter(function(x){ return x && !BASURA[x]; }); }
+  MODELOS.forEach(function(m, i){
+    var set = {};
+    [m.n].concat(m.a || []).forEach(function(x){ tokens(x).forEach(function(k){ set[k] = 1; }); });
+    m._t = Object.keys(set);
+    m.i = i;
+  });
+  function coincide(m, q){
+    var exacto = true;
+    for (var i = 0; i < q.length; i++){
+      var k = q[i], ok = false;
+      for (var j = 0; j < m._t.length; j++){
+        if (m._t[j] === k){ ok = true; break; }
+        if (k.length >= 2 && m._t[j].indexOf(k) === 0){ ok = true; exacto = false; }
+      }
+      if (!ok) return 0;
+    }
+    return exacto ? 2 : 1;
+  }
+  function modelosVisibles(){
+    var q = tokens($("q").value), out = [];
+    MODELOS.forEach(function(m){
+      if (serie && m.s !== serie) return;
+      if (soloModelo >= 0 && m.i !== soloModelo) return;
+      if (soloModelo < 0 && q.length){ var c = coincide(m, q); if (!c) return; out.push({m: m, c: c}); }
+      else out.push({m: m, c: 0});
+    });
+    out.sort(function(a, b){ return b.c - a.c || a.m.i - b.m.i; });
+    return out.map(function(x){ return x.m; });
+  }
+
+  // ---- Pintar ----
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]; }); }
+  function pintarEstado(ms){
+    var q = $("q").value.trim(), n = lista.length, e = $("estado");
+    if (!n){ e.innerHTML = ""; return; }
+    if (!q && soloModelo < 0 && !serie) e.innerHTML = "<b>" + n + " fotos</b> de " + ms.length + " modelos";
+    else if (ms.length === 1) e.innerHTML = "<b>" + n + (n === 1 ? " foto" : " fotos") + "</b> de estuches para Samsung " + esc(ms[0].n);
+    else e.innerHTML = "<b>" + n + " fotos</b> en " + ms.length + " modelos";
+  }
+  function buscar(reiniciar){
+    var ms = modelosVisibles(), fs = [];
+    ms.forEach(function(m){ m.f.forEach(function(f){ fs.push(f); }); });
+    lista = fs;
+    if (reiniciar !== false) pos = 0;
+    $("limpiar").hidden = !$("q").value;
+    var hay = lista.length > 0;
+    $("contenido").hidden = !hay; $("vacio").hidden = hay;
+    if (!hay){
+      var q = $("q").value.trim();
+      $("vacioTit").textContent = "No encontramos «" + q + "»";
+      $("vacioTxt").textContent = "Prueba con el número de tu modelo, por ejemplo A05, A54 o S24. Estos son algunos que tenemos:";
+      $("sugeridos").innerHTML = MODELOS.slice(0, 8).map(function(m){ return '<button type="button" data-m="' + m.i + '">' + esc(m.n) + "</button>"; }).join("");
+      $("estado").innerHTML = "";
+      detener(); return;
+    }
+    pintarEstado(ms);
+    pintarTira(); pintarEscena(true);
+    programar();
+  }
+  function pintarTira(){
+    $("tira").innerHTML = lista.map(function(f, i){
+      var ft = FOTOS[f];
+      return '<button type="button" data-i="' + i + '" aria-label="Foto ' + (i + 1) + ' de ' + lista.length + ': ' + esc(MODELOS[ft.m].n) + '"><img src="' + ft.mini + '" alt="" loading="lazy" decoding="async"></button>';
+    }).join("");
+  }
+  function precargar(i){ var f = FOTOS[lista[(i + lista.length) % lista.length]]; if (f){ var im = new Image(); im.src = f.src; } }
+  function pintarEscena(nueva){
+    var ft = FOTOS[lista[pos]], m = MODELOS[ft.m], img = $("foto");
+    var cambiar = function(){
+      img.style.animation = "none"; void img.offsetWidth; img.style.animation = "";
+      img.src = ft.src; img.alt = "Estuche para Samsung " + m.n;
+      img.width = ft.w; img.height = ft.h;
+      $("fondo").style.backgroundImage = 'url("' + ft.mini + '")';
+    };
+    cambiar();
+    $("nombre").textContent = "Samsung " + m.n;
+    var chips = "";
+    var otros = (m.a || []).filter(function(a){ return norm(a) !== norm(m.n) && m.n.toLowerCase().indexOf(a.toLowerCase()) < 0; });
+    if (otros.length) chips += '<span class="chip">También: ' + otros.map(esc).join(" · ") + "</span>";
+    if (CONFIG.mostrarCodigos && m.c && m.c.length) chips += m.c.map(function(c){ return '<span class="chip cod">Cód. ' + esc(c) + "</span>"; }).join("");
+    $("meta").innerHTML = chips;
+    $("contador").textContent = (pos + 1) + " / " + lista.length;
+    $("ant").disabled = $("sig").disabled = lista.length < 2;
+    var bs = $("tira").children;
+    for (var i = 0; i < bs.length; i++) bs[i].setAttribute("aria-current", i === pos ? "true" : "false");
+    var b = bs[pos]; if (b){ var t = $("tira"); t.scrollTo({left: b.offsetLeft - (t.clientWidth - b.offsetWidth) / 2, behavior: reduce || nueva ? "auto" : "smooth"}); }
+    precargar(pos + 1); precargar(pos - 1);
+  }
+  function ir(d){ if (lista.length < 2) return; pos = (pos + d + lista.length) % lista.length; pintarEscena(false); programar(); if (!$("pantalla").hidden){ pintarPantalla(); programarP(); } }
+  function irA(i){ pos = i; pintarEscena(false); programar(); }
+
+  // ---- Reproducción automática ----
+  function detener(){ clearInterval(timer); timer = 0; }
+  function programar(){
+    detener();
+    pintarBoton();
+    if (pausado || sobre || lista.length < 2 || $("q").value.trim() || document.hidden || !$("pantalla").hidden) return;
+    timer = setInterval(function(){ pos = (pos + 1) % lista.length; pintarEscena(false); }, 4800);
+  }
+  function pintarBoton(){
+    $("auto").setAttribute("aria-pressed", pausado ? "false" : "true");
+    $("autoTxt").textContent = pausado ? "Reproducir" : "Pausar";
+    $("autoIco").setAttribute("d", pausado ? "M8 5v14l11-7z" : "M7 5h4v14H7zM13 5h4v14h-4z");
+  }
+  $("auto").addEventListener("click", function(){ pausado = !pausado; programar(); });
+  $("escenario").addEventListener("pointerenter", function(e){ if (e.pointerType === "mouse"){ sobre = true; programar(); } });
+  $("escenario").addEventListener("pointerleave", function(e){ if (e.pointerType === "mouse"){ sobre = false; programar(); } });
+  document.addEventListener("visibilitychange", programar);
+
+  // ---- Controles ----
+  $("ant").addEventListener("click", function(){ ir(-1); });
+  $("sig").addEventListener("click", function(){ ir(1); });
+  $("tira").addEventListener("click", function(e){ var b = e.target.closest("button[data-i]"); if (b) irA(Number(b.getAttribute("data-i"))); });
+  var x0 = null;
+  $("escenario").addEventListener("pointerdown", function(e){ if (e.target.closest("button,input,.tira")) return; x0 = e.clientX; });
+  $("escenario").addEventListener("pointerup", function(e){ if (x0 === null) return; var dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 50) ir(dx < 0 ? 1 : -1); });
+  document.addEventListener("keydown", function(e){
+    if (!$("pantalla").hidden){ mostrarCtrl(); if (e.key === "Escape") cerrarPantalla(); else if (e.key === "ArrowLeft") ir(-1); else if (e.key === "ArrowRight") ir(1); else if (e.key === " "){ e.preventDefault(); pausaPantalla(); } return; }
+    if (e.target.closest && e.target.closest("input,select,textarea")) return;
+    if (e.key === "ArrowLeft") ir(-1); else if (e.key === "ArrowRight") ir(1);
+  });
+  $("q").addEventListener("input", function(){ soloModelo = -1; buscar(); });
+  $("limpiar").addEventListener("click", function(){ $("q").value = ""; soloModelo = -1; buscar(); $("q").focus(); });
+  document.querySelector(".series").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-serie]"); if (!b) return;
+    serie = b.getAttribute("data-serie");
+    document.querySelectorAll(".series button").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+    buscar();
+  });
+  function verModelo(i){
+    soloModelo = i; $("q").value = MODELOS[i].n; serie = "";
+    document.querySelectorAll(".series button").forEach(function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-serie") === "" ? "true" : "false"); });
+    pausado = true; buscar();
+    $("escenario").scrollIntoView({behavior: reduce ? "auto" : "smooth", block: "start"});
+  }
+  $("rejilla").addEventListener("click", function(e){ var b = e.target.closest("button[data-m]"); if (b) verModelo(Number(b.getAttribute("data-m"))); });
+  $("sugeridos").addEventListener("click", function(e){ var b = e.target.closest("button[data-m]"); if (b) verModelo(Number(b.getAttribute("data-m"))); });
+
+  // ---- Pantalla completa con pase automático ----
+  var tP = 0, pausaP = false, ocultar = 0, bloqueo = null, INTERVALO = 4500, px0 = null, pmovio = false;
+  function pintarPantalla(){
+    var ft = FOTOS[lista[pos]], m = MODELOS[ft.m], img = $("pFoto");
+    img.style.animation = "none"; void img.offsetWidth; img.style.animation = "";
+    img.src = ft.src; img.alt = "Estuche para Samsung " + m.n;
+    $("pFondo").style.backgroundImage = 'url("' + ft.mini + '")';
+    $("pNombre").textContent = "Samsung " + m.n;
+    $("pCont").textContent = (pos + 1) + " de " + lista.length;
+    var b = $("pProgreso"); b.style.animation = "none"; void b.offsetWidth; b.style.animation = "";
+    precargar(pos + 1);
+  }
+  function programarP(){
+    clearTimeout(tP);
+    if (pausaP || $("pantalla").hidden || lista.length < 2) return;
+    tP = setTimeout(function(){ ir(1); }, INTERVALO);
+  }
+  function pintarPausaP(){ $("pPausa").textContent = pausaP ? "Seguir" : "Pausar"; $("pantalla").classList.toggle("pausa", pausaP); }
+  function pausaPantalla(){ pausaP = !pausaP; pintarPausaP(); pintarPantalla(); programarP(); }
+  function mostrarCtrl(){ var p = $("pantalla"); p.classList.remove("quieto"); clearTimeout(ocultar); ocultar = setTimeout(function(){ p.classList.add("quieto"); }, 3200); }
+  function abrirPantalla(){
+    if (!lista.length) return;
+    pausaP = false; pintarPausaP();
+    $("pantalla").hidden = false; document.body.style.overflow = "hidden"; detener();
+    pintarPantalla(); programarP(); mostrarCtrl();
+    try { var el = document.documentElement, rf = el.requestFullscreen || el.webkitRequestFullscreen; if (rf){ var r = rf.call(el); if (r && r.catch) r.catch(function(){}); } } catch(e){}
+    try { if (navigator.wakeLock) navigator.wakeLock.request("screen").then(function(w){ bloqueo = w; }).catch(function(){}); } catch(e){}
+    $("pCerrar").focus();
+  }
+  function cerrarPantalla(){
+    if ($("pantalla").hidden) return;
+    clearTimeout(tP); clearTimeout(ocultar); $("pantalla").hidden = true; document.body.style.overflow = "";
+    try { if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen(); else if (document.webkitFullscreenElement && document.webkitExitFullscreen) document.webkitExitFullscreen(); } catch(e){}
+    try { if (bloqueo){ bloqueo.release(); bloqueo = null; } } catch(e){}
+    pintarEscena(false); programar(); $("grande").focus();
+  }
+  function alCambiarPantallaCompleta(){ if (!document.fullscreenElement && !document.webkitFullscreenElement) cerrarPantalla(); }
+  document.addEventListener("fullscreenchange", alCambiarPantallaCompleta);
+  document.addEventListener("webkitfullscreenchange", alCambiarPantallaCompleta);
+  document.addEventListener("visibilitychange", function(){ if (!document.hidden && bloqueo === null && !$("pantalla").hidden && navigator.wakeLock) navigator.wakeLock.request("screen").then(function(w){ bloqueo = w; }).catch(function(){}); });
+  $("foto").addEventListener("click", abrirPantalla);
+  $("grande").addEventListener("click", abrirPantalla);
+  $("pCerrar").addEventListener("click", cerrarPantalla);
+  $("pAnt").addEventListener("click", function(){ ir(-1); });
+  $("pSig").addEventListener("click", function(){ ir(1); });
+  $("pPausa").addEventListener("click", pausaPantalla);
+  var pant = $("pantalla");
+  pant.addEventListener("pointermove", mostrarCtrl);
+  pant.addEventListener("pointerdown", function(e){ mostrarCtrl(); if (e.target.closest("button")) return; px0 = e.clientX; pmovio = false; });
+  pant.addEventListener("pointerup", function(e){
+    if (px0 === null) return; var dx = e.clientX - px0; px0 = null;
+    if (Math.abs(dx) > 50){ ir(dx < 0 ? 1 : -1); return; }
+    if (e.target === $("pFoto")) pausaPantalla();
+  });
+
+  // ---- Inicio ----
+  $("rejilla").innerHTML = MODELOS.map(function(m){
+    var f = FOTOS[m.f[0]];
+    return '<button class="mod" type="button" data-m="' + m.i + '"><span class="im"><img src="' + f.mini + '" alt="" loading="lazy" decoding="async"></span><span class="tx"><b>Samsung ' + esc(m.n) + "</b><span>" + m.f.length + (m.f.length === 1 ? " foto" : " fotos") + "</span></span></button>";
+  }).join("");
+  $("cuenta").textContent = FOTOS.length + " fotos · " + MODELOS.length + " modelos";
+  $("nota").textContent = CONFIG.nota;
+  if (CONFIG.whatsapp){ var w = $("waTop"); w.hidden = false; w.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Hola, busco un estuche para mi Samsung."); }
+  // Si la dirección trae ?q=a05 se busca directo
+  try { var p = new URLSearchParams(location.search).get("q"); if (p) $("q").value = p; } catch(e){}
+  buscar();
+  try { if (new URLSearchParams(location.search).has("pantalla")) abrirPantalla(); } catch(e){}
+})();
+</script>
+</body>
+</html>
